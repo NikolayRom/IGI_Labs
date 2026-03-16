@@ -9,6 +9,7 @@ Date: 15.03.2026
 from validation import Validation
 from menu import Menu
 from task1 import Service as task1
+from task2 import Service as task2
 
 class Main:
     """Main class to run the application."""
@@ -35,7 +36,7 @@ class Main:
                 case 1:
                     Menu.main_loop(task1.presentation)
                 case 2:
-                    print("Task 2 is under development.")
+                    Menu.main_loop(task2.presentation)
                 case 3:
                     print("Task 3 is under development.")
                 case 4:

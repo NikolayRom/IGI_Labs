@@ -1,1 +1,11 @@
-Test Result: В соответствии с заданием своего варианта составить программу для анализа текста. Считать из исходного файла текст. Используя регулярные выражения получить искомую информацию (см. условие), вывести ее на экран и сохранить в другой файл. Заархивировать файл с результатом с помощью модуля zipfile и обеспечить получение информации о файле в архиве.
+Contains GUID: True
+Count of 3-letter words: 18
+Words with equal vowels/consonants: ['9: is', '13: file', '15: love', '17: in', '19: It', '20: is', '21: very', '28: we', '31: Here', '32: is', '35: identifier', '39: We', '40: need', '41: some', '45: like', '51: like', '52: mama', '53: papa', '55: case', '56: have', '66: am', '69: go']
+Total sentences: 11
+Declarative sentences: 6
+Interrogative sentences: 2
+Exclamatory sentences: 3
+Average sentence length (words): 6.27
+Average word length (chars): 4.04
+Count of emojis: 2
+Sorted words by length (preview): ['programming', 'interesting', 'identifier', 'consonants', 'Sometimes', 'special', 'simple', 'Python', 'system', 'letter']

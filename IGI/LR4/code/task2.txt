@@ -1,1 +1,7 @@
-В соответствии с заданием своего варианта составить программу для анализа текста. Считать из исходного файла текст. Используя регулярные выражения получить искомую информацию, вывести ее на экран и сохранить в другой файл. Заархивировать файл с результатом с помощью модуля zipfile и обеспечить получение информации о файле в архиве.
+Hello there! How are you doing today? This is a simple test file.
+I love programming in Python :-) It is very interesting.
+Sometimes there are bugs ;--[[[[ But we fix them!
+Here is a special identifier for our system: {e02fd0e4-00fd-090A-ca30-0d00a0038ba0}.
+We need some three letter words like cat, dog, and box.
+Words like mama, papa, and case have equal vowels and consonants.
+Are you ready? Yes, I am! Let's go.

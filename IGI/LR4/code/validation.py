@@ -44,3 +44,28 @@ class Validation:
             print("Error: String cannot be empty.")
             raise ValueError()
         return user_str
+    
+    @staticmethod
+    @userInputNum
+    def inputEpsila(prompt):
+        """
+        Requests an epsilon (accuracy) value greater than 0.
+        """
+        eps = float(input(prompt))
+        if eps <= 0:
+            print("Epsilon must be greater than 0.")
+            raise ValueError()
+        return eps
+
+
+    @staticmethod
+    @userInputNum
+    def inputArgumentX(prompt):
+        """
+        Requests an argument X where |X| < 1.
+        """
+        x = float(input(prompt))
+        if abs(x) >= 1:
+            print("Absolute value of X must be less than 1.")
+            raise ValueError()
+        return x

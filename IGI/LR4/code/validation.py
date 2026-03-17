@@ -6,6 +6,8 @@ Developer: Романов Николай Викторович
 Date: 15.03.2026
 """
 
+import matplotlib.colors as mcolors
+
 class Validation:
     """Class containing static methods for validating user input."""
 
@@ -51,7 +53,7 @@ class Validation:
         """
         Requests an epsilon (accuracy) value greater than 0.
         """
-        eps = float(input(prompt))
+        eps = Validation.inputFloatNum(prompt)
         if eps <= 0:
             print("Epsilon must be greater than 0.")
             raise ValueError()
@@ -64,8 +66,44 @@ class Validation:
         """
         Requests an argument X where |X| < 1.
         """
-        x = float(input(prompt))
+        x = Validation.inputFloatNum(prompt)
         if abs(x) >= 1:
             print("Absolute value of X must be less than 1.")
             raise ValueError()
         return x
+    
+    @staticmethod
+    @userInputNum
+    def inputFigureSide(prompt):
+        """
+        Requests a side length of figure where length > 0
+        """
+        side = Validation.inputFloatNum(prompt)
+        if side <= 0:
+            print("Error: Side length must be strictly greater than 0.\n")
+            raise ValueError()
+        return side
+    
+    @staticmethod
+    @userInputNum
+    def inputFigureAngle(prompt):
+        """
+        Requests an angle of figure where 90 < angle < 180 
+        """
+        angle = Validation.inputFloatNum(prompt)
+        if 90 < angle < 180:
+            return angle
+        print("Error: The angle must be obtuse (between 90 and 180 degrees).\n")
+        raise ValueError()
+    
+    @staticmethod
+    @userInputNum
+    def inputFigureColor(prompt):
+        """
+        Requests a color of figure where color is exist
+        """
+        color = Validation.inputStr("Enter color (e.g., 'red', 'blue', 'green', 'magenta', '#FF5733'): ").lower()
+        if mcolors.is_color_like(color):
+            return color
+        print(f"Error: '{color}' is not recognized as a valid color. Please try again.\n")
+        raise ValueError()

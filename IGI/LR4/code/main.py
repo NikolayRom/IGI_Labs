@@ -11,6 +11,7 @@ from menu import Menu
 from task1 import Service as task1
 from task2 import Service as task2
 from task3 import Service as task3
+from task4 import Service as task4
 
 class Main:
     """Main class to run the application."""
@@ -41,7 +42,7 @@ class Main:
                 case 3:
                     Menu.main_loop(task3.presentation)
                 case 4:
-                    print("Task 4 is under development.")
+                    Menu.main_loop(task4.presentation)
                 case 5:
                     print("Task 5 is under development.")
                 case 6:

@@ -1,9 +1,9 @@
 """
 Brief purpose: Module for Task 2. Text analysis using Regular Expressions, File I/O, and Zip archives.
-Lab number and title: Lab 4 - Работа с файлами, классами, сериализаторами, регулярными выражениями и стандартными библиотеками
+Lab number and title: Lab 4 - Working with files, classes, serializers, regular expressions, and standard libraries
 Version: 1.0
-Developer: Романов Николай Викторович
-Date: 15.03.2026
+Developer: Romanov Nikolay Viktorovich
+Date: 16.03.2026
 """
 
 import os
@@ -69,6 +69,7 @@ class ZipManager(BaseFileHandler):
                 zipf.write(file_to_zip)
                 print(f"File '{file_to_zip}' successfully archived to '{self._filename}'.")
 
+    # Detailed info about the first file in archive
     def get_info(self):
         """Polymorphism: Overrides base method to return archive contents."""
         if not os.path.exists(self._filename):
@@ -189,10 +190,12 @@ class Service:
         if not TaskStorage.data:
             return
 
+        # Replace text based on user input
         replaced_text = IndividualTaskService.replace_space(TaskStorage.data)
         print("\n[Preview of Text with Replaced Spaces]:")
         print(replaced_text[:100] + "...\n") 
 
+        # Gathering all statistics
         results = {
             "Contains GUID": IndividualTaskService.check_guid(TaskStorage.data),
             "Count of 3-letter words": IndividualTaskService.get_count_3_len(TaskStorage.data),
@@ -204,16 +207,19 @@ class Service:
             "Average sentence length (words)": round(CommonTaskService.get_average_len_sentence(TaskStorage.data), 2),
             "Average word length (chars)": round(CommonTaskService.get_average_len_word(TaskStorage.data), 2),
             "Count of emojis": CommonTaskService.get_count_emoji(TaskStorage.data),
-            "Sorted words by length (preview)": IndividualTaskService.sort_words(TaskStorage.data)[:10] 
+            "Sorted words by length (preview)": IndividualTaskService.sort_words(TaskStorage.data)
         }
 
+        # Print results
         for key, value in results.items():
             print(f"{key:.<40}: {value}")
 
+        # Save results to text file
         writer = FileManager(TaskStorage.filename_result)
         writer.write_results(results)
         print("\n" + writer.get_info()) 
         
+        # Archive the result file
         zipper = ZipManager(TaskStorage.zipname)
         zipper.create_zip(TaskStorage.filename_result)
         print(zipper.get_info()) 

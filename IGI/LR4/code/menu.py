@@ -1,8 +1,8 @@
 """
 Brief purpose: Module for handling the console menu logic and repeating tasks.
-Lab number and title: Lab 4 - Работа с файлами, классами, сериализаторами, регулярными выражениями и стандартными библиотеками
+Lab number and title: Lab 4 - Working with files, classes, serializers, regular expressions, and standard libraries
 Version: 1.0
-Developer: Романов Николай Викторович
+Developer: Romanov Nikolay Viktorovich
 Date: 15.03.2026
 """
 

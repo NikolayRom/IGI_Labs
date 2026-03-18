@@ -1,8 +1,8 @@
 """
 Brief purpose: Main entry point of the application, connecting all task modules.
-Lab number and title: Lab 4 - Работа с файлами, классами, сериализаторами, регулярными выражениями и стандартными библиотеками
+Lab number and title: Lab 4 - Working with files, classes, serializers, regular expressions, and standard libraries
 Version: 1.0
-Developer: Романов Николай Викторович
+Developer: Romanov Nikolay Viktorovich
 Date: 15.03.2026
 """
 
@@ -12,6 +12,8 @@ from task1 import Service as task1
 from task2 import Service as task2
 from task3 import Service as task3
 from task4 import Service as task4
+from task5 import Service as task5
+from task6 import Service as task6
 
 class Main:
     """Main class to run the application."""
@@ -44,11 +46,10 @@ class Main:
                 case 4:
                     Menu.main_loop(task4.presentation)
                 case 5:
-                    print("Task 5 is under development.")
+                    Menu.main_loop(task5.presentation)
                 case 6:
-                    print("Task 6 is under development.")
+                    Menu.main_loop(task6.presentation)
                 case 0:
-                    print("Exiting program. Goodbye!")
                     break
                 case _:
                     print("Invalid choice. Please select an existing task.")

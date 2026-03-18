@@ -8,4 +8,4 @@ Exclamatory sentences: 3
 Average sentence length (words): 6.27
 Average word length (chars): 4.04
 Count of emojis: 2
-Sorted words by length (preview): ['programming', 'interesting', 'identifier', 'consonants', 'Sometimes', 'special', 'simple', 'Python', 'system', 'letter']
+Sorted words by length (preview): ['programming', 'interesting', 'identifier', 'consonants', 'Sometimes', 'special', 'simple', 'Python', 'system', 'letter', 'vowels', 'Hello', 'there', 'doing', 'today', 'there', 'three', 'words', 'Words', 'equal', 'ready', 'This', 'test', 'file', 'love', 'very', 'bugs', 'them', 'Here', 'need', 'some', 'like', 'like', 'mama', 'papa', 'case', 'have', 'How', 'are', 'you', 'are', 'But', 'fix', 'for', 'our', 'cat', 'dog', 'and', 'box', 'and', 'and', 'Are', 'you', 'Yes', 'Let', 'is', 'in', 'It', 'is', 'we', 'is', 'We', 'am', 'go', 'a', 'I', 'a', 'I', 's']

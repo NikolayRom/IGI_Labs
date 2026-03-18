@@ -1,9 +1,9 @@
 """
 Brief purpose: Module for Task 3. Taylor series calculation, statistics with NumPy, and plotting with Matplotlib.
-Lab number and title: Lab 4 - Работа с файлами, классами, сериализаторами, регулярными выражениями и стандартными библиотеками
+Lab number and title: Lab 4 - Working with files, classes, serializers, regular expressions, and standard libraries
 Version: 1.0
-Developer: Романов Николай Викторович
-Date: 15.03.2026
+Developer: Romanov Nikolay Viktorovich
+Date: 16.03.2026
 """
 
 import math

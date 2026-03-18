@@ -1,8 +1,8 @@
 """
 Brief purpose: Module for Task 1. Works with dictionaries, CSV, and Pickle serialization.
-Lab number and title: Lab 4 - Работа с файлами, классами, сериализаторами, регулярными выражениями и стандартными библиотеками
+Lab number and title: Lab 4 - Working with files, classes, serializers, regular expressions, and standard libraries
 Version: 1.0
-Developer: Романов Николай Викторович
+Developer: Romanov Nikolay Viktorovich
 Date: 15.03.2026
 """
 
@@ -239,14 +239,14 @@ class SearchService:
         """Prompts user and searches via CSV."""
         name = Validation.inputStr("Enter student name to search in CSV: ")
         search_obj = CSVSearch(TaskStorage.filename_csv, name)
-        search_obj.print_result(search_obj.findStudent()) 
+        search_obj.print_result(search_obj.findStudent()) # Using Mixin method
 
     @staticmethod
     def searchPickle():
         """Prompts user and searches via Pickle."""
         name = Validation.inputStr("Enter student name to search in Pickle: ")
         search_obj = PickleSearch(TaskStorage.filename_txt, name)
-        search_obj.print_result(search_obj.findStudent()) 
+        search_obj.print_result(search_obj.findStudent()) # Using Mixin method
 
 
 class Service:

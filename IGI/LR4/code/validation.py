@@ -1,8 +1,8 @@
 """
 Brief purpose: Module for user input validation and exception handling.
-Lab number and title: Lab 4 - Работа с файлами, классами, сериализаторами, регулярными выражениями и стандартными библиотеками
+Lab number and title: Lab 4 - Working with files, classes, serializers, regular expressions, and standard libraries
 Version: 1.0
-Developer: Романов Николай Викторович
+Developer: Romanov Nikolay Viktorovich
 Date: 15.03.2026
 """
 
@@ -102,8 +102,20 @@ class Validation:
         """
         Requests a color of figure where color is exist
         """
-        color = Validation.inputStr("Enter color (e.g., 'red', 'blue', 'green', 'magenta', '#FF5733'): ").lower()
+        color = Validation.inputStr(prompt).lower()
         if mcolors.is_color_like(color):
             return color
         print(f"Error: '{color}' is not recognized as a valid color. Please try again.\n")
+        raise ValueError()
+    
+    @staticmethod
+    @userInputNum
+    def inputMatrixDimension(prompt):
+        """
+        Requests a dimension of matrix where dimension >= 2
+        """
+        val = Validation.inputIntNum(prompt)
+        if val >= 2:
+            return val
+        print("Error: Matrix dimension must be at least 2 for a proper demonstration.\n")
         raise ValueError()

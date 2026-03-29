@@ -16,7 +16,7 @@ def find_max_abs_element(lst):
     """
     if not lst:
         return 0.0
-    # Pythonic way: ищем максимум, используя abs() как критерий сравнения
+    # Using the 'key' argument to find the maximum based on absolute value
     return max(lst, key=abs)
 
 def sum_before_last_positive(lst):
@@ -25,6 +25,7 @@ def sum_before_last_positive(lst):
     """
     last_pos_index = -1
     
+    # Iterate backwards to find the last occurrence of a positive number efficiently
     for i in range(len(lst) - 1, -1, -1):
         if lst[i] > 0:
             last_pos_index = i

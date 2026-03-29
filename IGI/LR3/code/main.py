@@ -35,6 +35,7 @@ def main():
         
         choice = inputIntNum("Enter task number (0-5): ")
         
+        # Using the match-case statement (available in Python 3.10+) for clean routing
         match choice:
             case 1:
                 main_loop(task1)
@@ -52,4 +53,5 @@ def main():
                 print("Invalid choice. Please select an existing task.")
 
 if __name__ == "__main__":
+    # Standard entry point idiom to prevent code execution when imported as a module
     main()

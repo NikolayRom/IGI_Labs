@@ -53,10 +53,12 @@ def task1():
         term = taylor_series_term(i, x)
         f_value += term
         
+        # Convergence check: stop when the term becomes smaller than epsilon
         if abs(term) <= eps:
             n = i
             break
     else:
+        # This block executes only if the loop finishes without hitting 'break'
         n = max_iter
         print(f"\nWarning: Maximum iterations ({max_iter}) reached without achieving required accuracy.")
 

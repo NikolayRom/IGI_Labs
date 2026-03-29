@@ -16,6 +16,7 @@ def get_cleaned_words(text):
     cleaned_words =[]
     
     for word in raw_words:
+        # Strip punctuation from edges only, preserving internal hyphens
         clean_word = word.strip('.,')
         if clean_word:
             cleaned_words.append(clean_word)
@@ -43,6 +44,7 @@ def get_repeating_words(words):
     """
     Returns a list of words that appear more than once in the text (case-insensitive).
     """
+    # Using sets for O(n) average time complexity when finding duplicates
     lower_words =[word.lower() for word in words]
     repeats = set()
     seen = set()

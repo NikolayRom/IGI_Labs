@@ -13,6 +13,7 @@ def userInputNum(func):
     Repeats the input prompt until the user enters valid data.
     """
     def wrapper(prompt):
+        # Infinite loop forces user to re-enter data until it passes validation
         while True:
             try:
                 return func(prompt)
@@ -66,6 +67,7 @@ def inputArgumentX(prompt):
     """
     Requests an argument X where |X| < 1.
     """
+    # Domain-specific validation for the Taylor series mathematical constraint
     x = float(input(prompt))
     if abs(x) >= 1:
         print("Absolute value of X must be less than 1.")

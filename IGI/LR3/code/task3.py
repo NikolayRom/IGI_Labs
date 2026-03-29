@@ -25,6 +25,7 @@ def is_hex_number(text):
     if not clean_text:
         return False
 
+    # Manual character verification to satisfy the "no regex" requirement
     valid_hex_chars = "0123456789abcdef"
     for char in clean_text:
         if char not in valid_hex_chars:

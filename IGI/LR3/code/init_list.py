@@ -15,6 +15,7 @@ def random_sequence_generator(size):
     Generator function. Yields 'size' random float numbers.
     """
     for _ in range(size):
+        # Using a generator to optimize memory usage
         yield round(random.uniform(-10.0, 10.0), 2)
 
 def manual_sequence_generator(size):
@@ -23,6 +24,7 @@ def manual_sequence_generator(size):
     """
     print(f"Please enter {size} float numbers:")
     for i in range(size):
+        # Each iteration yields one user input to the caller
         yield inputFloatNum(f"Element {i + 1}: ")
 
 def build_list_from_sequence(sequence):
@@ -30,4 +32,5 @@ def build_list_from_sequence(sequence):
     Takes an initialization sequence (generator) as input
     and returns a fully initialized list. (Satisfies Lab Req. 9)
     """
+    # Converting the generator/iterator into a physical list in memory
     return list(sequence)

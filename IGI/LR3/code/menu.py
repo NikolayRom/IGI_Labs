@@ -15,9 +15,13 @@ def main_loop(task_func):
     if they want to repeat the task or exit.
     """
     while True:
+        # task_func is treated as a first-class object (callback) for modularity
         task_func()
         
         print("\nOptions:")
+
+        # Nested loop ensures the user provides a valid choice (1 or 2)
+
         print("1) Repeat the task")
         print("2) Exit to main menu / Quit")
         

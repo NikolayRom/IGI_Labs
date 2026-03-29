@@ -37,6 +37,7 @@ def task2():
     while True:
         num = inputIntNum("Enter an integer: ")
         
+         # The number 10 acts as a 'sentinel value' to terminate user input
         if num == 10:
             break
         elif num > 0:

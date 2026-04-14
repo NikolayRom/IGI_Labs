@@ -1,5 +1,24 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import *
+
+class CustomUserAdmin(UserAdmin):
+    list_display = [
+        'username',
+        'email',
+        'birth_date',
+        'is_staff',
+        'is_superuser'
+    ]
+
+    fieldsets = UserAdmin.fieldsets + (
+        ('Extra Info:', {'fields': ('birth_date',)},),
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        ('Extra Info:', {"fields": ("birth_date",)}),
+    )
+
+admin.site.register(CustomUser, CustomUserAdmin)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

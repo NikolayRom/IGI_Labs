@@ -6,6 +6,40 @@ from django.core.exceptions import ValidationError
 from django.db.models import UniqueConstraint
 from django.db.models.functions import Lower
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    birth_date = models.DateField(help_text='Date of birth')
+
+    REQUIRED_FIELDS = ['birth_date']
+
+    @property
+    def age(self):
+        if self.birth_date:
+            today = date.today()
+            return today.year - self.birth_date.year - (
+                (today.month, today.day) < (self.birth_date.month, self.birth_date.day)
+            )
+        return None
+    
+    def clean(self):
+        super().clean()
+
+        if self.is_superuser:
+            return
+
+        if not self.birth_date:
+            raise ValidationError({'birth_date': 'Age must be initialize!'})
+
+        if self.age < 18:
+            raise ValidationError({'birth_date': 'Age must be 18 or older'})
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return AbstractUser.__str__(self)
 
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for product")
@@ -148,7 +182,7 @@ class Client(models.Model):
 class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for order")
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, help_text='Client order of product')
-    date_order_create = models.DateField(default=date.today, help_text='Date of create order')
+    date_order_create = models.DateField(default=date.today, editable=False, help_text='Date of create order')
     date_order_complete = models.DateField(null=True, blank=True, help_text='Date of complete order')
     product_amount = models.PositiveIntegerField(default=1, help_text='Amount of products in order')
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True, help_text='Client of order')

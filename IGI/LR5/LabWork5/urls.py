@@ -20,12 +20,15 @@ from django.urls import include
 from django.views.generic import RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
+from ToyFactory.views import *
 
 import ToyFactory
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('api/', include('ToyFactory.urls')),
+    path('api/', include('ToyFactory.urls'), name='api'),
     path('', RedirectView.as_view(url='/api/', permanent=True)),
+    path('accounts/register/', register, name='register'),
+    path('accounts/profile/', profile, name='profile')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

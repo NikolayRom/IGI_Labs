@@ -71,6 +71,8 @@ TEMPLATES = [
 
 LOGIN_REDIRECT_URL = '/'
 
+AUTH_USER_MODEL = 'ToyFactory.CustomUser'
+
 WSGI_APPLICATION = 'LabWork5.wsgi.application'
 
 

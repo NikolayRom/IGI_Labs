@@ -37,8 +37,23 @@ class ProductModelAdmin(admin.ModelAdmin):
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    exclude = ['id']
+    list_display = ['user', 'company_name', 'phone', 'address']
     list_filter = ['company_name']
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ('user',) 
+        return ()
+
+@admin.register(Employee)
+class EmployeeAdmin(admin.ModelAdmin):
+    list_display = ['user__username', 'user']
+    list_filter = ['user']
+
+    def get_readonly_fields(self, request, obj =None):
+        if obj:
+            return ('user',)
+        return ()
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):

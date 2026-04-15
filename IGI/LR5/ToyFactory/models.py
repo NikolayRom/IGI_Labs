@@ -6,7 +6,8 @@ from django.core.exceptions import ValidationError
 from django.db.models import UniqueConstraint
 from django.db.models.functions import Lower
 from django.urls import reverse
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Permission
+from django.conf import settings
 
 class CustomUser(AbstractUser):
     birth_date = models.DateField(help_text='Date of birth')
@@ -42,10 +43,10 @@ class CustomUser(AbstractUser):
         return AbstractUser.__str__(self)
 
 class Product(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for product")
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for product")
     name = models.CharField(max_length=100, default='product-'+str(uuid.uuid4()), help_text='Name for product')
     product_type = models.ManyToManyField('ProductType', help_text='Type for product')
-    product_model = models.ForeignKey('ProductModel', on_delete=models.SET_NULL, null=True, help_text='Model for product')
+    product_model = models.ForeignKey('ProductModel', on_delete=models.CASCADE, null=True, help_text='Model for product')
     price = models.DecimalField(max_digits=10, decimal_places=2, help_text='Price for product')
     
     PRODUCT_STATUS = (
@@ -66,9 +67,9 @@ class Product(models.Model):
     def clean(self):
         super().clean()
         if not self.name.strip():
-            raise ValidationError({'name', 'Name must be initialize'})
+            raise ValidationError({'name': 'Name must be initialize'})
         elif self.price <= 0:
-            raise ValidationError({'price', 'Price must be positive'})
+            raise ValidationError({'price': 'Price must be positive'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -91,13 +92,13 @@ class Product(models.Model):
         ]
 
 class ProductType(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for product type")
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for product type")
     name = models.CharField(max_length=100, help_text='Product type name')
 
     def clean(self):
         super().clean()
         if not self.name.strip():
-            raise ValidationError({'name', 'Name must be initialize'})
+            raise ValidationError({'name': 'Name must be initialize'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -119,13 +120,13 @@ class ProductType(models.Model):
         ]
 
 class ProductModel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for product model")
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for product model")
     name = models.CharField(max_length=100, help_text='Product model name')
 
     def clean(self):
         super().clean()
         if not self.name.strip():
-            raise ValidationError({'name', 'Name must be initialize'})
+            raise ValidationError({'name': 'Name must be initialize'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -146,21 +147,57 @@ class ProductModel(models.Model):
             ),
         ]
 
-class Client(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Client\'s unique ID")
-    company_name = models.CharField(max_length=100, default='company-'+str(uuid.uuid4()), help_text='Client\'s company name')
-    phone = models.OneToOneField('Phone', on_delete=models.SET_NULL, null=True, help_text='Client\'s phone')
-    address = models.CharField(max_length=100, help_text='Client\'s address')
+class Employee(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
 
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text='Employee\'s unique ID')
+
+    def display_username(self):
+        return self.user.username
+    
     def clean(self):
         super().clean()
-        if not self.company_name.strip():
-            raise ValidationError({'company_name', 'Company name must be initialize'})
-        elif not self.address.strip():
-            raise ValidationError({'address', 'Address must be initialize'})
+        if Client.objects.filter(user__exact=self.user).exists() or self.user.is_superuser:
+            raise ValidationError('This user is not available!')
         
     def save(self, *args, **kwargs):
         self.full_clean()
+        self.user.user_permissions.add(Permission.objects.get(codename='employee_perm'))
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Employee: {self.display_username()}"
+    
+    def get_absolute_url(self):
+        return reverse('employee-detail', args=[str(self.id)])
+
+class Client(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='client_profile',
+    )
+    
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Client\'s unique ID")
+    company_name = models.CharField(max_length=100, help_text='Client\'s company name')
+    phone = models.OneToOneField('Phone', on_delete=models.CASCADE, null=True, help_text='Client\'s phone')
+    address = models.CharField(max_length=100, help_text='Client\'s address')
+    
+    def clean(self):
+        super().clean()
+        if self.user.is_superuser or Employee.objects.filter(user__exact=self.user).exists():
+            raise ValidationError('This user is not available!')
+        elif not self.company_name.strip():
+            raise ValidationError({'company_name': 'Company name must be initialize'})
+        elif not self.address.strip():
+            raise ValidationError({'address': 'Address must be initialize'})
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        self.user.user_permissions.add(Permission.objects.get(codename='client_perm'))
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -180,12 +217,12 @@ class Client(models.Model):
         ]
 
 class Order(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for order")
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, help_text='Client order of product')
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for order")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, help_text='Client order of product')
     date_order_create = models.DateField(default=date.today, editable=False, help_text='Date of create order')
     date_order_complete = models.DateField(null=True, blank=True, help_text='Date of complete order')
     product_amount = models.PositiveIntegerField(default=1, help_text='Amount of products in order')
-    client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True, help_text='Client of order')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, help_text='Client of order')
 
     @property
     def product_name(self):
@@ -198,11 +235,11 @@ class Order(models.Model):
     def clean(self):
         super().clean()
         if self.product_amount == 0:
-            raise ValidationError({'amount', 'Amount of products must be positive number (not zero!)'})
+            raise ValidationError({'product_amount': 'Amount of products must be positive number (not zero!)'})
         elif self.date_order_create > date.today():
-            raise ValidationError({'date', 'Date of creating order must be today or past, not future'})
+            raise ValidationError({'date_order_create': 'Date of creating order must be today or past, not future'})
         elif self.date_order_complete != None and (self.date_order_complete > date.today() or self.date_order_complete < self.date_order_create):
-            raise ValidationError({'date', 'End date must be greater than date of create and not be future'})
+            raise ValidationError({'date_order_complete': 'End date must be greater than date of create and not be future'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -218,13 +255,13 @@ class Order(models.Model):
         ordering = ['date_order_create', 'client', 'product', 'product_amount']
 
 class City(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for city")
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for city")
     name = models.CharField(max_length=100, default='city-'+str(uuid.uuid4()), help_text='Name of city')
 
     def clean(self):
         super().clean()
         if not self.name.strip():
-            raise ValidationError({'name', 'Name must be initialize'})
+            raise ValidationError({'name': 'Name must be initialize'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -246,14 +283,14 @@ class City(models.Model):
         ]
 
 class PickUpPoint(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for pick-up point")
-    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, help_text='City of pick-up point')
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for pick-up point")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, help_text='City of pick-up point')
     address = models.CharField(max_length=100, help_text='Address of pick-up point')
 
     def clean(self):
         super().clean()
         if not self.address.strip():
-            raise ValidationError({'address', 'Address must be initialize'})
+            raise ValidationError({'address': 'Address must be initialize'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -269,13 +306,13 @@ class PickUpPoint(models.Model):
         ordering = ['city', 'address']
 
 class Phone(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for phone")
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for phone")
     phone = models.CharField(max_length=19, default='+375 (29) 000-00-00', help_text='Phone number of client')
 
     def clean(self):
         super().clean()
         if not re.match(r'^\+375\s?\(?29\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$', self.phone):
-            raise ValidationError({'phone', 'Phone number must be in format: +375 (29) XXX-XX-XX'})
+            raise ValidationError({'phone': 'Phone number must be in format: +375 (29) XXX-XX-XX'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -296,7 +333,35 @@ class Phone(models.Model):
             ),
         ]
 
+class Promo(models.Model):
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for phone")
+    info = models.CharField(
+        max_length=50,
+        default='Promo code for any orders',
+        help_text='Promo code for clients'
+    )
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, help_text='Client\'s promo code')
+    sale = models.DecimalField(max_digits=3, decimal_places=2, default=0.1, help_text='Sale for order')
+
+    def clean(self):
+        super().clean()
+        if self.sale > 1.0 or self.sale < 0.0:
+            raise ValidationError({'sale': 'Sale for client must be 0 <= sale <= 1'})
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.info
+    
+    def get_absolute_url(self):
+        return reverse('promo-detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ['client', 'sale']
+
 class AppPermissions(models.Model):
     class Meta:
         managed = False
-        permissions = []
+        permissions = (('employee_perm', 'Employee permissions'), ('client_perm', 'Client permissions'))

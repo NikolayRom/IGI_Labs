@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import *
@@ -15,6 +16,33 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = UserCreationForm.Meta.fields + ('birth_date',)
+
+class EmployeeAdminForm(forms.ModelForm):
+    email = forms.EmailField(required=True, label='Employee\'s email')
+
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        user = cleaned_data.get('user')
+
+        if email and user:
+            user.email = email
+
+    def save(self, commit=True):
+        employee = super().save(commit=False)
+        user = self.cleaned_data.get('user')
+        if user:
+            user.email = self.cleaned_data.get('email')
+            user.save()
+            employee.user = user
+        
+        if commit:
+            employee.save()
+        return employee
 
 class ClientRegistrationForm(CustomUserCreationForm):
     company_name = forms.CharField(max_length=100, help_text='Client\'s company name')

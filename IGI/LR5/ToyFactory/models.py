@@ -1,13 +1,16 @@
 from django.db import models
 import uuid  
 from datetime import date 
+import datetime
 import re
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.db.models import UniqueConstraint
 from django.db.models.functions import Lower
 from django.urls import reverse
 from django.contrib.auth.models import AbstractUser, Permission
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class CustomUser(AbstractUser):
     birth_date = models.DateField(help_text='Date of birth')
@@ -46,9 +49,16 @@ class Product(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for product")
     name = models.CharField(max_length=100, default='product-'+str(uuid.uuid4()), help_text='Name for product')
     product_type = models.ManyToManyField('ProductType', help_text='Type for product')
-    product_model = models.ForeignKey('ProductModel', on_delete=models.CASCADE, null=True, help_text='Model for product')
-    price = models.DecimalField(max_digits=10, decimal_places=2, help_text='Price for product')
-    
+    product_model = models.ForeignKey('ProductModel', on_delete=models.CASCADE, help_text='Model for product')
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text='Price for product',
+        validators=[
+            MinValueValidator(0.01)
+        ]
+    )
+
     PRODUCT_STATUS = (
         ('a', 'Available'),
         ('d', 'Discontinued')
@@ -154,14 +164,37 @@ class Employee(models.Model):
     )
 
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text='Employee\'s unique ID')
+    info = models.CharField(
+        max_length=100,
+        help_text='Info about employee\'s tasks',
+        default='Employee of Toy Factory',
+        blank=True
+    )
+    phone = models.OneToOneField(
+        'Phone',
+        on_delete=models.CASCADE,
+        help_text='Employee\'s phone',
+    )
+    image = models.ImageField(
+        help_text='Image for Employee\'s profile',
+        default='default_employee_logo.png',
+        blank=True,
+    )
+
+    def display_email(self):
+        return self.user.email
+    display_email.short_description = 'Email'
 
     def display_username(self):
         return self.user.username
+    display_username.short_description = 'Username'
     
     def clean(self):
         super().clean()
         if Client.objects.filter(user__exact=self.user).exists() or self.user.is_superuser:
             raise ValidationError('This user is not available!')
+        elif not self.user.email or CustomUser.objects.filter(email__iexact=self.user.email).exclude(pk=self.user.pk):
+            raise ValidationError('Employee must have his own email!')
         
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -183,7 +216,7 @@ class Client(models.Model):
     
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Client\'s unique ID")
     company_name = models.CharField(max_length=100, help_text='Client\'s company name')
-    phone = models.OneToOneField('Phone', on_delete=models.CASCADE, null=True, help_text='Client\'s phone')
+    phone = models.OneToOneField('Phone', on_delete=models.CASCADE, help_text='Client\'s phone')
     address = models.CharField(max_length=100, help_text='Client\'s address')
     
     def clean(self):
@@ -221,7 +254,13 @@ class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, help_text='Client order of product')
     date_order_create = models.DateField(default=date.today, editable=False, help_text='Date of create order')
     date_order_complete = models.DateField(null=True, blank=True, help_text='Date of complete order')
-    product_amount = models.PositiveIntegerField(default=1, help_text='Amount of products in order')
+    product_amount = models.PositiveIntegerField(
+        default=1,
+        help_text='Amount of products in order',
+        validators=[
+            MinValueValidator(1)
+        ]
+    )
     client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, help_text='Client of order')
 
     @property
@@ -340,26 +379,217 @@ class Promo(models.Model):
         default='Promo code for any orders',
         help_text='Promo code for clients'
     )
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, help_text='Client\'s promo code')
-    sale = models.DecimalField(max_digits=3, decimal_places=2, default=0.1, help_text='Sale for order')
+    sale = models.DecimalField(
+        max_digits=3,
+        decimal_places=2,
+        default=0.1,
+        help_text='Sale for order',
+        validators=[
+            MaxValueValidator(1.0),
+            MinValueValidator(0.0)
+        ]
+    )
+
+    end_date = models.DateField(
+        default=datetime.date.today() + datetime.timedelta(days=7)
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        help_text='Product\'s promo',
+    )
+
+    def get_product_name(self):
+        return self.product.name
+
+    def is_active(self):
+        return date.today() < self.end_date
 
     def clean(self):
         super().clean()
         if self.sale > 1.0 or self.sale < 0.0:
             raise ValidationError({'sale': 'Sale for client must be 0 <= sale <= 1'})
+        elif self.end_date < date.today():
+            raise ValidationError({'end_date': 'Promo has expired'})
         
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.info
+        return f'{self.info}: {self.sale}'
     
     def get_absolute_url(self):
         return reverse('promo-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['client', 'sale']
+        ordering = ['sale']
+
+class AboutInfo(models.Model):
+    header = models.CharField(
+        max_length=100,
+        help_text='Header for Company Info'
+    )
+    info = models.TextField(
+        help_text='Description for Company'
+    )
+    logo = models.ImageField(
+        blank=True,
+        default='default_about_logo.png',
+        help_text='Logotype for Company'
+    )
+    pub_date = models.DateTimeField(
+        default=timezone.now,
+        editable=False
+    )
+
+    def __str__(self):
+        return self.header
+    
+    def get_absolute_url(self):
+        return reverse('about-detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ['pub_date']
+
+class News(models.Model):
+    header = models.CharField(
+        max_length=400,
+        help_text='Header for News'
+    )
+    info = models.TextField(
+        help_text='Description of News'
+    )
+    image = models.ImageField(
+        blank=True,
+        default='default_news_logo.png',
+        help_text='Image for news'
+    )
+    pub_date = models.DateTimeField(
+        default=timezone.now,
+        editable=False
+    )
+
+    def __str__(self):
+        return self.header
+    
+    def get_absolute_url(self):
+        return reverse('news-detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ['pub_date']
+
+class FAQ(models.Model):
+    question = models.CharField(
+        max_length=200,
+        help_text='Question'
+    )
+    answer = models.TextField(
+        help_text='Answer'
+    )
+    pub_date = models.DateTimeField(
+        default=timezone.now,
+        editable=False
+    )
+
+    def __str__(self):
+        return self.question
+    
+    def get_absolute_url(self):
+        return reverse('faq-detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ['pub_date']
+        constraints = [
+            UniqueConstraint(
+                Lower('question'),
+                name='question_case_insensitive_unique',
+                violation_error_message = "Question already exists (case insensitive match)"
+            ),
+        ]
+
+class Vacancy(models.Model):
+    title = models.CharField(
+        max_length=200,
+        help_text='Title for Vacancy'
+    )
+    info = models.TextField(
+        help_text='Description of Vacancy'
+    )
+    requirements = models.TextField(
+        help_text='Requirements of Vacancy'
+    )
+    salary = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text='Salary for this vacancy',
+        validators=[
+            MinValueValidator(0.01)
+        ]
+    )
+
+    def clean(self):
+        super().clean()
+        if self.salary <= 0:
+            raise ValidationError({'salary': 'Salary for vacancy must be positive decimal number!'})
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+    
+    def get_absolute_url(self):
+        return reverse('vacancy-detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ['title']
+
+class Review(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        help_text='Review\'s user'
+    )
+    review = models.CharField(
+        max_length=500,
+        help_text='User\'s review'
+    )
+    grade = models.PositiveIntegerField(
+        default=5,
+        validators=[
+            MaxValueValidator(5),
+            MinValueValidator(1)
+        ],
+        help_text='User\'s grade'
+    )
+    pub_date = models.DateTimeField(
+        default=timezone.now,
+        editable=False
+    )
+
+    def display_username(self):
+        return self.user.username
+    
+    def clean(self):
+        super().clean()
+        if self.grade < 1 or self.grade > 5:
+            raise ValidationError({'grade': 'Grade for review must be in range from 1 to 5!'})
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.display_username()}: {self.review}'
+    
+    def get_absolute_url(self):
+        return reverse('review-detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ['pub_date']
 
 class AppPermissions(models.Model):
     class Meta:

@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>About Info</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if about_info %}
+        <h2>{{about_info.header}}</h2>
+        <img src='{{about_info.logo.url}}' alt="Company's logo" style="max-width: 300px;"/>
+        <p>{{about_info.info}}</p>
+        <ul>{{about_info.pub_date}}</ul>
+    {% else %}
+        <h2>No info about company</h2>
+    {% endif %}
+
+{% endblock %}

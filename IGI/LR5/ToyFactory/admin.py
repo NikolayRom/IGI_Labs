@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import *
+from .forms import *
 
 class CustomUserAdmin(UserAdmin):
     list_display = [
@@ -47,7 +48,8 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ['user__username', 'user']
+    form = EmployeeAdminForm
+    list_display = ['display_username', 'display_email', 'phone', 'user']
     list_filter = ['user']
 
     def get_readonly_fields(self, request, obj =None):
@@ -74,4 +76,24 @@ class PickUpPointAdmin(admin.ModelAdmin):
 class PhoneAdmin(admin.ModelAdmin):
     list_display = ['phone']
     list_filter = ['phone']
+
+@admin.register(Promo)
+class PromoAdmin(admin.ModelAdmin):
+    list_display = ['info', 'sale', 'end_date']
+    list_filter = ['info', 'sale', 'end_date']
+
+@admin.register(AboutInfo)
+class AboutInfoAdmin(admin.ModelAdmin):
+    list_display = ['header', 'info', 'pub_date']
+    list_filter = ['header', 'info', 'pub_date']
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ['header', 'info', 'pub_date']
+    list_filter = ['header', 'info', 'pub_date']
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ['question', 'answer', 'pub_date']
+    list_filter = ['question', 'answer', 'pub_date']
 

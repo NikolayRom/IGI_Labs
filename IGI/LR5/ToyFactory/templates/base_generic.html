@@ -7,49 +7,66 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-2">
-          {% block sidebar %}
-            <ul class="sidebar-nav">
-              <li><a href="{% url 'index' %}">Home</a></li>
-              <li><a href="{% url 'about' %}">About</a></li>
-              <li><a href="{% url 'news' %}">News</a></li>
-              <li><a href="{% url 'faq' %}">FAQ</a></li>
-              <li><a href="{% url 'promos' %}">Promos</a></li>
-
-              {% if user.is_authenticated %}
-                <li>User: {{ user.get_username }}</li>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
-                <li><a href="{% url 'profile' %}">My Account</a></li>
-              {% else %}
-                <li><a href="{% url 'login'%}">Login</a></li>
-              {% endif %}
-            </ul>
-          {% endblock %}
-        </div>
-        <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
-        {% block pagination %}
-          {% if is_paginated %}
-            <div class="pagination">
-              <span class="page-links">
-                {% if page_obj.has_previous %}
-                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-              </span>
-            </div>
+    {% block sidebar %}
+      <ul class="sidebar-nav">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'news' %}">News</a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
+        <li><a href="{% url 'contacts' %}">Contacts</a></li>
+        <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+        <li><a href="{% url 'vacancys' %}">Vacancies</a></li>
+        <li><a href="{% url 'reviews' %}">Reviews</a></li>
+        <li><a href="{% url 'promos' %}">Promos</a></li>
+        <br>
+        {% if user.is_authenticated %}
+          <li>User: {{ user.get_username }}</li>
+          {% if user.is_superuser %}
+            <li>Status: superuser</li>
+          {% else %}
+            {% if perms.ToyFactory.client_perm %}
+              <li>Status: client</li>
+            {% endif %}
+            {% if perms.ToyFactory.employee_perm %}
+              <li>Status: employee</li>
+            {% endif %}
           {% endif %}
-        {% endblock %}
-      </div>
-    </div>
+          <li><a href="{% url 'account' %}">My Account</a></li>
+          {% if user.is_superuser %}
+          {% else %}
+            {% if perms.ToyFactory.client_perm %}
+              <li><a href="{% url 'client-profile' %}">My Profile</a></li>
+            {% endif %}
+            {% if perms.ToyFactory.employee_perm %}
+              <li><a href="{% url 'employee-profile' %}">My Profile</a></li>
+            {% endif %}
+          {% endif %}
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login'%}">Login</a>
+        {% endif %}
+      </ul>
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block pagination %}
+      {% if is_paginated %}
+        <span class="page-links">
+          {% if page_obj.has_previous %}
+            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+          <span class="page-current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+          {% if page_obj.has_next %}
+            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+          {% endif %}
+        </span>
+      {% endif %}
+    {% endblock %}
   </body>
 </html>

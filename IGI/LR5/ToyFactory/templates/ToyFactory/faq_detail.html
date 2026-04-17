@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>FAQ</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if faq %}
+        <h1>{{faq.question}}</h1>
+        <p>Answer: {{faq.answer}}</p>
+        <ul>Publication date: {{faq.pub_date}}</ul>
+    {% else %}
+        <h2>No info for this FAQ</h2>
+    {% endif %}
+
+{% endblock %}

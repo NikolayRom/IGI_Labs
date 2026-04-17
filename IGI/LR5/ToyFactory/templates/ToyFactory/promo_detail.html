@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Promo</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if promo %}
+        <h1>{{promo.info}}</h1>
+        <p>Product: {{promo.get_product_name}}</p>
+        <p>Sale: {{promo.sale}}</p>
+        <ul>End date: {{promo.end_date}}</ul>
+    {% else %}
+        <h2>No info for this promo</h2>
+    {% endif %}
+
+{% endblock %}

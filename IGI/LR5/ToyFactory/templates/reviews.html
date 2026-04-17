@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Reviews</title>
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+
+    {% if review_list %}
+        {% for review in review_list %}
+            <h2>{{review.display_username}}</h2>
+            <p>{{review.review}}</p>
+            <ul>Grade: {{review.grade}}</ul>
+            <ul>{{review.pub_date}}</ul>
+            <br>
+        {% endfor %}
+    {% else %}
+        <h2>No reviews available</h2>
+    {% endif %}
+
+{% endblock %}

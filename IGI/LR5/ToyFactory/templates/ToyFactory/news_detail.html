@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>News</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if news %}
+        <h2>{{news.header}}</h2>
+        <li>{% if news.image %}
+            <img src='{{news.image.url}}' alt="News picture" style="max-width: 300px;"/>
+        {% else %}
+            <img src='/media/default_news_logo.png' alt="News default picture" style="max-width: 300px;"/>
+        {% endif %}
+        <p>{{news.info}}</p>
+        <ul>Publication date: {{news.pub_date}}</ul></li>
+    {% else %}
+        <h2>No info for this news</h2>
+    {% endif %}
+
+{% endblock %}

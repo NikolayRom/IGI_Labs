@@ -1,34 +1,19 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Toy Factory</title>
-
+  <title>Home</title>
 {% endblock %}
 
 {% block content %}
-
-  <p>Welcome to <em>Toy Factory</em>, a very basic Django website developed as a part of labwork series of IGI course.</p>
-
-  <h2>Dynamic content</h2>
-
-  {% if user.is_superuser %}
-
-    <h2>I am Overlord {{perms.ToyFactory}}</h2>
-
+  {% if last_news %}
+    <a href="{{last_news.get_absolute_url}}"><h2>{{last_news.header}}</h2></a>
+    {% if last_news.image %}
+      <img src='{{last_news.image.url}}' alt="News picture" style="max-width: 300px;"/>
+    {% else %}
+      <img src='/media/default_news_logo.png' alt="News default picture" style="max-width: 300px;"/>
+    {% endif %}
+    <ul>{{last_news.pub_date}}</ul>
   {% else %}
-    
-    {% if perms.ToyFactory.client_perm %}
-
-      <h2>Hello, dear client! {{perms.ToyFactory}}</h2>
-    
-    {% endif %}
-
-    {% if perms.ToyFactory.employee_perm %}
-
-      <h2>Hello, my dear friend! {{perms.ToyFactory}}</h2>
-        
-    {% endif %}
-
+    <p>No news available</p>
   {% endif %}
-
 {% endblock %}

@@ -8,7 +8,11 @@
 
     {% if about_info %}
         <h2>{{about_info.header}}</h2>
-        <img src='{{about_info.logo.url}}' alt="Company's logo" style="max-width: 300px;"/>
+        {% if about_info.logo %}
+            <img src='{{about_info.logo.url}}' alt="Company's logo" style="max-width: 300px;"/>
+        {% else %}
+            <img src='/media/default_about_logo.png' alt="Company's default logo" style="max-width: 300px;"/>
+        {% endif %}
         <p>{{about_info.info}}</p>
         <ul>{{about_info.pub_date}}</ul>
     {% else %}

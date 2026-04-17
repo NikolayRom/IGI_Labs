@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Vacancies</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if vacancy %}
+        <h1>{{vacancy.title}}</h1>
+        <p>Info: {{vacancy.info}}</p>
+        <p>Requirements: {{vacancy.requirements}}</p>
+        <p>Salary: {{vacancy.salary}}</p>
+        {% else %}
+        <h2>No info for this promo</h2>
+    {% endif %}
+
+{% endblock %}

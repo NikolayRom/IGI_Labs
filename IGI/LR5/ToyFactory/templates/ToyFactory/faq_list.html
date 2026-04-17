@@ -13,6 +13,7 @@
       {% for faq in faq_list %}
         <li>
             <a href="{{ faq.get_absolute_url }}">{{ faq.question }}</a> ({{faq.pub_date}})
+            <br>
         </li>
       {% endfor %}
 

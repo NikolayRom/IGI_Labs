@@ -35,6 +35,9 @@ class CustomUser(AbstractUser):
         if not self.birth_date:
             raise ValidationError({'birth_date': 'Age must be initialize!'})
 
+        if self.email and CustomUser.objects.filter(email__iexact=self.email).exclude(pk=self.pk):
+            raise ValidationError({'email': 'This email already exist!'})
+
         if self.age < 18:
             raise ValidationError({'birth_date': 'Age must be 18 or older'})
         
@@ -205,7 +208,7 @@ class Employee(models.Model):
         return f"Employee: {self.display_username()}"
     
     def get_absolute_url(self):
-        return reverse('employee-detail', args=[str(self.id)])
+        return reverse('contacts-detail', args=[str(self.id)])
 
 class Client(models.Model):
     user = models.OneToOneField(
@@ -546,6 +549,13 @@ class Vacancy(models.Model):
 
     class Meta:
         ordering = ['title']
+        constraints = [
+            UniqueConstraint(
+                Lower('title'),
+                name='title_case_insensitive_unique',
+                violation_error_message = "Title for vacancy already exists (case insensitive match)"
+            ),
+        ]
 
 class Review(models.Model):
     user = models.ForeignKey(
@@ -589,9 +599,12 @@ class Review(models.Model):
         return reverse('review-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['-pub_date']
 
 class AppPermissions(models.Model):
     class Meta:
         managed = False
-        permissions = (('employee_perm', 'Employee permissions'), ('client_perm', 'Client permissions'))
+        permissions = (
+            ('employee_perm', 'Employee permissions'),
+            ('client_perm', 'Client permissions')
+        )

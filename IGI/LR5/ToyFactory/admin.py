@@ -97,3 +97,13 @@ class FAQAdmin(admin.ModelAdmin):
     list_display = ['question', 'answer', 'pub_date']
     list_filter = ['question', 'answer', 'pub_date']
 
+@admin.register(Vacancy)
+class VacancyAdmin(admin.ModelAdmin):
+    list_display = ['title', 'info', 'salary']
+    list_filter = ['title', 'salary']
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['display_username', 'review', 'grade', 'pub_date', 'user']
+    list_filter = ['user', 'grade', 'pub_date']
+

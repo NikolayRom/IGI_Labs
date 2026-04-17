@@ -1,13 +1,13 @@
 {% extends "base_generic.html" %}
 
+{% block title %}
+<title>My Profile</title>
+{% endblock %}
+
 {% block content %}
 
-{% if form.errors %}
-  <p>Something wrong...</p>
-{% endif %}
-
-    <h2>Profile</h2>
-    <form method="post">
+    <h2>Profile:</h2>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>

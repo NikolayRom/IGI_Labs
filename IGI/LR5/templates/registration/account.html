@@ -1,21 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Register</title>
+<title>My Account</title>
 {% endblock %}
 
 {% block content %}
 
-{% if form.errors %}
-  <p>Something wrong...</p>
-{% endif %}
-
-    <h2>Register</h2>
+    <h2>Account</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
 
 {% endblock %}

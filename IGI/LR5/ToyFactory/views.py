@@ -7,17 +7,24 @@ from django.contrib.auth import login
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 def index(request):
+    
+    context = {}
+
+    if News.objects.last() != None:
+        context = {'last_news': News.objects.last()}
+    
     return render(
         request,
         'index.html',
-        context={}
+        context=context
     )
 
-def profile(request):
+def account(request):
     form = UserUpdateForm(instance=request.user)
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=request.user)
@@ -25,7 +32,29 @@ def profile(request):
         return redirect('index')
     
     context = {'form': form}
-    return render(request, 'registration/profile.html', context=context)
+    return render(request, 'registration/account.html', context=context)
+
+def client_profile(request):
+    form = ClientUpdateForm(instance=Client.objects.filter(user__exact=request.user).first())
+    if request.method == 'POST':
+        form = ClientUpdateForm(request.POST, instance=Client.objects.filter(user__exact=request.user).first())
+        if form.is_valid():
+            form.save()
+            return redirect('client-profile')
+    
+    context = {'form': form}
+    return render(request, 'registration/client_profile.html', context=context)
+
+def employee_profile(request):
+    form = EmployeeUpdateForm(instance=Employee.objects.filter(user__exact=request.user).first())
+    if request.method == 'POST':
+        form = EmployeeUpdateForm(request.POST, request.FILES, instance=Employee.objects.filter(user__exact=request.user).first())
+        if form.is_valid():
+            form.save()
+            return redirect('employee-profile')
+    
+    context = {'form': form}
+    return render(request, 'registration/employee_profile.html', context=context)
 
 def register(request):
     form = ClientRegistrationForm()
@@ -40,13 +69,41 @@ def register(request):
     return render(request, 'registration/register.html', context=context)
 
 def about(request):
-    print(AboutInfo.objects.last())
     context = {}
     if(AboutInfo.objects.last() != None):
         context = {'about_info': AboutInfo.objects.last()}
     return render(
         request,
         'about.html',
+        context=context
+    )
+
+def privacy_policy(request):
+    return render(
+        request,
+        'privacy_policy.html',
+        context={}
+    )
+
+def reviews(request):
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
+        form = ReviewForm(request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('reviews')
+    else:
+        form = ReviewForm()
+
+    context={
+        'form': form,
+        'review_list': Review.objects.all()
+    }
+    return render(
+        request,
+        'reviews.html',
         context=context
     )
 
@@ -70,6 +127,20 @@ class FAQListView(generic.ListView):
 
 class FAQDetailView(generic.DetailView):
     model = FAQ
+
+class EmployeeListView(generic.ListView):
+    model = Employee
+    paginate_by = 10
+
+class EmployeeDetailView(generic.DetailView):
+    model = Employee
+
+class VacancyListView(generic.ListView):
+    model = Vacancy
+    paginate_by = 10
+
+class VacancyDetailView(generic.DetailView):
+    model = Vacancy
 
 # '''
 # CRUD: City Model

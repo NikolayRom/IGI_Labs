@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Vacancies</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Vacancies</h1>
+
+    {% if vacancy_list %}
+    <ul>
+
+      {% for vacancy in vacancy_list %}
+        <li>
+            <a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a>
+            <p>Salary: {{vacancy.salary}}</p>
+            <br>
+        </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no vacancies available.</p>
+    {% endif %}
+{% endblock %}

@@ -10,6 +10,7 @@
         {% if promo.is_active %}
             <li>
                 <a href="{{ promo.get_absolute_url }}">{{ promo.info }}</a> ({{promo.get_product_name}})
+                <br>
             </li>
         {% endif %}
       {% endfor %}

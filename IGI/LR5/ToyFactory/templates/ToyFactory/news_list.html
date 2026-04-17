@@ -8,17 +8,20 @@
     <h1>News</h1>
 
     {% if news_list %}
-    <ul>
 
       {% for news in news_list %}
-        <li>
-            <a href="{{ news.get_absolute_url }}">{{ news.header }}</a> ({{news.pub_date}})
-        </li>
-        <img src="{{news.image.url}}" alt="New's image" style="max-width: 300px;" />
-        <p>{{news.info}}</p>
+        <ul>
+          <li><a href="{{ news.get_absolute_url }}">{{ news.header }}</a> ({{news.pub_date}})</li>
+          {% if news.image %}
+              <img src='{{news.image.url}}' alt="News picture" style="max-width: 300px;"/>
+          {% else %}
+              <img src='/media/default_news_logo.png' alt="News default picture" style="max-width: 300px;"/>
+          {% endif %}
+          <p>{{news.info}}</p>
+          <br>
+        </ul>
       {% endfor %}
 
-    </ul>
     {% else %}
       <p>There are no news available.</p>
     {% endif %}

@@ -30,5 +30,7 @@ urlpatterns = [
     path('api/', include('ToyFactory.urls'), name='api'),
     path('', RedirectView.as_view(url='/api/', permanent=True)),
     path('accounts/register/', register, name='register'),
-    path('accounts/profile/', profile, name='profile')
+    path('accounts/account/', account, name='account'),
+    path('accounts/client/profile', client_profile, name='client-profile'),
+    path('accounts/employee/profile', employee_profile, name='employee-profile')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

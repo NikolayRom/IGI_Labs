@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  <title>Delete Order</title>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <h1>Access Denied</h1>
+    {% else %}
+        {% if perms.ToyFactory.client_perm %}
+            <h1>Delete Order</h1>
+
+            <p>Are you sure you want to delete the Order: {{ order }}?</p>
+
+            <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Yes, delete." />
+            </form>
+        {% else %}
+            <h1>Access Denied</h1>
+        {% endif %}
+    {% endif %}
+{% endblock %}

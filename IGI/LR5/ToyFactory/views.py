@@ -7,7 +7,7 @@ from django.contrib.auth import login
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.db import transaction
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -107,6 +107,55 @@ def reviews(request):
         context=context
     )
 
+@permission_required('ToyFactory.client_perm')
+@login_required
+def order_create(request):
+
+    client = request.user.client_profile
+
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST, client=client)
+        if form.is_valid():
+            form.save()
+            return redirect('cart')
+    else:
+        form = OrderCreateForm(client=client)
+
+    order_list = Order.objects.filter(client=client, date_order_complete__isnull=True).all().order_by('-date_order_create')
+
+    context={
+        'form': form,
+        'order_list': order_list,
+        'total': sum(order.get_total for order in order_list)
+    }
+    return render(
+        request,
+        'cart.html',
+        context=context
+    )
+
+@permission_required('ToyFactory.client_perm')
+@login_required
+def order_complete(request):
+
+    if request.method == 'POST':
+        Order.objects.filter(client=request.user.client_profile, date_order_complete__isnull=True).update(date_order_complete=timezone.now())
+        return redirect('client-orders')
+    return redirect('cart')
+
+class OrderClientListView(generic.ListView, LoginRequiredMixin, PermissionRequiredMixin):
+    model = Order
+    paginate_by = 10
+    template_name = 'ToyFactory/client_orders_list.html'
+    permission_required = 'ToyFactory.client_perm'
+    def get_queryset(self):
+        return Order.objects.filter(client=self.request.user.client_profile, date_order_complete__isnull=False)
+    
+class OrderDeleteView(DeleteView, LoginRequiredMixin, PermissionRequiredMixin):
+    model = Order
+    permission_required = 'ToyFactory.client_perm'
+    success_url = reverse_lazy('cart')
+
 class PromoListView(generic.ListView):
     model = Promo
     paginate_by = 10
@@ -135,6 +184,18 @@ class EmployeeListView(generic.ListView):
 class EmployeeDetailView(generic.DetailView):
     model = Employee
 
+class ClientListView(generic.ListView):
+    model = Client
+    paginate_by = 10
+
+class ClientDetailView(generic.DetailView):
+    model = Client
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order_list'] = self.get_object().order_set.filter(date_order_complete__isnull=False)
+        return context
+
 class VacancyListView(generic.ListView):
     model = Vacancy
     paginate_by = 10
@@ -142,222 +203,51 @@ class VacancyListView(generic.ListView):
 class VacancyDetailView(generic.DetailView):
     model = Vacancy
 
-# '''
-# CRUD: City Model
-# '''
-# class CityListView(generic.ListView):
-#     model = City
-#     paginate_by = 10
+class ProductTypeCreateView(CreateView):
+    model = ProductType
+    fields = '__all__'
+    success_url = reverse_lazy('products')
 
-# class CityDetailView(generic.DetailView):
-#     model = City
+class ProductModelCreateView(CreateView):
+    model = ProductModel
+    fields = '__all__'
+    success_url = reverse_lazy('products')
 
-# class CityCreate(CreateView):
-#     model = City
-#     fields = '__all__'
+class CityListView(generic.ListView):
+    model = City
+    paginate_by = 10
 
-# class CityUpdate(UpdateView):
-#     model = City
-#     fields = '__all__'
+class CityDetailView(generic.DetailView):
+    model = City
 
-# class CityDelete(DeleteView):
-#     model = City
-#     success_url = reverse_lazy('citys')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pickuppoint_list'] = self.get_object().pickuppoint_set.all()
+        return context
 
-# '''
-# CRUD: Product Model
-# '''
-# class ProductListView(generic.ListView):
-#     model = Product
-#     paginate_by = 10
+class PickUpPointDetailView(generic.DetailView):
+    model = PickUpPoint
 
-# class ProductDetailView(generic.DetailView):
-#     model = Product
+'''
+CRUD: Product Model
+'''
+class ProductListView(generic.ListView):
+    model = Product
+    paginate_by = 10
 
-# class ProductCreate(CreateView):
-#     model = Product
-#     fields = '__all__'
+class ProductDetailView(generic.DetailView):
+    model = Product
 
-# class ProductUpdate(UpdateView):
-#     model = Product
-#     fields = '__all__'
+class ProductCreateView(CreateView):
+    model = Product
+    fields = '__all__'
+    success_url = reverse_lazy('products')
 
-# class ProductDelete(DeleteView):
-#     model = Product
-#     success_url = reverse_lazy('products')
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = '__all__'
+    success_url = reverse_lazy('products')
 
-# '''
-# CRUD: ProductType Model
-# '''
-# class ProductTypeListView(generic.ListView):
-#     model = ProductType
-#     paginate_by = 10
-
-# class ProductTypeDetailView(generic.DetailView):
-#     model = ProductType
-
-# class ProductTypeCreate(CreateView):
-#     model = ProductType
-#     fields = '__all__'
-
-# class ProductTypeUpdate(UpdateView):
-#     model = ProductType
-#     fields = '__all__'
-
-# class ProductTypeDelete(DeleteView):
-#     model = ProductType
-#     success_url = reverse_lazy('product_types')
-
-# '''
-# CRUD: ProductModel Model
-# '''
-# class ProductModelListView(generic.ListView):
-#     model = ProductModel
-#     paginate_by = 10
-
-# class ProductModelDetailView(generic.DetailView):
-#     model = ProductModel
-
-# class ProductModelCreate(CreateView):
-#     model = ProductModel
-#     fields = '__all__'
-
-# class ProductModelUpdate(UpdateView):
-#     model = ProductModel
-#     fields = '__all__'
-
-# class ProductModelDelete(DeleteView):
-#     model = ProductModel
-#     success_url = reverse_lazy('product_models')
-
-# '''
-# CRUD: Client Model
-# '''
-# class ClientListView(generic.ListView):
-#     model = Client
-#     paginate_by = 10
-
-# class ClientDetailView(generic.DetailView):
-#     model = Client
-
-# class ClientCreate(CreateView):
-#     model = Client
-#     fields = '__all__'
-
-# class ClientUpdate(UpdateView):
-#     model = Client
-#     fields = '__all__'
-
-# class ClientDelete(DeleteView):
-#     model = Client
-#     success_url = reverse_lazy('clients')
-
-# '''
-# CRUD: Order Model
-# '''
-# class OrderListView(generic.ListView):
-#     model = Order
-#     paginate_by = 10
-
-# class OrderDetailView(generic.DetailView):
-#     model = Order
-
-# class OrderCreate(CreateView):
-#     model = Order
-#     fields = '__all__'
-
-# class OrderUpdate(UpdateView):
-#     model = Order
-#     fields = '__all__'
-
-# class OrderDelete(DeleteView):
-#     model = Order
-#     success_url = reverse_lazy('orders')
-
-# '''
-# CRUD: PickUpPoint Model
-# '''
-# class PickUpPointListView(generic.ListView):
-#     model = PickUpPoint
-#     paginate_by = 10
-
-# class PickUpPointDetailView(generic.DetailView):
-#     model = PickUpPoint
-
-# class PickUpPointCreate(CreateView):
-#     model = PickUpPoint
-#     fields = '__all__'
-
-# class PickUpPointUpdate(UpdateView):
-#     model = PickUpPoint
-#     fields = '__all__'
-
-# class PickUpPointDelete(DeleteView):
-#     model = PickUpPoint
-#     success_url = reverse_lazy('pick-up_points')
-
-# '''
-# CRUD: Phone Model
-# '''
-# class PhoneListView(generic.ListView):
-#     model = Phone
-#     paginate_by = 10
-
-# class PhoneDetailView(generic.DetailView):
-#     model = Phone
-
-# class PhoneCreate(CreateView):
-#     model = Phone
-#     fields = '__all__'
-
-# class PhoneUpdate(UpdateView):
-#     model = Phone
-#     fields = '__all__'
-
-# class PhoneDelete(DeleteView):
-#     model = Phone
-#     success_url = reverse_lazy('phones')
-
-# '''
-# CRUD: Promo Model
-# '''
-# class PromoListView(generic.ListView):
-#     model = Promo
-#     paginate_by = 10
-
-# class PromoDetailView(generic.DetailView):
-#     model = Promo
-
-# class PromoCreate(CreateView):
-#     model = Promo
-#     fields = '__all__'
-
-# class PromoUpdate(UpdateView):
-#     model = Promo
-#     fields = '__all__'
-
-# class PromoDelete(DeleteView):
-#     model = Promo
-#     success_url = reverse_lazy('promos')
-
-# '''
-# CRUD: Employee Model
-# '''
-# class EmployeeListView(generic.ListView):
-#     model = Employee
-#     paginate_by = 10
-
-# class EmployeeDetailView(generic.DetailView):
-#     model = Employee
-
-# class EmployeeCreate(CreateView):
-#     model = Employee
-#     fields = '__all__'
-
-# class EmployeeUpdate(UpdateView):
-#     model = Employee
-#     fields = '__all__'
-
-# class EmployeeDelete(DeleteView):
-#     model = Employee
-#     success_url = reverse_lazy('employees')
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('products')

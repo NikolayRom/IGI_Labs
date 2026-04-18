@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Client</title>
+{% endblock %}
+
+{% block content %}
+    {% if perms.ToyFactory.employee_perm %}
+        {% if client %}
+            <h1>{{client.display_username}}</h1>
+            <p>Company name: {{client.company_name}}</p>
+            <p>Phone: {{client.phone}}</p>
+            <p>City: {{client.city}}</p>
+            <p>Address: {{client.address}}</p>
+
+            <h1>Orders by {{client.display_username}}:</h1>
+            {% for order in order_list %}
+                <ul>
+                    <a href="{{order.product.get_absolute_url}}"><li><h2>{{order.product_name}}</h2></li></a>
+                    <p>Amount: {{order.product_amount}}</p>
+                    <p>Price for 1 product: {{order.product_price}}</p>
+                    <p>Pick-up point: {{order.pick_up_point}}</p>
+                    {% if order.promo %}
+                        <p>Promo: {{order.promo.info}} ({{order.promo_sale_percentage}})</p>
+                    {% endif %}
+                    <p>Date of order: {{order.date_order_complete}}</p>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <h2>No info for this client</h2>
+        {% endif %}
+    {% else %}
+        <h1>Access Denied</h1>
+    {% endif %}
+{% endblock %}

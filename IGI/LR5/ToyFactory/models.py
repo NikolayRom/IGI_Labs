@@ -74,7 +74,7 @@ class Product(models.Model):
         help_text='Product availability')
     
     def display_product_type(self):
-        return ' ,'.join(str(product_type) for product_type in self.product_type.all()[:3])
+        return ', '.join(str(product_type) for product_type in self.product_type.all()[:3])
     display_product_type.short_description = 'Type'
         
     def clean(self):
@@ -95,7 +95,7 @@ class Product(models.Model):
         return reverse('product-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['product_model', 'name']
+        ordering = ['status', 'price', 'product_model', 'name']
         constraints = [
             UniqueConstraint(
                 Lower('name'),
@@ -221,7 +221,8 @@ class Client(models.Model):
     company_name = models.CharField(max_length=100, help_text='Client\'s company name')
     phone = models.OneToOneField('Phone', on_delete=models.CASCADE, help_text='Client\'s phone')
     address = models.CharField(max_length=100, help_text='Client\'s address')
-    
+    city = models.ForeignKey('City', on_delete=models.CASCADE, help_text='Clients\'s city')
+
     def clean(self):
         super().clean()
         if self.user.is_superuser or Employee.objects.filter(user__exact=self.user).exists():
@@ -230,7 +231,10 @@ class Client(models.Model):
             raise ValidationError({'company_name': 'Company name must be initialize'})
         elif not self.address.strip():
             raise ValidationError({'address': 'Address must be initialize'})
-        
+
+    def display_username(self):
+        return self.user.username
+
     def save(self, *args, **kwargs):
         self.full_clean()
         self.user.user_permissions.add(Permission.objects.get(codename='client_perm'))
@@ -238,7 +242,7 @@ class Client(models.Model):
 
     def __str__(self):
         return f"Client: {self.company_name} ({self.phone}) - {self.address}"
-    
+
     def get_absolute_url(self):
         return reverse('client-detail', args=[str(self.id)])
 
@@ -255,8 +259,8 @@ class Client(models.Model):
 class Order(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for order")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, help_text='Client order of product')
-    date_order_create = models.DateField(default=date.today, editable=False, help_text='Date of create order')
-    date_order_complete = models.DateField(null=True, blank=True, help_text='Date of complete order')
+    date_order_create = models.DateTimeField(default=timezone.now, help_text='Date of create order')
+    date_order_complete = models.DateTimeField(null=True, blank=True, help_text='Date of complete order')
     product_amount = models.PositiveIntegerField(
         default=1,
         help_text='Amount of products in order',
@@ -264,12 +268,43 @@ class Order(models.Model):
             MinValueValidator(1)
         ]
     )
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, help_text='Client of order')
+    promo = models.ForeignKey(
+        'Promo', 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        help_text='Applied promo code'
+    )
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, help_text='Client of order')
+    pick_up_point = models.ForeignKey(
+        'PickUpPoint',
+        on_delete=models.CASCADE,
+        help_text='Client\'s pick-up point'
+    )
 
     @property
     def product_name(self):
         return self.product.name if self.product else None
     
+    @property
+    def product_price(self):
+        return self.product.price
+    
+    @property
+    def promo_sale_percentage(self):
+        return str(self.promo.sale*100) + '%'
+
+    @property
+    def get_total(self):
+        total = self.product.price * self.product_amount
+        if self.promo:
+            total = total * (1 - self.promo.sale)
+        return round(total, 2)
+
+    @property
+    def client_pick_up_point(self):
+        return self.client.pick_up_point
+
     @property
     def client_company(self):
         return self.client.company_name if self.client else None
@@ -278,9 +313,9 @@ class Order(models.Model):
         super().clean()
         if self.product_amount == 0:
             raise ValidationError({'product_amount': 'Amount of products must be positive number (not zero!)'})
-        elif self.date_order_create > date.today():
-            raise ValidationError({'date_order_create': 'Date of creating order must be today or past, not future'})
-        elif self.date_order_complete != None and (self.date_order_complete > date.today() or self.date_order_complete < self.date_order_create):
+        elif self.date_order_create == None:
+            raise ValidationError({'date_order_create': 'Date of creating order must be initialize!'})
+        elif self.date_order_complete != None and (self.date_order_complete > timezone.now() or self.date_order_complete < self.date_order_create):
             raise ValidationError({'date_order_complete': 'End date must be greater than date of create and not be future'})
         
     def save(self, *args, **kwargs):
@@ -294,7 +329,7 @@ class Order(models.Model):
         return reverse('order-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['date_order_create', 'client', 'product', 'product_amount']
+        ordering = ['-date_order_create', '-product_amount', 'product']
 
 class City(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for city")
@@ -329,6 +364,9 @@ class PickUpPoint(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, help_text='City of pick-up point')
     address = models.CharField(max_length=100, help_text='Address of pick-up point')
 
+    def display_city_name(self):
+        return self.city.name
+
     def clean(self):
         super().clean()
         if not self.address.strip():
@@ -339,10 +377,10 @@ class PickUpPoint(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Pick-up point: {self.city} - {self.address}'
+        return f'{self.city}: {self.address}'
     
     def get_absolute_url(self):
-        return reverse('pickUpPoint-detail', args=[str(self.id)])
+        return reverse('pick_up_point-detail', args=[str(self.id)])
 
     class Meta:
         ordering = ['city', 'address']
@@ -393,9 +431,13 @@ class Promo(models.Model):
         ]
     )
 
-    end_date = models.DateField(
-        default=datetime.date.today() + datetime.timedelta(days=7)
-    )
+    def promo_sale_percentage(self):
+        return str(self.sale*100) + '%'
+
+    def get_default_end_date():
+        return date.today() + datetime.timedelta(days=7)
+    
+    end_date = models.DateField(default=get_default_end_date)
 
     product = models.ForeignKey(
         Product,
@@ -421,7 +463,7 @@ class Promo(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.info}: {self.sale}'
+        return f'{self.get_product_name()} ({self.promo_sale_percentage()}): {self.info}'
     
     def get_absolute_url(self):
         return reverse('promo-detail', args=[str(self.id)])

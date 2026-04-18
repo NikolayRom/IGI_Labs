@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Cart</title>
+{% endblock %}
+
+{% block content %}
+    {% if perms.ToyFactory.client_perm %}
+        {% if user.is_superuser %}
+            <h1>Cart is only for clients!</h1>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Add to cart</button>
+            </form>
+            
+            <h1>Total: {{total}}</h1>
+
+            {% if order_list %}
+                <ul>
+                    {% for order in order_list %}
+                        <li><h2>{{order.product_name}}<a href="{% url 'order-delete' order.pk %}">(Delete)</a></h2>
+                        <p>Amount: {{order.product_amount}}</p>
+                        <p>Price for 1 product: {{order.product_price}}</p>
+                        <p>Pick-up point: {{order.pick_up_point}}</p>
+                        {% if order.promo %}
+                            <p>Promo: {{order.promo.info}} ({{order.promo_sale_percentage}})</p>
+                        {% endif %}
+                        <p>Date of adding: {{order.date_order_create}}</p></li>
+                        <ul>Total: {{order.get_total}}</ul>
+                        <br>
+                    {% endfor %}
+                </ul>
+                <br>
+                <li><form action="{% url 'orders-complete' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Order</button>
+                </form></li>
+                <br>
+            {% else %}
+                <h2>No orders available</h2>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <h1>Cart is only for clients!</h1>
+    {% endif %}
+{% endblock %}

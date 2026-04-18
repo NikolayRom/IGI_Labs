@@ -1,23 +1,11 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-  <title>Product</title>
+  <title>Product Model</title>
 {% endblock %}
 
 {% block content %}
   {% if perms.ToyFactory.employee_perm %}
-
-    <br>
-
-    <form method="get" action="{% url 'product_model-create' %}">
-      {% csrf_token %}
-      <button type="submit">Create Product Model</button>
-    </form>
-    <form method="get" action="{% url 'product_type-create' %}">
-      {% csrf_token %}
-      <button type="submit">Create Product Type</button>
-    </form>
-
     <form action="" method="post">
         {% csrf_token %}
         <table>

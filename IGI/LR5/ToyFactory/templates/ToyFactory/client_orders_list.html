@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Client Orders</title>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <h1>Access Denied</h1>
+    {% else %}
+        {% if perms.ToyFactory.client_perm %}
+            <h1>Orders</h1>
+            {% if order_list %}
+                <ul>
+                    {% for order in order_list %}
+                        <li><h2>{{order.product_name}}</h2></li>
+                        <p>Amount: {{order.product_amount}}</p>
+                        <p>Price for 1 product: {{order.product_price}}</p>
+                        <p>Pick-up point: {{order.pick_up_point}}</p>
+                        {% if order.promo %}
+                            <p>Promo: {{order.promo.info}} ({{order.promo_sale_percentage}})</p>
+                        {% endif %}
+                        <p>Date of order: {{order.date_order_complete}}</p>
+                        <ul>Total: {{order.get_total}}</ul>
+                        <br>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>There are no orders available.</p>
+            {% endif %}
+        {% else %}
+            <h1>Access Denied</h1>
+        {% endif %}
+    {% endif %}
+{% endblock %}

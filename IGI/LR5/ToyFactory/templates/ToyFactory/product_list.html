@@ -1,20 +1,32 @@
 {% extends "base_generic.html" %}
 
+{% block title %}
+<title>Products</title>
+{% endblock %}
+
 {% block content %}
-    <h1>Book List</h1>
+  {% if perms.ToyFactory.employee_perm %}
+    <form method="get" action="{% url 'product-create' %}">
+            {% csrf_token %}
+            <button type="submit">Create Product</button>
+    </form>
+  {% endif %}
 
-    {% if book_list %}
-    <ul>
+  {% if product_list %}
+    {% for product in product_list %}
+      {% if product.status == 'a' %}
+        <a href="{{product.get_absolute_url}}"><h1>{{product.name}}</h1></a>
+        <p>Type: {{product.display_product_type}}</p>
+        <p>Price: {{product.price}}</p>
+      {% else %}
+        {% if perms.ToyFactory.employee_perm %}
+          <a href="{{product.get_absolute_url}}"><h1>{{product.name}} (DISCONTINUED)</h1></a>
+          <p>Price: {{product.price}}</p>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+      <h2>No info for products</h2>
+  {% endif %}
 
-      {% for book in book_list %}
-      <li>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
-      </li>
-      <br>
-      {% endfor %}
-
-    </ul>
-    {% else %}
-      <p>There are no books in the library.</p>
-    {% endif %}
 {% endblock %}

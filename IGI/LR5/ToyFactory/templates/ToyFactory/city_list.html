@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Cities</title>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Cities</h1>
+
+        {% if city_list %}
+        <ul>
+
+            {% for city in city_list %}
+                <li>
+                    <a href="{{ city.get_absolute_url }}">{{ city.name }}</a> ({{city.pickuppoint_set.all.count}})
+                </li>
+                <br>
+            {% endfor %}
+
+        </ul>
+        {% else %}
+            <p>There are no cities available.</p>
+        {% endif %}
+    {% else %}
+        <h1>Access Denied</h1>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Clients</title>
+{% endblock %}
+
+{% block content %}
+    {% if perms.ToyFactory.employee_perm %}
+        <h1>Clients</h1>
+
+        {% if client_list %}
+        <ul>
+
+        {% for client in client_list %}
+            <li>
+                <a href="{{ client.get_absolute_url }}">{{ client.display_username }}</a> ({{client.company_name}})
+            </li>
+            <br>
+        {% endfor %}
+
+        </ul>
+        {% else %}
+        <p>There are no clients available.</p>
+        {% endif %}
+    {% else %}
+        <h1>Access Denied</h1>
+    {% endif %}
+{% endblock %}

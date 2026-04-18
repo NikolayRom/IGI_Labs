@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Pick-up Point</title>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if pickuppoint %}
+            <h1>{{pickuppoint.display_city_name}}</h1>
+            <p>Address: {{pickuppoint.address}}</p>
+        {% else %}
+            <h2>No info for this pick-up point</h2>
+        {% endif %}
+    {% else %}
+        <h1>Access Denied</h1>
+    {% endif %}
+{% endblock %}

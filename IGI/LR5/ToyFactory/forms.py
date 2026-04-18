@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import *
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils import timezone
 
 class CustomUserCreationForm(UserCreationForm):
     
@@ -58,9 +59,14 @@ class ClientRegistrationForm(CustomUserCreationForm):
     phone = forms.CharField(max_length=19, help_text='Phone number of client (+375 (29) 000-00-00)')
     address = forms.CharField(max_length=100, help_text='Client\'s address')
 
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        label='City'
+    )
+
     class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields = UserCreationForm.Meta.fields + ('birth_date', 'company_name', 'address', 'phone')
+        fields = UserCreationForm.Meta.fields + ('birth_date', 'company_name', 'address', 'phone', 'city')
 
     def clean_phone(self):
         phone_data = self.cleaned_data.get('phone')
@@ -80,7 +86,8 @@ class ClientRegistrationForm(CustomUserCreationForm):
             user=user,
             company_name=self.cleaned_data['company_name'],
             address=self.cleaned_data['address'],
-            phone=phone
+            phone=phone,
+            city=self.cleaned_data.get('city'),
         )
         return user
 
@@ -128,7 +135,7 @@ class ClientUpdateForm(forms.ModelForm):
         max_length=100,
         help_text='Client\'s address',
         label='Address'
-        )
+    )
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -157,7 +164,7 @@ class ClientUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Client
-        fields = ['company_name', 'address']
+        fields = ['company_name', 'address', 'city']
 
 class EmployeeUpdateForm(forms.ModelForm):
     
@@ -247,4 +254,51 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['review', 'grade']
 
+class OrderCreateForm(forms.ModelForm):
+
+    promo = forms.ModelChoiceField(
+        queryset=Promo.objects.none(),
+        required=False,
+        label='Promo'
+    )
+
+    pick_up_point = forms.ModelChoiceField(
+        queryset=PickUpPoint.objects.none(),
+        label='Pick-up point'
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.client = kwargs.pop('client', None)
+        super(OrderCreateForm, self).__init__(*args, **kwargs)
+
+        self.fields['promo'].queryset = Promo.objects.filter(end_date__gte=date.today())
+        self.fields['pick_up_point'].queryset = PickUpPoint.objects.filter(city__exact=self.client.city)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        product = cleaned_data.get('product')
+        promo = cleaned_data.get('promo')
+        if promo and product:
+            if promo.product != product:
+                raise forms.ValidationError({
+                    'promo': 'This promo is for another product'
+                })
+        return cleaned_data
+
+    def save(self, commit=True):
+        order = Order.objects.create(
+            product=self.cleaned_data.get('product'),
+            product_amount=self.cleaned_data.get('product_amount'),
+            client=self.client,
+            date_order_create=timezone.now(),
+            promo=self.cleaned_data.get('promo'),
+            pick_up_point=self.cleaned_data.get('pick_up_point')
+        )
+        if commit:
+            order.save()
+        return order
+
+    class Meta:
+        model = Order
+        fields = ['product', 'product_amount', 'pick_up_point', 'promo']
 

@@ -12,7 +12,7 @@
 
       {% for employee in employee_list %}
         <li>
-          <img src="{{ employee.get_avatar_url }}" alt="Employee icon" style="max-width: 200px; border-radius: 100%;"/>
+          <img src="{{ employee.get_avatar_url }}" alt="Employee icon" style="max-width: 200px; max-height: 200px; border-radius: 20%;"/>
           <a href="{{ employee.get_absolute_url }}">{{ employee.display_username }}</a> ({{employee.display_email}})
           <br>
         </li>

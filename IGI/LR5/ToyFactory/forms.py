@@ -6,6 +6,9 @@ from .models import *
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
 
+import logging
+logger = logging.getLogger('ToyFactory')
+
 class CustomUserCreationForm(UserCreationForm):
     
     birth_date = forms.DateField(
@@ -39,6 +42,7 @@ class EmployeeAdminForm(forms.ModelForm):
 
         if email and user:
             if CustomUser.objects.filter(email__iexact=email).exclude(pk__exact=user.pk).exists():
+                logger.error(f"email is already exist")
                 self.add_error('email', 'This email is already exists')
             user.email = email
         return cleaned_data
@@ -73,9 +77,11 @@ class ClientRegistrationForm(CustomUserCreationForm):
         phone_data = self.cleaned_data.get('phone')
         
         if not re.match(r'^\+375\s?\(?29\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$', phone_data):
+            logger.error(f"invalid phone format")
             raise forms.ValidationError('Phone number must be in format: +375 (29) XXX-XX-XX')
         
         if Phone.objects.filter(phone__iexact=phone_data).exists():
+            logger.error(f"phone already exist")
             raise forms.ValidationError('This phone already exist')
             
         return phone_data
@@ -147,9 +153,11 @@ class ClientUpdateForm(forms.ModelForm):
         phone_data = self.cleaned_data.get('phone')
         
         if not re.match(r'^\+375\s?\(?29\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$', phone_data):
+            logger.error(f"invalid phone format")
             raise forms.ValidationError('Phone number must be in format: +375 (29) XXX-XX-XX')
         
         if Phone.objects.filter(phone__iexact=phone_data).exclude(pk__exact=self.instance.phone.pk).exists():
+            logger.error(f"phone alredy exist")
             raise forms.ValidationError('This phone already exist')
             
         return phone_data
@@ -189,9 +197,11 @@ class EmployeeUpdateForm(forms.ModelForm):
         phone_data = self.cleaned_data.get('phone')
         
         if not re.match(r'^\+375\s?\(?29\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$', phone_data):
+            logger.error(f"invalid phone format")
             raise forms.ValidationError('Phone number must be in format: +375 (29) XXX-XX-XX')
         
         if Phone.objects.filter(phone__iexact=phone_data).exclude(pk__exact=self.instance.phone.pk).exists():
+            logger.error(f"phone already exist")
             raise forms.ValidationError('This phone already exist')
             
         return phone_data
@@ -237,6 +247,7 @@ class ReviewForm(forms.ModelForm):
         grade_data = self.cleaned_data.get('grade')
         
         if grade_data < 1 or grade_data > 5:
+            logger.error(f"invalid value for grade")
             raise forms.ValidationError('Grade must be in range from 1 to 5') 
         
         return grade_data
@@ -275,12 +286,16 @@ class OrderCreateForm(forms.ModelForm):
         self.fields['promo'].queryset = Promo.objects.filter(end_date__gte=date.today())
         self.fields['pick_up_point'].queryset = PickUpPoint.objects.filter(city__exact=self.client.city)
 
+        if not self.instance.date_order_create:
+            self.instance.date_order_create = timezone.now()
+
     def clean(self):
         cleaned_data = super().clean()
         product = cleaned_data.get('product')
         promo = cleaned_data.get('promo')
         if promo and product:
             if promo.product != product:
+                logger.error(f"wrong product for promo")
                 raise forms.ValidationError({
                     'promo': 'This promo is for another product'
                 })

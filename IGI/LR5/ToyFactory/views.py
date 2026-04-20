@@ -21,6 +21,9 @@ import io
 import base64
 from django.db.models.functions import TruncMonth
 
+import logging
+logger = logging.getLogger('ToyFactory')
+
 def index(request):
     
     api_key = '90a48ee7dbca43028bde1930c1da9870'
@@ -37,13 +40,17 @@ def index(request):
         if api_response.status_code == 200:
             data = api_response.json()
             articles = data.get('articles', [])[:api_max_news]
+            logger.info(f"Index view: API success: {api_path}")
     except Exception as e:
         print('Error during request to API:' + e)
+        logger.error(f"Index view: API Error: {api_path}. Error: {e}")
 
     context = {'api_data': articles}
 
     if News.objects.last() != None:
         context['last_news'] = News.objects.last()
+    else:
+        logger.warning(f"Index view: News.objects.last() not found!")
     
     return render(
         request,
@@ -55,20 +62,27 @@ def account(request):
     form = UserUpdateForm(instance=request.user)
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=request.user)
-        form.save()
-        return redirect('index')
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        else:
+            logger.error(f"Account view: Form Error: form = UserUpdateForm")
     
     context = {'form': form}
     return render(request, 'registration/account.html', context=context)
 
 def client_profile(request):
     client = Client.objects.filter(user__exact=request.user).first()
+    if client == None:
+        logger.warning(f"client_profile view: client warning: client not found!")
     form = ClientUpdateForm(instance=client)
     if request.method == 'POST':
         form = ClientUpdateForm(request.POST, instance=client)
         if form.is_valid():
             form.save()
             return redirect('client-profile')
+        else:
+            logger.error(f"client_profile view: form Error: ClientUpdateForm is not valid!")
     
     context = {
         'form': form,
@@ -78,12 +92,16 @@ def client_profile(request):
 
 def employee_profile(request):
     employee = Employee.objects.filter(user__exact=request.user).first()
+    if employee == None:
+        logger.warning(f"employee_profile view: employee warning: employee not found!")
     form = EmployeeUpdateForm(instance=employee)
     if request.method == 'POST':
         form = EmployeeUpdateForm(request.POST, request.FILES, instance=employee)
         if form.is_valid():
             form.save()
             return redirect('employee-profile')
+        else:
+            logger.error(f"employee_profile view: form Error: EmployeeUpdateForm is not valid!")
     
     context = {
         'form': form,
@@ -100,6 +118,8 @@ def register(request):
                 user = form.save()
                 login(request, user)
                 return redirect('index')
+        else:
+            logger.error(f"register view: register Error: ClientRegistrationForm is not valid!")
     context = {'form': form}
     return render(request, 'registration/register.html', context=context)
 
@@ -109,6 +129,8 @@ def about(request):
 
     if(AboutInfo.objects.last() != None):
         context['about_info'] = AboutInfo.objects.last()
+    else:
+        logger.warning(f"about view: AboutInfo warning: AboutInfo.objects.last() not found!")
 
     return render(
         request,
@@ -127,11 +149,14 @@ def reviews(request):
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
+            logger.info(f"Reviews view: redirect: user is not authenticated")
             return redirect('login')
         form = ReviewForm(request.POST, user=request.user)
         if form.is_valid():
             form.save()
             return redirect('reviews')
+        else:
+            logger.error(f"Reviews view: form Error: Review form is not valid!")
     else:
         form = ReviewForm()
 
@@ -151,15 +176,23 @@ def order_create(request):
 
     client = request.user.client_profile
 
+    if client == None:
+        logger.warning(f"Order create view: client warning: request.user.client_profile not found!")
+
     if request.method == 'POST':
         form = OrderCreateForm(request.POST, client=client)
         if form.is_valid():
             form.save()
             return redirect('cart')
+        else:
+            logger.error(f"Order create view: form Error: OrderCreateForm is not valid!")
     else:
         form = OrderCreateForm(client=client)
 
     order_list = Order.objects.filter(client=client, date_order_complete__isnull=True).all().order_by('-date_order_create')
+
+    if order_list == None:
+        logger.warning(f"Order create view: order_list warning: Order.objects.filter(client=client, date_order_complete__isnull=True).all().order_by('-date_order_create') not found!")
 
     context={
         'form': form,
@@ -179,6 +212,7 @@ def order_complete(request):
     if request.method == 'POST':
         Order.objects.filter(client=request.user.client_profile, date_order_complete__isnull=True).update(date_order_complete=timezone.now())
         return redirect('client-orders')
+    logger.info(f"Order complete view: redirect to cart: request.method != POST")
     return redirect('cart')
 
 
@@ -205,6 +239,7 @@ def get_plot():
         .order_by('month')
 
     if not monthly_sales:
+        logger.warning(f"monthly_sales not found!")
         return None, 0
 
     x_data = list(range(1, len(monthly_sales) + 1))
@@ -244,6 +279,7 @@ def get_plot():
 def generate_bar_chart(labels, values, title, color):
     
     if not labels or not values:
+        logger.warning(f"labels or values not found!")
         return None
     
     plt.figure(figsize=(8, 5))
@@ -269,6 +305,9 @@ def analytics_view(request):
         ).annotate(
             total_sum = Coalesce(Sum('order__product_amount'), 0)
         ).order_by('-total_sum')
+
+        if not product_popularity:
+            logger.warning(f"product_popularity not found!")
 
         worse_product = product_popularity.last()
         best_product = product_popularity.first()
@@ -297,6 +336,9 @@ def analytics_view(request):
             )
         ).order_by('-income')
 
+        if not clients_report:
+            logger.warning(f"clients_report not found!")
+
         products_report = Product.objects.filter(
                 order__date_order_complete__gte=timezone.now()-timezone.timedelta(days=30)
         ).annotate(
@@ -318,6 +360,9 @@ def analytics_view(request):
                 output_field=DecimalField()
             )
         ).order_by('-income')
+
+        if not products_report:
+            logger.warning(f"products_report not found!")
 
         client_names = [c.company_name for c in clients_report[:10]] 
         client_income = [c.income for c in clients_report[:10]]
@@ -347,6 +392,8 @@ def analytics_view(request):
             'chart_product_units': chart_product_units,
         }
         return render(request, 'analytics.html', context)
+    
+    logger.info(f"Redirect to login: user is not superuser")
     return redirect('login')
 
 class OrderClientListView(generic.ListView, LoginRequiredMixin, PermissionRequiredMixin):
@@ -355,7 +402,12 @@ class OrderClientListView(generic.ListView, LoginRequiredMixin, PermissionRequir
     template_name = 'ToyFactory/client_orders_list.html'
     permission_required = 'ToyFactory.client_perm'
     def get_queryset(self):
-        return Order.objects.filter(client=self.request.user.client_profile, date_order_complete__isnull=False)
+        orders = Order.objects.filter(client=self.request.user.client_profile, date_order_complete__isnull=False)
+
+        if not orders:
+            logger.warning(f"orders not found!")
+
+        return orders
     
 class OrderDeleteView(DeleteView, LoginRequiredMixin, PermissionRequiredMixin):
     model = Order
@@ -399,7 +451,10 @@ class ClientDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['order_list'] = self.get_object().order_set.filter(date_order_complete__isnull=False)
+        order_list = self.get_object().order_set.filter(date_order_complete__isnull=False)
+        if not order_list:
+            logger.warning(f"order_list not found!")
+        context['order_list'] = order_list
         return context
 
 class VacancyListView(generic.ListView):
@@ -428,7 +483,10 @@ class CityDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['pickuppoint_list'] = self.get_object().pickuppoint_set.all()
+        pickuppoint_list = self.get_object().pickuppoint_set.all()
+        if not pickuppoint_list:
+            logger.warning(f"pickuppoint_list not found!")
+        context['pickuppoint_list'] = pickuppoint_list
         return context
 
 class PickUpPointDetailView(generic.DetailView):

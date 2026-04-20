@@ -1,0 +1,224 @@
+INFO 2026-04-20 22:57:28,213 views 236722 140389499486720 Redirect to login: user is not superuser
+ERROR 2026-04-20 22:57:29,798 log 236722 140389499486720 Internal Server Error: /api/client/cart/
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 503, in _post_clean
+    self.instance.full_clean(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        exclude=exclude, validate_unique=False, validate_constraints=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/db/models/base.py", line 1712, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'date_order_create': ['Date of creating order must be initialize!']}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/ntfray/IGI_Labs/453504_Romanov_23/IGI/LR5/ToyFactory/views.py", line 184, in order_create
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 201, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 339, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 507, in _post_clean
+    self._update_errors(e)
+    ~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 477, in _update_errors
+    self.add_error(None, errors)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 301, in add_error
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: 'OrderCreateForm' has no field named 'date_order_create'.
+INFO 2026-04-20 22:57:30,910 views 236722 140389499486720 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 22:57:30,911 views 236722 140389499486720 Index view: News.objects.last() not found!
+INFO 2026-04-20 23:01:45,498 views 238905 140464878715392 Redirect to login: user is not superuser
+ERROR 2026-04-20 23:01:47,086 log 238905 140464878715392 Internal Server Error: /api/client/cart/
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 503, in _post_clean
+    self.instance.full_clean(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        exclude=exclude, validate_unique=False, validate_constraints=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/db/models/base.py", line 1712, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'date_order_create': ['Date of creating order must be initialize!']}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/ntfray/IGI_Labs/453504_Romanov_23/IGI/LR5/ToyFactory/views.py", line 184, in order_create
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 201, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 339, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 507, in _post_clean
+    self._update_errors(e)
+    ~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 477, in _update_errors
+    self.add_error(None, errors)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 301, in add_error
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: 'OrderCreateForm' has no field named 'date_order_create'.
+INFO 2026-04-20 23:01:48,202 views 238905 140464878715392 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:01:48,203 views 238905 140464878715392 Index view: News.objects.last() not found!
+INFO 2026-04-20 23:03:56,884 views 240019 140548400611840 Redirect to login: user is not superuser
+ERROR 2026-04-20 23:03:58,497 log 240019 140548400611840 Internal Server Error: /api/client/cart/
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 503, in _post_clean
+    self.instance.full_clean(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        exclude=exclude, validate_unique=False, validate_constraints=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/db/models/base.py", line 1712, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'date_order_create': ['Date of creating order must be initialize!']}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/ntfray/IGI_Labs/453504_Romanov_23/IGI/LR5/ToyFactory/views.py", line 184, in order_create
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 201, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 339, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 507, in _post_clean
+    self._update_errors(e)
+    ~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/models.py", line 477, in _update_errors
+    self.add_error(None, errors)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/forms/forms.py", line 301, in add_error
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: 'OrderCreateForm' has no field named 'date_order_create'.
+INFO 2026-04-20 23:03:59,592 views 240019 140548400611840 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:03:59,593 views 240019 140548400611840 Index view: News.objects.last() not found!
+INFO 2026-04-20 23:13:07,514 views 245073 140535414981120 Redirect to login: user is not superuser
+INFO 2026-04-20 23:13:10,234 views 245073 140535414981120 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:13:10,235 views 245073 140535414981120 Index view: News.objects.last() not found!
+INFO 2026-04-20 23:13:39,215 views 245364 139680027087360 Redirect to login: user is not superuser
+INFO 2026-04-20 23:13:42,172 views 245364 139680027087360 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:13:42,174 views 245364 139680027087360 Index view: News.objects.last() not found!
+ERROR 2026-04-20 23:24:08,665 forms 250943 140110548001280 email is already exist
+ERROR 2026-04-20 23:24:09,144 forms 250943 140110548001280 invalid phone format
+INFO 2026-04-20 23:24:11,870 views 250943 140110548001280 Redirect to login: user is not superuser
+INFO 2026-04-20 23:24:14,570 views 250943 140110548001280 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:24:14,571 views 250943 140110548001280 Index view: News.objects.last() not found!
+ERROR 2026-04-20 23:26:34,846 forms 252186 140293856317952 email is already exist
+ERROR 2026-04-20 23:26:35,321 forms 252186 140293856317952 invalid phone format
+INFO 2026-04-20 23:26:38,221 views 252186 140293856317952 Redirect to login: user is not superuser
+INFO 2026-04-20 23:26:40,893 views 252186 140293856317952 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:26:40,893 views 252186 140293856317952 Index view: News.objects.last() not found!
+ERROR 2026-04-20 23:35:09,244 forms 256661 140481959125504 email is already exist
+ERROR 2026-04-20 23:35:09,410 forms 256661 140481959125504 wrong product for promo
+ERROR 2026-04-20 23:35:09,738 forms 256661 140481959125504 invalid phone format
+INFO 2026-04-20 23:35:12,618 views 256661 140481959125504 Redirect to login: user is not superuser
+INFO 2026-04-20 23:35:15,339 views 256661 140481959125504 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:35:15,339 views 256661 140481959125504 Index view: News.objects.last() not found!
+ERROR 2026-04-20 23:35:26,473 forms 256830 139930574295552 email is already exist
+ERROR 2026-04-20 23:35:26,649 forms 256830 139930574295552 wrong product for promo
+ERROR 2026-04-20 23:35:26,991 forms 256830 139930574295552 invalid phone format
+INFO 2026-04-20 23:35:29,988 views 256830 139930574295552 Redirect to login: user is not superuser
+INFO 2026-04-20 23:35:32,952 views 256830 139930574295552 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-13&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-20 23:35:32,953 views 256830 139930574295552 Index view: News.objects.last() not found!
+ERROR 2026-04-21 01:48:38,828 forms 331635 140318915576320 email is already exist
+ERROR 2026-04-21 01:48:39,009 forms 331635 140318915576320 wrong product for promo
+ERROR 2026-04-21 01:48:39,353 forms 331635 140318915576320 invalid phone format
+INFO 2026-04-21 01:48:42,231 views 331635 140318915576320 Redirect to login: user is not superuser
+INFO 2026-04-21 01:48:50,090 views 331635 140318915576320 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 01:48:50,090 views 331635 140318915576320 Index view: News.objects.last() not found!
+ERROR 2026-04-21 01:50:58,777 forms 332855 140238491705856 email is already exist
+ERROR 2026-04-21 01:50:58,945 forms 332855 140238491705856 wrong product for promo
+ERROR 2026-04-21 01:50:59,265 forms 332855 140238491705856 invalid phone format
+INFO 2026-04-21 01:51:02,155 views 332855 140238491705856 Redirect to login: user is not superuser
+INFO 2026-04-21 01:51:07,445 views 332855 140238491705856 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 01:51:07,445 views 332855 140238491705856 Index view: News.objects.last() not found!
+ERROR 2026-04-21 01:51:17,665 forms 333046 140301954675200 email is already exist
+ERROR 2026-04-21 01:51:17,841 forms 333046 140301954675200 wrong product for promo
+ERROR 2026-04-21 01:51:18,171 forms 333046 140301954675200 invalid phone format
+INFO 2026-04-21 01:51:21,150 views 333046 140301954675200 Redirect to login: user is not superuser
+INFO 2026-04-21 01:51:26,737 views 333046 140301954675200 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 01:51:26,738 views 333046 140301954675200 Index view: News.objects.last() not found!
+INFO 2026-04-21 01:53:05,601 autoreload 334029 140303764259328 Watching for file changes with StatReloader
+INFO 2026-04-21 01:53:14,968 log 334029 140302868268736 "GET /accounts/client/profile HTTP/1.1" 200 5115
+INFO 2026-04-21 01:53:17,266 log 334029 140302868268736 "GET /api/client/cart/ HTTP/1.1" 200 6652
+INFO 2026-04-21 01:54:30,918 log 334029 140302868268736 "POST /api/client/cart/ HTTP/1.1" 302 0
+INFO 2026-04-21 01:54:30,954 log 334029 140302868268736 "GET /api/client/cart/ HTTP/1.1" 200 7653
+INFO 2026-04-21 01:54:49,260 log 334029 140302868268736 "POST /api/client/cart/complete HTTP/1.1" 302 0
+INFO 2026-04-21 01:54:49,275 log 334029 140302868268736 "GET /api/client/orders/ HTTP/1.1" 200 3815
+INFO 2026-04-21 01:55:06,729 log 334029 140302868268736 "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-04-21 01:55:06,747 log 334029 140302868268736 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3595
+INFO 2026-04-21 01:55:10,182 log 334029 140302868268736 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-04-21 01:55:10,200 log 334029 140302868268736 "GET /admin/ HTTP/1.1" 200 20828
+INFO 2026-04-21 01:55:10,298 log 334029 140302868268736 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2026-04-21 01:55:15,758 log 334029 140302868268736 "GET /admin/ToyFactory/order/ HTTP/1.1" 200 44339
+INFO 2026-04-21 01:55:15,831 log 334029 140302857778880 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2026-04-21 01:55:15,832 log 334029 140302868268736 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-04-21 01:55:18,941 log 334029 140302868268736 "GET /admin/ToyFactory/order/a91ef954-ebaa-4fd3-bc7c-1dd39c363544/change/ HTTP/1.1" 200 31889
+INFO 2026-04-21 01:55:19,032 log 334029 140302868268736 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-04-21 01:55:19,093 log 334029 140302857778880 "GET /static/admin/img/tooltag-arrowright.svg HTTP/1.1" 200 569
+INFO 2026-04-21 01:55:20,989 log 334029 140302857778880 "GET /admin/ToyFactory/order/a91ef954-ebaa-4fd3-bc7c-1dd39c363544/delete/ HTTP/1.1" 200 14791
+INFO 2026-04-21 01:55:21,063 log 334029 140302857778880 "GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+INFO 2026-04-21 01:55:23,058 log 334029 140302857778880 "POST /admin/ToyFactory/order/a91ef954-ebaa-4fd3-bc7c-1dd39c363544/delete/ HTTP/1.1" 302 0
+INFO 2026-04-21 01:55:23,105 log 334029 140302857778880 "GET /admin/ToyFactory/order/ HTTP/1.1" 200 43853
+INFO 2026-04-21 01:55:23,229 log 334029 140302857778880 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-04-21 01:55:28,912 log 334029 140302857778880 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 01:55:28,922 log 334029 140302857778880 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 01:55:29,620 views 334029 140302857778880 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-04-21 01:55:29,630 log 334029 140302857778880 "GET /api/home/ HTTP/1.1" 200 6585
+INFO 2026-04-21 01:55:29,768 log 334029 140302857778880 "GET /media/default_news_logo_TG3ZVhS.png HTTP/1.1" 304 0

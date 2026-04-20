@@ -44,7 +44,7 @@
             <tr>
                 <td>{{ client.company_name }} ({{ client.display_username }})</td>
                 <td>{{ client.units }}</td>
-                <td>{{ client.income }}</td>
+                <td>{{ client.income|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </table>
@@ -66,7 +66,7 @@
             <tr>
                 <td>{{ prod.name }}</td>
                 <td>{{ prod.units }}</td>
-                <td>{{ prod.income }}</td>
+                <td>{{ prod.income|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </table>

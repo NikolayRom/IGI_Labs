@@ -256,7 +256,7 @@ class Client(BaseDateModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Client: {self.company_name} ({self.phone}) - {self.address}"
+        return f"Client: {self.company_name} ({self.phone}) - {self.city} | {self.address}"
 
     def get_absolute_url(self):
         return reverse('client-detail', args=[str(self.id)])
@@ -274,7 +274,7 @@ class Client(BaseDateModel):
 class Order(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for order")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, help_text='Client order of product')
-    date_order_create = models.DateTimeField(default=timezone.now, help_text='Date of create order')
+    date_order_create = models.DateTimeField(help_text='Date of create order')
     date_order_complete = models.DateTimeField(null=True, blank=True, help_text='Date of complete order')
     product_amount = models.PositiveIntegerField(
         default=1,

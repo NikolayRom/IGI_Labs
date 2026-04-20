@@ -9,6 +9,8 @@
         {% if pickuppoint %}
             <h1>{{pickuppoint.display_city_name}}</h1>
             <p>Address: {{pickuppoint.address}}</p>
+            <ul>Created: {{pickuppoint.created_at|date:"d/m/Y H:i"}}</ul>
+            <ul>Updated: {{pickuppoint.updated_at|date:"d/m/Y H:i"}}</ul>
         {% else %}
             <h2>No info for this pick-up point</h2>
         {% endif %}

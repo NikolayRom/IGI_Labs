@@ -11,6 +11,8 @@
         <p>Product: {{promo.get_product_name}}</p>
         <p>Sale: {{promo.sale}}</p>
         <ul>End date: {{promo.end_date}}</ul>
+        <ul>Created: {{promo.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>Updated: {{promo.updated_at|date:"d/m/Y H:i"}}</ul>
     {% else %}
         <h2>No info for this promo</h2>
     {% endif %}

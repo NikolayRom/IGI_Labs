@@ -11,6 +11,8 @@
         <p>Info: {{vacancy.info}}</p>
         <p>Requirements: {{vacancy.requirements}}</p>
         <p>Salary: {{vacancy.salary}}</p>
+        <ul>Created: {{vacancy.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>Updated: {{vacancy.updated_at|date:"d/m/Y H:i"}}</ul>
         {% else %}
         <h2>No info for this promo</h2>
     {% endif %}

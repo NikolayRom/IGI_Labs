@@ -10,6 +10,8 @@
         {% if promo.is_active %}
             <li>
                 <a href="{{ promo.get_absolute_url }}">{{ promo.info }}</a> ({{promo.get_product_name}})
+                <ul>Created: {{promo.created_at|date:"d/m/Y H:i"}}</ul>
+                <ul>Updated: {{promo.updated_at|date:"d/m/Y H:i"}}</ul>
                 <br>
             </li>
         {% endif %}

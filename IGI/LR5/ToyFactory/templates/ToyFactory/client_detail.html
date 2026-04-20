@@ -12,6 +12,8 @@
             <p>Phone: {{client.phone}}</p>
             <p>City: {{client.city}}</p>
             <p>Address: {{client.address}}</p>
+            <ul>Created: {{client.created_at|date:"d/m/Y H:i"}}</ul>
+            <ul>Updated: {{client.updated_at|date:"d/m/Y H:i"}}</ul>
 
             <h1>Orders by {{client.display_username}}:</h1>
             {% for order in order_list %}

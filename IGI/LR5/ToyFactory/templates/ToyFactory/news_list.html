@@ -11,7 +11,7 @@
 
       {% for news in news_list %}
         <ul>
-          <li><a href="{{ news.get_absolute_url }}">{{ news.header }}</a> ({{news.pub_date}})</li>
+          <li><a href="{{ news.get_absolute_url }}">{{ news.header }}</a> ({{news.updated_at|date:"d/m/Y H:i"}})</li>
           {% if news.image %}
               <img src='{{news.image.url}}' alt="News picture" style="max-width: 300px;"/>
           {% else %}

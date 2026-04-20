@@ -36,6 +36,7 @@ urlpatterns = [
     re_path(r'^client/cart/$', views.order_create, name='cart'),
     re_path(r'^client/cart/order/(?P<pk>[0-9a-f-]+)/delete/$', views.OrderDeleteView.as_view(), name='order-delete'),
     re_path(r'^client/cart/complete$', views.order_complete, name='orders-complete'),
-    re_path(r'^client/orders/$', views.OrderClientListView.as_view(), name='client-orders')
+    re_path(r'^client/orders/$', views.OrderClientListView.as_view(), name='client-orders'),
+    re_path(r'^analytics/$', views.analytics_view, name='analytics'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

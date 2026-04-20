@@ -12,7 +12,14 @@ from django.contrib.auth.models import AbstractUser, Permission
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-class CustomUser(AbstractUser):
+class BaseDateModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created date")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated date")
+
+    class Meta:
+        abstract = True
+
+class CustomUser(AbstractUser, BaseDateModel):
     birth_date = models.DateField(help_text='Date of birth')
 
     REQUIRED_FIELDS = ['birth_date']
@@ -48,7 +55,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return AbstractUser.__str__(self)
 
-class Product(models.Model):
+class Product(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for product")
     name = models.CharField(max_length=100, default='product-'+str(uuid.uuid4()), help_text='Name for product')
     product_type = models.ManyToManyField('ProductType', help_text='Type for product')
@@ -104,7 +111,7 @@ class Product(models.Model):
             ),
         ]
 
-class ProductType(models.Model):
+class ProductType(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for product type")
     name = models.CharField(max_length=100, help_text='Product type name')
 
@@ -132,7 +139,7 @@ class ProductType(models.Model):
             ),
         ]
 
-class ProductModel(models.Model):
+class ProductModel(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for product model")
     name = models.CharField(max_length=100, help_text='Product model name')
 
@@ -160,7 +167,7 @@ class ProductModel(models.Model):
             ),
         ]
 
-class Employee(models.Model):
+class Employee(BaseDateModel):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -180,9 +187,17 @@ class Employee(models.Model):
     )
     image = models.ImageField(
         help_text='Image for Employee\'s profile',
-        default='default_employee_logo.png',
         blank=True,
     )
+
+    @property
+    def get_avatar_url(self):
+        if self.image:
+            return self.image.url
+    
+        seed = self.id.int if hasattr(self.id, 'int') else self.id
+        random_id = (seed % 121) + 1
+        return f"https://randomfox.ca/images/{random_id}.jpg"
 
     def display_email(self):
         return self.user.email
@@ -210,7 +225,7 @@ class Employee(models.Model):
     def get_absolute_url(self):
         return reverse('contacts-detail', args=[str(self.id)])
 
-class Client(models.Model):
+class Client(BaseDateModel):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -247,7 +262,7 @@ class Client(models.Model):
         return reverse('client-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['company_name']
+        ordering = ['city', 'company_name']
         constraints = [
             UniqueConstraint(
                 Lower('company_name'),
@@ -256,7 +271,7 @@ class Client(models.Model):
             ),
         ]
 
-class Order(models.Model):
+class Order(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for order")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, help_text='Client order of product')
     date_order_create = models.DateTimeField(default=timezone.now, help_text='Date of create order')
@@ -331,7 +346,7 @@ class Order(models.Model):
     class Meta:
         ordering = ['-date_order_create', '-product_amount', 'product']
 
-class City(models.Model):
+class City(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for city")
     name = models.CharField(max_length=100, default='city-'+str(uuid.uuid4()), help_text='Name of city')
 
@@ -359,7 +374,7 @@ class City(models.Model):
             ),
         ]
 
-class PickUpPoint(models.Model):
+class PickUpPoint(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for pick-up point")
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, help_text='City of pick-up point')
     address = models.CharField(max_length=100, help_text='Address of pick-up point')
@@ -385,7 +400,7 @@ class PickUpPoint(models.Model):
     class Meta:
         ordering = ['city', 'address']
 
-class Phone(models.Model):
+class Phone(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for phone")
     phone = models.CharField(max_length=19, default='+375 (29) 000-00-00', help_text='Phone number of client')
 
@@ -413,7 +428,7 @@ class Phone(models.Model):
             ),
         ]
 
-class Promo(models.Model):
+class Promo(BaseDateModel):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4, help_text="Unique ID for phone")
     info = models.CharField(
         max_length=50,
@@ -471,7 +486,7 @@ class Promo(models.Model):
     class Meta:
         ordering = ['sale']
 
-class AboutInfo(models.Model):
+class AboutInfo(BaseDateModel):
     header = models.CharField(
         max_length=100,
         help_text='Header for Company Info'
@@ -484,10 +499,6 @@ class AboutInfo(models.Model):
         default='default_about_logo.png',
         help_text='Logotype for Company'
     )
-    pub_date = models.DateTimeField(
-        default=timezone.now,
-        editable=False
-    )
 
     def __str__(self):
         return self.header
@@ -496,9 +507,9 @@ class AboutInfo(models.Model):
         return reverse('about-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['created_at']
 
-class News(models.Model):
+class News(BaseDateModel):
     header = models.CharField(
         max_length=400,
         help_text='Header for News'
@@ -511,10 +522,6 @@ class News(models.Model):
         default='default_news_logo.png',
         help_text='Image for news'
     )
-    pub_date = models.DateTimeField(
-        default=timezone.now,
-        editable=False
-    )
 
     def __str__(self):
         return self.header
@@ -523,9 +530,9 @@ class News(models.Model):
         return reverse('news-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['created_at']
 
-class FAQ(models.Model):
+class FAQ(BaseDateModel):
     question = models.CharField(
         max_length=200,
         help_text='Question'
@@ -533,11 +540,7 @@ class FAQ(models.Model):
     answer = models.TextField(
         help_text='Answer'
     )
-    pub_date = models.DateTimeField(
-        default=timezone.now,
-        editable=False
-    )
-
+  
     def __str__(self):
         return self.question
     
@@ -545,7 +548,7 @@ class FAQ(models.Model):
         return reverse('faq-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['created_at']
         constraints = [
             UniqueConstraint(
                 Lower('question'),
@@ -554,7 +557,7 @@ class FAQ(models.Model):
             ),
         ]
 
-class Vacancy(models.Model):
+class Vacancy(BaseDateModel):
     title = models.CharField(
         max_length=200,
         help_text='Title for Vacancy'
@@ -599,7 +602,7 @@ class Vacancy(models.Model):
             ),
         ]
 
-class Review(models.Model):
+class Review(BaseDateModel):
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
@@ -616,10 +619,6 @@ class Review(models.Model):
             MinValueValidator(1)
         ],
         help_text='User\'s grade'
-    )
-    pub_date = models.DateTimeField(
-        default=timezone.now,
-        editable=False
     )
 
     def display_username(self):
@@ -641,7 +640,7 @@ class Review(models.Model):
         return reverse('review-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['-pub_date']
+        ordering = ['-created_at']
 
 class AppPermissions(models.Model):
     class Meta:

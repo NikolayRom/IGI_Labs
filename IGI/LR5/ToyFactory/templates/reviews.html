@@ -17,7 +17,8 @@
             <h2>{{review.display_username}}</h2>
             <p>{{review.review}}</p>
             <ul>Grade: {{review.grade}}</ul>
-            <ul>{{review.pub_date}}</ul>
+            <ul>Review created:{{review.created_at|date:"d/m/Y H:i"}}</ul>
+            <ul>Review updated: {{review.updated_at|date:"d/m/Y H:i"}}</ul>
             <br>
         {% endfor %}
     {% else %}

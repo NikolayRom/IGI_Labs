@@ -18,10 +18,15 @@
         <a href="{{product.get_absolute_url}}"><h1>{{product.name}}</h1></a>
         <p>Type: {{product.display_product_type}}</p>
         <p>Price: {{product.price}}</p>
+        <ul>Created: {{product.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>Updated: {{product.updated_at|date:"d/m/Y H:i"}}</ul>
       {% else %}
         {% if perms.ToyFactory.employee_perm %}
           <a href="{{product.get_absolute_url}}"><h1>{{product.name}} (DISCONTINUED)</h1></a>
+          <p>Type: {{product.display_product_type}}</p>
           <p>Price: {{product.price}}</p>
+          <ul>Created: {{product.created_at|date:"d/m/Y H:i"}}</ul>
+          <ul>Updated: {{product.updated_at|date:"d/m/Y H:i"}}</ul>
         {% endif %}
       {% endif %}
     {% endfor %}

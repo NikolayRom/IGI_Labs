@@ -1,0 +1,84 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    <title>Analytics</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_superuser %}
+        <h1>Analytics</h1>
+        <br>
+
+        <h1>Products popularity (for month):</h1>
+        {% if best_product %}
+            <h2>Best product: {{best_product.name}}</h2>
+        {% else %}
+            <h2>Best product: No Info!</h2>
+        {% endif %}
+        {% if worse_product %}
+            <h2>Worse product: {{worse_product.name}}</h2>
+        {% else %}
+            <h2>Worse product: No Info!</h2>
+        {% endif %}
+        <br>
+
+        <h1>Prognosis and Trend</h1>
+        {% if chart %}
+            <img src="data:image/png;base64,{{ chart }}" alt="Sales graph" style="max-width: 100%;">
+            <br>
+            <h1>Prognosis sales volume: {{ forecast }}</h1>
+        {% else %}
+            <h1>No info to prognose</h1>
+        {% endif %}
+        <br>
+
+        <h1>Monthly sales by client</h1>
+        <table border="1">
+            <tr>
+                <th>Client</th>
+                <th>Amount Volume</th>
+                <th>Income Volume</th>
+            </tr>
+            {% for client in clients_report %}
+            <tr>
+                <td>{{ client.company_name }} ({{ client.display_username }})</td>
+                <td>{{ client.units }}</td>
+                <td>{{ client.income }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+        <img src="data:image/png;base64,{{ chart_client_income }}" alt="Client Income">
+        <br>
+        <img src="data:image/png;base64,{{ chart_client_units }}" alt="Client Units">
+        <br>
+
+        <h1>Monthly sales by product</h1>
+        <table border="1">
+            <tr>
+                <th>Product</th>
+                <th>Amount Volume</th>
+                <th>Income volume</th>
+            </tr>
+            {% for prod in products_report %}
+            <tr>
+                <td>{{ prod.name }}</td>
+                <td>{{ prod.units }}</td>
+                <td>{{ prod.income }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+        <img src="data:image/png;base64,{{ chart_product_income }}" alt="Product Income">
+        <br>
+        <img src="data:image/png;base64,{{ chart_product_units }}" alt="Product Units">
+        <br>
+
+    {% else %}
+        <h1>Access Denied</h1>
+    {% endif %}
+
+{% endblock %}

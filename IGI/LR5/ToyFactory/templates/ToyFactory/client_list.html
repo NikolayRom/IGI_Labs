@@ -10,10 +10,10 @@
 
         {% if client_list %}
         <ul>
-
+        
         {% for client in client_list %}
             <li>
-                <a href="{{ client.get_absolute_url }}">{{ client.display_username }}</a> ({{client.company_name}})
+                {{client.city}}: <a href="{{ client.get_absolute_url }}">{{ client.display_username }}</a> ({{client.company_name}})
             </li>
             <br>
         {% endfor %}

@@ -13,6 +13,8 @@
         <p>Model: {{product.product_model}}</p>
         <p>Status: available</p>
         <p>Price: {{product.price}}</p>
+        <ul>Created: {{product.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>Updated: {{product.updated_at|date:"d/m/Y H:i"}}</ul>
       {% else %}
         {% if perms.ToyFactory.employee_perm %}
           <h1>{{product.name}} (DISCONTINUED)</h1>
@@ -20,6 +22,8 @@
           <p>Model: {{product.product_model}}</p>
           <p>Status: discontinued</p>
           <p>Price: {{product.price}}</p>
+          <ul>Created: {{product.created_at|date:"d/m/Y H:i"}}</ul>
+          <ul>Updated: {{product.updated_at|date:"d/m/Y H:i"}}</ul>
         {% endif %}
       {% endif %}
 

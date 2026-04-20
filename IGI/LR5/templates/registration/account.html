@@ -10,6 +10,8 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <ul>User created: {{user.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>User updated: {{user.updated_at|date:"d/m/Y H:i"}}</ul>
         <button type="submit">Submit</button>
     </form>
 

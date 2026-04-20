@@ -8,7 +8,16 @@
 
   <body>
     {% block sidebar %}
-      <ul class="sidebar-nav">
+      <ul>
+        <li>
+          <p><strong>Your time-zone:</strong> {{ user_timezone }}</p>
+          <p><strong>Date (Local):</strong> {{ current_date|date:"d/m/Y H:i" }}</p>
+          <p><strong>Date (UTC):</strong> {{ utc_date|date:"d/m/Y H:i" }}</p>
+          {{ html_calendar|safe }}
+        </li>
+      </ul>
+      <br>
+      <ul>
         <li>
           <a href="{% url 'index' %}">Home</a>
           <a href="{% url 'about' %}">About</a>
@@ -34,6 +43,9 @@
                 <a href="{% url 'cart' %}">Cart</a>
                 <a href="{% url 'client-orders' %}">My Orders</a>
               {% endif %}
+            {% endif %}
+            {% if user.is_superuser %}
+              <a href="{% url 'analytics' %}">Analytics</a>
             {% endif %}
           {% endif %}
         </li>
@@ -75,11 +87,11 @@
 
     {% block pagination %}
       {% if is_paginated %}
-        <span class="page-links">
+        <span>
           {% if page_obj.has_previous %}
             <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
           {% endif %}
-          <span class="page-current">
+          <span>
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
           </span>
           {% if page_obj.has_next %}

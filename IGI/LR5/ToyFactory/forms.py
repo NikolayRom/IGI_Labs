@@ -28,8 +28,9 @@ class EmployeeAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance and self.instance.pk and self.instance.user:
-            self.fields['email'].initial = self.instance.user.email
+        user = getattr(self.instance, 'user', None)
+        if user and self.instance.pk:
+            self.fields['email'].initial = user.email
 
     def clean(self):
         cleaned_data = super().clean()
@@ -44,7 +45,7 @@ class EmployeeAdminForm(forms.ModelForm):
 
     def save(self, commit=True):
         employee = super().save(commit=False)
-        user = self.cleaned_data.get('user') or self.instance.user
+        user = self.cleaned_data.get('user') or getattr(self.instance, 'user', None)
         if user:
             user.email = self.cleaned_data.get('email')
             user.save()

@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+
+  <h1>Last news</h1>
+
   {% if last_news %}
     <a href="{{last_news.get_absolute_url}}"><h2>{{last_news.header}}</h2></a>
     {% if last_news.image %}
@@ -12,8 +15,55 @@
     {% else %}
       <img src='/media/default_news_logo.png' alt="News default picture" style="max-width: 300px;"/>
     {% endif %}
-    <ul>{{last_news.pub_date}}</ul>
+    <ul>News created: {{last_news.created_at|date:"d/m/Y H:i"}}</ul>
+    <ul>News updated: {{last_news.updated_at|date:"d/m/Y H:i"}}</ul>
   {% else %}
     <p>No news available</p>
   {% endif %}
+
+  <br>
+
+  {% if user.is_authenticated %}
+
+    <h1>World's last news</h1>
+    <br>
+    {% for article in api_data %}
+      {% if article.title %}
+          <h2>Title: {{article.title}}</h2>
+      {% else %}
+          <h2>Title: -</h2>
+      {% endif %}
+      {% if article.author %}
+          <h2>Author: {{article.author}}</h2>
+      {% else %}
+          <h2>Author: -</h2>
+      {% endif %}
+      {% if article.urlToImage %}
+          <img src="{{ article.urlToImage }}" style="max-width: 500px; object-fit: cover;">
+      {% endif %}
+      {% if article.description %}
+          <h3>Description: {{article.description}}</h3>
+      {% else %}
+          <h3>Description: -</h3>
+      {% endif %}
+      {% if article.content %}
+          <p>Content: {{article.content}}</p>
+      {% else %}
+          <p>Content: -</p>
+      {% endif %}
+      {% if article.url %}
+          <a href="{{article.url}}">Read more</a>
+      {% endif %}
+      {% if article.publishedAt %}
+          <h4>Published at: {{article.publishedAt}}</h4>
+      {% else %}
+          <h4>Published at: -</h4>
+      {% endif %}
+      <br>
+    {% empty %}
+      <h2>No info by API</h2>
+    {% endfor %}
+
+  {% endif %}
+
 {% endblock %}

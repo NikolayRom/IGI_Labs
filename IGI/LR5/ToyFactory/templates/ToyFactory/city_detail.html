@@ -8,6 +8,8 @@
     {% if user.is_authenticated %}
         {% if city %}
             <h1>{{city.name}}</h1>
+            <ul>City created: {{city.created_at|date:"d/m/Y H:i"}}</ul>
+            <ul>City updated: {{city.updated_at|date:"d/m/Y H:i"}}</ul>
             <br>
             <h2>Pick-up Points:</h2>    
             {% for point in pickuppoint_list %}

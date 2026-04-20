@@ -14,7 +14,8 @@
             <img src='/media/default_about_logo.png' alt="Company's default logo" style="max-width: 300px;"/>
         {% endif %}
         <p>{{about_info.info}}</p>
-        <ul>{{about_info.pub_date}}</ul>
+        <ul>Created: {{about_info.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>Updated: {{about_info.updated_at|date:"d/m/Y H:i"}}</ul>
     {% else %}
         <h2>No info about company</h2>
     {% endif %}

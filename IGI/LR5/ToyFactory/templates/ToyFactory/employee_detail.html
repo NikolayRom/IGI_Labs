@@ -8,14 +8,12 @@
 
     {% if employee %}
         <h1>{{employee.display_username}}</h1>
-        {% if employee.image %}
-            <img src='{{employee.image.url}}' alt="Employee icon" style="max-width: 300px;"/>
-        {% else %}
-            <img src='/media/default_employee_logo.png' alt="Employee icon" style="max-width: 300px;"/>
-        {% endif %}
+        <img src="{{ employee.get_avatar_url }}" alt="Employee icon" style="max-width: 200px; border-radius: 100%;"/>
         <p>Info: {{employee.info}}</p>
         <p>Phone: {{employee.phone}}</p>
         <p>Email: {{employee.display_email}}</p>
+        <ul>Created: {{employee.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>Updated: {{employee.updated_at|date:"d/m/Y H:i"}}</ul>
     {% else %}
         <h2>No info for this employee</h2>
     {% endif %}

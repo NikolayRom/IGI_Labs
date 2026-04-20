@@ -9,7 +9,8 @@
     {% if faq %}
         <h1>{{faq.question}}</h1>
         <p>Answer: {{faq.answer}}</p>
-        <ul>Publication date: {{faq.pub_date}}</ul>
+        <ul>FAQ created: {{faq.created_at|date:"d/m/Y H:i"}}</ul>
+        <ul>FAQ updated: {{faq.updated_at|date:"d/m/Y H:i"}}</ul>
     {% else %}
         <h2>No info for this FAQ</h2>
     {% endif %}

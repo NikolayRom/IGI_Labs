@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import logging
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +28,7 @@ SECRET_KEY = 'django-insecure-kt1aibxq$h8yx6a7@1)1olgupf%3rq2&%w+pb9id*4s6g9%+em
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['igi-labs.onrender.com', '127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS = ['igi-labs.onrender.com', '127.0.0.1', 'localhost', '0.0.0.0']
 
 # Application definition
 
@@ -82,7 +82,11 @@ WSGI_APPLICATION = 'LabWork5.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if os.environ.get('DB_NAME'):
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+elif os.environ.get('DB_NAME'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -93,7 +97,6 @@ if os.environ.get('DB_NAME'):
             'PORT': os.environ.get('DB_PORT'),
         }
     }
-
 else:
     DATABASES = {
         'default': {

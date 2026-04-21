@@ -4,3 +4,4 @@ matplotlib
 requests
 psycopg2-binary
 gunicorn
+pip freeze > requirements.txt

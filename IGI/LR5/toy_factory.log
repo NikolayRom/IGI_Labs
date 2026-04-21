@@ -222,3 +222,105 @@ INFO 2026-04-21 01:55:28,922 log 334029 140302857778880 "GET /api/ HTTP/1.1" 302
 INFO 2026-04-21 01:55:29,620 views 334029 140302857778880 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
 INFO 2026-04-21 01:55:29,630 log 334029 140302857778880 "GET /api/home/ HTTP/1.1" 200 6585
 INFO 2026-04-21 01:55:29,768 log 334029 140302857778880 "GET /media/default_news_logo_TG3ZVhS.png HTTP/1.1" 304 0
+INFO 2026-04-21 12:04:40,525 autoreload 26 140560647951168 Watching for file changes with StatReloader
+INFO 2026-04-21 12:04:51,339 basehttp 26 140559723087552 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 12:04:51,365 basehttp 26 140559723087552 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:04:52,303 views 26 140559723087552 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:04:52,319 views 26 140559723087552 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:04:52,354 basehttp 26 140559723087552 "GET /api/home/ HTTP/1.1" 200 2417
+INFO 2026-04-21 12:05:07,372 basehttp 26 140559723087552 "GET /accounts/login/ HTTP/1.1" 200 3089
+INFO 2026-04-21 12:05:10,566 basehttp 26 140559723087552 "GET /accounts/register/ HTTP/1.1" 200 4815
+INFO 2026-04-21 12:11:49,541 autoreload 24 140372817625920 Watching for file changes with StatReloader
+INFO 2026-04-21 12:12:40,429 basehttp 24 140371895862976 "GET /accounts/register/ HTTP/1.1" 200 4815
+INFO 2026-04-21 12:12:43,229 basehttp 24 140371895862976 "GET /accounts/login/ HTTP/1.1" 200 3089
+INFO 2026-04-21 12:12:47,606 basehttp 24 140371895862976 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:12:47,625 basehttp 24 140371895862976 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 12:12:47,687 basehttp 24 140371895862976 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:12:48,261 views 24 140371895862976 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:12:48,276 views 24 140371895862976 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:12:48,287 basehttp 24 140371895862976 "GET /api/home/ HTTP/1.1" 200 6326
+WARNING 2026-04-21 12:12:54,393 views 24 140371895862976 product_popularity not found!
+WARNING 2026-04-21 12:12:54,400 views 24 140371895862976 monthly_sales not found!
+WARNING 2026-04-21 12:12:54,406 views 24 140371895862976 clients_report not found!
+WARNING 2026-04-21 12:12:54,410 views 24 140371895862976 products_report not found!
+WARNING 2026-04-21 12:12:54,411 views 24 140371895862976 labels or values not found!
+WARNING 2026-04-21 12:12:54,411 views 24 140371895862976 labels or values not found!
+WARNING 2026-04-21 12:12:54,411 views 24 140371895862976 labels or values not found!
+WARNING 2026-04-21 12:12:54,411 views 24 140371895862976 labels or values not found!
+INFO 2026-04-21 12:12:54,415 basehttp 24 140371895862976 "GET /api/analytics/ HTTP/1.1" 200 4189
+INFO 2026-04-21 12:13:06,081 views 24 140371895862976 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:13:06,095 views 24 140371895862976 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:13:06,105 basehttp 24 140371895862976 "GET /api/home/ HTTP/1.1" 200 6326
+INFO 2026-04-21 12:13:08,194 basehttp 24 140371895862976 "GET /api/contacts/ HTTP/1.1" 200 3073
+INFO 2026-04-21 12:13:09,624 basehttp 24 140371895862976 "GET /api/privacy_policy/ HTTP/1.1" 200 3035
+INFO 2026-04-21 12:13:12,810 basehttp 24 140371895862976 "GET /api/vacancys/ HTTP/1.1" 200 3076
+INFO 2026-04-21 12:13:14,314 basehttp 24 140371895862976 "GET /api/reviews/ HTTP/1.1" 200 3676
+INFO 2026-04-21 12:13:44,239 basehttp 24 140371895862976 "POST /api/reviews/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:13:44,282 basehttp 24 140371895862976 "GET /api/reviews/ HTTP/1.1" 200 3869
+INFO 2026-04-21 12:13:50,945 basehttp 24 140371895862976 "GET /api/promos/ HTTP/1.1" 200 3069
+INFO 2026-04-21 12:13:52,262 basehttp 24 140371895862976 "GET /api/products/ HTTP/1.1" 200 3302
+INFO 2026-04-21 12:13:52,897 basehttp 24 140371895862976 "GET /api/clients/ HTTP/1.1" 200 3094
+INFO 2026-04-21 12:13:53,542 basehttp 24 140371895862976 "GET /api/cities/ HTTP/1.1" 200 3095
+WARNING 2026-04-21 12:13:54,141 views 24 140371895862976 product_popularity not found!
+WARNING 2026-04-21 12:13:54,147 views 24 140371895862976 monthly_sales not found!
+WARNING 2026-04-21 12:13:54,152 views 24 140371895862976 clients_report not found!
+WARNING 2026-04-21 12:13:54,156 views 24 140371895862976 products_report not found!
+WARNING 2026-04-21 12:13:54,156 views 24 140371895862976 labels or values not found!
+WARNING 2026-04-21 12:13:54,156 views 24 140371895862976 labels or values not found!
+WARNING 2026-04-21 12:13:54,156 views 24 140371895862976 labels or values not found!
+WARNING 2026-04-21 12:13:54,156 views 24 140371895862976 labels or values not found!
+INFO 2026-04-21 12:13:54,159 basehttp 24 140371895862976 "GET /api/analytics/ HTTP/1.1" 200 4189
+INFO 2026-04-21 12:13:55,965 views 24 140371895862976 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:13:55,980 views 24 140371895862976 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:13:55,990 basehttp 24 140371895862976 "GET /api/home/ HTTP/1.1" 200 6326
+WARNING 2026-04-21 12:14:10,192 log 24 140371895862976 Not Found: /favicon.ico
+WARNING 2026-04-21 12:14:10,193 basehttp 24 140371895862976 "GET /favicon.ico HTTP/1.1" 404 3115
+INFO 2026-04-21 12:14:22,915 basehttp 24 140371895862976 "GET /admin/ HTTP/1.1" 200 12397
+INFO 2026-04-21 12:14:23,125 basehttp 24 140371812153024 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2026-04-21 12:14:23,125 basehttp 24 140371895862976 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+WARNING 2026-04-21 12:14:23,160 log 24 140371895862976 Not Found: /favicon.ico
+WARNING 2026-04-21 12:14:23,161 basehttp 24 140371895862976 "GET /favicon.ico HTTP/1.1" 404 3115
+INFO 2026-04-21 12:20:30,110 autoreload 24 139791171691328 Watching for file changes with StatReloader
+INFO 2026-04-21 12:20:32,297 basehttp 24 139790249883328 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 12:20:32,360 basehttp 24 139790249883328 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:20:32,930 views 24 139790249883328 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:20:32,946 views 24 139790249883328 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:20:32,979 basehttp 24 139790249883328 "GET /api/home/ HTTP/1.1" 200 6326
+INFO 2026-04-21 12:20:37,560 views 24 139790249883328 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:20:37,574 views 24 139790249883328 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:20:37,584 basehttp 24 139790249883328 "GET /api/home/ HTTP/1.1" 200 6326
+INFO 2026-04-21 12:33:49,108 autoreload 68263 140441545159168 Watching for file changes with StatReloader
+INFO 2026-04-21 12:33:53,381 log 68263 140440647845568 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 12:33:53,416 log 68263 140440647845568 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:33:53,943 views 68263 140440647845568 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-04-21 12:33:53,998 log 68263 140440647845568 "GET /api/home/ HTTP/1.1" 200 2676
+INFO 2026-04-21 12:33:54,254 log 68263 140440647845568 "GET /media/default_news_logo_TG3ZVhS.png HTTP/1.1" 200 4870
+INFO 2026-04-21 12:33:58,006 log 68263 140440647845568 "GET /accounts/login/ HTTP/1.1" 200 3089
+INFO 2026-04-21 12:34:03,142 log 68263 140440647845568 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:34:03,156 log 68263 140440647845568 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 12:34:03,214 log 68263 140440647845568 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:34:03,464 views 68263 140440647845568 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-04-21 12:34:03,473 log 68263 140440647845568 "GET /api/home/ HTTP/1.1" 200 6585
+INFO 2026-04-21 12:34:06,556 log 68263 140440647845568 "GET /api/products/ HTTP/1.1" 200 6060
+INFO 2026-04-21 12:34:07,696 log 68263 140440647845568 "GET /api/clients/ HTTP/1.1" 200 5077
+INFO 2026-04-21 12:34:09,965 log 68263 140440647845568 "GET /api/analytics/ HTTP/1.1" 200 233933
+INFO 2026-04-21 12:34:15,042 views 68263 140440647845568 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-04-21 12:34:15,053 log 68263 140440647845568 "GET /api/home/ HTTP/1.1" 200 6585
+INFO 2026-04-21 12:34:22,075 log 68263 140440647845568 "GET /api/promos/ HTTP/1.1" 200 4521
+INFO 2026-04-21 12:34:37,092 autoreload 24 140492365693760 Watching for file changes with StatReloader
+INFO 2026-04-21 12:34:49,569 basehttp 24 140491442964160 "GET /api/promos/ HTTP/1.1" 200 2423
+INFO 2026-04-21 12:34:53,095 basehttp 24 140491442964160 "GET /accounts/login/ HTTP/1.1" 200 3089
+INFO 2026-04-21 12:34:56,510 basehttp 24 140491442964160 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:34:56,525 basehttp 24 140491442964160 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 12:34:56,586 basehttp 24 140491442964160 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 12:34:56,917 views 24 140491442964160 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:34:56,932 views 24 140491442964160 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:34:56,943 basehttp 24 140491442964160 "GET /api/home/ HTTP/1.1" 200 6326
+INFO 2026-04-21 12:44:16,268 autoreload 26 140346773205824 Watching for file changes with StatReloader
+INFO 2026-04-21 12:45:44,840 views 26 140345850283712 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:45:44,855 views 26 140345850283712 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:45:44,888 basehttp 26 140345850283712 "GET /api/home/ HTTP/1.1" 200 6326
+INFO 2026-04-21 12:45:50,398 basehttp 26 140345850283712 "GET /api/reviews/ HTTP/1.1" 200 3869
+INFO 2026-04-21 12:46:01,319 views 26 140345850283712 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+WARNING 2026-04-21 12:46:01,333 views 26 140345850283712 Index view: News.objects.last() not found!
+INFO 2026-04-21 12:46:01,343 basehttp 26 140345850283712 "GET /api/home/ HTTP/1.1" 200 6326

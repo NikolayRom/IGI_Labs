@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=toy_factory_db
+      - POSTGRES_USER=toy_user
+      - POSTGRES_PASSWORD=toy_password
+
+  web:
+    image: ntfray/toy-factory:latest
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_NAME=toy_factory_db
+      - DB_USER=toy_user
+      - DB_PASSWORD=toy_password
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

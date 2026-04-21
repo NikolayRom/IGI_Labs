@@ -324,3 +324,98 @@ INFO 2026-04-21 12:45:50,398 basehttp 26 140345850283712 "GET /api/reviews/ HTTP
 INFO 2026-04-21 12:46:01,319 views 26 140345850283712 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
 WARNING 2026-04-21 12:46:01,333 views 26 140345850283712 Index view: News.objects.last() not found!
 INFO 2026-04-21 12:46:01,343 basehttp 26 140345850283712 "GET /api/home/ HTTP/1.1" 200 6326
+INFO 2026-04-21 15:30:16,512 autoreload 166790 140134143947264 Watching for file changes with StatReloader
+ERROR 2026-04-21 15:30:21,295 log 166790 140133247305408 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-04-21 15:30:21,296 log 166790 140133247305408 "GET /api/reviews/ HTTP/1.1" 400 76413
+ERROR 2026-04-21 15:30:26,056 log 166790 140133247305408 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-04-21 15:30:26,057 log 166790 140133247305408 "GET / HTTP/1.1" 400 76135
+INFO 2026-04-21 15:30:58,314 autoreload 166790 140134143947264 /home/ntfray/IGI_Labs/453504_Romanov_23/IGI/LR5/LabWork5/settings.py changed, reloading.
+INFO 2026-04-21 15:30:58,643 autoreload 167190 140143772000768 Watching for file changes with StatReloader
+ERROR 2026-04-21 15:31:00,534 log 167190 140142875330240 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-04-21 15:31:00,535 log 167190 140142875330240 "GET / HTTP/1.1" 400 76191
+INFO 2026-04-21 15:31:04,652 autoreload 167299 140430976315904 Watching for file changes with StatReloader
+ERROR 2026-04-21 15:31:06,334 log 167299 140430080296640 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-04-21 15:31:06,336 log 167299 140430080296640 "GET / HTTP/1.1" 400 76191
+ERROR 2026-04-21 15:31:07,186 log 167299 140430080296640 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ntfray/.virtualenvs/lr5/lib/python3.13/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-04-21 15:31:07,187 log 167299 140430080296640 "GET / HTTP/1.1" 400 76191
+INFO 2026-04-21 15:31:51,490 autoreload 167299 140430976315904 /home/ntfray/IGI_Labs/453504_Romanov_23/IGI/LR5/LabWork5/settings.py changed, reloading.
+INFO 2026-04-21 15:31:51,826 autoreload 167746 140425001562624 Watching for file changes with StatReloader
+INFO 2026-04-21 15:31:54,583 autoreload 167814 139879297720832 Watching for file changes with StatReloader
+INFO 2026-04-21 15:31:58,276 log 167814 139878401967808 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 15:31:58,289 log 167814 139878401967808 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 15:31:59,112 views 167814 139878401967808 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-04-21 15:31:59,139 log 167814 139878401967808 "GET /api/home/ HTTP/1.1" 200 2676
+INFO 2026-04-21 15:31:59,256 log 167814 139878401967808 "GET /media/default_news_logo_TG3ZVhS.png HTTP/1.1" 304 0
+INFO 2026-04-21 15:32:02,291 log 167814 139878401967808 "GET /accounts/login/ HTTP/1.1" 200 3089
+INFO 2026-04-21 15:32:06,153 log 167814 139878401967808 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-04-21 15:32:06,159 log 167814 139878401967808 "GET / HTTP/1.1" 301 0
+INFO 2026-04-21 15:32:06,219 log 167814 139878401967808 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-04-21 15:32:06,485 views 167814 139878401967808 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-04-21 15:32:06,491 log 167814 139878401967808 "GET /api/home/ HTTP/1.1" 200 6585
+INFO 2026-04-21 15:32:09,835 log 167814 139878401967808 "GET /api/reviews/ HTTP/1.1" 200 9123
+INFO 2026-04-21 16:24:15,413 log 167814 139878401967808 "GET /api/reviews/ HTTP/1.1" 200 9123
+INFO 2026-04-21 16:24:20,140 views 167814 139878401967808 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-04-21 16:24:20,146 log 167814 139878401967808 "GET /api/home/ HTTP/1.1" 200 6585
+INFO 2026-04-21 16:24:24,384 log 167814 139878401967808 "GET /api/contacts/ HTTP/1.1" 200 6070
+INFO 2026-04-21 16:24:24,507 log 167814 139878384133824 "GET /media/user3_235U2tL.png HTTP/1.1" 304 0
+INFO 2026-04-21 16:24:24,507 log 167814 139878401967808 "GET /media/user1_CZxnMfN.png HTTP/1.1" 304 0
+INFO 2026-04-21 16:24:24,507 log 167814 139878392526528 "GET /media/user2_va3L6Ba.png HTTP/1.1" 304 0
+INFO 2026-04-21 16:24:24,508 log 167814 139878375741120 "GET /media/default_employee_logo_RhfAYUp.png HTTP/1.1" 304 0
+INFO 2026-04-21 16:24:27,986 log 167814 139878401967808 "GET /api/reviews/ HTTP/1.1" 200 9123
+INFO 2026-04-21 16:24:30,545 log 167814 139878401967808 "GET /api/clients/ HTTP/1.1" 200 5077
+INFO 2026-04-21 16:27:21,195 autoreload 24 140415323923264 Watching for file changes with StatReloader
+INFO 2026-04-21 16:28:45,579 autoreload 24 140415323923264 /app/LabWork5/settings.py changed, reloading.
+INFO 2026-04-21 16:28:45,972 autoreload 41 140052012213056 Watching for file changes with StatReloader
+INFO 2026-04-21 16:28:49,615 autoreload 41 140052012213056 /app/LabWork5/settings.py changed, reloading.
+INFO 2026-04-21 16:28:50,120 autoreload 58 140349703181120 Watching for file changes with StatReloader
+INFO 2026-04-21 16:30:34,958 autoreload 26 140609931342656 Watching for file changes with StatReloader

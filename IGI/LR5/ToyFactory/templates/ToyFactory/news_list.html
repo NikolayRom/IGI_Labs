@@ -1,58 +1,67 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>{{ news.header }} - Toy Factory</title>
+<title>Новости фабрики - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-<a href="{% url 'news' %}">Новости</a> &raquo; {{ news.header }}
+Новости
 {% endblock %}
 
 {% block content %}
-<article itemscope itemtype="https://schema.org/NewsArticle">
-    <nav aria-label="Хлебные крошки">
-        <p><a href="{% url 'news' %}">&larr; Вернуться ко всем новостям</a></p>
-    </nav>
-
+<section aria-labelledby="news-page-title">
     <header>
-        <h1 itemprop="headline">{{ news.header }}</h1>
-        <p>
-            Дата публикации:
-            <time itemprop="datePublished" datetime="{{ news.created_at|date:'Y-m-d\TH:i' }}">
-                {{ news.created_at|date:"d/m/Y H:i" }}
-            </time>
-            | Последнее обновление:
-            <time itemprop="dateModified" datetime="{{ news.updated_at|date:'Y-m-d\TH:i' }}">
-                {{ news.updated_at|date:"d/m/Y H:i" }}
-            </time>
-        </p>
+         
+        <h1 id="news-page-title">Новости и события фабрики</h1>
+        <p>Актуальная информация о производстве, новинках и событиях нашей компании.</p>
     </header>
 
-    <figure>
-        {% if news.image %}
-            <img src="{{ news.image.url }}" alt="{{ news.header }}" itemprop="image" width="500" />
-        {% else %}
-            <img src="/media/default_news_logo.png" alt="Стандартное изображение" width="500" />
-        {% endif %}
-        <figcaption>Фотоматериал к статье: {{ news.header }}</figcaption>
-    </figure>
-
-    <aside>
-        <p><em>{{ news.short_description }}</em></p>
-    </aside>
-
     <hr />
 
-    <section itemprop="articleBody">
-        <h2>Текст статьи</h2>
-        <div>{{ news.info|linebreaks }}</div>
-    </section>
+    {% if news_list %}
+        <div class="news-container">
+            {% for news_item in news_list %}
+                <article itemscope itemtype="https://schema.org/NewsArticle" style="margin-bottom: 30px;">
+                    <header>
+                        <h2 itemprop="headline">
+                            <a href="{{ news_item.get_absolute_url }}">{{ news_item.header }}</a>
+                        </h2>
+                        <p>
+                            Опубликовано: 
+                            <time itemprop="datePublished" datetime="{{ news_item.created_at|date:'Y-m-d\TH:i' }}">
+                                {{ news_item.created_at|date:"d/m/Y H:i" }}
+                            </time>
+                        </p>
+                    </header>
 
-    <hr />
+                    <figure>
+                        {% if news_item.image %}
+                            <img src="{{ news_item.image.url }}" alt="{{ news_item.header }}" itemprop="image" width="300" />
+                        {% else %}
+                            <img src="/media/default_news_logo.png" alt="Стандартное изображение" width="300" />
+                        {% endif %}
+                        <figcaption>Иллюстрация к новости: {{ news_item.header }}</figcaption>
+                    </figure>
 
-    <footer>
-        <p>Автор публикации: <span itemprop="author">Пресс-служба Toy Factory</span></p>
-        <p><a href="{% url 'news' %}">&larr; Назад к списку новостей</a></p>
-    </footer>
-</article>
+                     
+                    <div itemprop="description">
+                        <p><strong>Кратко:</strong> {{ news_item.short_description }}</p>
+                    </div>
+
+                     
+                    <footer>
+                        <p>
+                            <a href="{{ news_item.get_absolute_url }}" role="button">
+                                [Читать далее &rarr;]
+                            </a>
+                        </p>
+                    </footer>
+                    <hr />
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>На данный момент новостей нет.</p>
+    {% endif %}
+</section>
 {% endblock %}

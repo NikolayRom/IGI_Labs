@@ -11,7 +11,8 @@
 {% block content %}
 <section aria-labelledby="payment-heading">
     <header>
-        <h2 id="payment-heading">&#128179; Оплата оптового заказа</h2>
+         
+        <h1 id="payment-heading">&#128179; Оплата оптового заказа</h1>
         <p>Заказчик: <strong>{{ client.company_name }}</strong></p>
     </header>
 
@@ -21,7 +22,7 @@
         <tr>
              
             <td style="width: 45%; vertical-align: top; padding-right: 20px;">
-                <h3>Состав заказа:</h3>
+                <h2>Состав заказа:</h2>
                 <table border="1" cellpadding="6" style="width: 100%; border-collapse: collapse;">
                     <thead>
                         <tr>
@@ -41,13 +42,13 @@
                     </tbody>
                 </table>
                 <br />
-                <h4>Итоговая сумма к списанию: <mark>{{ total }} BYN</mark></h4>
+                <h3>Итоговая сумма к списанию: <mark>{{ total }} BYN</mark></h3>
             </td>
 
              
             <td style="width: 55%; vertical-align: top; border-left: 1px solid #ccc; padding-left: 20px;">
-                <h3>Платежные реквизиты:</h3>
-
+                <h2>Платежные реквизиты:</h2>
+                
                 <form method="post" novalidate>
                     {% csrf_token %}
 
@@ -64,7 +65,7 @@
 
                     <fieldset style="margin-bottom: 15px;">
                         <legend><strong>Данные банковской карты:</strong></legend>
-
+                        
                         <p>
                             <label for="{{ form.card_number.id_for_label }}">Номер карты (16 цифр):</label><br />
                             {{ form.card_number }}

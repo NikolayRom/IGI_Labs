@@ -4,44 +4,48 @@
 <title>Словарь терминов и FAQ - Toy Factory</title>
 {% endblock %}
 
+{% block breadcrumb %}
+Словарь терминов и FAQ
+{% endblock %}
+
 {% block content %}
  
 <section itemscope itemtype="https://schema.org/FAQPage" aria-labelledby="faq-title">
     <header>
-        <h2 id="faq-title">Словарь терминов и часто задаваемые вопросы (FAQ)</h2>
+         
+        <h1 id="faq-title">Словарь терминов и часто задаваемые вопросы (FAQ)</h1>
         <p>Здесь собраны ключевые термины производства игрушек и ответы на популярные вопросы наших клиентов.</p>
     </header>
 
     <hr />
 
     {% if faq_list %}
-         
         <div class="faq-container">
             {% for faq in faq_list %}
                 <article itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom: 20px;">
-                     
                     <details>
-                        <summary style="cursor: pointer; font-size: 1.1em; font-weight: bold;">
-                            <span itemprop="name">
+                        <summary style="cursor: pointer;">
+                             
+                            <h3 itemprop="name" style="display: inline; font-size: 1.1em;">
                                 <dfn>{{ faq.question }}</dfn>
-                            </span>
-                            <small style="font-weight: normal; color: #555;">
-                                (добавлено:
+                            </h3>
+                            <small style="color: #555;">
+                                (добавлено: 
                                 <time datetime="{{ faq.created_at|date:'Y-m-d\TH:i' }}">
                                     {{ faq.created_at|date:"d/m/Y H:i" }}
                                 </time>)
                             </small>
                         </summary>
 
-                         
                         <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding-left: 20px; margin-top: 10px;">
+                             
                             <div itemprop="text">
-                                <p>{{ faq.answer|linebreaks }}</p>
+                                {{ faq.answer|linebreaks }}
                             </div>
-
+                            
                             <footer>
                                 <small>
-                                    Прямая ссылка на термин:
+                                    Прямая ссылка на термин: 
                                     <a href="{{ faq.get_absolute_url }}">Открыть отдельно</a>
                                 </small>
                             </footer>
@@ -56,9 +60,8 @@
 
     <hr />
 
-     
     <aside aria-label="Справочная информация">
-        <h3>Как пользоваться словарём:</h3>
+        <h2>Как пользоваться словарём:</h2>
         <dl>
             <dt><strong>Клик по строке вопроса:</strong></dt>
             <dd>Разворачивает подробное определение или ответ фабрики.</dd>

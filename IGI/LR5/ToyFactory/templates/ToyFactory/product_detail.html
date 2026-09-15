@@ -10,7 +10,6 @@
 
 {% block content %}
 <article itemscope itemtype="https://schema.org/Product">
-     
     <nav aria-label="Хлебные крошки">
         <p><a href="{% url 'products' %}">&larr; Вернуться в каталог товаров</a></p>
     </nav>
@@ -24,11 +23,11 @@
         </header>
 
         <section>
-            <h3>Характеристики изделия:</h3>
+            <h2>Характеристики изделия:</h2>
             <ul>
                 <li><strong>Категории / Тип:</strong> <span itemprop="category">{{ product.display_product_type }}</span></li>
                 <li><strong>Серийная модель:</strong> {{ product.product_model.name }}</li>
-                <li><strong>Статус производства:</strong>
+                <li><strong>Статус производства:</strong> 
                     {% if product.status == 'a' %}
                         <span style="color: green;">Доступен к заказу</span>
                     {% else %}
@@ -36,9 +35,9 @@
                     {% endif %}
                 </li>
                 <li>
-                    <strong>Оптовая цена:</strong>
+                    <strong>Оптовая цена:</strong> 
                     <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                        <data itemprop="price" value="{{ product.price }}"><strong>{{ product.price }}</strong></data>
+                        <data itemprop="price" value="{{ product.price }}"><strong>{{ product.price }}</strong></data> 
                         <span itemprop="priceCurrency">BYN</span> (за единицу)
                     </span>
                 </li>
@@ -50,8 +49,8 @@
             <section style="margin: 20px 0; padding: 15px; border: 2px solid #0066cc; background-color: #fcfcfc;">
                 {% if user.is_authenticated %}
                     {% if perms.ToyFactory.client_perm and not user.is_superuser %}
-                        <h3 style="margin-top: 0;">Оформить заказ на партию:</h3>
-
+                        <h2>Оформить заказ на партию:</h2>
+                        
                         <form action="{% url 'cart-add' product.pk %}" method="post">
                             {% csrf_token %}
 
@@ -62,7 +61,6 @@
                                         <input type="number" id="amount-input" name="amount" value="1" min="1" max="10000" style="width: 80px;" required />
                                     </td>
 
-                                     
                                     <td style="padding-left: 20px;">
                                         <label for="promo-select"><strong>Скидочный промокод / купон:</strong></label><br />
                                         <select id="promo-select" name="promo_id" style="min-width: 200px;">
@@ -92,8 +90,8 @@
                     {% endif %}
                 {% else %}
                     <p>
-                        Для оформления оптового заказа на эту модель
-                        <a href="{% url 'login' %}?next={{ request.path }}">войдите как клиент</a>
+                        Для оформления оптового заказа на эту модель 
+                        <a href="{% url 'login' %}?next={{ request.path }}">войдите как клиент</a> 
                         или <a href="{% url 'register' %}">зарегистрируйте компанию</a>.
                     </p>
                 {% endif %}
@@ -103,9 +101,9 @@
          
         {% if perms.ToyFactory.employee_perm %}
             <section style="margin-top: 20px; border-top: 1px dotted #888; padding-top: 10px;">
-                <h4>Панель менеджера:</h4>
-                <a href="{% url 'product-update' product.pk %}"><button type="button">Редактировать товар</button></a>
-                <a href="{% url 'product-delete' product.pk %}"><button type="button">Удалить из каталога</button></a>
+                <h2>Панель менеджера:</h2>
+                <a href="{% url 'product-update' product.pk %}" role="button">[Редактировать товар]</a>
+                <a href="{% url 'product-delete' product.pk %}" role="button">[Удалить из каталога]</a>
             </section>
         {% endif %}
 
@@ -113,13 +111,13 @@
         <footer>
             <p>
                 <small>
-                    Внесен в каталог: <time datetime="{{ product.created_at|date:'Y-m-d' }}">{{ product.created_at|date:"d/m/Y H:i" }}</time>
+                    Внесен в каталог: <time datetime="{{ product.created_at|date:'Y-m-d' }}">{{ product.created_at|date:"d/m/Y H:i" }}</time> 
                     | Обновлен: <time datetime="{{ product.updated_at|date:'Y-m-d' }}">{{ product.updated_at|date:"d/m/Y H:i" }}</time>
                 </small>
             </p>
         </footer>
     {% else %}
-        <h2>Товар не найден.</h2>
+        <h1>Товар не найден.</h1>
     {% endif %}
 </article>
 {% endblock %}

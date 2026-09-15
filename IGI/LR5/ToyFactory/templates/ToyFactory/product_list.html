@@ -11,13 +11,14 @@
 {% block content %}
 <section aria-labelledby="catalog-title">
     <header>
-        <h2 id="catalog-title">Каталог детских игрушек</h2>
+         
+        <h1 id="catalog-title">Каталог детских игрушек</h1>
         <p>Полный ассортимент изделий нашего фабричного производства.</p>
     </header>
 
     {% if perms.ToyFactory.employee_perm %}
         <div style="margin-bottom: 15px;">
-            <a href="{% url 'product-create' %}"><button type="button">+ Создать новый товар</button></a>
+            <a href="{% url 'product-create' %}" role="button">[+ Создать новый товар]</a>
         </div>
     {% endif %}
 
@@ -30,13 +31,11 @@
         <form method="get" action="{% url 'products' %}" style="margin-top: 15px;">
             <table cellpadding="6" style="border: none; width: 100%;">
                 <tr>
-                     
                     <td>
                         <label for="q-input"><strong>Поиск по названию:</strong></label><br />
                         <input type="search" id="q-input" name="q" value="{{ current_q }}" placeholder="Например: Мишка, Конструктор..." style="width: 90%;" />
                     </td>
 
-                     
                     <td>
                         <label for="type-select"><strong>Категория / Тип:</strong></label><br />
                         <select id="type-select" name="type" style="width: 90%;">
@@ -49,7 +48,6 @@
                         </select>
                     </td>
 
-                     
                     <td>
                         <label for="model-select"><strong>Серийная модель:</strong></label><br />
                         <select id="model-select" name="model" style="width: 90%;">
@@ -64,14 +62,12 @@
                 </tr>
 
                 <tr>
-                     
                     <td>
                         <label><strong>Цена (BYN):</strong></label><br />
                         от <input type="number" name="min_price" value="{{ current_min_price }}" min="0" step="0.5" style="width: 70px;" />
                         до <input type="number" name="max_price" value="{{ current_max_price }}" min="0" step="0.5" style="width: 70px;" />
                     </td>
 
-                     
                     <td>
                         <label for="order-select"><strong>Сортировка:</strong></label><br />
                         <select id="order-select" name="ordering" style="width: 90%;">
@@ -82,10 +78,10 @@
                         </select>
                     </td>
 
-                     
                     <td style="vertical-align: bottom;">
                         <button type="submit">&#128065; Применить фильтр</button>
-                        <a href="{% url 'products' %}"><button type="button">Сбросить</button></a>
+                         
+                        <a href="{% url 'products' %}" role="button">[Сбросить]</a>
                     </td>
                 </tr>
             </table>
@@ -124,7 +120,10 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{{ product.get_absolute_url }}"><button type="button">Смотреть / Купить &rarr;</button></a>
+                             
+                            <a href="{{ product.get_absolute_url }}" role="button">
+                                [Смотреть / Заказать &rarr;]
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -132,9 +131,9 @@
         </table>
     {% else %}
         <div style="padding: 20px; text-align: center;">
-            <h3>По вашему запросу ничего не найдено</h3>
+            <h2>По вашему запросу ничего не найдено</h2>
             <p>Попробуйте изменить поисковую фразу или сбросить фильтры.</p>
-            <p><a href="{% url 'products' %}"><button type="button">Сбросить фильтры</button></a></p>
+            <p><a href="{% url 'products' %}" role="button">[Сбросить фильтры]</a></p>
         </div>
     {% endif %}
 </section>

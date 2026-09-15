@@ -1,84 +1,136 @@
 {% extends 'base_generic.html' %}
 
 {% block title %}
-    <title>Analytics</title>
+<title>Аналитика и отчеты - Toy Factory</title>
+{% endblock %}
+
+{% block breadcrumb %}
+Аналитика и отчеты
 {% endblock %}
 
 {% block content %}
-
+<section aria-labelledby="analytics-heading">
     {% if user.is_superuser %}
-        <h1>Analytics</h1>
-        <br>
+        <header>
+            <h1 id="analytics-heading">Аналитика и финансовые отчеты предприятия</h1>
+        </header>
 
-        <h1>Products popularity (for month):</h1>
-        {% if best_product %}
-            <h2>Best product: {{best_product.name}}</h2>
-        {% else %}
-            <h2>Best product: No Info!</h2>
-        {% endif %}
-        {% if worse_product %}
-            <h2>Worse product: {{worse_product.name}}</h2>
-        {% else %}
-            <h2>Worse product: No Info!</h2>
-        {% endif %}
-        <br>
+        <hr />
 
-        <h1>Prognosis and Trend</h1>
-        {% if chart %}
-            <img src="data:image/png;base64,{{ chart }}" alt="Sales graph" style="max-width: 100%;">
-            <br>
-            <h1>Prognosis sales volume: {{ forecast }}</h1>
-        {% else %}
-            <h1>No info to prognose</h1>
-        {% endif %}
-        <br>
+         
+        <section>
+            <h2>Популярность продукции за последние 30 дней:</h2>
+            {% if best_product %}
+                <h3>Лидер продаж: {{ best_product.name }}</h3>
+            {% else %}
+                <p>Лидер продаж: нет данных</p>
+            {% endif %}
 
-        <h1>Monthly sales by client</h1>
-        <table border="1">
-            <tr>
-                <th>Client</th>
-                <th>Amount Volume</th>
-                <th>Income Volume</th>
-            </tr>
-            {% for client in clients_report %}
-            <tr>
-                <td>{{ client.company_name }} ({{ client.display_username }})</td>
-                <td>{{ client.units }}</td>
-                <td>{{ client.income|floatformat:2 }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <br>
+            {% if worse_product %}
+                <h3>Наименьший спрос: {{ worse_product.name }}</h3>
+            {% else %}
+                <p>Наименьший спрос: нет данных</p>
+            {% endif %}
+        </section>
 
-        <img src="data:image/png;base64,{{ chart_client_income }}" alt="Client Income">
-        <br>
-        <img src="data:image/png;base64,{{ chart_client_units }}" alt="Client Units">
-        <br>
+        <hr />
 
-        <h1>Monthly sales by product</h1>
-        <table border="1">
-            <tr>
-                <th>Product</th>
-                <th>Amount Volume</th>
-                <th>Income volume</th>
-            </tr>
-            {% for prod in products_report %}
-            <tr>
-                <td>{{ prod.name }}</td>
-                <td>{{ prod.units }}</td>
-                <td>{{ prod.income|floatformat:2 }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <br>
+         
+        <section>
+            <h2>Прогноз продаж и линейный тренд</h2>
+            {% if chart %}
+                <figure style="margin: 0;">
+                    <img src="data:image/png;base64,{{ chart }}" alt="График аналитики и линейного тренда продаж" style="max-width: 100%;">
+                    <figcaption>
+                        <p><strong>Прогнозируемый объем продаж на следующий месяц: <mark>{{ forecast }} BYN</mark></strong></p>
+                    </figcaption>
+                </figure>
+            {% else %}
+                <p>Недостаточно данных для построения математического прогноза.</p>
+            {% endif %}
+        </section>
 
-        <img src="data:image/png;base64,{{ chart_product_income }}" alt="Product Income">
-        <br>
-        <img src="data:image/png;base64,{{ chart_product_units }}" alt="Product Units">
-        <br>
+        <hr />
+
+         
+        <section>
+            <h2>Ежемесячные объемы продаж по оптовым клиентам</h2>
+            <table border="1" cellpadding="6" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Клиент (Компания)</th>
+                        <th>Количество (ед.)</th>
+                        <th>Выручка (BYN)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients_report %}
+                        <tr>
+                            <td>{{ client.company_name }} ({{ client.display_username }})</td>
+                            <td>{{ client.units }}</td>
+                            <td>{{ client.income|floatformat:2 }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="3">Нет данных за указанный период.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br />
+            {% if chart_client_income %}
+                <figure style="margin: 0 0 15px 0;">
+                    <img src="data:image/png;base64,{{ chart_client_income }}" alt="Диаграмма выручки по клиентам" style="max-width: 100%;">
+                </figure>
+            {% endif %}
+            {% if chart_client_units %}
+                <figure style="margin: 0;">
+                    <img src="data:image/png;base64,{{ chart_client_units }}" alt="Диаграмма объема заказов по клиентам" style="max-width: 100%;">
+                </figure>
+            {% endif %}
+        </section>
+
+        <hr />
+
+         
+        <section>
+            <h2>Ежемесячные объемы продаж по видам продукции</h2>
+            <table border="1" cellpadding="6" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Наименование товара</th>
+                        <th>Количество (ед.)</th>
+                        <th>Выручка (BYN)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prod in products_report %}
+                        <tr>
+                            <td>{{ prod.name }}</td>
+                            <td>{{ prod.units }}</td>
+                            <td>{{ prod.income|floatformat:2 }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="3">Нет данных за указанный период.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br />
+            {% if chart_product_income %}
+                <figure style="margin: 0 0 15px 0;">
+                    <img src="data:image/png;base64,{{ chart_product_income }}" alt="Диаграмма выручки по товарам" style="max-width: 100%;">
+                </figure>
+            {% endif %}
+            {% if chart_product_units %}
+                <figure style="margin: 0;">
+                    <img src="data:image/png;base64,{{ chart_product_units }}" alt="Диаграмма объема продаж по товарам" style="max-width: 100%;">
+                </figure>
+            {% endif %}
+        </section>
 
     {% else %}
-        <h1>Access Denied</h1>
+        <header>
+            <h1 id="analytics-heading">Доступ ограничен</h1>
+        </header>
+        <p>Данный аналитический раздел доступен исключительно администратору предприятия.</p>
     {% endif %}
-
+</section>
 {% endblock %}

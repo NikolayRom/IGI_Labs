@@ -11,14 +11,14 @@
 {% block content %}
 <section aria-labelledby="cart-title">
     <header>
-        <h2 id="cart-title">&#128722; Ваша корзина заказов</h2>
+         
+        <h1 id="cart-title">&#128722; Ваша корзина заказов</h1>
         <p>Клиент: <strong>{{ client.company_name }}</strong> (г. {{ client.city.name }})</p>
     </header>
 
     <hr />
 
     {% if order_list %}
-         
         <table border="1" cellpadding="8" style="width: 100%; border-collapse: collapse;">
             <thead>
                 <tr>
@@ -38,20 +38,19 @@
                             <a href="{{ order.product.get_absolute_url }}"><strong>{{ order.product_name }}</strong></a>
                         </td>
                         <td headers="th-price">{{ order.product_price }} BYN</td>
-
-                         
+                        
                         <td headers="th-qty" style="text-align: center; white-space: nowrap;">
-                            <a href="{% url 'cart-update-quantity' order.id 'minus' %}" title="Уменьшить на 1" style="text-decoration: none;">
-                                <button type="button" style="font-weight: bold; width: 30px;">&minus;</button>
+                            <a href="{% url 'cart-update-quantity' order.id 'minus' %}" title="Уменьшить на 1" role="button">
+                                &minus;
                             </a>
                             <strong style="margin: 0 8px;">{{ order.product_amount }}</strong>
-                            <a href="{% url 'cart-update-quantity' order.id 'plus' %}" title="Увеличить на 1" style="text-decoration: none;">
-                                <button type="button" style="font-weight: bold; width: 30px;">&plus;</button>
+                            <a href="{% url 'cart-update-quantity' order.id 'plus' %}" title="Увеличить на 1" role="button">
+                                &plus;
                             </a>
                         </td>
 
                         <td headers="th-point">{{ order.pick_up_point.address|default:"Центральный склад" }}</td>
-
+                        
                         <td headers="th-discount">
                             {% if order.promo %}
                                 <mark>{{ order.promo.promo_sale_percentage }}</mark> <small>({{ order.promo.info }})</small>
@@ -62,10 +61,9 @@
 
                         <td headers="th-subtotal"><strong>{{ order.get_total }} BYN</strong></td>
 
-                         
                         <td headers="th-action" style="text-align: center;">
-                            <a href="{% url 'order-delete' order.pk %}">
-                                <button type="button" title="Удалить позицию">&#128465; Удалить</button>
+                            <a href="{% url 'order-delete' order.pk %}" role="button">
+                                &#128465; [Удалить]
                             </a>
                         </td>
                     </tr>
@@ -73,27 +71,22 @@
             </tbody>
         </table>
 
-         
         <div style="margin-top: 25px; text-align: right; background-color: #f9f9f9; padding: 15px; border: 1px solid #ccc;">
-            <h3>ИТОГО К ОПЛАТЕ: <span style="color: #0066cc;">{{ total }} BYN</span></h3>
-
-            <a href="{% url 'products' %}">
-                <button type="button">&larr; Добавить еще товары</button>
-            </a>
-
-             
-            <a href="{% url 'checkout-payment' %}">
-                <button type="button" style="font-size: 1.1em; font-weight: bold; padding: 8px 16px; cursor: pointer;">
-                    &#128179; Перейти к оплате &rarr;
-                </button>
-            </a>
+            <h2>ИТОГО К ОПЛАТЕ: <span style="color: #0066cc;">{{ total }} BYN</span></h2>
+            
+            <p>
+                <a href="{% url 'products' %}" role="button">[&larr; Добавить еще товары]</a>
+                <a href="{% url 'checkout-payment' %}" role="button" style="font-size: 1.1em; font-weight: bold; margin-left: 15px;">
+                    [&#128179; Перейти к оплате &rarr;]
+                </a>
+            </p>
         </div>
 
     {% else %}
         <div style="padding: 20px; text-align: center;">
-            <h3>Ваша корзина пуста</h3>
+            <h2>Ваша корзина пуста</h2>
             <p>Вы пока не добавили ни одного наименования продукции.</p>
-            <p><a href="{% url 'products' %}"><button type="button">Перейти в каталог продукции &rarr;</button></a></p>
+            <p><a href="{% url 'products' %}" role="button">[Перейти в каталог продукции &rarr;]</a></p>
         </div>
     {% endif %}
 </section>

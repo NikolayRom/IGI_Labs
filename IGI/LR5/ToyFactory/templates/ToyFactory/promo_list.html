@@ -4,10 +4,15 @@
 <title>Промокоды и купоны - Toy Factory</title>
 {% endblock %}
 
+{% block breadcrumb %}
+Промокоды и купоны
+{% endblock %}
+
 {% block content %}
 <section aria-labelledby="promos-page-title">
     <header>
-        <h2 id="promos-page-title">Промокоды и специальные предложения</h2>
+         
+        <h1 id="promos-page-title">Промокоды и специальные предложения</h1>
         <p>Используйте промокоды при оформлении оптовых заказов на игрушки для получения скидки.</p>
     </header>
 
@@ -15,33 +20,33 @@
 
      
     <section aria-labelledby="active-promos-title">
-        <h3 id="active-promos-title">Действующие промокоды и купоны</h3>
+        <h2 id="active-promos-title">Действующие промокоды и купоны</h2>
 
         <div class="promos-container">
             {% for promo in promo_list %}
                 {% if promo.is_active %}
                     <article style="margin-bottom: 20px; border-left: 4px solid green; padding-left: 10px;">
                         <header>
-                            <h4>
+                            <h3>
                                 <a href="{{ promo.get_absolute_url }}">{{ promo.info }}</a>
                                 <span style="color: green; font-size: 0.85em;">[АКТИВЕН]</span>
-                            </h4>
+                            </h3>
                         </header>
 
                         <p>
                             <strong>Товар по акции:</strong> <em>{{ promo.get_product_name }}</em>
                         </p>
-
+                        
                         <p>
-                            <strong>Размер скидки:</strong>
+                            <strong>Размер скидки:</strong> 
                             <mark><strong>{{ promo.promo_sale_percentage }}</strong></mark>
                         </p>
 
                         <p>
-                            <strong>Срок действия до:</strong>
+                            <strong>Срок действия до:</strong> 
                             <time datetime="{{ promo.end_date|date:'Y-m-d' }}">
                                 {{ promo.end_date|date:"d/m/Y" }}
-                            </time>
+                            </time> 
                             (включительно)
                         </p>
 
@@ -61,13 +66,16 @@
      
     <section aria-labelledby="archive-promos-title">
         <details>
-            <summary style="cursor: pointer; font-size: 1.1em; font-weight: bold;">
-                <span id="archive-promos-title">Архив промокодов и завершенных акций (нажмите, чтобы развернуть)</span>
+            <summary style="cursor: pointer;">
+                 
+                <h2 id="archive-promos-title" style="display: inline; font-size: 1.2em;">
+                    Архив промокодов и завершенных акций (нажмите, чтобы развернуть)
+                </h2>
             </summary>
 
             <div style="margin-top: 15px;">
                 <p><em>Данные промокоды истекли и более недоступны для применения в заказах:</em></p>
-
+                
                 <table border="1" cellpadding="5">
                     <thead>
                         <tr>

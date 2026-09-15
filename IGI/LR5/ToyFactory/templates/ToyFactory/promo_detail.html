@@ -4,18 +4,20 @@
 <title>{{ promo.info }} - Промокод Toy Factory</title>
 {% endblock %}
 
+{% block breadcrumb %}
+<a href="{% url 'promos' %}">Промокоды</a> &raquo; {{ promo.info }}
+{% endblock %}
+
 {% block content %}
 <article>
-     
     <nav aria-label="Хлебные крошки">
         <p><a href="{% url 'promos' %}">&larr; Вернуться ко всем промокодам</a></p>
     </nav>
 
     {% if promo %}
         <header>
-            <h2>{{ promo.info }}</h2>
+            <h1>{{ promo.info }}</h1>
 
-             
             {% if promo.is_active %}
                 <p style="color: green;"><strong>Статус:</strong> Действующий промокод</p>
             {% else %}
@@ -24,7 +26,7 @@
         </header>
 
         <section>
-            <h3>Условия предложения:</h3>
+            <h2>Условия предложения:</h2>
             <ul>
                 <li><strong>Целевой товар:</strong> {{ promo.get_product_name }}</li>
                 <li>
@@ -45,7 +47,7 @@
         {% if promo.is_active %}
             <section>
                 <p>
-                    <em>Вы можете применить данный промокод на этапе подтверждения состава корзины в личном кабинете.</em>
+                    <em>Вы можете применить данный промокод на этапе выбора товара в каталоге.</em>
                 </p>
             </section>
         {% endif %}
@@ -62,7 +64,7 @@
             <p><a href="{% url 'promos' %}">&larr; Назад к списку акций</a></p>
         </footer>
     {% else %}
-        <h2>Информация о промокоде не найдена.</h2>
+        <h1>Информация о промокоде не найдена.</h1>
     {% endif %}
 </article>
 {% endblock %}

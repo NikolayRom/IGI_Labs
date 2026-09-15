@@ -4,10 +4,15 @@
 <title>Контакты сотрудников - Toy Factory</title>
 {% endblock %}
 
+{% block breadcrumb %}
+Контакты
+{% endblock %}
+
 {% block content %}
 <section aria-labelledby="contacts-title">
     <header>
-        <h2 id="contacts-title">Наши сотрудники и контакты</h2>
+         
+        <h1 id="contacts-title">Наши сотрудники и контакты</h1>
         <p>Ключевые специалисты фабрики игрушек, готовые ответить на ваши вопросы по производству и поставкам.</p>
     </header>
 
@@ -18,36 +23,36 @@
             {% for employee in employee_list %}
                 <article itemscope itemtype="https://schema.org/Person" style="margin-bottom: 30px;">
                     <header>
-                        <h3 itemprop="name">
+                        <h2 itemprop="name">
                             <a href="{{ employee.get_absolute_url }}">{{ employee.user.get_full_name|default:employee.user.username }}</a>
-                        </h3>
+                        </h2>
                     </header>
 
-                     
                     <figure>
-                        <img
-                            src="{{ employee.get_avatar_url }}"
-                            alt="Фото сотрудника {{ employee.user.username }}"
-                            itemprop="image"
-                            width="200"
+                        <img 
+                            src="{{ employee.get_avatar_url }}" 
+                            alt="Фото сотрудника {{ employee.user.username }}" 
+                            itemprop="image" 
+                            width="200" 
                         />
                         <figcaption>{{ employee.user.username }} — специалист фабрики</figcaption>
                     </figure>
 
-                     
-                    <section>
-                        <h4>Обязанности и выполняемые работы:</h4>
+                    <div>
+                        <p><strong>Обязанности и выполняемые работы:</strong></p>
                         <p itemprop="jobTitle">{{ employee.info }}</p>
-                    </section>
+                    </div>
 
-                     
                     <address>
                         <p>
-                            <strong>Телефон:</strong>
-                            <a href="tel:{{ employee.phone.phone }}" itemprop="telephone">{{ employee.phone.phone }}</a>
+                            <strong>Телефон:</strong> 
+                             
+                            <a href="tel:{{ employee.phone.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" itemprop="telephone">
+                                {{ employee.phone.phone }}
+                            </a>
                         </p>
                         <p>
-                            <strong>Электронная почта:</strong>
+                            <strong>Электронная почта:</strong> 
                             <a href="mailto:{{ employee.user.email }}" itemprop="email">{{ employee.user.email }}</a>
                         </p>
                     </address>

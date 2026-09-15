@@ -4,10 +4,15 @@
 <title>Отзывы клиентов - Toy Factory</title>
 {% endblock %}
 
+{% block breadcrumb %}
+Отзывы клиентов
+{% endblock %}
+
 {% block content %}
 <section aria-labelledby="reviews-title">
     <header>
-        <h2 id="reviews-title">Отзывы наших клиентов и оптовых партнеров</h2>
+         
+        <h1 id="reviews-title">Отзывы наших клиентов и оптовых партнеров</h1>
         <p>Мнения покупателей о качестве детских игрушек и сотрудничестве с фабрикой.</p>
     </header>
 
@@ -16,18 +21,16 @@
      
     <section aria-label="Форма добавления отзыва" style="margin-bottom: 30px;">
         {% if user.is_authenticated %}
-             
             <details>
                 <summary style="cursor: pointer; padding: 8px 16px; font-weight: bold; display: inline-block; border: 1px solid #000;">
                     &plus; Добавить отзыв от имени <u>{{ user.username }}</u>
                 </summary>
-
+                
                 <div style="margin-top: 15px; padding: 15px; border: 1px dashed #777;">
-                    <h3>Оставить свой отзыв</h3>
+                    <h2>Оставить свой отзыв</h2>
                     <form method="post" novalidate>
                         {% csrf_token %}
 
-                         
                         {% if form.non_field_errors %}
                             <div style="color: red;">
                                 {{ form.non_field_errors }}
@@ -38,7 +41,6 @@
                             <p><strong>Автор:</strong> {{ user.username }} (вы авторизованы)</p>
                         </div>
 
-                         
                         <div>
                             <label for="{{ form.grade.id_for_label }}"><strong>{{ form.grade.label }}:</strong></label><br />
                             {{ form.grade }}
@@ -48,7 +50,6 @@
                         </div>
                         <br />
 
-                         
                         <div>
                             <label for="{{ form.review.id_for_label }}"><strong>{{ form.review.label }}:</strong></label><br />
                             {{ form.review }}
@@ -58,7 +59,6 @@
                         </div>
                         <br />
 
-                         
                         <button type="submit">Отправить отзыв</button>
                     </form>
                 </div>
@@ -67,13 +67,11 @@
              
             <div>
                 <p>Хотите оставить отзыв о нашей продукции?</p>
-                <a href="{% url 'register' %}">
-                    <button type="button">Зарегистрироваться, чтобы оставить отзыв</button>
-                </a>
-                <span>или</span>
-                <a href="{% url 'login' %}?next={% url 'reviews' %}">
-                    <button type="button">Войти в личный кабинет</button>
-                </a>
+                <p>
+                    <a href="{% url 'register' %}" role="button">[Зарегистрироваться, чтобы оставить отзыв]</a>
+                    <span>или</span>
+                    <a href="{% url 'login' %}?next={% url 'reviews' %}" role="button">[Войти в личный кабинет]</a>
+                </p>
             </div>
         {% endif %}
     </section>
@@ -82,19 +80,17 @@
 
      
     <section aria-label="Список отзывов">
-        <h3>Опубликованные отзывы:</h3>
+        <h2>Опубликованные отзывы:</h2>
 
         {% if review_list %}
             <div class="reviews-list">
                 {% for rev in review_list %}
-                     
                     <article itemscope itemtype="https://schema.org/Review" style="margin-bottom: 25px; border-bottom: 1px dotted #ccc; padding-bottom: 15px;">
                         <header>
-                            <h4 itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <h3 itemprop="author" itemscope itemtype="https://schema.org/Person">
                                 <span itemprop="name">{{ rev.display_username }}</span>
-                            </h4>
-
-                             
+                            </h3>
+                            
                             <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
                                 <strong>Оценка:</strong>
                                 <meter min="1" max="5" value="{{ rev.grade }}">{{ rev.grade }} из 5</meter>
@@ -103,7 +99,7 @@
 
                             <p>
                                 <small>
-                                    Дата:
+                                    Дата: 
                                     <time itemprop="datePublished" datetime="{{ rev.created_at|date:'Y-m-d\TH:i' }}">
                                         {{ rev.created_at|date:"d/m/Y H:i" }}
                                     </time>
@@ -113,7 +109,7 @@
 
                          
                         <div itemprop="reviewBody">
-                            <p>{{ rev.review|linebreaks }}</p>
+                            <div>{{ rev.review|linebreaks }}</div>
                         </div>
                     </article>
                 {% endfor %}

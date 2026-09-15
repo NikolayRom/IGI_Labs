@@ -13,6 +13,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.db.models.functions import Coalesce
 from decimal import Decimal
 import requests
+from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 import matplotlib
 matplotlib.use('Agg')
@@ -24,8 +26,8 @@ from django.db.models.functions import TruncMonth
 import logging
 logger = logging.getLogger('ToyFactory')
 
+
 def index(request):
-    
     api_key = '90a48ee7dbca43028bde1930c1da9870'
     api_theme = 'toys'
     api_from_date = date.today() - datetime.timedelta(days=7)
@@ -42,16 +44,17 @@ def index(request):
             articles = data.get('articles', [])[:api_max_news]
             logger.info(f"Index view: API success: {api_path}")
     except Exception as e:
-        print('Error during request to API:' + e)
         logger.error(f"Index view: API Error: {api_path}. Error: {e}")
 
-    context = {'api_data': articles}
+     
+    context = {
+        'api_data': articles,
+        'last_news': News.objects.first(),
+        'about_info': AboutInfo.objects.last(),
+        'products_sample': Product.objects.filter(status='a')[:6],   
+        'partners': Partner.objects.all(),   
+    }
 
-    if News.objects.last() != None:
-        context['last_news'] = News.objects.last()
-    else:
-        logger.warning(f"Index view: News.objects.last() not found!")
-    
     return render(
         request,
         'index.html',
@@ -71,10 +74,18 @@ def account(request):
     context = {'form': form}
     return render(request, 'registration/account.html', context=context)
 
+
+@login_required
 def client_profile(request):
+     
+    if request.user.is_superuser:
+        return redirect('account')
+
     client = Client.objects.filter(user__exact=request.user).first()
-    if client == None:
-        logger.warning(f"client_profile view: client warning: client not found!")
+    if client is None:
+        logger.warning(f"client_profile view: client not found for user {request.user.username}")
+        return redirect('index')
+
     form = ClientUpdateForm(instance=client)
     if request.method == 'POST':
         form = ClientUpdateForm(request.POST, instance=client)
@@ -82,18 +93,25 @@ def client_profile(request):
             form.save()
             return redirect('client-profile')
         else:
-            logger.error(f"client_profile view: form Error: ClientUpdateForm is not valid!")
-    
+            logger.error("client_profile view: ClientUpdateForm is not valid!")
+
     context = {
         'form': form,
         'client': client
     }
     return render(request, 'registration/client_profile.html', context=context)
 
+@login_required
 def employee_profile(request):
+     
+    if request.user.is_superuser:
+        return redirect('account')
+
     employee = Employee.objects.filter(user__exact=request.user).first()
-    if employee == None:
-        logger.warning(f"employee_profile view: employee warning: employee not found!")
+    if employee is None:
+        logger.warning(f"employee_profile view: employee not found for user {request.user.username}")
+        return redirect('index')
+
     form = EmployeeUpdateForm(instance=employee)
     if request.method == 'POST':
         form = EmployeeUpdateForm(request.POST, request.FILES, instance=employee)
@@ -101,8 +119,8 @@ def employee_profile(request):
             form.save()
             return redirect('employee-profile')
         else:
-            logger.error(f"employee_profile view: form Error: EmployeeUpdateForm is not valid!")
-    
+            logger.error("employee_profile view: EmployeeUpdateForm is not valid!")
+
     context = {
         'form': form,
         'employee': employee
@@ -498,9 +516,87 @@ CRUD: Product Model
 class ProductListView(generic.ListView):
     model = Product
     paginate_by = 10
+    template_name = 'ToyFactory/product_list.html'  
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+
+         
+        user = self.request.user
+        if not (user.is_authenticated and (user.is_superuser or user.has_perm('ToyFactory.employee_perm'))):
+            queryset = queryset.filter(status='a')
+
+         
+        q = self.request.GET.get('q')
+        if q:
+            queryset = queryset.filter(
+                Q(name__icontains=q) |
+                Q(product_model__name__icontains=q) |
+                Q(product_type__name__icontains=q)
+            ).distinct()
+
+         
+        product_type = self.request.GET.get('type')
+        if product_type:
+            queryset = queryset.filter(product_type__id=product_type)
+
+         
+        product_model = self.request.GET.get('model')
+        if product_model:
+            queryset = queryset.filter(product_model__id=product_model)
+
+         
+        min_price = self.request.GET.get('min_price')
+        if min_price:
+            try:
+                val = float(min_price)
+                if val >= 0:
+                    queryset = queryset.filter(price__gte=val)
+            except ValueError:
+                pass
+
+        max_price = self.request.GET.get('max_price')
+        if max_price:
+            try:
+                val = float(max_price)
+                if val >= 0:
+                    queryset = queryset.filter(price__lte=val)
+            except ValueError:
+                pass
+
+         
+        order_by = self.request.GET.get('ordering', 'price')
+        if order_by in ['price', '-price', 'name', '-created_at']:
+            queryset = queryset.order_by(order_by)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+         
+        context['types'] = ProductType.objects.all()
+        context['models'] = ProductModel.objects.all()
+         
+        context['current_q'] = self.request.GET.get('q', '')
+        context['current_type'] = self.request.GET.get('type', '')
+        context['current_model'] = self.request.GET.get('model', '')
+        context['current_min_price'] = self.request.GET.get('min_price', '')
+        context['current_max_price'] = self.request.GET.get('max_price', '')
+        context['current_ordering'] = self.request.GET.get('ordering', 'price')
+        return context
 
 class ProductDetailView(generic.DetailView):
     model = Product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+         
+        active_promos = Promo.objects.filter(
+            product=self.object,
+            end_date__gte=date.today()
+        )
+        context['available_promos'] = active_promos
+        return context
 
 class ProductCreateView(CreateView):
     model = Product
@@ -515,3 +611,127 @@ class ProductUpdateView(UpdateView):
 class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('products')
+
+
+@permission_required('ToyFactory.client_perm')
+@login_required
+def add_to_cart(request, product_id):
+    if request.user.is_superuser:
+        return redirect('products')
+
+    product = get_object_or_404(Product, pk=product_id)
+    client = request.user.client_profile
+
+    if request.method == 'POST':
+        amount = int(request.POST.get('amount', 1))
+        promo_id = request.POST.get('promo_id')
+
+         
+        promo_obj = None
+        if promo_id:
+            promo_obj = Promo.objects.filter(
+                id=promo_id,
+                product=product,
+                end_date__gte=date.today()
+            ).first()
+
+         
+        pick_up = PickUpPoint.objects.filter(city=client.city).first()
+        if not pick_up:
+            pick_up = PickUpPoint.objects.first()
+
+         
+        order_item = Order.objects.filter(
+            client=client,
+            product=product,
+            promo=promo_obj,
+            date_order_complete__isnull=True
+        ).first()
+
+        if order_item:
+            order_item.product_amount += amount
+            order_item.save()
+        else:
+            Order.objects.create(
+                client=client,
+                product=product,
+                product_amount=amount,
+                promo=promo_obj,
+                pick_up_point=pick_up,
+                date_order_create=timezone.now()
+            )
+
+        logger.info(f"User {request.user.username} added product {product.name} to cart with promo {promo_obj}")
+        return redirect('cart')
+
+    return redirect('product-detail', pk=product_id)
+
+
+@permission_required('ToyFactory.client_perm')
+@login_required
+def cart_update_quantity(request, order_id, action):
+    order_item = get_object_or_404(Order, pk=order_id, client=request.user.client_profile,
+                                   date_order_complete__isnull=True)
+
+    if action == 'plus':
+        order_item.product_amount += 1
+        order_item.save()
+    elif action == 'minus':
+        if order_item.product_amount > 1:
+            order_item.product_amount -= 1
+            order_item.save()
+        else:
+            order_item.delete()   
+
+    return redirect('cart')
+
+@permission_required('ToyFactory.client_perm')
+@login_required
+def cart_view(request):
+    if request.user.is_superuser:
+        return render(request, 'cart.html', {'error': 'Корзина доступна только зарегистрированным клиентам.'})
+
+    client = request.user.client_profile
+    order_list = Order.objects.filter(client=client, date_order_complete__isnull=True).order_by('-date_order_create')
+    total = sum(order.get_total for order in order_list)
+
+    context = {
+        'order_list': order_list,
+        'total': total,
+        'client': client
+    }
+    return render(request, 'cart.html', context)
+
+
+@permission_required('ToyFactory.client_perm')
+@login_required
+def checkout_payment_view(request):
+    if request.user.is_superuser:
+        return redirect('products')
+
+    client = request.user.client_profile
+    orders_to_pay = Order.objects.filter(client=client, date_order_complete__isnull=True)
+
+    if not orders_to_pay.exists():
+        return redirect('cart')
+
+    total = sum(order.get_total for order in orders_to_pay)
+    form = PaymentForm()
+
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+             
+            orders_to_pay.update(date_order_complete=timezone.now())
+            logger.info(f"Payment successful for client {client.company_name}. Total: {total}")
+            return redirect('client-orders')
+        else:
+            logger.warning(f"Payment validation failed: {form.errors}")
+
+    context = {
+        'order_list': orders_to_pay,
+        'total': total,
+        'client': client,
+        'form': form
+    }
+    return render(request, 'payment.html', context)

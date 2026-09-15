@@ -36,6 +36,11 @@ urlpatterns = [
     re_path(r'^client/cart/$', views.order_create, name='cart'),
     re_path(r'^client/cart/order/(?P<pk>[0-9a-f-]+)/delete/$', views.OrderDeleteView.as_view(), name='order-delete'),
     re_path(r'^client/cart/complete$', views.order_complete, name='orders-complete'),
+    re_path(r'^cart/$', views.cart_view, name='cart'),
+    re_path(r'^cart/add/(?P<product_id>[0-9a-f-]+)/$', views.add_to_cart, name='cart-add'),
+    re_path(r'^cart/update/(?P<order_id>[0-9a-f-]+)/(?P<action>plus|minus)/$', views.cart_update_quantity, name='cart-update-quantity'),
+    re_path(r'^cart/order/(?P<pk>[0-9a-f-]+)/delete/$', views.OrderDeleteView.as_view(), name='order-delete'),
+    re_path(r'^cart/payment/$', views.checkout_payment_view, name='checkout-payment'),
     re_path(r'^client/orders/$', views.OrderClientListView.as_view(), name='client-orders'),
     re_path(r'^analytics/$', views.analytics_view, name='analytics'),
 

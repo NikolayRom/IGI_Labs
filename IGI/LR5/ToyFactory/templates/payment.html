@@ -1,0 +1,117 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Оплата заказа - Toy Factory</title>
+{% endblock %}
+
+{% block breadcrumb %}
+<a href="{% url 'cart' %}">Корзина</a> &raquo; Оплата заказа
+{% endblock %}
+
+{% block content %}
+<section aria-labelledby="payment-heading">
+    <header>
+        <h2 id="payment-heading">&#128179; Оплата оптового заказа</h2>
+        <p>Заказчик: <strong>{{ client.company_name }}</strong></p>
+    </header>
+
+    <hr />
+
+    <table style="width: 100%; border: none;">
+        <tr>
+             
+            <td style="width: 45%; vertical-align: top; padding-right: 20px;">
+                <h3>Состав заказа:</h3>
+                <table border="1" cellpadding="6" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th>Товар</th>
+                            <th>Кол-во</th>
+                            <th>Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order_list %}
+                            <tr>
+                                <td>{{ item.product_name }}</td>
+                                <td>{{ item.product_amount }} шт.</td>
+                                <td>{{ item.get_total }} BYN</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br />
+                <h4>Итоговая сумма к списанию: <mark>{{ total }} BYN</mark></h4>
+            </td>
+
+             
+            <td style="width: 55%; vertical-align: top; border-left: 1px solid #ccc; padding-left: 20px;">
+                <h3>Платежные реквизиты:</h3>
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div style="color: red; margin-bottom: 10px;">
+                            <strong>{{ form.non_field_errors }}</strong>
+                        </div>
+                    {% endif %}
+
+                    <fieldset style="margin-bottom: 15px;">
+                        <legend><strong>Способ оплаты:</strong></legend>
+                        {{ form.pay_method }}
+                    </fieldset>
+
+                    <fieldset style="margin-bottom: 15px;">
+                        <legend><strong>Данные банковской карты:</strong></legend>
+
+                        <p>
+                            <label for="{{ form.card_number.id_for_label }}">Номер карты (16 цифр):</label><br />
+                            {{ form.card_number }}
+                            {% if form.card_number.errors %}
+                                <br /><small style="color: red;">{{ form.card_number.errors.0 }}</small>
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            <label for="{{ form.card_holder.id_for_label }}">Имя держателя (латиницей):</label><br />
+                            {{ form.card_holder }}
+                            {% if form.card_holder.errors %}
+                                <br /><small style="color: red;">{{ form.card_holder.errors.0 }}</small>
+                            {% endif %}
+                        </p>
+
+                        <table style="border: none;">
+                            <tr>
+                                <td>
+                                    <label for="{{ form.card_expiry.id_for_label }}">Срок (ММ/ГГ):</label><br />
+                                    {{ form.card_expiry }}
+                                    {% if form.card_expiry.errors %}
+                                        <br /><small style="color: red;"><strong>{{ form.card_expiry.errors.0 }}</strong></small>
+                                    {% endif %}
+                                </td>
+                                <td style="padding-left: 20px;">
+                                    <label for="{{ form.card_cvc.id_for_label }}">CVC/CVV (3 цифры):</label><br />
+                                    {{ form.card_cvc }}
+                                    {% if form.card_cvc.errors %}
+                                        <br /><small style="color: red;">{{ form.card_cvc.errors.0 }}</small>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                    <p>
+                        <input type="checkbox" id="terms" required checked />
+                        <label for="terms">Подтверждаю согласие на безакцептное списание средств</label>
+                    </p>
+
+                    <button type="submit" style="font-size: 1.1em; font-weight: bold; padding: 10px 20px; cursor: pointer;">
+                        &#10004; Оплатить {{ total }} BYN
+                    </button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</section>
+{% endblock %}

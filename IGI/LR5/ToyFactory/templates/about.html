@@ -1,23 +1,178 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>About Info</title>
+<title>About Us - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
+<article itemscope itemtype="https://schema.org/Organization">
+
+     
+    <nav aria-label="Навигация по странице">
+        <p>Быстрый переход:
+            <a href="#about-text">О нас</a> |
+            <a href="#media-block">Медиа</a> |
+            <a href="#history-block">История</a> |
+            <a href="#table-data">Показатели</a> |
+            <a href="#requisites-block">Реквизиты</a>
+        </p>
+    </nav>
 
     {% if about_info %}
-        <h2>{{about_info.header}}</h2>
-        {% if about_info.logo %}
-            <img src='{{about_info.logo.url}}' alt="Company's logo" style="max-width: 300px;"/>
-        {% else %}
-            <img src='/media/default_about_logo.png' alt="Company's default logo" style="max-width: 300px;"/>
-        {% endif %}
-        <p>{{about_info.info}}</p>
-        <ul>Created: {{about_info.created_at|date:"d/m/Y H:i"}}</ul>
-        <ul>Updated: {{about_info.updated_at|date:"d/m/Y H:i"}}</ul>
+        <header>
+            <h2 itemprop="name" id="about-text">{{ about_info.header }}</h2>
+        </header>
+
+         
+        <figure>
+            {% if about_info.logo %}
+                <img src="{{ about_info.logo.url }}" alt="Логотип фабрики игрушек Toy Factory" itemprop="logo" width="250" />
+            {% else %}
+                <img src="/media/default_about_logo.png" alt="Стандартный логотип" width="250" />
+            {% endif %}
+            <figcaption>Рис. 1 — Официальный зарегистрированный логотип компании</figcaption>
+        </figure>
+
+         
+        <section>
+            <h3>Основная информация</h3>
+            <p itemprop="description">
+                Наша фабрика производит детские игрушки, соблюдая стандарты <abbr title="Международная организация по стандартизации">ISO</abbr> 9001.
+                Мы считаем, что <dfn>Игрушка</dfn> — это предмет, предназначенный для игры, способствующий интеллектуальному и физическому развитию ребенка.
+            </p>
+
+            <p>
+                Как сказал основатель фабрики: <q>Каждая игрушка должна нести радость и безопасность в дом</q>.
+            </p>
+
+            <blockquote>
+                «Создание качественной игрушки — это симбиоз инженерной точности, психологического понимания детства и безграничной фантазии».
+            </blockquote>
+
+            <p>{{ about_info.info|linebreaks }}</p>
+        </section>
+
+         
+        <section>
+            <h3>Девиз наших мастеров (четверостишие)</h3>
+            <pre>
+Мы создаём<wbr>миры для детских снов,
+Где каждый миг наполнен добротой,
+Без лишних фраз и громких звонких слов,
+Игрушка станет верною судьбой.
+            </pre>
+        </section>
+
+         
+        <section>
+            <h3>Стандарты внутренней сборки (пример системного конфига)</h3>
+            <pre><code>
+{
+    "batch_check": "passed",
+    "eco_friendly": true,
+    "quality_assurance_level": 5
+}
+            </code></pre>
+        </section>
+
+         
+        <section id="media-block">
+            <h3>Презентационное видео</h3>
+            {% if about_info.video %}
+                <figure>
+                    <video width="480" height="270" controls preload="metadata">
+                        <source src="{{ about_info.video.url }}" type="video/mp4">
+                        Ваш браузер не поддерживает встроенные видео.
+                    </video>
+                    <figcaption>Видеоэкскурсия по цехам фабрики</figcaption>
+                </figure>
+            {% else %}
+                <p>Видеоматериалы временно недоступны.</p>
+            {% endif %}
+        </section>
+
+         
+        <section id="history-block">
+            <h3>История развития по годам</h3>
+            {% if about_info.history %}
+                <p>{{ about_info.history|linebreaks }}</p>
+            {% else %}
+                <p>Хронология предприятия формируется.</p>
+            {% endif %}
+        </section>
+
+         
+        <section id="table-data">
+            <h3>Этапы роста производственных мощностей</h3>
+            <table border="1">
+                <caption>Таблица 1 — Показатели производства за ключевые периоды</caption>
+                <thead>
+                    <tr>
+                        <th id="period" rowspan="2">Период (годы)</th>
+                        <th id="production" colspan="2">Объемы производства</th>
+                        <th id="notes" rowspan="2">Примечание</th>
+                    </tr>
+                    <tr>
+                        <th id="units">Выпуск (тыс. шт)</th>
+                        <th id="models">Новых моделей</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th id="row1" headers="period">2010 – 2015</th>
+                        <td headers="row1 production units">150.5</td>
+                        <td headers="row1 production models">12</td>
+                        <td headers="row1 notes">Открытие цеха мягкой игрушки</td>
+                    </tr>
+                    <tr>
+                        <th id="row2" headers="period">2016 – 2020</th>
+                        <td headers="row2 production units">420.0</td>
+                        <td headers="row2 production models">35</td>
+                        <td headers="row2 notes">Выход на международный рынок</td>
+                    </tr>
+                    <tr>
+                        <th id="row3" headers="period">2021 – 2025</th>
+                        <td headers="row3 production units">890.8</td>
+                        <td headers="row3 production models">80</td>
+                        <td headers="row3 notes">Автоматизация линий конвейера</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+         
+        <section id="requisites-block">
+            <h3>Реквизиты и сертификация</h3>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <p><strong>Официальные реквизиты:</strong></p>
+                <p>{{ about_info.requisites|linebreaks }}</p>
+            </div>
+
+            {% if about_info.certificate %}
+                <figure>
+                    <img src="{{ about_info.certificate.url }}" alt="Сертификат соответствия качества продукции" width="300" />
+                    <figcaption>
+                        Сертификат качества продукции.
+                         
+                        <a href="{{ about_info.certificate.url }}" download="certificate_toy_factory.jpg">Скачать копию сертификата</a>
+                    </figcaption>
+                </figure>
+            {% endif %}
+        </section>
+
+         
+        <footer>
+            <hr />
+            <p>
+                Запись внесена в реестр:
+                <time datetime="{{ about_info.created_at|date:'Y-m-d' }}">{{ about_info.created_at|date:"d/m/Y H:i" }}</time>
+                (последнее обновление: <time datetime="{{ about_info.updated_at|date:'Y-m-d' }}">{{ about_info.updated_at|date:"d/m/Y H:i" }}</time>)
+            </p>
+        </footer>
+
     {% else %}
-        <h2>No info about company</h2>
+        <h2>Информация о компании пока не внесена в базу данных.</h2>
     {% endif %}
 
+</article>
 {% endblock %}

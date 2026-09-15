@@ -10,3 +10,7 @@
 /dataSources.local.xml
 
 .idea/
+
+*.log
+
+*.pyc

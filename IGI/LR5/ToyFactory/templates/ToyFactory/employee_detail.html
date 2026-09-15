@@ -1,21 +1,57 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Contacts</title>
+<title>{{ employee.display_username }} - Профиль сотрудника</title>
 {% endblock %}
 
 {% block content %}
+<article itemscope itemtype="https://schema.org/Person">
+    <nav aria-label="Хлебные крошки">
+        <p><a href="{% url 'contacts' %}">&larr; Вернуться ко всем контактам</a></p>
+    </nav>
 
     {% if employee %}
-        <h1>{{employee.display_username}}</h1>
-        <img src="{{ employee.get_avatar_url }}" alt="Employee icon" style="max-width: 200px; border-radius: 100%;"/>
-        <p>Info: {{employee.info}}</p>
-        <p>Phone: {{employee.phone}}</p>
-        <p>Email: {{employee.display_email}}</p>
-        <ul>Created: {{employee.created_at|date:"d/m/Y H:i"}}</ul>
-        <ul>Updated: {{employee.updated_at|date:"d/m/Y H:i"}}</ul>
-    {% else %}
-        <h2>No info for this employee</h2>
-    {% endif %}
+        <header>
+            <h1 itemprop="name">{{ employee.display_username }}</h1>
+        </header>
 
+        <figure>
+            <img src="{{ employee.get_avatar_url }}" alt="Фото сотрудника {{ employee.display_username }}" itemprop="image" width="200" />
+            <figcaption>Сотрудник компании: {{ employee.display_username }}</figcaption>
+        </figure>
+
+        <section>
+            <h3>Обязанности и выполняемые работы:</h3>
+            <p itemprop="jobTitle">{{ employee.info }}</p>
+        </section>
+
+        <section>
+            <h3>Контактная информация:</h3>
+            <address>
+                <p>
+                    <strong>Телефон:</strong>
+                    <a href="tel:{{ employee.phone.phone }}" itemprop="telephone">{{ employee.phone.phone }}</a>
+                </p>
+                <p>
+                    <strong>Электронная почта:</strong>
+                    <a href="mailto:{{ employee.display_email }}" itemprop="email">{{ employee.display_email }}</a>
+                </p>
+            </address>
+        </section>
+
+        <hr />
+
+        <footer>
+            <p>
+                Дата регистрации профиля:
+                <time datetime="{{ employee.created_at|date:'Y-m-d\TH:i' }}">{{ employee.created_at|date:"d/m/Y H:i" }}</time>
+                | Последнее обновление:
+                <time datetime="{{ employee.updated_at|date:'Y-m-d\TH:i' }}">{{ employee.updated_at|date:"d/m/Y H:i" }}</time>
+            </p>
+            <p><a href="{% url 'contacts' %}">&larr; Назад к списку сотрудников</a></p>
+        </footer>
+    {% else %}
+        <h2>Информация о данном сотруднике не найдена.</h2>
+    {% endif %}
+</article>
 {% endblock %}

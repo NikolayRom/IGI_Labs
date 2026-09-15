@@ -1,28 +1,60 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>News</title>
+<title>Новости фабрики - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
-    <h1>News</h1>
+<section aria-labelledby="news-page-title">
+    <header>
+        <h2 id="news-page-title">Новости и события фабрики</h2>
+        <p>Актуальная информация о производстве, новинках и событиях нашей компании.</p>
+    </header>
 
     {% if news_list %}
+        <div class="news-container">
+            {% for news_item in news_list %}
+                 
+                <article itemscope itemtype="https://schema.org/NewsArticle" style="margin-bottom: 30px;">
+                    <header>
+                        <h3 itemprop="headline">
+                            <a href="{{ news_item.get_absolute_url }}">{{ news_item.header }}</a>
+                        </h3>
+                        <p>
+                            Опубликовано:
+                            <time itemprop="datePublished" datetime="{{ news_item.created_at|date:'Y-m-d\TH:i' }}">
+                                {{ news_item.created_at|date:"d/m/Y H:i" }}
+                            </time>
+                        </p>
+                    </header>
 
-      {% for news in news_list %}
-        <ul>
-          <li><a href="{{ news.get_absolute_url }}">{{ news.header }}</a> ({{news.updated_at|date:"d/m/Y H:i"}})</li>
-          {% if news.image %}
-              <img src='{{news.image.url}}' alt="News picture" style="max-width: 300px;"/>
-          {% else %}
-              <img src='/media/default_news_logo.png' alt="News default picture" style="max-width: 300px;"/>
-          {% endif %}
-          <p>{{news.info}}</p>
-          <br>
-        </ul>
-      {% endfor %}
+                     
+                    <figure>
+                        {% if news_item.image %}
+                            <img src="{{ news_item.image.url }}" alt="{{ news_item.header }}" itemprop="image" width="300" />
+                        {% else %}
+                            <img src="/media/default_news_logo.png" alt="Стандартное изображение" width="300" />
+                        {% endif %}
+                        <figcaption>Иллюстрация к новости: {{ news_item.header }}</figcaption>
+                    </figure>
 
+                     
+                    <section itemprop="description">
+                        <p><strong>Кратко:</strong> {{ news_item.short_description }}</p>
+                    </section>
+
+                     
+                    <footer>
+                        <a href="{{ news_item.get_absolute_url }}" role="button">
+                            <button type="button">Читать далее &rarr;</button>
+                        </a>
+                    </footer>
+                    <hr />
+                </article>
+            {% endfor %}
+        </div>
     {% else %}
-      <p>There are no news available.</p>
+        <p>На данный момент новостей нет.</p>
     {% endif %}
+</section>
 {% endblock %}

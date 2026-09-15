@@ -1,25 +1,68 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Contacts</title>
+<title>Контакты сотрудников - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
-    <h1>Contacts</h1>
+<section aria-labelledby="contacts-title">
+    <header>
+        <h2 id="contacts-title">Наши сотрудники и контакты</h2>
+        <p>Ключевые специалисты фабрики игрушек, готовые ответить на ваши вопросы по производству и поставкам.</p>
+    </header>
+
+    <hr />
 
     {% if employee_list %}
-    <ul>
+        <div class="employees-grid">
+            {% for employee in employee_list %}
+                <article itemscope itemtype="https://schema.org/Person" style="margin-bottom: 30px;">
+                    <header>
+                        <h3 itemprop="name">
+                            <a href="{{ employee.get_absolute_url }}">{{ employee.user.get_full_name|default:employee.user.username }}</a>
+                        </h3>
+                    </header>
 
-      {% for employee in employee_list %}
-        <li>
-          <img src="{{ employee.get_avatar_url }}" alt="Employee icon" style="max-width: 200px; max-height: 200px; border-radius: 20%;"/>
-          <a href="{{ employee.get_absolute_url }}">{{ employee.display_username }}</a> ({{employee.display_email}})
-          <br>
-        </li>
-      {% endfor %}
+                     
+                    <figure>
+                        <img
+                            src="{{ employee.get_avatar_url }}"
+                            alt="Фото сотрудника {{ employee.user.username }}"
+                            itemprop="image"
+                            width="200"
+                        />
+                        <figcaption>{{ employee.user.username }} — специалист фабрики</figcaption>
+                    </figure>
 
-    </ul>
+                     
+                    <section>
+                        <h4>Обязанности и выполняемые работы:</h4>
+                        <p itemprop="jobTitle">{{ employee.info }}</p>
+                    </section>
+
+                     
+                    <address>
+                        <p>
+                            <strong>Телефон:</strong>
+                            <a href="tel:{{ employee.phone.phone }}" itemprop="telephone">{{ employee.phone.phone }}</a>
+                        </p>
+                        <p>
+                            <strong>Электронная почта:</strong>
+                            <a href="mailto:{{ employee.user.email }}" itemprop="email">{{ employee.user.email }}</a>
+                        </p>
+                    </address>
+
+                    <footer>
+                        <small>
+                            <a href="{{ employee.get_absolute_url }}">Подробнее о сотруднике &rarr;</a>
+                        </small>
+                    </footer>
+                    <hr />
+                </article>
+            {% endfor %}
+        </div>
     {% else %}
-      <p>There are no contacts available.</p>
+        <p>Информация о сотрудниках не найдена.</p>
     {% endif %}
+</section>
 {% endblock %}

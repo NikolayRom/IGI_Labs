@@ -1,20 +1,78 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Vacancies</title>
+<title>{{ vacancy.title }} - Вакансия Toy Factory</title>
 {% endblock %}
 
 {% block content %}
+<article itemscope itemtype="https://schema.org/JobPosting">
+     
+    <nav aria-label="Хлебные крошки">
+        <p><a href="{% url 'vacancys' %}">&larr; Вернуться ко всем вакансиям</a></p>
+    </nav>
 
     {% if vacancy %}
-        <h1>{{vacancy.title}}</h1>
-        <p>Info: {{vacancy.info}}</p>
-        <p>Requirements: {{vacancy.requirements}}</p>
-        <p>Salary: {{vacancy.salary}}</p>
-        <ul>Created: {{vacancy.created_at|date:"d/m/Y H:i"}}</ul>
-        <ul>Updated: {{vacancy.updated_at|date:"d/m/Y H:i"}}</ul>
-        {% else %}
-        <h2>No info for this promo</h2>
-    {% endif %}
+        <header>
+            <h1 itemprop="title">{{ vacancy.title }}</h1>
+            <p>
+                <strong>Работодатель:</strong>
+                <span itemprop="hiringOrganization" itemscope itemtype="https://schema.org/Organization">
+                    <span itemprop="name">Фабрика игрушек «Toy Factory»</span>
+                </span>
+            </p>
+            <p>
+                Дата публикации:
+                <time itemprop="datePosted" datetime="{{ vacancy.created_at|date:'Y-m-d\TH:i' }}">
+                    {{ vacancy.created_at|date:"d/m/Y H:i" }}
+                </time>
+                | Обновлено:
+                <time datetime="{{ vacancy.updated_at|date:'Y-m-d\TH:i' }}">
+                    {{ vacancy.updated_at|date:"d/m/Y H:i" }}
+                </time>
+            </p>
+        </header>
 
+         
+        <section itemprop="baseSalary" itemscope itemtype="https://schema.org/MonetaryAmount">
+            <h3>Уровень заработной платы:</h3>
+            <p>
+                <strong>От:</strong>
+                <data itemprop="value" value="{{ vacancy.salary }}">{{ vacancy.salary }}</data>
+                <span itemprop="currency">BYN</span> (на руки)
+            </p>
+        </section>
+
+         
+        <section itemprop="description">
+            <h3>Описание обязанностей:</h3>
+            <p>{{ vacancy.info|linebreaks }}</p>
+        </section>
+
+         
+        <section itemprop="experienceRequirements">
+            <h3>Требования к кандидату:</h3>
+            <p>{{ vacancy.requirements|linebreaks }}</p>
+        </section>
+
+        <hr />
+
+         
+        <section aria-label="Отклик на вакансию">
+            <h3>Понравилась вакансия?</h3>
+            <p>Вы можете отправить резюме напрямую руководителю отдела найма:</p>
+            <p>
+                <a href="mailto:hr@toyfactory.by?subject=Отклик%20на%20вакансию:%20{{ vacancy.title|urlencode }}">
+                    <button type="button">Откликнуться на вакансию (Email)</button>
+                </a>
+            </p>
+        </section>
+
+        <footer>
+            <hr />
+            <p><a href="{% url 'vacancys' %}">&larr; Назад к списку вакансий</a></p>
+        </footer>
+    {% else %}
+        <h2>Информация о данной вакансии не найдена или вакансия была закрыта.</h2>
+    {% endif %}
+</article>
 {% endblock %}

@@ -486,6 +486,7 @@ class Promo(BaseDateModel):
     class Meta:
         ordering = ['sale']
 
+
 class AboutInfo(BaseDateModel):
     header = models.CharField(
         max_length=100,
@@ -499,23 +500,55 @@ class AboutInfo(BaseDateModel):
         default='default_about_logo.png',
         help_text='Logotype for Company'
     )
+    video = models.FileField(
+        upload_to='videos/',
+        blank=True,
+        null=True,
+        help_text='Company promotional video (mp4)'
+    )
+    history = models.TextField(
+        blank=True,
+        help_text='History by years (text or list)'
+    )
+    requisites = models.TextField(
+        blank=True,
+        help_text='Company requisites (Bank account, UNP, etc.)'
+    )
+    certificate = models.ImageField(
+        upload_to='certificates/',
+        blank=True,
+        null=True,
+        help_text='Company certificate'
+    )
 
     def __str__(self):
         return self.header
-    
+
     def get_absolute_url(self):
         return reverse('about-detail', args=[str(self.id)])
 
     class Meta:
         ordering = ['created_at']
 
+
 class News(BaseDateModel):
+    id = models.UUIDField(
+        primary_key=True,
+        editable=False,
+        default=uuid.uuid4,
+        help_text="Unique ID for news"
+    )
     header = models.CharField(
         max_length=400,
         help_text='Header for News'
     )
+    short_description = models.CharField(
+        max_length=250,
+        default='Краткое описание новости.',
+        help_text='Short description (one sentence)'
+    )
     info = models.TextField(
-        help_text='Description of News'
+        help_text='Full text of News article'
     )
     image = models.ImageField(
         blank=True,
@@ -525,12 +558,12 @@ class News(BaseDateModel):
 
     def __str__(self):
         return self.header
-    
+
     def get_absolute_url(self):
         return reverse('news-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['-created_at']
 
 class FAQ(BaseDateModel):
     question = models.CharField(
@@ -649,3 +682,37 @@ class AppPermissions(models.Model):
             ('employee_perm', 'Employee permissions'),
             ('client_perm', 'Client permissions')
         )
+
+class Partner(BaseDateModel):
+    id = models.UUIDField(
+        primary_key=True,
+        editable=False,
+        default=uuid.uuid4,
+        help_text="Unique ID for Partner"
+    )
+    name = models.CharField(
+        max_length=150,
+        help_text="Company partner name"
+    )
+    website_url = models.URLField(
+        help_text="URL to partner's website"
+    )
+    logo = models.ImageField(
+        upload_to='partners/',
+        blank=True,
+        null=True,
+        help_text="Partner's logo image"
+    )
+    description = models.CharField(
+        max_length=250,
+        blank=True,
+        help_text="Short info about partnership"
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = "Партнер"
+        verbose_name_plural = "Партнеры компании"

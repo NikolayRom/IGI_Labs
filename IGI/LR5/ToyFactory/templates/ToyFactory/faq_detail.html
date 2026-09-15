@@ -1,18 +1,40 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>FAQ</title>
+<title>{{ faq.question }} - FAQ - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
+<article itemscope itemtype="https://schema.org/Question">
+    <nav aria-label="Хлебные крошки">
+        <p><a href="{% url 'faq' %}">&larr; Вернуться ко всем терминам и вопросам</a></p>
+    </nav>
 
-    {% if faq %}
-        <h1>{{faq.question}}</h1>
-        <p>Answer: {{faq.answer}}</p>
-        <ul>FAQ created: {{faq.created_at|date:"d/m/Y H:i"}}</ul>
-        <ul>FAQ updated: {{faq.updated_at|date:"d/m/Y H:i"}}</ul>
-    {% else %}
-        <h2>No info for this FAQ</h2>
-    {% endif %}
+    <header>
+        <h2 itemprop="name">
+            Вопрос / Термин: <dfn>{{ faq.question }}</dfn>
+        </h2>
+        <p>
+            Дата добавления на сайт:
+            <time datetime="{{ faq.created_at|date:'Y-m-d\TH:i' }}">
+                {{ faq.created_at|date:"d/m/Y H:i" }}
+            </time>
+        </p>
+    </header>
 
+    <hr />
+
+    <section itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <h3>Развернутый ответ / Определение:</h3>
+        <div itemprop="text">
+            {{ faq.answer|linebreaks }}
+        </div>
+    </section>
+
+    <hr />
+
+    <footer>
+        <p><a href="{% url 'faq' %}">&larr; Назад к списку FAQ</a></p>
+    </footer>
+</article>
 {% endblock %}

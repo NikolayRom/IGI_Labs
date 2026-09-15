@@ -490,3 +490,1395 @@ INFO 2026-04-21 17:02:15,668 log 223913 140364350310080 "GET / HTTP/1.1" 301 0
 INFO 2026-04-21 17:02:15,719 log 223913 140364350310080 "GET /api/ HTTP/1.1" 302 0
 INFO 2026-04-21 17:02:16,201 views 223913 140364350310080 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-04-14&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
 INFO 2026-04-21 17:02:16,208 log 223913 140364350310080 "GET /api/home/ HTTP/1.1" 200 6585
+INFO 2026-09-07 23:58:39,147 autoreload 37436 140631015744000 Watching for file changes with StatReloader
+INFO 2026-09-07 23:58:45,336 log 37436 140630121715392 "GET / HTTP/1.1" 301 0
+INFO 2026-09-07 23:58:45,366 log 37436 140630121715392 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-07 23:58:46,923 views 37436 140630121715392 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-08-31&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-07 23:58:46,953 log 37436 140630121715392 "GET /api/home/ HTTP/1.1" 200 2680
+INFO 2026-09-07 23:58:47,110 log 37436 140630121715392 "GET /media/default_news_logo_TG3ZVhS.png HTTP/1.1" 200 4870
+WARNING 2026-09-07 23:58:47,201 log 37436 140630121715392 Not Found: /favicon.ico
+WARNING 2026-09-07 23:58:47,202 log 37436 140630121715392 "GET /favicon.ico HTTP/1.1" 404 3557
+INFO 2026-09-07 23:58:57,992 log 37436 140630121715392 "GET /api/news/ HTTP/1.1" 200 3658
+INFO 2026-09-07 23:58:58,166 log 37436 140630121715392 "GET /media/news1_wtkJ4am.png HTTP/1.1" 200 4996
+INFO 2026-09-07 23:58:58,167 log 37436 140630100739776 "GET /media/news3_w9JM0Mp.png HTTP/1.1" 200 465402
+INFO 2026-09-07 23:59:02,318 log 37436 140630100739776 "GET /accounts/login/ HTTP/1.1" 200 3093
+INFO 2026-09-07 23:59:14,219 log 37436 140630100739776 "POST /accounts/login/ HTTP/1.1" 200 3174
+INFO 2026-09-07 23:59:27,599 log 37436 140630100739776 "POST /accounts/login/ HTTP/1.1" 200 3174
+INFO 2026-09-07 23:59:39,343 log 37436 140630100739776 "POST /accounts/login/ HTTP/1.1" 200 3174
+INFO 2026-09-07 23:59:48,783 log 37436 140630100739776 "POST /accounts/login/ HTTP/1.1" 200 3173
+INFO 2026-09-07 23:59:52,721 log 37436 140630100739776 "POST /accounts/login/ HTTP/1.1" 200 3173
+INFO 2026-09-07 23:59:58,182 log 37436 140630100739776 "POST /accounts/login/ HTTP/1.1" 200 3173
+INFO 2026-09-08 00:00:04,217 log 37436 140630100739776 "POST /accounts/login/ HTTP/1.1" 200 3173
+INFO 2026-09-08 00:00:06,718 log 37436 140630100739776 "GET /accounts/register/ HTTP/1.1" 200 5720
+ERROR 2026-09-08 00:01:47,910 forms 37436 140630100739776 phone already exist
+ERROR 2026-09-08 00:01:47,913 views 37436 140630100739776 register view: register Error: ClientRegistrationForm is not valid!
+INFO 2026-09-08 00:01:47,920 log 37436 140630100739776 "POST /accounts/register/ HTTP/1.1" 200 5951
+INFO 2026-09-08 00:02:12,020 log 37436 140630100739776 "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2026-09-08 00:02:14,021 views 37436 140630100739776 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 00:02:14,028 log 37436 140630100739776 "GET /api/home/ HTTP/1.1" 200 6281
+INFO 2026-09-08 00:02:14,189 log 37436 140630100739776 "GET /media/default_news_logo_TG3ZVhS.png HTTP/1.1" 304 0
+INFO 2026-09-08 00:02:26,628 views 37436 140630100739776 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 00:02:26,636 log 37436 140630100739776 "GET /api/home/ HTTP/1.1" 200 6281
+INFO 2026-09-08 00:02:27,754 log 37436 140630100739776 "GET /api/news/ HTTP/1.1" 200 4434
+INFO 2026-09-08 00:02:27,903 log 37436 140630100739776 "GET /media/news1_wtkJ4am.png HTTP/1.1" 304 0
+INFO 2026-09-08 00:02:27,904 log 37436 140630121715392 "GET /media/news3_w9JM0Mp.png HTTP/1.1" 304 0
+INFO 2026-09-08 00:02:31,704 views 37436 140630100739776 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 00:02:31,711 log 37436 140630100739776 "GET /api/home/ HTTP/1.1" 200 6281
+INFO 2026-09-08 00:02:39,026 log 37436 140630100739776 "GET /api/contacts/ HTTP/1.1" 200 6204
+INFO 2026-09-08 00:02:39,200 log 37436 140630121715392 "GET /media/user2_va3L6Ba.png HTTP/1.1" 200 2154
+INFO 2026-09-08 00:02:39,200 log 37436 140630100739776 "GET /media/user1_CZxnMfN.png HTTP/1.1" 200 3072
+INFO 2026-09-08 00:02:39,200 log 37436 140630090249920 "GET /media/user3_235U2tL.png HTTP/1.1" 200 4233
+INFO 2026-09-08 00:02:39,200 log 37436 140630081857216 "GET /media/default_employee_logo_RhfAYUp.png HTTP/1.1" 200 2706
+INFO 2026-09-08 00:02:59,735 log 37436 140630100739776 "GET /api/client/cart/ HTTP/1.1" 200 6131
+INFO 2026-09-08 00:06:18,135 log 37436 140630100739776 "GET /api/about/ HTTP/1.1" 200 3437
+INFO 2026-09-08 00:06:18,265 log 37436 140630100739776 "GET /media/about2_UMPmQVg.jpeg HTTP/1.1" 200 4560
+INFO 2026-09-08 00:06:25,841 log 37436 140630100739776 "GET /api/privacy_policy/ HTTP/1.1" 200 3169
+INFO 2026-09-08 00:06:27,856 log 37436 140630100739776 "GET /api/about/ HTTP/1.1" 200 3437
+INFO 2026-09-08 11:19:24,554 autoreload 16291 127588179472896 Watching for file changes with StatReloader
+INFO 2026-09-08 11:19:27,198 log 16291 127587277018816 "GET / HTTP/1.1" 301 0
+INFO 2026-09-08 11:19:27,247 log 16291 127587277018816 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-08 11:19:27,987 views 16291 127587277018816 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 11:19:28,013 log 16291 127587277018816 "GET /api/home/ HTTP/1.1" 200 6281
+INFO 2026-09-08 11:19:28,552 log 16291 127587277018816 "GET /media/default_news_logo_TG3ZVhS.png HTTP/1.1" 304 0
+INFO 2026-09-08 11:21:31,275 autoreload 16291 127588179472896 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/models.py changed, reloading.
+INFO 2026-09-08 11:21:31,831 autoreload 16591 136405652828672 Watching for file changes with StatReloader
+INFO 2026-09-08 11:22:15,720 autoreload 16729 124533868376576 Watching for file changes with StatReloader
+INFO 2026-09-08 11:22:20,183 views 16729 124532965295808 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 11:22:20,206 log 16729 124532965295808 "GET /api/home/ HTTP/1.1" 200 6281
+INFO 2026-09-08 11:25:24,925 log 16729 124532965295808 "GET /api/about/ HTTP/1.1" 200 12458
+INFO 2026-09-08 11:25:25,015 log 16729 124532965295808 "GET /media/about2_UMPmQVg.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:30:11,154 log 16729 124532965295808 "GET /api/news/ HTTP/1.1" 200 6675
+INFO 2026-09-08 11:30:11,349 log 16729 124532965295808 "GET /media/news3_w9JM0Mp.png HTTP/1.1" 304 0
+INFO 2026-09-08 11:30:11,350 log 16729 124532954805952 "GET /media/news1_wtkJ4am.png HTTP/1.1" 304 0
+INFO 2026-09-08 11:30:12,860 log 16729 124532965295808 "GET /api/news/1 HTTP/1.1" 200 5785
+INFO 2026-09-08 11:31:30,897 autoreload 16729 124533868376576 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/models.py changed, reloading.
+INFO 2026-09-08 11:31:31,489 autoreload 17139 131149622178304 Watching for file changes with StatReloader
+INFO 2026-09-08 11:31:40,095 autoreload 17139 131149622178304 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/models.py changed, reloading.
+INFO 2026-09-08 11:34:57,464 autoreload 17470 130217805193728 Watching for file changes with StatReloader
+ERROR 2026-09-08 11:35:02,026 log 17470 130216902887104 Internal Server Error: /api/news/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 221, in _get_response
+    response = response.render()
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/defaulttags.py", line 332, in render
+    if match:
+       ^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 404, in __bool__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 127, in __iter__
+    for row in compiler.results_iter(results):
+               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1542, in apply_converters
+    value = converter(value, expression, connection)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/backends/sqlite3/operations.py", line 348, in convert_uuidfield_value
+    value = uuid.UUID(value)
+  File "/usr/lib/python3.14/uuid.py", line 219, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+ERROR 2026-09-08 11:35:02,030 log 17470 130216902887104 "GET /api/news/ HTTP/1.1" 500 176009
+INFO 2026-09-08 11:35:23,803 views 17470 130216902887104 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+ERROR 2026-09-08 11:35:23,847 log 17470 130216902887104 Internal Server Error: /api/home/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py", line 50, in index
+    if News.objects.last() != None:
+       ~~~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 1158, in last
+    for obj in queryset[:1]:
+               ~~~~~~~~^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 127, in __iter__
+    for row in compiler.results_iter(results):
+               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1542, in apply_converters
+    value = converter(value, expression, connection)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/backends/sqlite3/operations.py", line 348, in convert_uuidfield_value
+    value = uuid.UUID(value)
+  File "/usr/lib/python3.14/uuid.py", line 219, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+ERROR 2026-09-08 11:35:23,849 log 17470 130216902887104 "GET /api/home/ HTTP/1.1" 500 128163
+INFO 2026-09-08 11:35:52,117 log 17470 130216902887104 "GET /api/faq/ HTTP/1.1" 200 6876
+INFO 2026-09-08 11:35:55,493 log 17470 130216902887104 "GET /api/products/ HTTP/1.1" 200 8174
+INFO 2026-09-08 11:35:56,317 log 17470 130216902887104 "GET /api/promos/ HTTP/1.1" 200 5509
+INFO 2026-09-08 11:35:56,887 log 17470 130216902887104 "GET /api/promos/ HTTP/1.1" 200 5509
+INFO 2026-09-08 11:35:57,977 log 17470 130216902887104 "GET /api/reviews/ HTTP/1.1" 200 11498
+INFO 2026-09-08 11:35:58,692 log 17470 130216902887104 "GET /api/vacancys/ HTTP/1.1" 200 6627
+INFO 2026-09-08 11:36:00,127 log 17470 130216902887104 "GET /api/privacy_policy/ HTTP/1.1" 200 5410
+INFO 2026-09-08 11:36:00,971 log 17470 130216902887104 "GET /api/contacts/ HTTP/1.1" 200 8445
+INFO 2026-09-08 11:36:01,075 log 17470 130216902887104 "GET /media/user2_va3L6Ba.png HTTP/1.1" 304 0
+INFO 2026-09-08 11:36:01,076 log 17470 130216891348672 "GET /media/user1_CZxnMfN.png HTTP/1.1" 304 0
+INFO 2026-09-08 11:36:01,077 log 17470 130216882955968 "GET /media/user3_235U2tL.png HTTP/1.1" 304 0
+INFO 2026-09-08 11:36:01,077 log 17470 130216874563264 "GET /media/default_employee_logo_RhfAYUp.png HTTP/1.1" 304 0
+INFO 2026-09-08 11:36:04,829 views 17470 130216902887104 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+ERROR 2026-09-08 11:36:04,858 log 17470 130216902887104 Internal Server Error: /api/home/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py", line 50, in index
+    if News.objects.last() != None:
+       ~~~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 1158, in last
+    for obj in queryset[:1]:
+               ~~~~~~~~^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 127, in __iter__
+    for row in compiler.results_iter(results):
+               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1542, in apply_converters
+    value = converter(value, expression, connection)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/backends/sqlite3/operations.py", line 348, in convert_uuidfield_value
+    value = uuid.UUID(value)
+  File "/usr/lib/python3.14/uuid.py", line 219, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+ERROR 2026-09-08 11:36:04,861 log 17470 130216902887104 "GET /api/home/ HTTP/1.1" 500 128166
+INFO 2026-09-08 11:36:09,909 log 17470 130216902887104 "GET /api/about/ HTTP/1.1" 200 12458
+ERROR 2026-09-08 11:36:11,228 log 17470 130216902887104 Internal Server Error: /api/news/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 221, in _get_response
+    response = response.render()
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/defaulttags.py", line 332, in render
+    if match:
+       ^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 404, in __bool__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 127, in __iter__
+    for row in compiler.results_iter(results):
+               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1542, in apply_converters
+    value = converter(value, expression, connection)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/backends/sqlite3/operations.py", line 348, in convert_uuidfield_value
+    value = uuid.UUID(value)
+  File "/usr/lib/python3.14/uuid.py", line 219, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+ERROR 2026-09-08 11:36:11,230 log 17470 130216902887104 "GET /api/news/ HTTP/1.1" 500 176009
+INFO 2026-09-08 11:40:31,437 log 17470 130216902887104 "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-09-08 11:40:31,460 log 17470 130216902887104 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3596
+INFO 2026-09-08 11:40:31,572 log 17470 130216891348672 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-09-08 11:40:31,572 log 17470 130216882955968 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+INFO 2026-09-08 11:40:31,573 log 17470 130216874563264 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-09-08 11:40:31,573 log 17470 130216902887104 "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+INFO 2026-09-08 11:40:31,574 log 17470 130216856729280 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-09-08 11:40:31,574 log 17470 130216891348672 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+INFO 2026-09-08 11:40:31,574 log 17470 130216865121984 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-09-08 11:40:37,507 log 17470 130216902887104 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-09-08 11:40:37,527 log 17470 130216902887104 "GET /admin/ HTTP/1.1" 200 20762
+INFO 2026-09-08 11:40:37,611 log 17470 130216902887104 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2026-09-08 11:40:37,635 log 17470 130216902887104 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-09-08 11:40:37,636 log 17470 130216882955968 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+INFO 2026-09-08 11:40:37,636 log 17470 130216891348672 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+ERROR 2026-09-08 11:40:41,850 log 17470 130216902887104 Internal Server Error: /admin/ToyFactory/news/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/contrib/admin/options.py", line 711, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/contrib/admin/sites.py", line 247, in inner
+    return view(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/contrib/admin/options.py", line 2124, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+                                                           ~~~^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 127, in __iter__
+    for row in compiler.results_iter(results):
+               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1542, in apply_converters
+    value = converter(value, expression, connection)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/backends/sqlite3/operations.py", line 348, in convert_uuidfield_value
+    value = uuid.UUID(value)
+  File "/usr/lib/python3.14/uuid.py", line 219, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+ERROR 2026-09-08 11:40:41,852 log 17470 130216902887104 "GET /admin/ToyFactory/news/ HTTP/1.1" 500 151394
+INFO 2026-09-08 11:40:46,983 log 17470 130216902887104 "GET /admin/ HTTP/1.1" 200 20762
+ERROR 2026-09-08 11:40:50,803 log 17470 130216902887104 Internal Server Error: /admin/ToyFactory/news/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/contrib/admin/options.py", line 711, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/contrib/admin/sites.py", line 247, in inner
+    return view(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/contrib/admin/options.py", line 2124, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+                                                           ~~~^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/query.py", line 127, in __iter__
+    for row in compiler.results_iter(results):
+               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1542, in apply_converters
+    value = converter(value, expression, connection)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/backends/sqlite3/operations.py", line 348, in convert_uuidfield_value
+    value = uuid.UUID(value)
+  File "/usr/lib/python3.14/uuid.py", line 219, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+ERROR 2026-09-08 11:40:50,804 log 17470 130216902887104 "GET /admin/ToyFactory/news/ HTTP/1.1" 500 151394
+INFO 2026-09-08 11:41:53,062 autoreload 17904 131180224098816 Watching for file changes with StatReloader
+INFO 2026-09-08 11:41:59,274 log 17904 131179320907456 "GET /admin/ HTTP/1.1" 200 20762
+INFO 2026-09-08 11:42:01,515 log 17904 131179320907456 "GET /admin/ToyFactory/news/ HTTP/1.1" 200 15126
+INFO 2026-09-08 11:42:01,586 log 17904 131179320907456 "GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
+INFO 2026-09-08 11:42:01,586 log 17904 131179223176896 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-09-08 11:42:01,588 log 17904 131179214784192 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-09-08 11:42:01,590 log 17904 131179206391488 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2026-09-08 11:42:01,592 log 17904 131179214784192 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-09-08 11:42:01,592 log 17904 131179223176896 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-09-08 11:42:01,593 log 17904 131179320907456 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-09-08 11:42:01,594 log 17904 131179239962304 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-08 11:42:01,595 log 17904 131179206391488 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-09-08 11:42:01,596 log 17904 131179239962304 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2026-09-08 11:42:01,596 log 17904 131179231569600 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-09-08 11:42:01,637 log 17904 131179206391488 "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+INFO 2026-09-08 11:42:01,668 log 17904 131179231569600 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO 2026-09-08 11:42:03,667 log 17904 131179206391488 "GET /admin/ToyFactory/news/add/ HTTP/1.1" 200 18232
+INFO 2026-09-08 11:42:03,720 log 17904 131179206391488 "GET /static/admin/css/forms.css HTTP/1.1" 200 8831
+INFO 2026-09-08 11:42:03,723 log 17904 131179231569600 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-09-08 11:42:03,724 log 17904 131179320907456 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-09-08 11:42:03,725 log 17904 131179206391488 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-08 11:42:03,747 log 17904 131179231569600 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+INFO 2026-09-08 11:43:59,894 log 17904 131179231569600 "POST /admin/ToyFactory/news/add/ HTTP/1.1" 302 0
+INFO 2026-09-08 11:43:59,909 log 17904 131179231569600 "GET /admin/ToyFactory/news/add/ HTTP/1.1" 200 18496
+INFO 2026-09-08 11:44:00,023 log 17904 131179231569600 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-08 11:44:00,084 log 17904 131179231569600 "GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+INFO 2026-09-08 11:44:21,626 log 17904 131179231569600 "POST /admin/ToyFactory/news/add/ HTTP/1.1" 302 0
+INFO 2026-09-08 11:44:21,644 log 17904 131179231569600 "GET /admin/ToyFactory/news/ HTTP/1.1" 200 17868
+INFO 2026-09-08 11:44:21,753 log 17904 131179231569600 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-08 11:44:21,834 log 17904 131179231569600 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+INFO 2026-09-08 11:44:26,687 log 17904 131179231569600 "GET / HTTP/1.1" 301 0
+INFO 2026-09-08 11:44:26,697 log 17904 131179231569600 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-08 11:44:27,891 views 17904 131179231569600 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 11:44:27,900 log 17904 131179231569600 "GET /api/home/ HTTP/1.1" 200 8301
+INFO 2026-09-08 11:44:28,018 log 17904 131179231569600 "GET /media/images.jpeg HTTP/1.1" 200 41954
+INFO 2026-09-08 11:44:45,608 log 17904 131179231569600 "GET /api/news/ HTTP/1.1" 200 9301
+INFO 2026-09-08 11:44:45,752 log 17904 131179206391488 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:44:45,753 log 17904 131179231569600 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 200 41954
+INFO 2026-09-08 11:44:50,978 log 17904 131179231569600 "GET /api/news/5bf32ca1-2608-4fc7-a4a7-6b9e1a1d7d15 HTTP/1.1" 200 7452
+INFO 2026-09-08 11:44:51,054 log 17904 131179231569600 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:03,247 log 17904 131179231569600 "GET /api/news/ HTTP/1.1" 200 9301
+INFO 2026-09-08 11:45:03,449 log 17904 131179231569600 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:03,450 log 17904 131179206391488 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:06,556 log 17904 131179231569600 "GET /api/news/5bf32ca1-2608-4fc7-a4a7-6b9e1a1d7d15 HTTP/1.1" 200 7452
+INFO 2026-09-08 11:45:08,018 log 17904 131179231569600 "GET /api/news/ HTTP/1.1" 200 9301
+INFO 2026-09-08 11:45:08,136 log 17904 131179231569600 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:09,426 log 17904 131179231569600 "GET /api/news/5bf32ca1-2608-4fc7-a4a7-6b9e1a1d7d15 HTTP/1.1" 200 7452
+INFO 2026-09-08 11:45:13,711 log 17904 131179231569600 "GET /api/news/ HTTP/1.1" 200 9301
+INFO 2026-09-08 11:45:13,808 log 17904 131179206391488 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:13,808 log 17904 131179231569600 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:17,956 log 17904 131179231569600 "GET /api/news/63dc6b8d-c372-4813-ac78-bfdd379c26c9 HTTP/1.1" 200 7159
+INFO 2026-09-08 11:45:19,706 log 17904 131179231569600 "GET /api/news/ HTTP/1.1" 200 9301
+INFO 2026-09-08 11:45:19,980 log 17904 131179231569600 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:55,497 log 17904 131179231569600 "GET /api/news/5bf32ca1-2608-4fc7-a4a7-6b9e1a1d7d15 HTTP/1.1" 200 7452
+INFO 2026-09-08 11:45:55,673 log 17904 131179231569600 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:45:57,861 log 17904 131179231569600 "GET /api/news/ HTTP/1.1" 200 9301
+INFO 2026-09-08 11:45:58,026 log 17904 131179231569600 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:50:25,956 autoreload 17904 131180224098816 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/admin.py changed, reloading.
+INFO 2026-09-08 11:50:26,477 autoreload 18632 138236976681472 Watching for file changes with StatReloader
+INFO 2026-09-08 11:52:06,786 views 18632 138236073133760 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 11:52:06,810 log 18632 138236073133760 "GET /api/home/ HTTP/1.1" 200 8301
+INFO 2026-09-08 11:52:06,933 log 18632 138236073133760 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 11:52:08,440 log 18632 138236073133760 "GET /api/about/ HTTP/1.1" 200 12264
+INFO 2026-09-08 11:52:09,661 log 18632 138236073133760 "GET /api/faq/ HTTP/1.1" 200 25105
+INFO 2026-09-08 11:53:01,464 log 18632 138236073133760 "GET /api/contacts/ HTTP/1.1" 200 8251
+INFO 2026-09-08 11:53:13,878 log 18632 138236073133760 "GET /api/contacts/99d505f1-1694-43e9-9dd4-ce0152a792c3 HTTP/1.1" 200 5538
+INFO 2026-09-08 11:53:22,110 log 18632 138236073133760 "GET /api/contacts/ HTTP/1.1" 200 8251
+INFO 2026-09-08 11:59:08,470 log 18632 138236073133760 "GET /api/privacy_policy/ HTTP/1.1" 200 5216
+INFO 2026-09-08 11:59:32,342 log 18632 138236073133760 "GET /api/vacancys/ HTTP/1.1" 200 6433
+INFO 2026-09-08 11:59:53,473 log 18632 138236073133760 "GET /api/promos/ HTTP/1.1" 200 5315
+INFO 2026-09-08 11:59:56,350 log 18632 138236073133760 "GET /api/vacancys/ HTTP/1.1" 200 6433
+INFO 2026-09-08 12:02:01,418 log 18632 138236073133760 "GET /api/contacts/ HTTP/1.1" 200 28582
+INFO 2026-09-08 12:02:07,515 log 18632 138236073133760 "GET /api/contacts/99d505f1-1694-43e9-9dd4-ce0152a792c3 HTTP/1.1" 200 5538
+INFO 2026-09-08 12:06:24,690 views 18632 138236073133760 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 12:06:24,699 log 18632 138236073133760 "GET /api/home/ HTTP/1.1" 200 8301
+INFO 2026-09-08 12:06:24,826 log 18632 138236073133760 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 12:06:26,689 log 18632 138236073133760 "GET /api/contacts/ HTTP/1.1" 200 28582
+INFO 2026-09-08 12:06:27,873 log 18632 138236073133760 "GET /api/contacts/99d505f1-1694-43e9-9dd4-ce0152a792c3 HTTP/1.1" 200 6949
+INFO 2026-09-08 12:06:30,737 log 18632 138236073133760 "GET /api/contacts/ HTTP/1.1" 200 28582
+INFO 2026-09-08 12:07:09,738 log 18632 138236073133760 "GET /api/privacy_policy/ HTTP/1.1" 200 13487
+INFO 2026-09-08 12:11:59,955 log 18632 138236073133760 "GET /api/vacancys/ HTTP/1.1" 200 15016
+INFO 2026-09-08 12:12:05,617 log 18632 138236073133760 "GET /api/vacancy/4 HTTP/1.1" 200 8137
+INFO 2026-09-08 12:12:19,961 log 18632 138236073133760 "GET /api/vacancys/ HTTP/1.1" 200 15016
+INFO 2026-09-08 12:13:51,737 log 18632 138236073133760 "GET /api/reviews/ HTTP/1.1" 200 11304
+INFO 2026-09-08 12:28:51,968 autoreload 18632 138236976681472 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py changed, reloading.
+INFO 2026-09-08 12:28:52,530 autoreload 22621 133148144644608 Watching for file changes with StatReloader
+INFO 2026-09-08 12:29:10,184 autoreload 22621 133148144644608 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py changed, reloading.
+INFO 2026-09-08 12:29:10,719 autoreload 22654 137929566593536 Watching for file changes with StatReloader
+INFO 2026-09-08 12:30:07,105 views 22654 137928663156416 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 12:30:07,129 log 22654 137928663156416 "GET /api/home/ HTTP/1.1" 200 8301
+INFO 2026-09-08 12:30:07,229 log 22654 137928663156416 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 12:30:08,713 log 22654 137928663156416 "GET /api/reviews/ HTTP/1.1" 200 41428
+INFO 2026-09-08 12:42:52,488 views 22654 137928663156416 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 12:42:52,497 log 22654 137928663156416 "GET /api/home/ HTTP/1.1" 200 8301
+INFO 2026-09-08 12:42:52,625 log 22654 137928663156416 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-08 12:42:53,909 log 22654 137928663156416 "GET /api/promos/ HTTP/1.1" 200 11973
+INFO 2026-09-08 12:43:11,233 log 22654 137928663156416 "GET /api/promo/893fbd73-d7bb-4b59-b2cb-b3b2a90ba1b1 HTTP/1.1" 200 6800
+INFO 2026-09-08 12:43:24,352 log 22654 137928663156416 "GET /api/promos/ HTTP/1.1" 200 11973
+INFO 2026-09-08 12:43:26,878 views 22654 137928663156416 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-01&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-08 12:43:26,885 log 22654 137928663156416 "GET /api/home/ HTTP/1.1" 200 8301
+INFO 2026-09-10 00:34:36,648 autoreload 19678 130277960225280 Watching for file changes with StatReloader
+INFO 2026-09-10 00:39:34,217 views 19678 130277057595072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 00:39:34,242 log 19678 130277057595072 "GET /api/home/ HTTP/1.1" 200 12879
+INFO 2026-09-10 00:39:34,341 log 19678 130277057595072 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:02,644 log 19678 130277057595072 "GET /api/clients/ HTTP/1.1" 200 12065
+INFO 2026-09-10 00:40:04,299 log 19678 130277057595072 "GET /api/cities/ HTTP/1.1" 200 10908
+INFO 2026-09-10 00:40:05,139 log 19678 130277057595072 "GET /api/products/ HTTP/1.1" 200 12868
+WARNING 2026-09-10 00:40:06,640 views 19678 130277057595072 employee_profile view: employee warning: employee not found!
+ERROR 2026-09-10 00:40:06,653 log 19678 130277057595072 Internal Server Error: /accounts/employee/profile
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py", line 97, in employee_profile
+    form = EmployeeUpdateForm(instance=employee)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py", line 193, in __init__
+    if self.instance and self.instance.pk and self.instance.phone:
+                                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/fields/related_descriptors.py", line 267, in __get__
+    raise self.RelatedObjectDoesNotExist(
+        "%s has no %s." % (self.field.model.__name__, self.field.name)
+    )
+ToyFactory.models.Employee.phone.RelatedObjectDoesNotExist: Employee has no phone.
+ERROR 2026-09-10 00:40:06,655 log 19678 130277057595072 "GET /accounts/employee/profile HTTP/1.1" 500 83162
+INFO 2026-09-10 00:40:24,466 log 19678 130277057595072 "GET /admin/ HTTP/1.1" 200 20517
+INFO 2026-09-10 00:40:24,519 log 19678 130277046056640 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:24,520 log 19678 130277057595072 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:24,520 log 19678 130277037663936 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:24,522 log 19678 130277057595072 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:24,524 log 19678 130277037663936 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:24,525 log 19678 130277046056640 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:24,525 log 19678 130276827068096 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:40:24,630 log 19678 130277057595072 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-09-10 00:40:24,630 log 19678 130277037663936 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+INFO 2026-09-10 00:40:24,630 log 19678 130276827068096 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+WARNING 2026-09-10 00:40:42,180 views 19678 130277057595072 product_popularity not found!
+WARNING 2026-09-10 00:40:42,285 views 19678 130277057595072 clients_report not found!
+WARNING 2026-09-10 00:40:42,286 views 19678 130277057595072 products_report not found!
+WARNING 2026-09-10 00:40:42,286 views 19678 130277057595072 labels or values not found!
+WARNING 2026-09-10 00:40:42,286 views 19678 130277057595072 labels or values not found!
+WARNING 2026-09-10 00:40:42,287 views 19678 130277057595072 labels or values not found!
+WARNING 2026-09-10 00:40:42,287 views 19678 130277057595072 labels or values not found!
+INFO 2026-09-10 00:40:42,289 log 19678 130277057595072 "GET /api/analytics/ HTTP/1.1" 200 66841
+INFO 2026-09-10 00:41:01,310 views 19678 130277057595072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 00:41:01,315 log 19678 130277057595072 "GET /api/home/ HTTP/1.1" 200 12879
+INFO 2026-09-10 00:44:12,454 autoreload 19678 130277960225280 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/models.py changed, reloading.
+INFO 2026-09-10 00:44:13,702 autoreload 20337 132665476473344 Watching for file changes with StatReloader
+INFO 2026-09-10 00:47:13,732 autoreload 20634 137037433086464 Watching for file changes with StatReloader
+INFO 2026-09-10 00:49:28,627 views 20634 137036530128576 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 00:49:28,660 log 20634 137036530128576 "GET /api/home/ HTTP/1.1" 200 24760
+INFO 2026-09-10 00:49:28,840 log 20634 137036530128576 "GET /media/about2_UMPmQVg.jpeg HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:15,464 log 20634 137036530128576 "GET /admin/ HTTP/1.1" 200 21163
+INFO 2026-09-10 00:50:26,248 log 20634 137036530128576 "GET /admin/ToyFactory/partner/ HTTP/1.1" 200 15270
+INFO 2026-09-10 00:50:26,312 log 20634 137036530128576 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,318 log 20634 137036518590144 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,319 log 20634 137036510197440 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,320 log 20634 137036518590144 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,320 log 20634 137036300285632 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,321 log 20634 137036510197440 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,322 log 20634 137036291892928 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,322 log 20634 137036300285632 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,322 log 20634 137036283500224 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,322 log 20634 137036291892928 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:26,324 log 20634 137036530128576 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-10 00:50:26,486 log 20634 137036530128576 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO 2026-09-10 00:50:28,153 log 20634 137036530128576 "GET /admin/ToyFactory/partner/add/ HTTP/1.1" 200 18663
+INFO 2026-09-10 00:50:28,213 log 20634 137036530128576 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-10 00:50:28,214 log 20634 137036530128576 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:28,220 log 20634 137036518590144 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:28,220 log 20634 137036283500224 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2026-09-10 00:50:28,260 log 20634 137036530128576 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2026-09-10 00:51:20,085 log 20634 137036530128576 "POST /admin/ToyFactory/partner/add/ HTTP/1.1" 302 0
+INFO 2026-09-10 00:51:20,103 log 20634 137036530128576 "GET /admin/ToyFactory/partner/add/ HTTP/1.1" 200 18966
+INFO 2026-09-10 00:51:20,216 log 20634 137036530128576 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-10 00:51:20,326 log 20634 137036530128576 "GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+INFO 2026-09-10 00:51:53,628 log 20634 137036530128576 "POST /admin/ToyFactory/partner/add/ HTTP/1.1" 302 0
+INFO 2026-09-10 00:51:53,648 log 20634 137036530128576 "GET /admin/ToyFactory/partner/ HTTP/1.1" 200 18186
+INFO 2026-09-10 00:51:53,757 log 20634 137036530128576 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-10 00:51:53,920 log 20634 137036530128576 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+INFO 2026-09-10 00:52:03,076 log 20634 137036530128576 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 00:52:03,087 log 20634 137036530128576 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 00:52:03,843 views 20634 137036530128576 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 00:52:03,855 log 20634 137036530128576 "GET /api/home/ HTTP/1.1" 200 26821
+INFO 2026-09-10 00:52:03,995 log 20634 137036530128576 "GET /media/partners/bel_post.png HTTP/1.1" 200 3971
+INFO 2026-09-10 00:52:03,995 log 20634 137036510197440 "GET /media/partners/det_mir.png HTTP/1.1" 200 7204
+INFO 2026-09-10 10:58:09,609 autoreload 16270 139603088278016 Watching for file changes with StatReloader
+INFO 2026-09-10 10:59:07,700 log 16270 139602185885376 "GET /api/product/create/ HTTP/1.1" 200 13956
+INFO 2026-09-10 10:59:09,526 log 16270 139602185885376 "GET /api/product_type/create/ HTTP/1.1" 200 10408
+ERROR 2026-09-10 10:59:10,919 log 16270 139602185885376 Internal Server Error: /api/product_model/create/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 221, in _get_response
+    response = response.render()
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: ToyFactory/productmodel_form.html
+ERROR 2026-09-10 10:59:10,920 log 16270 139602185885376 "GET /api/product_model/create/ HTTP/1.1" 500 89177
+ERROR 2026-09-10 10:59:18,927 log 16270 139602185885376 Internal Server Error: /api/product_model/create/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 221, in _get_response
+    response = response.render()
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: ToyFactory/productmodel_form.html
+ERROR 2026-09-10 10:59:18,928 log 16270 139602185885376 "GET /api/product_model/create/ HTTP/1.1" 500 89177
+INFO 2026-09-10 10:59:43,744 log 16270 139602185885376 "GET /api/product_type/create/ HTTP/1.1" 200 10408
+ERROR 2026-09-10 11:02:05,352 log 16270 139602175395520 Internal Server Error: /api/product_model/create/
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 221, in _get_response
+    response = response.render()
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: ToyFactory/productmodel_form.html
+ERROR 2026-09-10 11:02:05,352 log 16270 139602175395520 "GET /api/product_model/create/ HTTP/1.1" 500 89177
+INFO 2026-09-10 11:03:24,430 log 16270 139602175395520 "GET /api/product_model/create/ HTTP/1.1" 200 10410
+INFO 2026-09-10 11:03:26,258 log 16270 139602175395520 "GET /api/product/create/ HTTP/1.1" 200 13956
+INFO 2026-09-10 11:03:28,910 log 16270 139602175395520 "GET /api/clients/ HTTP/1.1" 200 12065
+INFO 2026-09-10 11:03:30,494 log 16270 139602175395520 "GET /api/cities/ HTTP/1.1" 200 10908
+INFO 2026-09-10 11:03:31,714 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12868
+INFO 2026-09-10 11:03:32,203 log 16270 139602175395520 "GET /api/cities/ HTTP/1.1" 200 10908
+INFO 2026-09-10 11:03:32,586 log 16270 139602175395520 "GET /api/clients/ HTTP/1.1" 200 12065
+INFO 2026-09-10 11:03:35,006 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12868
+INFO 2026-09-10 11:03:38,938 log 16270 139602175395520 "GET /api/product/create/?csrfmiddlewaretoken=ZydJ4lToNCxaIQbbAzvRObyQwh8FOC3hRVj6iYzuOs1sIkRy8bli9QqQKO0yxoLx HTTP/1.1" 200 13956
+INFO 2026-09-10 11:03:49,232 log 16270 139602175395520 "GET /api/news/ HTTP/1.1" 200 13928
+INFO 2026-09-10 11:03:49,449 log 16270 139602175395520 "GET /media/images.jpeg HTTP/1.1" 304 0
+INFO 2026-09-10 11:03:49,451 log 16270 139602175395520 "GET /media/images_NLmsxeO.jpeg HTTP/1.1" 304 0
+INFO 2026-09-10 11:03:50,870 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12868
+INFO 2026-09-10 11:03:51,586 log 16270 139602175395520 "GET /api/about/ HTTP/1.1" 200 16891
+INFO 2026-09-10 11:03:51,803 log 16270 139602175395520 "GET /media/about2_UMPmQVg.jpeg HTTP/1.1" 304 0
+INFO 2026-09-10 11:03:53,051 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:03:53,081 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26821
+INFO 2026-09-10 11:03:53,203 log 16270 139602175395520 "GET /media/partners/bel_post.png HTTP/1.1" 304 0
+INFO 2026-09-10 11:03:53,203 log 16270 139602165954240 "GET /media/partners/det_mir.png HTTP/1.1" 304 0
+INFO 2026-09-10 11:03:54,659 log 16270 139602175395520 "GET /api/about/ HTTP/1.1" 200 16891
+INFO 2026-09-10 11:03:55,066 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12868
+INFO 2026-09-10 11:03:55,713 log 16270 139602175395520 "GET /api/news/ HTTP/1.1" 200 13928
+INFO 2026-09-10 11:03:59,331 log 16270 139602175395520 "GET /api/faq/ HTTP/1.1" 200 29732
+INFO 2026-09-10 11:04:01,810 log 16270 139602175395520 "GET /api/promos/ HTTP/1.1" 200 16600
+INFO 2026-09-10 11:04:02,895 log 16270 139602175395520 "GET /api/vacancys/ HTTP/1.1" 200 19643
+INFO 2026-09-10 11:04:03,709 log 16270 139602175395520 "GET /api/reviews/ HTTP/1.1" 200 46055
+INFO 2026-09-10 11:04:04,260 log 16270 139602175395520 "GET /api/contacts/ HTTP/1.1" 200 33209
+INFO 2026-09-10 11:04:04,366 log 16270 139602165954240 "GET /media/user1_CZxnMfN.png HTTP/1.1" 304 0
+INFO 2026-09-10 11:04:04,367 log 16270 139602149168832 "GET /media/default_employee_logo_RhfAYUp.png HTTP/1.1" 304 0
+INFO 2026-09-10 11:04:04,366 log 16270 139602157561536 "GET /media/user3_235U2tL.png HTTP/1.1" 304 0
+INFO 2026-09-10 11:04:04,366 log 16270 139602175395520 "GET /media/user2_va3L6Ba.png HTTP/1.1" 304 0
+INFO 2026-09-10 11:04:05,183 log 16270 139602175395520 "GET /api/privacy_policy/ HTTP/1.1" 200 18114
+INFO 2026-09-10 11:04:10,177 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:04:10,190 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26821
+INFO 2026-09-10 11:04:18,267 log 16270 139602175395520 "GET /api/products/?q=%D1%84 HTTP/1.1" 200 12868
+INFO 2026-09-10 11:04:32,611 log 16270 139602175395520 "GET /api/products/?q=bunny HTTP/1.1" 200 12868
+INFO 2026-09-10 11:05:25,645 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:05:25,658 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26821
+WARNING 2026-09-10 11:05:31,134 views 16270 139602175395520 employee_profile view: employee warning: employee not found!
+ERROR 2026-09-10 11:05:31,146 log 16270 139602175395520 Internal Server Error: /accounts/employee/profile
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py", line 98, in employee_profile
+    form = EmployeeUpdateForm(instance=employee)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py", line 193, in __init__
+    if self.instance and self.instance.pk and self.instance.phone:
+                                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/fields/related_descriptors.py", line 267, in __get__
+    raise self.RelatedObjectDoesNotExist(
+        "%s has no %s." % (self.field.model.__name__, self.field.name)
+    )
+ToyFactory.models.Employee.phone.RelatedObjectDoesNotExist: Employee has no phone.
+ERROR 2026-09-10 11:05:31,147 log 16270 139602175395520 "GET /accounts/employee/profile HTTP/1.1" 500 83157
+WARNING 2026-09-10 11:05:34,869 views 16270 139602175395520 product_popularity not found!
+WARNING 2026-09-10 11:05:34,974 views 16270 139602175395520 clients_report not found!
+WARNING 2026-09-10 11:05:34,975 views 16270 139602175395520 products_report not found!
+WARNING 2026-09-10 11:05:34,975 views 16270 139602175395520 labels or values not found!
+WARNING 2026-09-10 11:05:34,975 views 16270 139602175395520 labels or values not found!
+WARNING 2026-09-10 11:05:34,975 views 16270 139602175395520 labels or values not found!
+WARNING 2026-09-10 11:05:34,975 views 16270 139602175395520 labels or values not found!
+INFO 2026-09-10 11:05:34,978 log 16270 139602175395520 "GET /api/analytics/ HTTP/1.1" 200 66841
+INFO 2026-09-10 11:05:56,837 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:18,288 log 16270 139602175395520 "GET /api/products/?q=Bunny HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:19,337 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:19,818 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:20,212 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:20,439 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:20,670 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:20,911 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:22,157 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:22,594 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:22,807 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:23,041 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:23,267 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:23,552 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:23,940 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:06:24,172 log 16270 139602175395520 "GET /api/products/?q= HTTP/1.1" 200 12868
+INFO 2026-09-10 11:07:00,534 log 16270 139602175395520 "GET /accounts/account/ HTTP/1.1" 200 10760
+INFO 2026-09-10 11:07:05,044 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:07:05,058 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26821
+INFO 2026-09-10 11:07:06,515 log 16270 139602175395520 "GET /api/about/ HTTP/1.1" 200 16891
+INFO 2026-09-10 11:07:55,937 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12868
+INFO 2026-09-10 11:07:56,669 log 16270 139602175395520 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 10702
+INFO 2026-09-10 11:08:01,884 log 16270 139602175395520 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc/update/?csrfmiddlewaretoken=kdENiYO33JDMcyyJBC3SXRG2bR5RD9LWcAKawBu94z74c2e69eTjiwy2poXKmVtc HTTP/1.1" 200 13975
+INFO 2026-09-10 11:12:27,979 log 16270 139602175395520 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 11:12:29,010 log 16270 139602175395520 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 11:12:36,536 log 16270 139602175395520 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:12:36,541 log 16270 139602175395520 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 11:12:36,590 log 16270 139602175395520 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:12:36,965 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:12:36,983 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26495
+INFO 2026-09-10 11:12:42,613 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12281
+INFO 2026-09-10 11:12:44,737 log 16270 139602175395520 "GET /api/cities/ HTTP/1.1" 200 10582
+INFO 2026-09-10 11:12:51,360 log 16270 139602175395520 "GET /api/client/cart/ HTTP/1.1" 200 12479
+INFO 2026-09-10 11:13:13,451 log 16270 139602175395520 "POST /api/client/cart/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:13:13,473 log 16270 139602175395520 "GET /api/client/cart/ HTTP/1.1" 200 13388
+INFO 2026-09-10 11:13:17,544 log 16270 139602175395520 "POST /api/client/cart/complete HTTP/1.1" 302 0
+INFO 2026-09-10 11:13:17,567 log 16270 139602175395520 "GET /api/client/orders/ HTTP/1.1" 200 10076
+INFO 2026-09-10 11:13:22,566 log 16270 139602175395520 "GET /accounts/client/profile HTTP/1.1" 200 11468
+INFO 2026-09-10 11:14:17,689 log 16270 139602175395520 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 11:14:18,676 log 16270 139602175395520 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 11:14:24,403 log 16270 139602175395520 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:14:24,409 log 16270 139602175395520 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 11:14:24,456 log 16270 139602175395520 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:14:24,676 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:14:24,691 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26636
+INFO 2026-09-10 11:14:26,594 log 16270 139602175395520 "GET /accounts/employee/profile HTTP/1.1" 200 10738
+INFO 2026-09-10 11:14:28,800 log 16270 139602175395520 "GET /api/clients/ HTTP/1.1" 200 11880
+INFO 2026-09-10 11:14:33,115 log 16270 139602175395520 "GET /api/cities/ HTTP/1.1" 200 10723
+INFO 2026-09-10 11:14:33,668 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12683
+INFO 2026-09-10 11:14:34,521 log 16270 139602175395520 "GET /api/clients/ HTTP/1.1" 200 11880
+INFO 2026-09-10 11:14:37,159 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12683
+INFO 2026-09-10 11:14:40,784 log 16270 139602175395520 "GET /accounts/account/ HTTP/1.1" 200 10590
+INFO 2026-09-10 11:14:44,779 log 16270 139602175395520 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 11:14:45,672 log 16270 139602175395520 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 11:14:50,295 log 16270 139602175395520 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:14:50,301 log 16270 139602175395520 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 11:14:50,348 log 16270 139602175395520 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:14:50,883 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:14:50,896 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26821
+INFO 2026-09-10 11:15:16,512 log 16270 139602175395520 "GET /api/privacy_policy/ HTTP/1.1" 200 18114
+INFO 2026-09-10 11:15:27,995 log 16270 139602175395520 "GET /api/about/ HTTP/1.1" 200 16891
+INFO 2026-09-10 11:16:06,533 log 16270 139602175395520 "GET /api/analytics/ HTTP/1.1" 200 126841
+INFO 2026-09-10 11:22:55,472 log 16270 139602175395520 "GET /accounts/account/ HTTP/1.1" 200 10760
+INFO 2026-09-10 11:22:56,250 log 16270 139602175395520 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 11:22:58,512 log 16270 139602175395520 "GET /accounts/register/ HTTP/1.1" 200 12083
+INFO 2026-09-10 11:23:00,046 log 16270 139602175395520 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 11:23:08,863 log 16270 139602175395520 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:23:08,870 log 16270 139602175395520 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 11:23:08,918 log 16270 139602175395520 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:23:09,310 views 16270 139602175395520 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:23:09,326 log 16270 139602175395520 "GET /api/home/ HTTP/1.1" 200 26495
+INFO 2026-09-10 11:23:12,172 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12281
+INFO 2026-09-10 11:23:23,508 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12281
+INFO 2026-09-10 11:23:25,263 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12281
+INFO 2026-09-10 11:23:26,222 log 16270 139602175395520 "GET /api/products/ HTTP/1.1" 200 12281
+INFO 2026-09-10 11:23:35,415 log 16270 139602175395520 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 9787
+INFO 2026-09-10 11:23:39,372 log 16270 139602175395520 "GET /api/client/orders/ HTTP/1.1" 200 10076
+INFO 2026-09-10 11:23:40,481 log 16270 139602175395520 "GET /api/client/cart/ HTTP/1.1" 200 12479
+INFO 2026-09-10 11:23:43,049 log 16270 139602175395520 "GET /api/client/orders/ HTTP/1.1" 200 10076
+INFO 2026-09-10 11:31:25,613 autoreload 16270 139603088278016 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:31:26,144 autoreload 21217 128365446951424 Watching for file changes with StatReloader
+INFO 2026-09-10 11:31:38,766 autoreload 21217 128365446951424 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:31:39,285 autoreload 21292 132333359661568 Watching for file changes with StatReloader
+INFO 2026-09-10 11:32:00,025 autoreload 21292 132333359661568 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:32:00,783 autoreload 21487 129725611737600 Watching for file changes with StatReloader
+INFO 2026-09-10 11:32:09,502 autoreload 21487 129725611737600 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:32:09,982 autoreload 21546 128120954245632 Watching for file changes with StatReloader
+INFO 2026-09-10 11:32:18,616 autoreload 21546 128120954245632 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:32:19,138 autoreload 21606 124365430911488 Watching for file changes with StatReloader
+INFO 2026-09-10 11:32:52,976 autoreload 21606 124365430911488 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:32:53,494 autoreload 21691 128753939214848 Watching for file changes with StatReloader
+INFO 2026-09-10 11:33:06,105 autoreload 21691 128753939214848 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:33:06,590 autoreload 21741 131181637186048 Watching for file changes with StatReloader
+INFO 2026-09-10 11:36:44,987 autoreload 21741 131181637186048 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/urls.py changed, reloading.
+INFO 2026-09-10 11:36:45,498 autoreload 22168 136936235966976 Watching for file changes with StatReloader
+INFO 2026-09-10 11:36:54,076 autoreload 22168 136936235966976 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/urls.py changed, reloading.
+INFO 2026-09-10 11:36:54,626 autoreload 22204 133586456273408 Watching for file changes with StatReloader
+INFO 2026-09-10 11:39:32,417 views 22204 133585553639104 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 11:39:32,453 log 22204 133585553639104 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 11:39:37,466 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:39:41,149 log 22204 133585553639104 "GET /api/product/cff97473-26b5-4475-bf76-7a6f47d80e8c HTTP/1.1" 200 12514
+INFO 2026-09-10 11:40:02,962 views 22204 133585553639104 User me added product Captain's Ship Bath Set to cart
+INFO 2026-09-10 11:40:02,962 log 22204 133585553639104 "POST /api/cart/add/cff97473-26b5-4475-bf76-7a6f47d80e8c/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:02,974 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 13470
+INFO 2026-09-10 11:40:07,933 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:40:09,600 log 22204 133585553639104 "GET /api/product/e18630cc-276c-4e9c-9776-4c3a89fc83b1 HTTP/1.1" 200 12465
+INFO 2026-09-10 11:40:13,704 views 22204 133585553639104 User me added product Bouncy Bunny to cart
+INFO 2026-09-10 11:40:13,705 log 22204 133585553639104 "POST /api/cart/add/e18630cc-276c-4e9c-9776-4c3a89fc83b1/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:13,721 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 15529
+INFO 2026-09-10 11:40:15,801 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:40:17,349 log 22204 133585553639104 "GET /api/product/d799df23-fb1d-4779-af36-65246ef96602 HTTP/1.1" 200 12506
+INFO 2026-09-10 11:40:18,917 views 22204 133585553639104 User me added product Musical Rainbow Xylophone to cart
+INFO 2026-09-10 11:40:18,917 log 22204 133585553639104 "POST /api/cart/add/d799df23-fb1d-4779-af36-65246ef96602/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:18,934 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:40:25,542 log 22204 133585553639104 "GET /api/cart/update/74bb51a7-2e3c-433c-ab52-1f4bb3726951/minus/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:25,558 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:40:27,150 log 22204 133585553639104 "GET /api/cart/update/1f2190e4-b7a3-47aa-9be6-780abe16314d/plus/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:27,162 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:40:28,799 log 22204 133585553639104 "GET /api/cart/update/971c37bc-81d0-4009-8115-ac7c9231ea20/plus/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:28,811 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:40:30,542 log 22204 133585553639104 "GET /api/cart/update/971c37bc-81d0-4009-8115-ac7c9231ea20/plus/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:30,554 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:40:34,113 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:40:35,084 log 22204 133585553639104 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 12512
+INFO 2026-09-10 11:40:35,980 views 22204 133585553639104 User me added product Stacking Rainbow Rings to cart
+INFO 2026-09-10 11:40:35,980 log 22204 133585553639104 "POST /api/cart/add/865388ca-2654-4f9f-a9ce-8b25e168eddc/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:35,992 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 19671
+INFO 2026-09-10 11:40:41,302 log 22204 133585553639104 "GET /api/cart/order/f20597dc-5ba5-48c2-abf0-fa3420bcda6d/delete/ HTTP/1.1" 200 9950
+INFO 2026-09-10 11:40:42,595 log 22204 133585553639104 "POST /api/cart/order/f20597dc-5ba5-48c2-abf0-fa3420bcda6d/delete/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:40:42,607 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:41:01,952 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:41:05,787 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:42:10,759 log 22204 133585553639104 "GET /api/cart/payment/ HTTP/1.1" 200 16522
+INFO 2026-09-10 11:44:51,552 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:44:54,627 log 22204 133585553639104 "GET /api/client/orders/ HTTP/1.1" 200 10069
+INFO 2026-09-10 11:44:55,822 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 17601
+INFO 2026-09-10 11:45:00,110 log 22204 133585553639104 "GET /api/cart/payment/ HTTP/1.1" 200 16522
+INFO 2026-09-10 11:46:06,016 views 22204 133585553639104 Client my company completed payment for total: 93.00
+INFO 2026-09-10 11:46:06,017 log 22204 133585553639104 "POST /api/cart/payment/ HTTP/1.1" 302 0
+INFO 2026-09-10 11:46:06,033 log 22204 133585553639104 "GET /api/client/orders/ HTTP/1.1" 200 11415
+INFO 2026-09-10 11:46:19,450 log 22204 133585553639104 "GET /api/client/orders/ HTTP/1.1" 200 11415
+INFO 2026-09-10 11:46:20,690 log 22204 133585553639104 "GET /api/cart/ HTTP/1.1" 200 10158
+INFO 2026-09-10 11:46:23,421 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:51:57,077 log 22204 133585553639104 "GET /api/products/ HTTP/1.1" 200 12274
+INFO 2026-09-10 11:56:41,673 autoreload 22204 133586456273408 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py changed, reloading.
+INFO 2026-09-10 11:56:42,481 autoreload 25152 130083604738560 Watching for file changes with StatReloader
+INFO 2026-09-10 11:57:01,261 autoreload 25152 130083604738560 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:57:02,417 autoreload 25201 134896929153536 Watching for file changes with StatReloader
+INFO 2026-09-10 11:58:29,870 autoreload 25201 134896929153536 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:58:30,925 autoreload 25446 134132870623744 Watching for file changes with StatReloader
+INFO 2026-09-10 11:58:51,770 autoreload 25446 134132870623744 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 11:58:52,413 autoreload 25544 125473015304704 Watching for file changes with StatReloader
+INFO 2026-09-10 12:00:35,881 views 25544 125472111904448 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:00:35,911 log 25544 125472111904448 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:00:50,454 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:01:02,242 views 25544 125472111904448 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:01:02,253 log 25544 125472111904448 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:01:07,499 log 25544 125472111904448 "GET /api/products/?q=Dog HTTP/1.1" 200 18795
+INFO 2026-09-10 12:01:23,487 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:01:33,351 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:01:37,661 log 25544 125472111904448 "GET /api/products/?q=f&type=&model=&min_price=&max_price=&ordering=price HTTP/1.1" 200 22151
+INFO 2026-09-10 12:01:43,116 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:01:58,278 log 25544 125472111904448 "GET /api/products/?q=&type=&model=&min_price=-4&max_price=-2&ordering=price HTTP/1.1" 200 17803
+INFO 2026-09-10 12:02:37,289 log 25544 125472111904448 "GET /api/products/?q=&type=fd1adcff-fffc-4275-b100-b7b6ee7dc58d&model=&min_price=0&max_price=1000&ordering=price HTTP/1.1" 200 21377
+INFO 2026-09-10 12:02:56,751 log 25544 125472111904448 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 12512
+INFO 2026-09-10 12:03:03,384 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:03:10,365 log 25544 125472111904448 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=price HTTP/1.1" 200 26357
+INFO 2026-09-10 12:03:12,532 log 25544 125472111904448 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=price HTTP/1.1" 200 26357
+INFO 2026-09-10 12:03:13,613 log 25544 125472111904448 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=price HTTP/1.1" 200 26357
+INFO 2026-09-10 12:03:14,114 log 25544 125472111904448 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=price HTTP/1.1" 200 26357
+INFO 2026-09-10 12:04:58,630 log 25544 125472111904448 "GET /api/client/orders/ HTTP/1.1" 200 11415
+INFO 2026-09-10 12:05:15,030 log 25544 125472111904448 "GET /api/products/?q= HTTP/1.1" 200 26357
+INFO 2026-09-10 12:05:22,567 log 25544 125472111904448 "GET /api/cart/ HTTP/1.1" 200 10158
+INFO 2026-09-10 12:05:23,963 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:05:33,216 log 25544 125472111904448 "GET /accounts/client/profile HTTP/1.1" 200 11461
+INFO 2026-09-10 12:05:34,079 log 25544 125472111904448 "GET /api/client/orders/ HTTP/1.1" 200 11415
+INFO 2026-09-10 12:05:34,578 log 25544 125472111904448 "GET /api/cart/ HTTP/1.1" 200 10158
+INFO 2026-09-10 12:05:35,615 log 25544 125472111904448 "GET /api/cities/ HTTP/1.1" 200 10575
+INFO 2026-09-10 12:05:36,160 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:05:41,491 log 25544 125472111904448 "GET /api/contacts/ HTTP/1.1" 200 32876
+INFO 2026-09-10 12:05:42,882 log 25544 125472111904448 "GET /api/contacts/99d505f1-1694-43e9-9dd4-ce0152a792c3 HTTP/1.1" 200 11243
+INFO 2026-09-10 12:05:44,452 log 25544 125472111904448 "GET /api/contacts/ HTTP/1.1" 200 32876
+INFO 2026-09-10 12:06:27,139 views 25544 125472111904448 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:06:27,154 log 25544 125472111904448 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:06:27,434 log 25544 125472111904448 "GET /media/partners/bel_post.png HTTP/1.1" 304 0
+INFO 2026-09-10 12:06:27,434 log 25544 125472032683712 "GET /media/partners/det_mir.png HTTP/1.1" 304 0
+INFO 2026-09-10 12:07:15,224 log 25544 125472111904448 "GET /api/news/63dc6b8d-c372-4813-ac78-bfdd379c26c9 HTTP/1.1" 200 11453
+INFO 2026-09-10 12:07:18,894 log 25544 125472111904448 "GET /api/news/ HTTP/1.1" 200 13595
+INFO 2026-09-10 12:07:21,657 views 25544 125472111904448 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:07:21,669 log 25544 125472111904448 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:07:33,477 log 25544 125472111904448 "GET /api/products/?q= HTTP/1.1" 200 26357
+INFO 2026-09-10 12:08:41,562 log 25544 125472111904448 "GET /api/products/ HTTP/1.1" 200 26357
+INFO 2026-09-10 12:08:43,863 log 25544 125472111904448 "GET /api/product/f6f33c50-5d0e-44b0-853f-13ec7bd699e9 HTTP/1.1" 200 12498
+INFO 2026-09-10 12:08:46,934 views 25544 125472111904448 User me added product Eco Building Blocks to cart
+INFO 2026-09-10 12:08:46,935 log 25544 125472111904448 "POST /api/cart/add/f6f33c50-5d0e-44b0-853f-13ec7bd699e9/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:08:46,950 log 25544 125472111904448 "GET /api/cart/ HTTP/1.1" 200 13463
+INFO 2026-09-10 12:08:48,531 log 25544 125472111904448 "GET /api/cart/payment/ HTTP/1.1" 200 14359
+WARNING 2026-09-10 12:09:11,038 views 25544 125472111904448 Payment validation failed: <ul class="errorlist"><li>card_expiry<ul class="errorlist" id="id_card_expiry_error"><li>Срок действия карты истек (01/25). Карта не может быть принята!</li></ul></li></ul>
+INFO 2026-09-10 12:09:11,040 log 25544 125472111904448 "POST /api/cart/payment/ HTTP/1.1" 200 14729
+WARNING 2026-09-10 12:09:20,770 views 25544 125472111904448 Payment validation failed: <ul class="errorlist"><li>card_cvc<ul class="errorlist" id="id_card_cvc_error"><li>This field is required.</li></ul></li></ul>
+INFO 2026-09-10 12:09:20,773 log 25544 125472111904448 "POST /api/cart/payment/ HTTP/1.1" 200 14624
+INFO 2026-09-10 12:09:24,713 views 25544 125472111904448 Payment successful for client my company. Total: 100.00
+INFO 2026-09-10 12:09:24,714 log 25544 125472111904448 "POST /api/cart/payment/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:09:24,734 log 25544 125472111904448 "GET /api/client/orders/ HTTP/1.1" 200 11862
+INFO 2026-09-10 12:16:40,734 autoreload 25544 125473015304704 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 12:16:41,278 autoreload 28695 139310269633024 Watching for file changes with StatReloader
+INFO 2026-09-10 12:18:20,352 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 26373
+INFO 2026-09-10 12:18:20,973 log 28695 139309366843072 "GET /api/cities/ HTTP/1.1" 200 10575
+INFO 2026-09-10 12:18:21,869 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 26373
+INFO 2026-09-10 12:18:25,822 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:18:25,839 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:18:29,067 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:18:29,078 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:18:29,769 log 28695 139309366843072 "GET /api/about/ HTTP/1.1" 200 16558
+INFO 2026-09-10 12:18:33,510 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:18:33,524 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:18:34,126 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 26373
+INFO 2026-09-10 12:18:34,798 log 28695 139309366843072 "GET /api/news/ HTTP/1.1" 200 13595
+INFO 2026-09-10 12:18:35,400 log 28695 139309366843072 "GET /api/faq/ HTTP/1.1" 200 29399
+INFO 2026-09-10 12:18:36,121 log 28695 139309366843072 "GET /api/promos/ HTTP/1.1" 200 16267
+INFO 2026-09-10 12:18:36,695 log 28695 139309366843072 "GET /api/vacancys/ HTTP/1.1" 200 19310
+INFO 2026-09-10 12:18:37,175 log 28695 139309366843072 "GET /api/reviews/ HTTP/1.1" 200 45714
+INFO 2026-09-10 12:18:37,562 log 28695 139309366843072 "GET /api/contacts/ HTTP/1.1" 200 32876
+INFO 2026-09-10 12:18:38,025 log 28695 139309366843072 "GET /api/privacy_policy/ HTTP/1.1" 200 17781
+INFO 2026-09-10 12:18:38,420 log 28695 139309366843072 "GET /api/reviews/ HTTP/1.1" 200 45714
+INFO 2026-09-10 12:18:38,805 log 28695 139309366843072 "GET /api/contacts/ HTTP/1.1" 200 32876
+INFO 2026-09-10 12:18:39,230 log 28695 139309366843072 "GET /api/vacancys/ HTTP/1.1" 200 19310
+INFO 2026-09-10 12:18:39,599 log 28695 139309366843072 "GET /api/promos/ HTTP/1.1" 200 16267
+INFO 2026-09-10 12:18:40,284 log 28695 139309366843072 "GET /api/faq/ HTTP/1.1" 200 29399
+INFO 2026-09-10 12:18:43,044 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:18:43,056 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:22:32,667 log 28695 139309366843072 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 12:22:33,880 log 28695 139309366843072 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 12:22:38,867 log 28695 139309366843072 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:22:38,875 log 28695 139309366843072 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:22:38,922 log 28695 139309366843072 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:22:39,145 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:22:39,160 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26821
+WARNING 2026-09-10 12:22:51,506 views 28695 139309366843072 employee_profile view: employee warning: employee not found!
+ERROR 2026-09-10 12:22:51,519 log 28695 139309366843072 Internal Server Error: /accounts/employee/profile
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py", line 100, in employee_profile
+    form = EmployeeUpdateForm(instance=employee)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py", line 193, in __init__
+    if self.instance and self.instance.pk and self.instance.phone:
+                                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/fields/related_descriptors.py", line 267, in __get__
+    raise self.RelatedObjectDoesNotExist(
+        "%s has no %s." % (self.field.model.__name__, self.field.name)
+    )
+ToyFactory.models.Employee.phone.RelatedObjectDoesNotExist: Employee has no phone.
+ERROR 2026-09-10 12:22:51,520 log 28695 139309366843072 "GET /accounts/employee/profile HTTP/1.1" 500 83162
+WARNING 2026-09-10 12:23:20,274 views 28695 139309366843072 employee_profile view: employee warning: employee not found!
+ERROR 2026-09-10 12:23:20,287 log 28695 139309366843072 Internal Server Error: /accounts/employee/profile
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py", line 100, in employee_profile
+    form = EmployeeUpdateForm(instance=employee)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py", line 193, in __init__
+    if self.instance and self.instance.pk and self.instance.phone:
+                                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/fields/related_descriptors.py", line 267, in __get__
+    raise self.RelatedObjectDoesNotExist(
+        "%s has no %s." % (self.field.model.__name__, self.field.name)
+    )
+ToyFactory.models.Employee.phone.RelatedObjectDoesNotExist: Employee has no phone.
+ERROR 2026-09-10 12:23:20,288 log 28695 139309366843072 "GET /accounts/employee/profile HTTP/1.1" 500 83162
+INFO 2026-09-10 12:23:26,702 log 28695 139309366843072 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 12:23:28,340 log 28695 139309366843072 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 12:23:36,479 log 28695 139309366843072 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:23:36,487 log 28695 139309366843072 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:23:36,535 log 28695 139309366843072 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:23:37,255 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:23:37,270 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26636
+INFO 2026-09-10 12:23:38,955 log 28695 139309366843072 "GET /accounts/employee/profile HTTP/1.1" 200 10738
+INFO 2026-09-10 12:24:03,196 log 28695 139309366843072 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 12:24:04,337 log 28695 139309366843072 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 12:24:09,824 log 28695 139309366843072 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:24:09,830 log 28695 139309366843072 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:24:09,877 log 28695 139309366843072 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:24:10,102 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:24:10,114 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26821
+WARNING 2026-09-10 12:24:13,148 views 28695 139309366843072 employee_profile view: employee warning: employee not found!
+ERROR 2026-09-10 12:24:13,159 log 28695 139309366843072 Internal Server Error: /accounts/employee/profile
+Traceback (most recent call last):
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py", line 100, in employee_profile
+    form = EmployeeUpdateForm(instance=employee)
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/forms.py", line 193, in __init__
+    if self.instance and self.instance.pk and self.instance.phone:
+                                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/ntfray/Django/IGI_Labs/IGI/LR5/.venv/lib/python3.14/site-packages/django/db/models/fields/related_descriptors.py", line 267, in __get__
+    raise self.RelatedObjectDoesNotExist(
+        "%s has no %s." % (self.field.model.__name__, self.field.name)
+    )
+ToyFactory.models.Employee.phone.RelatedObjectDoesNotExist: Employee has no phone.
+ERROR 2026-09-10 12:24:13,160 log 28695 139309366843072 "GET /accounts/employee/profile HTTP/1.1" 500 83162
+INFO 2026-09-10 12:25:12,279 log 28695 139309366843072 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 12:25:13,133 log 28695 139309366843072 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 12:25:19,572 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 25619
+INFO 2026-09-10 12:25:20,660 log 28695 139309366843072 "GET /api/about/ HTTP/1.1" 200 15804
+INFO 2026-09-10 12:25:21,291 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 25619
+INFO 2026-09-10 12:25:21,999 log 28695 139309366843072 "GET /api/news/ HTTP/1.1" 200 12841
+INFO 2026-09-10 12:25:22,728 log 28695 139309366843072 "GET /api/faq/ HTTP/1.1" 200 28645
+INFO 2026-09-10 12:25:23,287 log 28695 139309366843072 "GET /api/promos/ HTTP/1.1" 200 15513
+INFO 2026-09-10 12:25:23,858 log 28695 139309366843072 "GET /api/vacancys/ HTTP/1.1" 200 18556
+INFO 2026-09-10 12:25:24,427 log 28695 139309366843072 "GET /api/reviews/ HTTP/1.1" 200 43065
+INFO 2026-09-10 12:25:25,006 log 28695 139309366843072 "GET /api/contacts/ HTTP/1.1" 200 32122
+INFO 2026-09-10 12:25:25,544 log 28695 139309366843072 "GET /api/privacy_policy/ HTTP/1.1" 200 17027
+INFO 2026-09-10 12:26:02,475 log 28695 139309366843072 "GET /api/cities/ HTTP/1.1" 200 8754
+INFO 2026-09-10 12:26:04,520 log 28695 139309366843072 "GET /api/about/ HTTP/1.1" 200 15804
+INFO 2026-09-10 12:26:22,765 log 28695 139309366843072 "GET /api/promos/ HTTP/1.1" 200 15513
+INFO 2026-09-10 12:26:25,344 log 28695 139309366843072 "GET /api/privacy_policy/ HTTP/1.1" 200 17027
+INFO 2026-09-10 12:26:44,830 log 28695 139309366843072 "GET /api/cities/ HTTP/1.1" 200 8754
+INFO 2026-09-10 12:26:58,050 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 25619
+INFO 2026-09-10 12:26:58,804 log 28695 139309366843072 "GET /api/news/ HTTP/1.1" 200 12841
+INFO 2026-09-10 12:27:01,839 log 28695 139309366843072 "GET /api/about/ HTTP/1.1" 200 15804
+INFO 2026-09-10 12:27:06,090 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 25619
+INFO 2026-09-10 12:27:07,829 log 28695 139309366843072 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 11285
+INFO 2026-09-10 12:27:11,670 log 28695 139309366843072 "GET /api/about/ HTTP/1.1" 200 15804
+INFO 2026-09-10 12:27:12,808 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 25619
+INFO 2026-09-10 12:27:14,243 log 28695 139309366843072 "GET /api/news/ HTTP/1.1" 200 12841
+INFO 2026-09-10 12:27:15,695 log 28695 139309366843072 "GET /api/news/5bf32ca1-2608-4fc7-a4a7-6b9e1a1d7d15 HTTP/1.1" 200 10992
+INFO 2026-09-10 12:27:16,821 log 28695 139309366843072 "GET /api/news/ HTTP/1.1" 200 12841
+INFO 2026-09-10 12:27:17,524 log 28695 139309366843072 "GET /api/faq/ HTTP/1.1" 200 28645
+INFO 2026-09-10 12:27:19,016 log 28695 139309366843072 "GET /api/news/ HTTP/1.1" 200 12841
+INFO 2026-09-10 12:27:20,095 log 28695 139309366843072 "GET /api/news/5bf32ca1-2608-4fc7-a4a7-6b9e1a1d7d15 HTTP/1.1" 200 10992
+INFO 2026-09-10 12:27:33,289 log 28695 139309366843072 "GET /api/promos/ HTTP/1.1" 200 15513
+INFO 2026-09-10 12:27:34,167 log 28695 139309366843072 "GET /api/vacancys/ HTTP/1.1" 200 18556
+INFO 2026-09-10 12:27:36,100 log 28695 139309366843072 "GET /api/reviews/ HTTP/1.1" 200 43065
+INFO 2026-09-10 12:27:43,544 log 28695 139309366843072 "GET /api/reviews/ HTTP/1.1" 200 43065
+INFO 2026-09-10 12:27:44,411 log 28695 139309366843072 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 12:27:53,855 log 28695 139309366843072 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:27:53,861 log 28695 139309366843072 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:27:53,910 log 28695 139309366843072 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:27:54,143 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:27:54,157 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26488
+INFO 2026-09-10 12:28:03,787 log 28695 139309366843072 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 12:28:04,568 log 28695 139309366843072 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 12:28:10,259 log 28695 139309366843072 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:28:10,265 log 28695 139309366843072 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:28:10,313 log 28695 139309366843072 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:28:10,639 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:28:10,652 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26636
+INFO 2026-09-10 12:28:25,688 log 28695 139309366843072 "GET /api/products/ HTTP/1.1" 200 26701
+INFO 2026-09-10 12:28:27,426 log 28695 139309366843072 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 12473
+INFO 2026-09-10 12:28:32,256 log 28695 139309366843072 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc/update/ HTTP/1.1" 200 13790
+INFO 2026-09-10 12:28:44,880 log 28695 139309366843072 "POST /accounts/logout/ HTTP/1.1" 200 8799
+INFO 2026-09-10 12:28:45,989 log 28695 139309366843072 "GET /accounts/login/ HTTP/1.1" 200 9456
+INFO 2026-09-10 12:28:52,389 log 28695 139309366843072 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:28:52,393 log 28695 139309366843072 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:28:52,441 log 28695 139309366843072 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:28:52,833 views 28695 139309366843072 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:28:52,847 log 28695 139309366843072 "GET /api/home/ HTTP/1.1" 200 26821
+INFO 2026-09-10 12:37:44,038 autoreload 28695 139310269633024 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 12:37:44,532 autoreload 32077 136409466077696 Watching for file changes with StatReloader
+INFO 2026-09-10 12:38:02,294 autoreload 32077 136409466077696 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 12:38:03,406 autoreload 32235 124239443595776 Watching for file changes with StatReloader
+INFO 2026-09-10 12:38:13,084 autoreload 32235 124239443595776 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-10 12:38:13,644 autoreload 32277 133241346437632 Watching for file changes with StatReloader
+INFO 2026-09-10 12:38:22,351 views 32277 133240443836096 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:38:22,378 log 32277 133240443836096 "GET /api/home/ HTTP/1.1" 200 27133
+INFO 2026-09-10 12:38:31,537 log 32277 133240443836096 "POST /accounts/logout/ HTTP/1.1" 200 8754
+INFO 2026-09-10 12:38:32,349 log 32277 133240443836096 "GET /accounts/login/ HTTP/1.1" 200 9411
+INFO 2026-09-10 12:38:41,041 log 32277 133240443836096 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:38:41,049 log 32277 133240443836096 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:38:41,098 log 32277 133240443836096 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:38:41,315 views 32277 133240443836096 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:38:41,330 log 32277 133240443836096 "GET /api/home/ HTTP/1.1" 200 27065
+INFO 2026-09-10 12:38:42,660 log 32277 133240443836096 "GET /accounts/employee/profile HTTP/1.1" 200 11167
+INFO 2026-09-10 12:38:59,982 log 32277 133240443836096 "POST /accounts/logout/ HTTP/1.1" 200 8754
+INFO 2026-09-10 12:39:03,761 log 32277 133240443836096 "GET /accounts/login/ HTTP/1.1" 200 9411
+INFO 2026-09-10 12:39:11,719 log 32277 133240443836096 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:39:11,725 log 32277 133240443836096 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:39:11,772 log 32277 133240443836096 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:39:11,986 views 32277 133240443836096 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:39:12,000 log 32277 133240443836096 "GET /api/home/ HTTP/1.1" 200 26735
+INFO 2026-09-10 12:39:15,391 log 32277 133240443836096 "POST /accounts/logout/ HTTP/1.1" 200 8754
+INFO 2026-09-10 12:39:16,288 log 32277 133240443836096 "GET /accounts/login/ HTTP/1.1" 200 9411
+INFO 2026-09-10 12:39:24,090 log 32277 133240443836096 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:39:24,095 log 32277 133240443836096 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:39:24,141 log 32277 133240443836096 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:39:24,368 views 32277 133240443836096 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:39:24,382 log 32277 133240443836096 "GET /api/home/ HTTP/1.1" 200 27133
+INFO 2026-09-10 12:50:17,361 log 32277 133240443836096 "GET /admin/ HTTP/1.1" 200 21007
+INFO 2026-09-10 12:50:17,429 log 32277 133240443836096 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:17,430 log 32277 133240432297664 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:17,431 log 32277 133240443836096 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:17,431 log 32277 133240346109632 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:17,431 log 32277 133240354502336 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:17,432 log 32277 133240337716928 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:17,432 log 32277 133240329324224 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:17,713 log 32277 133240346109632 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+INFO 2026-09-10 12:50:17,713 log 32277 133240443836096 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-09-10 12:50:17,713 log 32277 133240432297664 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+INFO 2026-09-10 12:50:23,083 log 32277 133240443836096 "GET /admin/ToyFactory/aboutinfo/ HTTP/1.1" 200 18896
+INFO 2026-09-10 12:50:23,142 log 32277 133240443836096 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,143 log 32277 133240337716928 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,144 log 32277 133240337716928 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,144 log 32277 133240443836096 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,143 log 32277 133240346109632 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,144 log 32277 133240329324224 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,143 log 32277 133240354502336 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,145 log 32277 133240346109632 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,145 log 32277 133240329324224 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,146 log 32277 133240354502336 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:23,148 log 32277 133240432297664 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-10 12:50:23,460 log 32277 133240443836096 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO 2026-09-10 12:50:23,460 log 32277 133240346109632 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+INFO 2026-09-10 12:50:23,461 log 32277 133240432297664 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+INFO 2026-09-10 12:50:24,760 log 32277 133240443836096 "GET /admin/ToyFactory/aboutinfo/1/change/ HTTP/1.1" 200 21941
+INFO 2026-09-10 12:50:24,821 log 32277 133240443836096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-10 12:50:24,827 log 32277 133240443836096 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:24,828 log 32277 133240346109632 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:24,828 log 32277 133240432297664 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:24,876 log 32277 133240443836096 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2026-09-10 12:50:24,956 log 32277 133240443836096 "GET /static/admin/img/tooltag-arrowright.svg HTTP/1.1" 200 569
+INFO 2026-09-10 12:51:33,486 log 32277 133240443836096 "POST /admin/ToyFactory/aboutinfo/1/change/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:51:33,501 log 32277 133240443836096 "GET /admin/ToyFactory/aboutinfo/ HTTP/1.1" 200 19128
+INFO 2026-09-10 12:51:33,618 log 32277 133240443836096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-10 12:51:33,766 log 32277 133240443836096 "GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+INFO 2026-09-10 12:51:35,988 log 32277 133240443836096 "GET /admin/ToyFactory/aboutinfo/1/change/ HTTP/1.1" 200 22526
+INFO 2026-09-10 12:51:43,981 log 32277 133240443836096 "GET / HTTP/1.1" 301 0
+INFO 2026-09-10 12:51:43,997 log 32277 133240443836096 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-10 12:51:44,737 views 32277 133240443836096 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-03&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-10 12:51:44,754 log 32277 133240443836096 "GET /api/home/ HTTP/1.1" 200 27133
+INFO 2026-09-10 12:51:46,812 log 32277 133240443836096 "GET /api/about/ HTTP/1.1" 200 18183
+INFO 2026-09-10 12:51:46,906 log 32277 133240443836096 "GET /media/certificates/privacy.png HTTP/1.1" 200 156627
+INFO 2026-09-10 12:51:46,991 log 32277 133240443836096 "GET /media/videos/game.mp4 HTTP/1.1" 200 2585154
+INFO 2026-09-11 00:08:09,228 autoreload 23899 125751561490944 Watching for file changes with StatReloader
+INFO 2026-09-11 00:09:05,884 log 23899 125750659090112 "GET /admin/ HTTP/1.1" 200 20897
+INFO 2026-09-11 00:09:05,981 log 23899 125750659090112 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:05,982 log 23899 125750659090112 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:05,983 log 23899 125750647551680 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:05,988 log 23899 125750647551680 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:05,990 log 23899 125750639158976 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:05,991 log 23899 125750622373568 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:05,991 log 23899 125750630766272 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:06,204 log 23899 125750659090112 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-09-11 00:09:06,204 log 23899 125750639158976 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+INFO 2026-09-11 00:09:06,205 log 23899 125750630766272 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+INFO 2026-09-11 00:09:09,302 log 23899 125750659090112 "GET /admin/ToyFactory/aboutinfo/ HTTP/1.1" 200 18896
+INFO 2026-09-11 00:09:09,369 log 23899 125750647551680 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,370 log 23899 125750647551680 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,370 log 23899 125750622373568 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,371 log 23899 125750630766272 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,372 log 23899 125750613980864 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,372 log 23899 125750630766272 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,372 log 23899 125750659090112 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,372 log 23899 125750622373568 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,374 log 23899 125750659090112 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,375 log 23899 125750613980864 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:09,376 log 23899 125750639158976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:09:09,563 log 23899 125750659090112 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO 2026-09-11 00:09:09,564 log 23899 125750630766272 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+INFO 2026-09-11 00:09:09,564 log 23899 125750639158976 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+INFO 2026-09-11 00:09:10,583 log 23899 125750659090112 "GET /admin/ToyFactory/aboutinfo/1/change/ HTTP/1.1" 200 22526
+INFO 2026-09-11 00:09:10,644 log 23899 125750639158976 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:10,645 log 23899 125750659090112 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:09:10,649 log 23899 125750639158976 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:10,649 log 23899 125750659090112 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:10,678 log 23899 125750630766272 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:09:10,929 log 23899 125750659090112 "GET /static/admin/img/tooltag-arrowright.svg HTTP/1.1" 200 569
+INFO 2026-09-11 00:16:48,544 log 23899 125750639158976 "POST /admin/ToyFactory/aboutinfo/1/change/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:16:48,562 log 23899 125750639158976 "GET /admin/ToyFactory/aboutinfo/ HTTP/1.1" 200 22099
+INFO 2026-09-11 00:16:48,669 log 23899 125750639158976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:16:48,923 log 23899 125750639158976 "GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+INFO 2026-09-11 00:17:43,979 log 23899 125750639158976 "GET /admin/ToyFactory/news/ HTTP/1.1" 200 18101
+INFO 2026-09-11 00:17:44,062 log 23899 125750639158976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:17:44,106 log 23899 125750639158976 "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+INFO 2026-09-11 00:17:53,780 log 23899 125750639158976 "POST /admin/ToyFactory/news/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:17:53,796 log 23899 125750639158976 "GET /admin/ToyFactory/news/ HTTP/1.1" 200 18226
+INFO 2026-09-11 00:17:53,890 log 23899 125750639158976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:17:53,993 log 23899 125750639158976 "GET /static/admin/img/icon-alert-dark.svg HTTP/1.1" 200 684
+INFO 2026-09-11 00:17:56,959 log 23899 125750639158976 "POST /admin/ToyFactory/news/ HTTP/1.1" 200 15264
+INFO 2026-09-11 00:17:57,012 log 23899 125750639158976 "GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+INFO 2026-09-11 00:17:57,935 log 23899 125750639158976 "POST /admin/ToyFactory/news/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:17:57,948 log 23899 125750639158976 "GET /admin/ToyFactory/news/ HTTP/1.1" 200 15726
+INFO 2026-09-11 00:17:58,060 log 23899 125750639158976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:17:59,635 log 23899 125750639158976 "GET /admin/ToyFactory/news/add/ HTTP/1.1" 200 18697
+INFO 2026-09-11 00:17:59,805 log 23899 125750639158976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:20:25,656 log 23899 125750630766272 "POST /admin/ToyFactory/news/add/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:20:25,676 log 23899 125750630766272 "GET /admin/ToyFactory/news/add/ HTTP/1.1" 200 19101
+INFO 2026-09-11 00:20:25,788 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:22:38,220 log 23899 125750630766272 "POST /admin/ToyFactory/news/add/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:22:38,236 log 23899 125750630766272 "GET /admin/ToyFactory/news/add/ HTTP/1.1" 200 19070
+INFO 2026-09-11 00:22:38,343 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:23:20,140 log 23899 125750630766272 "POST /admin/ToyFactory/news/add/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:23:20,158 log 23899 125750630766272 "GET /admin/ToyFactory/news/ HTTP/1.1" 200 19972
+INFO 2026-09-11 00:23:20,275 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:23:59,358 log 23899 125750630766272 "GET /admin/ToyFactory/news/ HTTP/1.1" 200 19630
+INFO 2026-09-11 00:24:14,302 log 23899 125750630766272 "GET / HTTP/1.1" 301 0
+INFO 2026-09-11 00:24:14,317 log 23899 125750630766272 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:24:14,773 views 23899 125750630766272 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 00:24:14,791 log 23899 125750630766272 "GET /api/home/ HTTP/1.1" 200 27531
+INFO 2026-09-11 00:24:14,930 log 23899 125750639158976 "GET /media/about2_UMPmQVg.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 00:24:14,931 log 23899 125750659090112 "GET /media/partners/bel_post.png HTTP/1.1" 304 0
+INFO 2026-09-11 00:24:14,932 log 23899 125750622373568 "GET /media/partners/det_mir.png HTTP/1.1" 304 0
+INFO 2026-09-11 00:24:14,932 log 23899 125750630766272 "GET /media/images_ITOzt8J.jpeg HTTP/1.1" 200 41954
+INFO 2026-09-11 00:24:17,556 log 23899 125750630766272 "GET /api/news/ HTTP/1.1" 200 17498
+INFO 2026-09-11 00:24:17,680 log 23899 125750630766272 "GET /media/news3.jpeg HTTP/1.1" 200 20451
+INFO 2026-09-11 00:24:17,680 log 23899 125750639158976 "GET /media/news2.jpeg HTTP/1.1" 200 17227
+INFO 2026-09-11 00:24:32,791 log 23899 125750630766272 "GET /api/news/bfb7ab90-9b19-4705-8e57-650b8305c9f9 HTTP/1.1" 200 12897
+INFO 2026-09-11 00:24:32,925 log 23899 125750630766272 "GET /media/news3.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 00:25:20,920 log 23899 125750630766272 "GET /admin/ToyFactory/faq/ HTTP/1.1" 200 20903
+INFO 2026-09-11 00:25:21,108 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:25:22,415 log 23899 125750630766272 "GET /admin/ToyFactory/faq/1/change/ HTTP/1.1" 200 17348
+INFO 2026-09-11 00:25:22,495 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:25:40,252 log 23899 125750630766272 "GET /api/faq/ HTTP/1.1" 200 30044
+INFO 2026-09-11 00:25:53,765 log 23899 125750630766272 "GET /api/faq/1 HTTP/1.1" 200 11235
+INFO 2026-09-11 00:26:00,612 log 23899 125750630766272 "GET /api/faq/ HTTP/1.1" 200 30044
+INFO 2026-09-11 00:27:33,208 log 23899 125750630766272 "GET /api/contacts/ HTTP/1.1" 200 33521
+INFO 2026-09-11 00:27:33,446 log 23899 125750639158976 "GET /media/user3_235U2tL.png HTTP/1.1" 304 0
+INFO 2026-09-11 00:27:33,446 log 23899 125750630766272 "GET /media/user1_CZxnMfN.png HTTP/1.1" 304 0
+INFO 2026-09-11 00:27:33,447 log 23899 125750622373568 "GET /media/user2_va3L6Ba.png HTTP/1.1" 304 0
+INFO 2026-09-11 00:27:33,447 log 23899 125750659090112 "GET /media/default_employee_logo_RhfAYUp.png HTTP/1.1" 304 0
+INFO 2026-09-11 00:28:56,890 log 23899 125750630766272 "GET /admin/ToyFactory/employee/ HTTP/1.1" 200 23879
+INFO 2026-09-11 00:28:56,996 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:30:07,947 log 23899 125750630766272 "GET /api/contacts/3ab974f1-719e-48e5-8769-1225dc610d6d HTTP/1.1" 200 12031
+INFO 2026-09-11 00:30:11,237 log 23899 125750630766272 "GET /api/contacts/ HTTP/1.1" 200 33521
+INFO 2026-09-11 00:30:53,656 log 23899 125750630766272 "GET /api/privacy_policy/ HTTP/1.1" 200 18426
+INFO 2026-09-11 00:32:24,737 log 23899 125750630766272 "GET /api/vacancys/ HTTP/1.1" 200 19955
+INFO 2026-09-11 00:37:03,597 log 23899 125750622373568 "GET /api/vacancy/4 HTTP/1.1" 200 13076
+INFO 2026-09-11 00:37:31,481 log 23899 125750622373568 "GET /api/vacancys/ HTTP/1.1" 200 19955
+INFO 2026-09-11 00:37:44,969 log 23899 125750622373568 "GET /admin/ToyFactory/vacancy/ HTTP/1.1" 200 20297
+INFO 2026-09-11 00:37:45,076 log 23899 125750622373568 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:37:46,596 log 23899 125750622373568 "GET /admin/ToyFactory/vacancy/4/change/ HTTP/1.1" 200 19132
+INFO 2026-09-11 00:37:46,734 log 23899 125750622373568 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:38:25,381 log 23899 125750622373568 "GET /api/reviews/ HTTP/1.1" 200 46367
+INFO 2026-09-11 00:38:37,833 log 23899 125750622373568 "POST /accounts/logout/ HTTP/1.1" 200 8754
+INFO 2026-09-11 00:38:40,421 log 23899 125750622373568 "GET /api/vacancys/ HTTP/1.1" 200 18511
+INFO 2026-09-11 00:38:42,175 log 23899 125750622373568 "GET /api/reviews/ HTTP/1.1" 200 43020
+INFO 2026-09-11 00:38:57,250 log 23899 125750622373568 "GET /accounts/login/?next=/api/reviews/ HTTP/1.1" 200 9473
+INFO 2026-09-11 00:39:01,620 log 23899 125750622373568 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:39:01,662 log 23899 125750622373568 "GET /api/reviews/ HTTP/1.1" 200 46367
+INFO 2026-09-11 00:40:35,094 log 23899 125750622373568 "POST /api/reviews/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:40:35,121 log 23899 125750622373568 "GET /api/reviews/ HTTP/1.1" 200 48028
+INFO 2026-09-11 00:42:33,084 log 23899 125750630766272 "GET /api/promos/ HTTP/1.1" 200 16912
+INFO 2026-09-11 00:42:44,519 log 23899 125750630766272 "GET /admin/ToyFactory/promo/ HTTP/1.1" 200 20885
+INFO 2026-09-11 00:42:44,656 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:42:48,544 log 23899 125750630766272 "GET /admin/ToyFactory/promo/add/ HTTP/1.1" 200 20942
+INFO 2026-09-11 00:42:48,646 log 23899 125750639158976 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19698
+INFO 2026-09-11 00:42:48,647 log 23899 125750659090112 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9159
+INFO 2026-09-11 00:42:48,649 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:42:48,833 log 23899 125750630766272 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1112
+INFO 2026-09-11 00:43:33,618 log 23899 125750630766272 "POST /admin/ToyFactory/promo/add/ HTTP/1.1" 200 21170
+INFO 2026-09-11 00:43:35,883 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:43:48,200 log 23899 125750630766272 "POST /admin/ToyFactory/promo/add/ HTTP/1.1" 200 21175
+INFO 2026-09-11 00:43:48,320 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:44:00,171 log 23899 125750630766272 "POST /admin/ToyFactory/promo/add/ HTTP/1.1" 200 21208
+INFO 2026-09-11 00:44:00,267 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:44:11,010 log 23899 125750630766272 "POST /admin/ToyFactory/promo/add/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:44:11,037 log 23899 125750630766272 "GET /admin/ToyFactory/promo/ HTTP/1.1" 200 21666
+INFO 2026-09-11 00:44:11,169 log 23899 125750630766272 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:44:15,933 log 23899 125750630766272 "GET /api/promos/ HTTP/1.1" 200 18406
+INFO 2026-09-11 00:44:33,483 log 23899 125750630766272 "GET /api/products/ HTTP/1.1" 200 27198
+INFO 2026-09-11 00:44:43,441 log 23899 125750630766272 "GET /api/product/0fa0c15d-4319-469f-ae4c-d2146f8c9844 HTTP/1.1" 200 12925
+INFO 2026-09-11 00:45:04,559 log 23899 125750630766272 "POST /accounts/logout/ HTTP/1.1" 200 8754
+INFO 2026-09-11 00:45:06,815 log 23899 125750630766272 "GET /accounts/login/ HTTP/1.1" 200 9411
+INFO 2026-09-11 00:45:19,421 log 23899 125750630766272 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:45:19,429 log 23899 125750630766272 "GET / HTTP/1.1" 301 0
+INFO 2026-09-11 00:45:19,480 log 23899 125750630766272 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:45:20,175 views 23899 125750630766272 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 00:45:20,192 log 23899 125750630766272 "GET /api/home/ HTTP/1.1" 200 27133
+INFO 2026-09-11 00:45:20,432 log 23899 125750630766272 "GET /media/images_ITOzt8J.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 00:45:22,853 log 23899 125750630766272 "GET /api/promos/ HTTP/1.1" 200 18008
+INFO 2026-09-11 00:45:26,827 log 23899 125750630766272 "GET /api/products/ HTTP/1.1" 200 26620
+INFO 2026-09-11 00:45:29,176 log 23899 125750630766272 "GET /api/product/0fa0c15d-4319-469f-ae4c-d2146f8c9844 HTTP/1.1" 200 12714
+INFO 2026-09-11 00:45:33,453 views 23899 125750630766272 User me added product Teddy Sleepy Bear to cart
+INFO 2026-09-11 00:45:33,453 log 23899 125750630766272 "POST /api/cart/add/0fa0c15d-4319-469f-ae4c-d2146f8c9844/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:45:33,473 log 23899 125750630766272 "GET /api/cart/ HTTP/1.1" 200 13706
+INFO 2026-09-11 00:49:35,975 views 23899 125750639158976 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 00:49:35,991 log 23899 125750639158976 "GET /api/home/ HTTP/1.1" 200 27133
+INFO 2026-09-11 00:49:36,200 log 23899 125750639158976 "GET /media/images_ITOzt8J.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 00:49:46,364 log 23899 125750639158976 "GET /api/news/ HTTP/1.1" 200 17100
+INFO 2026-09-11 00:49:46,547 log 23899 125750639158976 "GET /media/news2.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 00:49:46,548 log 23899 125750659090112 "GET /media/news3.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 00:49:52,358 views 23899 125750639158976 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 00:49:52,373 log 23899 125750639158976 "GET /api/home/ HTTP/1.1" 200 27133
+INFO 2026-09-11 00:54:45,291 autoreload 23899 125751561490944 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-11 00:54:46,545 autoreload 31611 132212730130944 Watching for file changes with StatReloader
+INFO 2026-09-11 00:54:51,618 views 31611 132211827115712 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 00:54:51,657 log 31611 132211827115712 "GET /api/home/ HTTP/1.1" 200 27034
+INFO 2026-09-11 00:54:51,805 log 31611 132211827115712 "GET /media/news3.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 00:55:20,655 log 31611 132211827115712 "GET /admin/ToyFactory/partner/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:55:20,680 log 31611 132211827115712 "GET /admin/login/?next=/admin/ToyFactory/partner/ HTTP/1.1" 200 3633
+INFO 2026-09-11 00:55:20,801 log 31611 132211827115712 "GET /static/admin/css/login.css HTTP/1.1" 304 0
+INFO 2026-09-11 00:55:28,109 log 31611 132211827115712 "POST /admin/login/?next=/admin/ToyFactory/partner/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:55:28,137 log 31611 132211827115712 "GET /admin/ToyFactory/partner/ HTTP/1.1" 200 17911
+INFO 2026-09-11 00:55:28,266 log 31611 132211827115712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:55:33,313 views 31611 132211827115712 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 00:55:33,328 log 31611 132211827115712 "GET /api/home/ HTTP/1.1" 200 27432
+INFO 2026-09-11 00:55:46,147 log 31611 132211827115712 "GET /admin/ToyFactory/partner/dcb84ca6-53b8-4916-97a1-92bcb67bf233/change/ HTTP/1.1" 200 19517
+INFO 2026-09-11 00:55:46,257 log 31611 132211827115712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:57:06,046 log 31611 132211827115712 "GET /admin/ToyFactory/partner/ HTTP/1.1" 200 17911
+INFO 2026-09-11 00:57:06,270 log 31611 132211827115712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:57:08,026 log 31611 132211827115712 "GET /admin/ToyFactory/partner/dcb84ca6-53b8-4916-97a1-92bcb67bf233/change/ HTTP/1.1" 200 19517
+INFO 2026-09-11 00:57:08,090 log 31611 132211827115712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:57:52,718 log 31611 132211827115712 "POST /admin/ToyFactory/partner/dcb84ca6-53b8-4916-97a1-92bcb67bf233/change/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:57:52,738 log 31611 132211827115712 "GET /admin/ToyFactory/partner/ HTTP/1.1" 200 18188
+INFO 2026-09-11 00:57:52,868 log 31611 132211827115712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:57:53,999 log 31611 132211827115712 "GET /admin/ToyFactory/partner/2e417f7c-02b8-40e6-8026-d58172784ca9/change/ HTTP/1.1" 200 19452
+INFO 2026-09-11 00:57:54,091 log 31611 132211827115712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:58:16,373 log 31611 132211827115712 "POST /admin/ToyFactory/partner/2e417f7c-02b8-40e6-8026-d58172784ca9/change/ HTTP/1.1" 302 0
+INFO 2026-09-11 00:58:16,390 log 31611 132211827115712 "GET /admin/ToyFactory/partner/ HTTP/1.1" 200 18174
+INFO 2026-09-11 00:58:16,500 log 31611 132211827115712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-09-11 00:59:34,773 log 31611 132211827115712 "GET /api/products/ HTTP/1.1" 200 27198
+INFO 2026-09-11 00:59:50,045 log 31611 132211827115712 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 12970
+INFO 2026-09-11 01:00:35,873 log 31611 132211827115712 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=-price HTTP/1.1" 200 27198
+INFO 2026-09-11 01:00:42,033 log 31611 132211827115712 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=name HTTP/1.1" 200 27198
+INFO 2026-09-11 01:00:46,377 log 31611 132211827115712 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=-created_at HTTP/1.1" 200 27198
+INFO 2026-09-11 01:00:55,252 log 31611 132211827115712 "GET /api/products/?q=&type=&model=&min_price=&max_price=&ordering=price HTTP/1.1" 200 27198
+INFO 2026-09-11 01:00:59,523 log 31611 132211827115712 "GET /api/products/ HTTP/1.1" 200 27198
+INFO 2026-09-11 01:09:35,071 log 31611 132211814528704 "POST /accounts/logout/ HTTP/1.1" 200 8754
+INFO 2026-09-11 01:09:37,222 log 31611 132211814528704 "GET /accounts/login/ HTTP/1.1" 200 9411
+INFO 2026-09-11 01:09:43,852 log 31611 132211814528704 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:09:43,862 log 31611 132211814528704 "GET / HTTP/1.1" 301 0
+INFO 2026-09-11 01:09:43,913 log 31611 132211814528704 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:09:45,317 views 31611 132211814528704 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 01:09:45,331 log 31611 132211814528704 "GET /api/home/ HTTP/1.1" 200 27881
+INFO 2026-09-11 01:09:45,525 log 31611 132211814528704 "GET /media/news3.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 01:09:48,444 log 31611 132211814528704 "GET /api/products/ HTTP/1.1" 200 26620
+INFO 2026-09-11 01:10:17,984 log 31611 132211814528704 "GET /api/product/0fa0c15d-4319-469f-ae4c-d2146f8c9844 HTTP/1.1" 200 12714
+INFO 2026-09-11 01:11:49,503 views 31611 132211814528704 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 01:11:49,519 log 31611 132211814528704 "GET /api/home/ HTTP/1.1" 200 27881
+INFO 2026-09-11 01:14:07,053 autoreload 31611 132212730130944 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-11 01:14:08,361 autoreload 34607 139539565494784 Watching for file changes with StatReloader
+INFO 2026-09-11 01:14:37,732 autoreload 34607 139539565494784 /home/ntfray/Django/IGI_Labs/IGI/LR5/ToyFactory/views.py changed, reloading.
+INFO 2026-09-11 01:14:39,549 autoreload 34677 139464917021184 Watching for file changes with StatReloader
+INFO 2026-09-11 01:17:19,249 log 34677 139464013977280 "GET /api/products/ HTTP/1.1" 200 26620
+INFO 2026-09-11 01:17:21,119 log 34677 139464013977280 "GET /api/product/0fa0c15d-4319-469f-ae4c-d2146f8c9844 HTTP/1.1" 200 14255
+INFO 2026-09-11 01:17:27,666 log 34677 139464013977280 "GET /api/products/ HTTP/1.1" 200 26620
+INFO 2026-09-11 01:17:28,565 log 34677 139464013977280 "GET /api/product/865388ca-2654-4f9f-a9ce-8b25e168eddc HTTP/1.1" 200 14190
+INFO 2026-09-11 01:17:30,575 log 34677 139464013977280 "GET /api/products/ HTTP/1.1" 200 26620
+INFO 2026-09-11 01:17:31,907 log 34677 139464013977280 "GET /api/product/0fa0c15d-4319-469f-ae4c-d2146f8c9844 HTTP/1.1" 200 14255
+INFO 2026-09-11 01:17:52,361 views 34677 139464013977280 User me added product Teddy Sleepy Bear to cart with promo Teddy Sleepy Bear (20.00%): Test promo
+INFO 2026-09-11 01:17:52,361 log 34677 139464013977280 "POST /api/cart/add/0fa0c15d-4319-469f-ae4c-d2146f8c9844/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:17:52,379 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 15801
+INFO 2026-09-11 01:18:05,489 log 34677 139464013977280 "GET /api/cart/order/6a571a35-cacc-471e-b9ec-614604fa70ad/delete/ HTTP/1.1" 200 10192
+INFO 2026-09-11 01:18:06,807 log 34677 139464013977280 "POST /api/cart/order/6a571a35-cacc-471e-b9ec-614604fa70ad/delete/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:06,830 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:10,987 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/minus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:11,001 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:12,502 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/plus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:12,514 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:13,255 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/plus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:13,272 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:15,408 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/minus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:15,424 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:22,292 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/plus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:22,311 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:24,969 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/plus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:24,984 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:26,087 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/minus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:26,105 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:26,518 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/minus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:26,533 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:27,419 log 34677 139464013977280 "GET /api/cart/update/d96d7866-5ec2-4f13-a838-fac2993152ba/minus/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:27,437 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 13737
+INFO 2026-09-11 01:18:28,785 log 34677 139464013977280 "GET /api/cart/order/d96d7866-5ec2-4f13-a838-fac2993152ba/delete/ HTTP/1.1" 200 10192
+INFO 2026-09-11 01:18:29,904 log 34677 139464013977280 "POST /api/cart/order/d96d7866-5ec2-4f13-a838-fac2993152ba/delete/ HTTP/1.1" 302 0
+INFO 2026-09-11 01:18:29,922 log 34677 139464013977280 "GET /api/cart/ HTTP/1.1" 200 10405
+INFO 2026-09-11 01:18:31,642 log 34677 139464013977280 "GET /api/products/ HTTP/1.1" 200 26620
+INFO 2026-09-11 01:18:37,131 log 34677 139464013977280 "GET /api/promos/ HTTP/1.1" 200 18008
+INFO 2026-09-11 01:18:40,031 log 34677 139464013977280 "GET /api/promo/e08d40cf-eddd-47fd-875b-2134e499279d HTTP/1.1" 200 11632
+INFO 2026-09-11 01:18:42,291 log 34677 139464013977280 "GET /api/promos/ HTTP/1.1" 200 18008
+INFO 2026-09-11 01:18:46,745 views 34677 139464013977280 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 01:18:46,764 log 34677 139464013977280 "GET /api/home/ HTTP/1.1" 200 27881
+INFO 2026-09-11 01:18:46,879 log 34677 139464013977280 "GET /media/news3.jpeg HTTP/1.1" 304 0
+INFO 2026-09-11 01:18:47,934 log 34677 139464013977280 "GET /api/cities/ HTTP/1.1" 200 10822
+INFO 2026-09-11 01:18:48,895 log 34677 139464013977280 "GET /api/city/5a13eea2-543b-4f9d-984a-61847c9cb0ed HTTP/1.1" 200 10387
+INFO 2026-09-11 01:18:53,032 log 34677 139464013977280 "GET /api/pick_up_point/3d5ec36c-9d8e-45ed-b5e7-c47ee4225796 HTTP/1.1" 200 9936
+INFO 2026-09-11 01:18:54,574 views 34677 139464013977280 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 01:18:54,587 log 34677 139464013977280 "GET /api/home/ HTTP/1.1" 200 27881
+INFO 2026-09-11 01:18:58,379 log 34677 139464013977280 "GET /api/client/orders/ HTTP/1.1" 200 12109
+INFO 2026-09-11 01:19:03,242 log 34677 139464013977280 "GET /api/contacts/ HTTP/1.1" 200 33123
+INFO 2026-09-11 01:19:56,853 views 34677 139464013977280 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 01:19:56,867 log 34677 139464013977280 "GET /api/home/ HTTP/1.1" 200 27881
+INFO 2026-09-11 01:25:47,177 views 34677 139464013977280 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-04&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-11 01:25:47,194 log 34677 139464013977280 "GET /api/home/ HTTP/1.1" 200 27881
+INFO 2026-09-11 01:25:47,337 log 34677 139464013977280 "GET /media/news3.jpeg HTTP/1.1" 304 0
+INFO 2026-09-15 22:05:27,688 autoreload 14366 128272484491776 Watching for file changes with StatReloader
+INFO 2026-09-15 22:05:32,867 log 14366 128271581910720 "GET / HTTP/1.1" 301 0
+INFO 2026-09-15 22:05:32,911 log 14366 128271581910720 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-15 22:05:33,414 views 14366 128271581910720 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-08&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-15 22:05:33,451 log 14366 128271581910720 "GET /api/home/ HTTP/1.1" 200 25699
+INFO 2026-09-15 22:05:33,732 log 14366 128271581910720 "GET /media/about2_UMPmQVg.jpeg HTTP/1.1" 304 0
+INFO 2026-09-15 22:05:33,733 log 14366 128271571420864 "GET /media/news3.jpeg HTTP/1.1" 304 0
+INFO 2026-09-15 22:05:33,733 log 14366 128271563028160 "GET /media/partners/bel_post.png HTTP/1.1" 304 0
+INFO 2026-09-15 22:05:33,734 log 14366 128271345776320 "GET /media/partners/det_mir.png HTTP/1.1" 304 0
+INFO 2026-09-15 22:05:46,767 log 14366 128271581910720 "POST /accounts/logout/ HTTP/1.1" 200 7547
+INFO 2026-09-15 22:05:47,916 log 14366 128271581910720 "GET /accounts/login/ HTTP/1.1" 200 8204
+INFO 2026-09-15 22:05:52,277 log 14366 128271581910720 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-09-15 22:05:52,282 log 14366 128271581910720 "GET / HTTP/1.1" 301 0
+INFO 2026-09-15 22:05:52,328 log 14366 128271581910720 "GET /api/ HTTP/1.1" 302 0
+INFO 2026-09-15 22:05:52,576 views 14366 128271581910720 Index view: API success: https://newsapi.org/v2/everything?q="toys"&from=2026-09-08&language=en&sortBy=popularity&apiKey=90a48ee7dbca43028bde1930c1da9870
+INFO 2026-09-15 22:05:52,590 log 14366 128271581910720 "GET /api/home/ HTTP/1.1" 200 26097

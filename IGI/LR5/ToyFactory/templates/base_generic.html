@@ -1,104 +1,224 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru" dir="ltr">
   <head>
-    {% block title %}<title>Lab Work 5</title>{% endblock %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+     
+    <meta name="description" content="Информационно-производственный портал фабрики игрушек Toy Factory." />
+    <meta name="keywords" content="игрушки, опт, фабрика игрушек, MDN style, metanit" />
+    <meta name="author" content="Toy Factory Development Team" />
+    <meta property="og:title" content="Toy Factory Developer Portal" />
+    <meta property="og:description" content="Каталог продукции, документация и управление заказами фабрики игрушек." />
+    <meta property="og:type" content="website" />
+
+     
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3081/3081986.png" type="image/png" />
+
+    {% block title %}<title>Toy Factory Portal</title>{% endblock %}
   </head>
 
   <body>
-    {% block sidebar %}
-      <ul>
-        <li>
-          <p><strong>Your time-zone:</strong> {{ user_timezone }}</p>
-          <p><strong>Date (Local):</strong> {{ current_date|date:"d/m/Y H:i" }}</p>
-          <p><strong>Date (UTC):</strong> {{ utc_date|date:"d/m/Y H:i" }}</p>
-          {{ html_calendar|safe }}
-        </li>
-      </ul>
-      <br>
-      <ul>
-        <li>
-          <a href="{% url 'index' %}">Home</a>
-          <a href="{% url 'about' %}">About</a>
-          <a href="{% url 'news' %}">News</a>
-          <a href="{% url 'faq' %}">FAQ</a>
-          <a href="{% url 'contacts' %}">Contacts</a>
-          <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
-          <a href="{% url 'vacancys' %}">Vacancies</a>
-          <a href="{% url 'reviews' %}">Reviews</a>
-          <a href="{% url 'promos' %}">Promos</a>
-        </li>
-        <br>
-        <li>
-          <a href="{% url 'products' %}">Products</a>
-          {% if user.is_authenticated %}
-            {% if perms.ToyFactory.employee_perm %}
-              <a href="{% url 'clients' %}">Clients</a>
-            {% endif %}
-            <a href="{% url 'cities' %}">Cities</a>
-            {% if perms.ToyFactory.client_perm %}
+     
+    <header style="border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px;">
+      <table style="width: 100%;">
+        <tr>
+           
+          <td style="vertical-align: middle;">
+            <h2>
+              <a href="{% url 'index' %}" style="text-decoration: none;">
+                &#128187; ToyFactory_Docs
+              </a>
+            </h2>
+          </td>
+
+           
+          <td style="text-align: center; vertical-align: middle;">
+            <form action="{% url 'products' %}" method="get" role="search">
+              <label for="site-search">Поиск по каталогу:</label>
+              <input type="search" id="site-search" name="q" placeholder="Поиск моделей, игрушек..." />
+              <button type="submit">Найти</button>
+            </form>
+          </td>
+
+           
+          <td style="text-align: right; vertical-align: middle;">
+            {% if user.is_authenticated %}
+              <span>Привет, <strong>{{ user.username }}</strong>!</span>
               {% if user.is_superuser %}
-              {% else %}
-                <a href="{% url 'cart' %}">Cart</a>
-                <a href="{% url 'client-orders' %}">My Orders</a>
+                <small style="color: red;">[Admin]</small>
+              {% elif perms.ToyFactory.employee_perm %}
+                <small style="color: blue;">[Сотрудник]</small>
+              {% elif perms.ToyFactory.client_perm %}
+                <small style="color: green;">[Клиент]</small>
               {% endif %}
+              | <a href="{% url 'account' %}">Аккаунт</a> |
+              <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Выйти</button>
+              </form>
+            {% else %}
+              <a href="{% url 'login' %}"><button type="button">Войти</button></a>
+              <a href="{% url 'register' %}"><button type="button">Регистрация</button></a>
             {% endif %}
-            {% if user.is_superuser %}
-              <a href="{% url 'analytics' %}">Analytics</a>
-            {% endif %}
-          {% endif %}
-        </li>
-        <br>
-        {% if user.is_authenticated %}
-          <li>User: {{ user.get_username }}
-          {% if user.is_superuser %}
-            <li>Status: superuser</li>
-          {% else %}
-            {% if perms.ToyFactory.client_perm %}
-              <li>Status: client</li>
-            {% endif %}
-            {% if perms.ToyFactory.employee_perm %}
-              <li>Status: employee</li>
-            {% endif %}
-          {% endif %}
-          <li><a href="{% url 'account' %}">My Account</a></li>
-          {% if user.is_superuser %}
-          {% else %}
-            {% if perms.ToyFactory.client_perm %}
-              <li><a href="{% url 'client-profile' %}">My Profile</a></li>
-            {% endif %}
-            {% if perms.ToyFactory.employee_perm %}
-              <li><a href="{% url 'employee-profile' %}">My Profile</a></li>
-            {% endif %}
-          {% endif %}
-          <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-          </form>
-        {% else %}
-          <li><a href="{% url 'login'%}">Login</a></li>
-        {% endif %}
-      </ul>
-      <br>
-    {% endblock %}
+          </td>
+        </tr>
+      </table>
 
-    {% block content %}{% endblock %}
+       
+      <nav aria-label="Верхняя навигация" style="background-color: #eee; padding: 5px 10px;">
+        <strong>Разделы:</strong>
+        <a href="{% url 'index' %}">Главная</a> |
+        <a href="{% url 'about' %}">О компании</a> |
+        <a href="{% url 'products' %}">Каталог продукции</a> |
+        <a href="{% url 'news' %}">Новости</a> |
+        <a href="{% url 'faq' %}">Словарь терминов (FAQ)</a> |
+        <a href="{% url 'promos' %}">Акции и промокоды</a> |
+        <a href="{% url 'vacancys' %}">Вакансии</a> |
+        <a href="{% url 'reviews' %}">Отзывы</a> |
+        <a href="{% url 'contacts' %}">Контакты</a> |
+        <a href="{% url 'privacy_policy' %}">Конфиденциальность</a>
+      </nav>
+    </header>
 
-    {% block pagination %}
-      {% if is_paginated %}
-        <span>
-          {% if page_obj.has_previous %}
-            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+     
+    <div style="display: flex; gap: 20px; min-height: 500px;">
+
+       
+      <aside aria-label="Навигация по разделам" style="width: 220px; border-right: 1px solid #ccc; padding-right: 15px;">
+        <nav aria-label="Меню базы данных">
+          <h3>Каталог и Данные</h3>
+          <ul>
+            <li><a href="{% url 'products' %}">Все товары</a></li>
+            <li><a href="{% url 'cities' %}">Города поставок</a></li>
+            {% if user.is_authenticated and perms.ToyFactory.employee_perm %}
+              <li><a href="{% url 'clients' %}">База заказчиков</a></li>
+            {% endif %}
+          </ul>
+
+          {% if user.is_authenticated %}
+            <h3>Личный кабинет</h3>
+            <ul>
+               
+              {% if perms.ToyFactory.client_perm and not user.is_superuser %}
+                <li><a href="{% url 'cart' %}">Корзина заказов</a></li>
+                <li><a href="{% url 'client-orders' %}">Мои заказы</a></li>
+                <li><a href="{% url 'client-profile' %}">Профиль компании</a></li>
+              {% endif %}
+
+               
+              {% if perms.ToyFactory.employee_perm and not user.is_superuser %}
+                <li><a href="{% url 'employee-profile' %}">Профиль сотрудника</a></li>
+              {% endif %}
+
+               
+              {% if user.is_superuser %}
+                <li><a href="{% url 'analytics' %}"><strong>Аналитика и отчеты</strong></a></li>
+                <li><a href="/admin/">Панель Django Admin</a></li>
+              {% endif %}
+            </ul>
           {% endif %}
-          <span>
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-          </span>
-          {% if page_obj.has_next %}
-            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+
+           
+          {% if user.is_superuser or perms.ToyFactory.employee_perm %}
+            <h3>Управление (CRUD)</h3>
+            <ul>
+              <li><a href="{% url 'product-create' %}">+ Добавить игрушку</a></li>
+              <li><a href="{% url 'product_type-create' %}">+ Добавить категорию</a></li>
+              <li><a href="{% url 'product_model-create' %}">+ Добавить модель</a></li>
+            </ul>
           {% endif %}
-        </span>
-      {% endif %}
-    {% endblock %}
+        </nav>
+      </aside>
+
+       
+      <main id="main-content" style="flex: 1; min-width: 0; padding: 0 10px;">
+
+         
+        <nav aria-label="Хлебные крошки" style="font-size: 0.9em; margin-bottom: 15px;">
+          <a href="{% url 'index' %}">Главная</a> &raquo;
+          <span>{% block breadcrumb %}Текущий раздел{% endblock %}</span>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+        {% block pagination %}
+          {% if is_paginated %}
+            <nav aria-label="Пагинация" style="margin-top: 25px; padding-top: 10px; border-top: 1px dotted #aaa;">
+              {% if page_obj.has_previous %}
+                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">&larr; Предыдущая</a>
+              {% endif %}
+              <span>
+                <strong>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</strong>
+              </span>
+              {% if page_obj.has_next %}
+                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Следующая &rarr;</a>
+              {% endif %}
+            </nav>
+          {% endif %}
+        {% endblock %}
+      </main>
+
+       
+      <aside aria-label="Информационная панель" style="width: 250px; border-left: 1px solid #ccc; padding-left: 15px;">
+        <section>
+          <h4>Параметры сессии</h4>
+          <p>
+            <strong>Часовой пояс:</strong><br />
+            <data value="{{ user_timezone }}">{{ user_timezone }}</data>
+          </p>
+          <p>
+            <strong>Местное время:</strong><br />
+            <time datetime="{{ current_date|date:'Y-m-d\TH:i' }}">
+              {{ current_date|date:"d/m/Y H:i" }}
+            </time>
+          </p>
+          <p>
+            <strong>Время UTC:</strong><br />
+            <time datetime="{{ utc_date|date:'Y-m-d\TH:i' }}">
+              {{ utc_date|date:"d/m/Y H:i" }}
+            </time>
+          </p>
+        </section>
+
+        <hr />
+
+        <section>
+          <h4>Календарь</h4>
+          <div style="font-family: monospace; font-size: 0.85em;">
+            {{ html_calendar|safe }}
+          </div>
+        </section>
+
+        <hr />
+
+        <section>
+          <h4>Быстрая помощь</h4>
+          <small>
+            Возникли вопросы по поставкам? Ознакомьтесь с нашим <a href="{% url 'faq' %}">FAQ</a> или свяжитесь с менеджером через <a href="{% url 'contacts' %}">Контакты</a>.
+          </small>
+        </section>
+      </aside>
+
+    </div>
+
+     
+    <footer style="margin-top: 30px; border-top: 2px solid #333; padding-top: 15px; font-size: 0.9em;">
+      <table style="width: 100%;">
+        <tr>
+          <td>
+            <p>&copy; <time datetime="2026">2026</time> <strong>Toy Factory Inc.</strong> Документация и платформа оптовых поставок.</p>
+            <p><small>Сайт спроектирован по стандартам семантической верстки W3C и спецификации HTML5.</small></p>
+          </td>
+          <td style="text-align: right;">
+            <address>
+              Техническая поддержка: <a href="mailto:support@toyfactory.by">support@toyfactory.by</a><br />
+              Телефон: <a href="tel:+375290000000">+375 (29) 000-00-00</a>
+            </address>
+            <p><a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a></p>
+          </td>
+        </tr>
+      </table>
+    </footer>
   </body>
 </html>

@@ -89,13 +89,13 @@ class AboutInfoAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ['header', 'info', 'created_at']
-    list_filter = ['header', 'info', 'created_at']
+    list_display = ('header', 'short_description', 'created_at')
+    search_fields = ('header', 'info', 'short_description')
 
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
-    list_display = ['question', 'answer', 'created_at']
-    list_filter = ['question', 'answer', 'created_at']
+    list_display = ('question', 'created_at')
+    search_fields = ('question', 'answer')
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
@@ -107,3 +107,6 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ['display_username', 'review', 'grade', 'created_at', 'user']
     list_filter = ['user', 'grade', 'created_at']
 
+@admin.register(Partner)
+class PartnerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'website_url', 'created_at')

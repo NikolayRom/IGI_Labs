@@ -1,28 +1,126 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Reviews</title>
+<title>Отзывы клиентов - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
+<section aria-labelledby="reviews-title">
+    <header>
+        <h2 id="reviews-title">Отзывы наших клиентов и оптовых партнеров</h2>
+        <p>Мнения покупателей о качестве детских игрушек и сотрудничестве с фабрикой.</p>
+    </header>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Send</button>
-    </form>
+    <hr />
 
-    {% if review_list %}
-        {% for review in review_list %}
-            <h2>{{review.display_username}}</h2>
-            <p>{{review.review}}</p>
-            <ul>Grade: {{review.grade}}</ul>
-            <ul>Review created:{{review.created_at|date:"d/m/Y H:i"}}</ul>
-            <ul>Review updated: {{review.updated_at|date:"d/m/Y H:i"}}</ul>
-            <br>
-        {% endfor %}
-    {% else %}
-        <h2>No reviews available</h2>
-    {% endif %}
+     
+    <section aria-label="Форма добавления отзыва" style="margin-bottom: 30px;">
+        {% if user.is_authenticated %}
+             
+            <details>
+                <summary style="cursor: pointer; padding: 8px 16px; font-weight: bold; display: inline-block; border: 1px solid #000;">
+                    &plus; Добавить отзыв от имени <u>{{ user.username }}</u>
+                </summary>
 
+                <div style="margin-top: 15px; padding: 15px; border: 1px dashed #777;">
+                    <h3>Оставить свой отзыв</h3>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                         
+                        {% if form.non_field_errors %}
+                            <div style="color: red;">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <div>
+                            <p><strong>Автор:</strong> {{ user.username }} (вы авторизованы)</p>
+                        </div>
+
+                         
+                        <div>
+                            <label for="{{ form.grade.id_for_label }}"><strong>{{ form.grade.label }}:</strong></label><br />
+                            {{ form.grade }}
+                            {% if form.grade.errors %}
+                                <div style="color: red;"><small>{{ form.grade.errors }}</small></div>
+                            {% endif %}
+                        </div>
+                        <br />
+
+                         
+                        <div>
+                            <label for="{{ form.review.id_for_label }}"><strong>{{ form.review.label }}:</strong></label><br />
+                            {{ form.review }}
+                            {% if form.review.errors %}
+                                <div style="color: red;"><small>{{ form.review.errors }}</small></div>
+                            {% endif %}
+                        </div>
+                        <br />
+
+                         
+                        <button type="submit">Отправить отзыв</button>
+                    </form>
+                </div>
+            </details>
+        {% else %}
+             
+            <div>
+                <p>Хотите оставить отзыв о нашей продукции?</p>
+                <a href="{% url 'register' %}">
+                    <button type="button">Зарегистрироваться, чтобы оставить отзыв</button>
+                </a>
+                <span>или</span>
+                <a href="{% url 'login' %}?next={% url 'reviews' %}">
+                    <button type="button">Войти в личный кабинет</button>
+                </a>
+            </div>
+        {% endif %}
+    </section>
+
+    <hr />
+
+     
+    <section aria-label="Список отзывов">
+        <h3>Опубликованные отзывы:</h3>
+
+        {% if review_list %}
+            <div class="reviews-list">
+                {% for rev in review_list %}
+                     
+                    <article itemscope itemtype="https://schema.org/Review" style="margin-bottom: 25px; border-bottom: 1px dotted #ccc; padding-bottom: 15px;">
+                        <header>
+                            <h4 itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <span itemprop="name">{{ rev.display_username }}</span>
+                            </h4>
+
+                             
+                            <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                                <strong>Оценка:</strong>
+                                <meter min="1" max="5" value="{{ rev.grade }}">{{ rev.grade }} из 5</meter>
+                                (<span itemprop="ratingValue">{{ rev.grade }}</span> / <span itemprop="bestRating">5</span>)
+                            </div>
+
+                            <p>
+                                <small>
+                                    Дата:
+                                    <time itemprop="datePublished" datetime="{{ rev.created_at|date:'Y-m-d\TH:i' }}">
+                                        {{ rev.created_at|date:"d/m/Y H:i" }}
+                                    </time>
+                                </small>
+                            </p>
+                        </header>
+
+                         
+                        <div itemprop="reviewBody">
+                            <p>{{ rev.review|linebreaks }}</p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Пока нет ни одного отзыва. Будьте первым, кто поделится своим мнением!</p>
+        {% endif %}
+    </section>
+</section>
 {% endblock %}

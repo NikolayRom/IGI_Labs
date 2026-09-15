@@ -1,69 +1,236 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-  <title>Home</title>
+<title>Главная - Toy Factory</title>
+{% endblock %}
+
+{% block breadcrumb %}
+Главная страница
 {% endblock %}
 
 {% block content %}
+<div class="home-page-container">
 
-  <h1>Last news</h1>
+     
+    <section aria-labelledby="welcome-title">
+        <table style="width: 100%; border: none;">
+            <tr>
+                <td style="width: 180px; vertical-align: middle;">
+                    <figure style="margin: 0;">
+                        {% if about_info and about_info.logo %}
+                            <img src="{{ about_info.logo.url }}" alt="Логотип фабрики Toy Factory" width="160" />
+                        {% else %}
+                            <img src="/media/default_about_logo.png" alt="Стандартный логотип" width="160" />
+                        {% endif %}
+                    </figure>
+                </td>
+                <td style="vertical-align: middle;">
+                    <h1 id="welcome-title" style="margin-top: 0;">Добро пожаловать на фабрику «Toy Factory»</h1>
+                    <p>
+                        Ведущее предприятие по серийному производству развивающих, мягких и пластиковых игрушек для оптовых торговых сетей.
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </section>
 
-  {% if last_news %}
-    <a href="{{last_news.get_absolute_url}}"><h2>{{last_news.header}}</h2></a>
-    {% if last_news.image %}
-      <img src='{{last_news.image.url}}' alt="News picture" style="max-width: 300px;"/>
-    {% else %}
-      <img src='/media/default_news_logo.png' alt="News default picture" style="max-width: 300px;"/>
+    <hr />
+
+     
+    <section aria-labelledby="promo-banner-title">
+        <h3 id="promo-banner-title">Специальные рекламные предложения</h3>
+
+        <figure style="margin: 0 0 15px 0;">
+             
+            <picture>
+                <source media="(min-width: 800px)" srcset="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=900&auto=format&fit=crop&q=60">
+                <source media="(min-width: 450px)" srcset="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&auto=format&fit=crop&q=60">
+                <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&auto=format&fit=crop&q=60" alt="Рекламный баннер оптовых поставок игрушек" style="width: 100%; max-height: 250px; object-fit: cover; border: 1px solid #ddd;" />
+            </picture>
+            <figcaption>
+                <small><strong>Акция сезона:</strong> Скидка до 20% на первую оптовую партию моделей текущего квартала!</small>
+            </figcaption>
+        </figure>
+
+         
+        <table border="1" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="text-align: center; width: 50%;">
+                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&auto=format&fit=crop&q=60" alt="Баннер конструкторы" width="200" /><br />
+                    <strong>Безопасные конструкторы</strong><br />
+                    <small>Экологичные материалы европейского качества.</small>
+                </td>
+                <td style="text-align: center; width: 50%;">
+                    <img src="https://images.unsplash.com/photo-1581557991964-125469da3b8a?w=400&auto=format&fit=crop&q=60" alt="Баннер мягкие игрушки" width="200" /><br />
+                    <strong>Мягкие плюшевые коллекции</strong><br />
+                    <small>Хиты продаж розничных сетей любого масштаба.</small>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <hr />
+
+     
+    <section aria-labelledby="last-news-heading">
+        <h3 id="last-news-heading">Последняя опубликованная статья фабрики</h3>
+
+        {% if last_news %}
+            <article itemscope itemtype="https://schema.org/NewsArticle" style="border: 1px solid #ccc; padding: 15px;">
+                <header>
+                    <h4 itemprop="headline" style="margin-top: 0;">
+                        <a href="{{ last_news.get_absolute_url }}">{{ last_news.header }}</a>
+                    </h4>
+                    <p>
+                        <small>
+                            Опубликовано:
+                            <time itemprop="datePublished" datetime="{{ last_news.created_at|date:'Y-m-d\TH:i' }}">
+                                {{ last_news.created_at|date:"d/m/Y H:i" }}
+                            </time>
+                        </small>
+                    </p>
+                </header>
+
+                <table style="border: none;">
+                    <tr>
+                        {% if last_news.image %}
+                            <td style="width: 160px; vertical-align: top;">
+                                <img src="{{ last_news.image.url }}" alt="{{ last_news.header }}" itemprop="image" width="150" />
+                            </td>
+                        {% endif %}
+                        <td style="vertical-align: top;">
+                            <p itemprop="description">
+                                <strong>Краткое содержание:</strong> {{ last_news.short_description }}
+                            </p>
+                            <p>
+                                <a href="{{ last_news.get_absolute_url }}">
+                                    <button type="button">Читать статью полностью &rarr;</button>
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </article>
+        {% else %}
+            <p>Статей в базе данных пока нет.</p>
+        {% endif %}
+    </section>
+
+    <hr />
+
+     
+    <section aria-labelledby="catalog-preview-title">
+        <h3 id="catalog-preview-title">Каталог производимой продукции</h3>
+        <p>Образцы доступных к оптовому заказу игрушек собственного производства:</p>
+
+        {% if products_sample %}
+            <table border="1" cellpadding="6" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Наименование товара</th>
+                        <th>Модель</th>
+                        <th>Тип / Категория</th>
+                        <th>Оптовая цена</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prod in products_sample %}
+                        <tr>
+                            <td><strong>{{ prod.name }}</strong></td>
+                            <td>{{ prod.product_model.name }}</td>
+                            <td>{{ prod.display_product_type }}</td>
+                            <td><data value="{{ prod.price }}">{{ prod.price }} BYN</data></td>
+                            <td>
+                                <a href="{{ prod.get_absolute_url }}">Карточка товара</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p><a href="{% url 'products' %}">&rarr; Перейти ко всему каталогу продукции (фильтрация и поиск)</a></p>
+        {% else %}
+            <p>Товары пока не добавлены на склад.</p>
+        {% endif %}
+    </section>
+
+    <hr />
+
+     
+    <section aria-labelledby="partners-heading">
+        <h3 id="partners-heading">Наши надежные партнеры</h3>
+        <p>Компании, с которыми мы успешно сотрудничаем в логистике, поставках сырья и ритейле:</p>
+
+        {% if partners %}
+            <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Логотип</th>
+                        <th>Компания-партнер</th>
+                        <th>Описание сотрудничества</th>
+                        <th>Официальный сайт</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for partner in partners %}
+                        <tr>
+                            <td style="text-align: center; width: 140px;">
+                                {% if partner.logo %}
+                                    <img src="{{ partner.logo.url }}" alt="Логотип {{ partner.name }}" width="100" />
+                                {% else %}
+                                    <img src="https://via.placeholder.com/100x60?text=Partner" alt="Заглушка логотипа" width="100" />
+                                {% endif %}
+                            </td>
+                            <td><strong>{{ partner.name }}</strong></td>
+                            <td>{{ partner.description|default:"Стратегический партнер фабрики" }}</td>
+                            <td>
+                                <a href="{{ partner.website_url }}" target="_blank" rel="noopener noreferrer">
+                                    Перейти на сайт &nearr;
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Список партнеров формируется. Добавьте записи через панель администратора.</p>
+        {% endif %}
+    </section>
+
+     
+    {% if user.is_authenticated and api_data %}
+        <hr />
+        <section aria-labelledby="api-news-title">
+            <h3 id="api-news-title">Мировые отраслевые новости (Внешний API)</h3>
+
+            {% for article in api_data %}
+                <article style="margin-bottom: 20px; border-bottom: 1px dotted #888; padding-bottom: 10px;">
+                    <h4>{{ article.title|default:"Новость отрасли" }}</h4>
+                    {% if article.author %}
+                        <p><small>Автор: <em>{{ article.author }}</em></small></p>
+                    {% endif %}
+
+                    {% if article.urlToImage %}
+                        <figure style="margin: 5px 0;">
+                            <img src="{{ article.urlToImage }}" alt="Иллюстрация к новости" width="300" style="max-height: 180px; object-fit: cover;" />
+                        </figure>
+                    {% endif %}
+
+                    {% if article.description %}
+                        <p>{{ article.description }}</p>
+                    {% endif %}
+
+                    {% if article.url %}
+                        <p>
+                            <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">
+                                Читать первоисточник &nearr;
+                            </a>
+                        </p>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        </section>
     {% endif %}
-    <ul>News created: {{last_news.created_at|date:"d/m/Y H:i"}}</ul>
-    <ul>News updated: {{last_news.updated_at|date:"d/m/Y H:i"}}</ul>
-  {% else %}
-    <p>No news available</p>
-  {% endif %}
 
-  <br>
-
-  {% if user.is_authenticated %}
-
-    <h1>World's last news</h1>
-    <br>
-    {% for article in api_data %}
-      {% if article.title %}
-          <h2>Title: {{article.title}}</h2>
-      {% else %}
-          <h2>Title: -</h2>
-      {% endif %}
-      {% if article.author %}
-          <h2>Author: {{article.author}}</h2>
-      {% else %}
-          <h2>Author: -</h2>
-      {% endif %}
-      {% if article.urlToImage %}
-          <img src="{{ article.urlToImage }}" style="max-width: 500px; object-fit: cover;">
-      {% endif %}
-      {% if article.description %}
-          <h3>Description: {{article.description}}</h3>
-      {% else %}
-          <h3>Description: -</h3>
-      {% endif %}
-      {% if article.content %}
-          <p>Content: {{article.content}}</p>
-      {% else %}
-          <p>Content: -</p>
-      {% endif %}
-      {% if article.url %}
-          <a href="{{article.url}}">Read more</a>
-      {% endif %}
-      {% if article.publishedAt %}
-          <h4>Published at: {{article.publishedAt}}</h4>
-      {% else %}
-          <h4>Published at: -</h4>
-      {% endif %}
-      <br>
-    {% empty %}
-      <h2>No info by API</h2>
-    {% endfor %}
-
-  {% endif %}
-
+</div>
 {% endblock %}

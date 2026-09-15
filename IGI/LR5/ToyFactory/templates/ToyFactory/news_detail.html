@@ -1,24 +1,57 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>News</title>
+<title>{{ news.header }} - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
+<article itemscope itemtype="https://schema.org/NewsArticle">
+     
+    <nav aria-label="Хлебные крошки">
+        <p><a href="{% url 'news' %}">&larr; Вернуться ко всем новостям</a></p>
+    </nav>
 
-    {% if news %}
-        <h2>{{news.header}}</h2>
-        <li>{% if news.image %}
-            <img src='{{news.image.url}}' alt="News picture" style="max-width: 300px;"/>
+    <header>
+        <h2 itemprop="headline">{{ news.header }}</h2>
+        <p>
+            Дата публикации:
+            <time itemprop="datePublished" datetime="{{ news.created_at|date:'Y-m-d\TH:i' }}">
+                {{ news.created_at|date:"d/m/Y H:i" }}
+            </time>
+            | Последнее обновление:
+            <time itemprop="dateModified" datetime="{{ news.updated_at|date:'Y-m-d\TH:i' }}">
+                {{ news.updated_at|date:"d/m/Y H:i" }}
+            </time>
+        </p>
+    </header>
+
+     
+    <figure>
+        {% if news.image %}
+            <img src="{{ news.image.url }}" alt="{{ news.header }}" itemprop="image" width="500" />
         {% else %}
-            <img src='/media/default_news_logo.png' alt="News default picture" style="max-width: 300px;"/>
+            <img src="/media/default_news_logo.png" alt="Стандартное изображение" width="500" />
         {% endif %}
-        <p>{{news.info}}</p>
-        <ul>News created: {{news.created_at|date:"d/m/Y H:i"}}</ul>
-        <ul>News updated: {{news.updated_at|date:"d/m/Y H:i"}}</ul>
-    </li>
-    {% else %}
-        <h2>No info for this news</h2>
-    {% endif %}
+        <figcaption>Фотоматериал к статье: {{ news.header }}</figcaption>
+    </figure>
 
+     
+    <aside>
+        <p><em>{{ news.short_description }}</em></p>
+    </aside>
+
+    <hr />
+
+     
+    <section itemprop="articleBody">
+        {{ news.info|linebreaks }}
+    </section>
+
+    <hr />
+
+    <footer>
+        <p>Автор публикации: <span itemprop="author">Пресс-служба Toy Factory</span></p>
+        <p><a href="{% url 'news' %}">&larr; Назад к списку новостей</a></p>
+    </footer>
+</article>
 {% endblock %}

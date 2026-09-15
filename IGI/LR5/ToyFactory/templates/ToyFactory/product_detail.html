@@ -1,44 +1,125 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Products</title>
+<title>{{ product.name }} - Toy Factory</title>
+{% endblock %}
+
+{% block breadcrumb %}
+<a href="{% url 'products' %}">Каталог</a> &raquo; {{ product.name }}
 {% endblock %}
 
 {% block content %}
+<article itemscope itemtype="https://schema.org/Product">
+     
+    <nav aria-label="Хлебные крошки">
+        <p><a href="{% url 'products' %}">&larr; Вернуться в каталог товаров</a></p>
+    </nav>
 
     {% if product %}
-      {% if product.status == 'a' %}
-        <h1>{{product.name}}</h1>
-        <p>Type: {{product.display_product_type}}</p>
-        <p>Model: {{product.product_model}}</p>
-        <p>Status: available</p>
-        <p>Price: {{product.price}}</p>
-        <ul>Created: {{product.created_at|date:"d/m/Y H:i"}}</ul>
-        <ul>Updated: {{product.updated_at|date:"d/m/Y H:i"}}</ul>
-      {% else %}
-        {% if perms.ToyFactory.employee_perm %}
-          <h1>{{product.name}} (DISCONTINUED)</h1>
-          <p>Type: {{product.display_product_type}}</p>
-          <p>Model: {{product.product_model}}</p>
-          <p>Status: discontinued</p>
-          <p>Price: {{product.price}}</p>
-          <ul>Created: {{product.created_at|date:"d/m/Y H:i"}}</ul>
-          <ul>Updated: {{product.updated_at|date:"d/m/Y H:i"}}</ul>
+        <header>
+            <h1 itemprop="name">{{ product.name }}</h1>
+            {% if product.status == 'd' %}
+                <p style="color: red;"><strong>[ВНИМАНИЕ: СНЯТ С ПРОИЗВОДСТВА]</strong></p>
+            {% endif %}
+        </header>
+
+        <section>
+            <h3>Характеристики изделия:</h3>
+            <ul>
+                <li><strong>Категории / Тип:</strong> <span itemprop="category">{{ product.display_product_type }}</span></li>
+                <li><strong>Серийная модель:</strong> {{ product.product_model.name }}</li>
+                <li><strong>Статус производства:</strong>
+                    {% if product.status == 'a' %}
+                        <span style="color: green;">Доступен к заказу</span>
+                    {% else %}
+                        <span style="color: red;">В архиве</span>
+                    {% endif %}
+                </li>
+                <li>
+                    <strong>Оптовая цена:</strong>
+                    <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <data itemprop="price" value="{{ product.price }}"><strong>{{ product.price }}</strong></data>
+                        <span itemprop="priceCurrency">BYN</span> (за единицу)
+                    </span>
+                </li>
+            </ul>
+        </section>
+
+         
+        {% if product.status == 'a' %}
+            <section style="margin: 20px 0; padding: 15px; border: 2px solid #0066cc; background-color: #fcfcfc;">
+                {% if user.is_authenticated %}
+                    {% if perms.ToyFactory.client_perm and not user.is_superuser %}
+                        <h3 style="margin-top: 0;">Оформить заказ на партию:</h3>
+
+                        <form action="{% url 'cart-add' product.pk %}" method="post">
+                            {% csrf_token %}
+
+                            <table cellpadding="6" style="border: none;">
+                                <tr>
+                                    <td>
+                                        <label for="amount-input"><strong>Количество изделий (шт.):</strong></label><br />
+                                        <input type="number" id="amount-input" name="amount" value="1" min="1" max="10000" style="width: 80px;" required />
+                                    </td>
+
+                                     
+                                    <td style="padding-left: 20px;">
+                                        <label for="promo-select"><strong>Скидочный промокод / купон:</strong></label><br />
+                                        <select id="promo-select" name="promo_id" style="min-width: 200px;">
+                                            <option value="">Без промокода</option>
+                                            {% for promo in available_promos %}
+                                                <option value="{{ promo.id }}">
+                                                    {{ promo.info }} (скидка {{ promo.promo_sale_percentage }})
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+
+                                    <td style="vertical-align: bottom; padding-left: 20px;">
+                                        <button type="submit" style="font-size: 1.1em; padding: 6px 14px; cursor: pointer;">
+                                            &#128722; Добавить в корзину
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            {% if not available_promos %}
+                                <p><small><em>На данный товар сейчас нет активных промокодов.</em></small></p>
+                            {% endif %}
+                        </form>
+                    {% elif user.is_superuser or perms.ToyFactory.employee_perm %}
+                        <p><em>(Режим сотрудника/администратора: оформление заказов отключено).</em></p>
+                    {% endif %}
+                {% else %}
+                    <p>
+                        Для оформления оптового заказа на эту модель
+                        <a href="{% url 'login' %}?next={{ request.path }}">войдите как клиент</a>
+                        или <a href="{% url 'register' %}">зарегистрируйте компанию</a>.
+                    </p>
+                {% endif %}
+            </section>
         {% endif %}
-      {% endif %}
 
-      {% if perms.ToyFactory.employee_perm %}
-        <form method="get" action="{% url 'product-update' product.pk %}">
-          {% csrf_token %}
-          <button type="submit">Update</button>
-        </form>
-        <form method="get" action="{% url 'product-delete' product.pk %}">
-          {% csrf_token %}
-          <button type="submit">Delete</button>
-        </form>
-      {% endif %}
+         
+        {% if perms.ToyFactory.employee_perm %}
+            <section style="margin-top: 20px; border-top: 1px dotted #888; padding-top: 10px;">
+                <h4>Панель менеджера:</h4>
+                <a href="{% url 'product-update' product.pk %}"><button type="button">Редактировать товар</button></a>
+                <a href="{% url 'product-delete' product.pk %}"><button type="button">Удалить из каталога</button></a>
+            </section>
+        {% endif %}
+
+        <hr />
+        <footer>
+            <p>
+                <small>
+                    Внесен в каталог: <time datetime="{{ product.created_at|date:'Y-m-d' }}">{{ product.created_at|date:"d/m/Y H:i" }}</time>
+                    | Обновлен: <time datetime="{{ product.updated_at|date:'Y-m-d' }}">{{ product.updated_at|date:"d/m/Y H:i" }}</time>
+                </small>
+            </p>
+        </footer>
     {% else %}
-        <h2>No info for product</h2>
+        <h2>Товар не найден.</h2>
     {% endif %}
-
+</article>
 {% endblock %}

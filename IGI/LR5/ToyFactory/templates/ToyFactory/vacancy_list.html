@@ -1,27 +1,69 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Vacancies</title>
+<title>Вакансии фабрики - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
-    <h1>Vacancies</h1>
+<section aria-labelledby="vacancies-heading">
+    <header>
+        <h2 id="vacancies-heading">Открытые вакансии фабрики игрушек</h2>
+        <p>Присоединяйтесь к нашей команде профессионалов по разработке и производству детских игрушек.</p>
+    </header>
+
+    <hr />
 
     {% if vacancy_list %}
-    <ul>
+        <div class="vacancies-container">
+            {% for vacancy in vacancy_list %}
+                 
+                <article itemscope itemtype="https://schema.org/JobPosting" style="margin-bottom: 25px;">
+                    <header>
+                        <h3 itemprop="title">
+                            <a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a>
+                        </h3>
+                        <p>
+                            Опубликовано:
+                            <time itemprop="datePosted" datetime="{{ vacancy.created_at|date:'Y-m-d\TH:i' }}">
+                                {{ vacancy.created_at|date:"d/m/Y H:i" }}
+                            </time>
+                        </p>
+                    </header>
 
-      {% for vacancy in vacancy_list %}
-        <li>
-            <a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a>
-            <p>Salary: {{vacancy.salary}}</p>
-            <ul>Created: {{vacancy.created_at|date:"d/m/Y H:i"}}</ul>
-            <ul>Updated: {{vacancy.updated_at|date:"d/m/Y H:i"}}</ul>
-            <br>
-        </li>
-      {% endfor %}
+                     
+                    <p itemprop="baseSalary" itemscope itemtype="https://schema.org/MonetaryAmount">
+                        <strong>Заработная плата:</strong>
+                        <span itemprop="currency" content="BYN">BYN</span>
+                        <data itemprop="value" value="{{ vacancy.salary }}">{{ vacancy.salary }} руб.</data>
+                    </p>
 
-    </ul>
+                     
+                    <section itemprop="description">
+                        <p>{{ vacancy.info|truncatewords:30 }}</p>
+                    </section>
+
+                    <footer>
+                        <p>
+                            <a href="{{ vacancy.get_absolute_url }}">
+                                <button type="button">Подробнее о вакансии &rarr;</button>
+                            </a>
+                        </p>
+                    </footer>
+                    <hr />
+                </article>
+            {% endfor %}
+        </div>
     {% else %}
-      <p>There are no vacancies available.</p>
+        <p>В настоящий момент открытых вакансий нет. Следите за обновлениями на сайте!</p>
     {% endif %}
+
+     
+    <aside aria-label="Информация для соискателей">
+        <h3>Не нашли подходящую вакансию?</h3>
+        <p>
+            Отправьте ваше резюме в отдел кадров на почту:
+            <a href="mailto:hr@toyfactory.by?subject=Резюме%20в%20Toy%20Factory">hr@toyfactory.by</a>
+        </p>
+    </aside>
+</section>
 {% endblock %}

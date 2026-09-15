@@ -1,20 +1,68 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Promo</title>
+<title>{{ promo.info }} - Промокод Toy Factory</title>
 {% endblock %}
 
 {% block content %}
+<article>
+     
+    <nav aria-label="Хлебные крошки">
+        <p><a href="{% url 'promos' %}">&larr; Вернуться ко всем промокодам</a></p>
+    </nav>
 
     {% if promo %}
-        <h1>{{promo.info}}</h1>
-        <p>Product: {{promo.get_product_name}}</p>
-        <p>Sale: {{promo.sale}}</p>
-        <ul>End date: {{promo.end_date}}</ul>
-        <ul>Created: {{promo.created_at|date:"d/m/Y H:i"}}</ul>
-        <ul>Updated: {{promo.updated_at|date:"d/m/Y H:i"}}</ul>
-    {% else %}
-        <h2>No info for this promo</h2>
-    {% endif %}
+        <header>
+            <h2>{{ promo.info }}</h2>
 
+             
+            {% if promo.is_active %}
+                <p style="color: green;"><strong>Статус:</strong> Действующий промокод</p>
+            {% else %}
+                <p style="color: red;"><strong>Статус:</strong> Срок действия акции истек (в архиве)</p>
+            {% endif %}
+        </header>
+
+        <section>
+            <h3>Условия предложения:</h3>
+            <ul>
+                <li><strong>Целевой товар:</strong> {{ promo.get_product_name }}</li>
+                <li>
+                    <strong>Предоставляемая скидка:</strong>
+                    {% if promo.is_active %}
+                        <mark><b>{{ promo.promo_sale_percentage }}</b></mark>
+                    {% else %}
+                        <del>{{ promo.promo_sale_percentage }}</del>
+                    {% endif %}
+                </li>
+                <li>
+                    <strong>Действует до:</strong>
+                    <time datetime="{{ promo.end_date|date:'Y-m-d' }}">{{ promo.end_date|date:"d/m/Y" }}</time>
+                </li>
+            </ul>
+        </section>
+
+        {% if promo.is_active %}
+            <section>
+                <p>
+                    <em>Вы можете применить данный промокод на этапе подтверждения состава корзины в личном кабинете.</em>
+                </p>
+            </section>
+        {% endif %}
+
+        <hr />
+
+        <footer>
+            <p>
+                Дата создания акции:
+                <time datetime="{{ promo.created_at|date:'Y-m-d\TH:i' }}">{{ promo.created_at|date:"d/m/Y H:i" }}</time>
+                | Обновление:
+                <time datetime="{{ promo.updated_at|date:'Y-m-d\TH:i' }}">{{ promo.updated_at|date:"d/m/Y H:i" }}</time>
+            </p>
+            <p><a href="{% url 'promos' %}">&larr; Назад к списку акций</a></p>
+        </footer>
+    {% else %}
+        <h2>Информация о промокоде не найдена.</h2>
+    {% endif %}
+</article>
 {% endblock %}

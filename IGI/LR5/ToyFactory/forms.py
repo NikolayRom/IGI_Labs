@@ -219,24 +219,30 @@ class EmployeeUpdateForm(forms.ModelForm):
         model = Employee
         fields = ['info', 'image']
 
+
 class ReviewForm(forms.ModelForm):
-    
     review = forms.CharField(
-        max_length=200,
-        label='Review',
-        help_text='User\'s review'
+        widget=forms.Textarea(
+            attrs={'rows': 4, 'cols': 50, 'placeholder': 'Напишите ваш отзыв о продукции фабрики...'}),
+        max_length=500,
+        label='Текст отзыва',
+        help_text='Поделитесь впечатлениями о качестве игрушек и сервисе'
     )
-    
-    grade = forms.IntegerField(
-        min_value=1,
-        max_value=5,
-        help_text='Grade for review',
-        required=True,
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(5)
-        ],
-        label='Grade'
+
+     
+    GRADE_CHOICES = (
+        (5, '★★★★★ (5 - Отлично)'),
+        (4, '★★★★☆ (4 - Хорошо)'),
+        (3, '★★★☆☆ (3 - Удовлетворительно)'),
+        (2, '★★☆☆☆ (2 - Плохо)'),
+        (1, '★☆☆☆☆ (1 - Ужасно)'),
+    )
+
+    grade = forms.ChoiceField(
+        choices=GRADE_CHOICES,
+        initial=5,
+        label='Ваша оценка',
+        help_text='Выберите оценку от 1 до 5'
     )
 
     def __init__(self, *args, **kwargs):
@@ -244,18 +250,16 @@ class ReviewForm(forms.ModelForm):
         super(ReviewForm, self).__init__(*args, **kwargs)
 
     def clean_grade(self):
-        grade_data = self.cleaned_data.get('grade')
-        
+        grade_data = int(self.cleaned_data.get('grade'))
         if grade_data < 1 or grade_data > 5:
-            logger.error(f"invalid value for grade")
-            raise forms.ValidationError('Grade must be in range from 1 to 5') 
-        
+            logger.error("invalid value for grade")
+            raise forms.ValidationError('Оценка должна быть от 1 до 5')
         return grade_data
 
     def save(self, commit=True):
-        review = Review.objects.create(
+        review = Review(
             review=self.cleaned_data.get('review'),
-            grade=self.cleaned_data.get('grade'),
+            grade=int(self.cleaned_data.get('grade')),
             user=self.user
         )
         if commit:
@@ -318,3 +322,71 @@ class OrderCreateForm(forms.ModelForm):
         model = Order
         fields = ['product', 'product_amount', 'pick_up_point', 'promo']
 
+
+class PaymentForm(forms.Form):
+    PAYMENT_METHODS = (
+        ('card', 'Банковская корпоративная карта'),
+        ('invoice', 'Безналичный расчет (по счету-фактуре)')
+    )
+
+    pay_method = forms.ChoiceField(
+        choices=PAYMENT_METHODS,
+        initial='card',
+        widget=forms.RadioSelect
+    )
+    card_number = forms.CharField(
+        max_length=19,
+        label='Номер карты',
+        widget=forms.TextInput(attrs={'placeholder': 'XXXX XXXX XXXX XXXX'})
+    )
+    card_holder = forms.CharField(
+        max_length=50,
+        label='Владелец карты',
+        widget=forms.TextInput(attrs={'placeholder': 'IVAN IVANOV'})
+    )
+    card_expiry = forms.CharField(
+        max_length=5,
+        label='Срок действия (ММ/ГГ)',
+        widget=forms.TextInput(attrs={'placeholder': 'ММ/ГГ'})
+    )
+    card_cvc = forms.CharField(
+        max_length=3,
+        label='CVC/CVV',
+        widget=forms.PasswordInput(attrs={'placeholder': '•••'})
+    )
+
+    def clean_card_number(self):
+         
+        card_num = self.cleaned_data.get('card_number', '').replace(' ', '').replace('-', '')
+        if not card_num.isdigit() or len(card_num) < 16 or len(card_num) > 19:
+            raise forms.ValidationError('Номер карты должен содержать от 16 до 19 цифр!')
+        return card_num
+
+    def clean_card_expiry(self):
+        expiry = self.cleaned_data.get('card_expiry', '').strip()
+        if not re.match(r'^(0[1-9]|1[0-2])\/(\d{2})$', expiry):
+            raise forms.ValidationError('Формат срока действия должен быть строго ММ/ГГ (например, 12/26)!')
+
+        month, year = expiry.split('/')
+        exp_month = int(month)
+        exp_year = int("20" + year)   
+
+        now = timezone.now()
+        current_year = now.year
+        current_month = now.month
+
+         
+        if (exp_year < current_year) or (exp_year == current_year and exp_month < current_month):
+            raise forms.ValidationError(f'Срок действия карты истек ({expiry}). Карта не может быть принята!')
+
+         
+        if exp_year > current_year + 10:
+            raise forms.ValidationError('Некорректный год окончания действия карты!')
+
+        return expiry
+
+    def clean_card_cvc(self):
+        cvc = self.cleaned_data.get('card_cvc', '').strip()
+        if not cvc.isdigit() or len(cvc) != 3:
+            raise forms.ValidationError('CVC/CVV код должен состоять строго из 3 цифр!')
+        return cvc

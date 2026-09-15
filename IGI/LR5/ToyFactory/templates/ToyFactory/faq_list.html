@@ -1,24 +1,70 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>FAQ</title>
+<title>Словарь терминов и FAQ - Toy Factory</title>
 {% endblock %}
 
 {% block content %}
-    <h1>FAQ</h1>
+ 
+<section itemscope itemtype="https://schema.org/FAQPage" aria-labelledby="faq-title">
+    <header>
+        <h2 id="faq-title">Словарь терминов и часто задаваемые вопросы (FAQ)</h2>
+        <p>Здесь собраны ключевые термины производства игрушек и ответы на популярные вопросы наших клиентов.</p>
+    </header>
+
+    <hr />
 
     {% if faq_list %}
-    <ul>
+         
+        <div class="faq-container">
+            {% for faq in faq_list %}
+                <article itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom: 20px;">
+                     
+                    <details>
+                        <summary style="cursor: pointer; font-size: 1.1em; font-weight: bold;">
+                            <span itemprop="name">
+                                <dfn>{{ faq.question }}</dfn>
+                            </span>
+                            <small style="font-weight: normal; color: #555;">
+                                (добавлено:
+                                <time datetime="{{ faq.created_at|date:'Y-m-d\TH:i' }}">
+                                    {{ faq.created_at|date:"d/m/Y H:i" }}
+                                </time>)
+                            </small>
+                        </summary>
 
-      {% for faq in faq_list %}
-        <li>
-            <a href="{{ faq.get_absolute_url }}">{{ faq.question }}</a> ({{faq.updated_at|date:"d/m/Y H:i"}})
-            <br>
-        </li>
-      {% endfor %}
+                         
+                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding-left: 20px; margin-top: 10px;">
+                            <div itemprop="text">
+                                <p>{{ faq.answer|linebreaks }}</p>
+                            </div>
 
-    </ul>
+                            <footer>
+                                <small>
+                                    Прямая ссылка на термин:
+                                    <a href="{{ faq.get_absolute_url }}">Открыть отдельно</a>
+                                </small>
+                            </footer>
+                        </div>
+                    </details>
+                </article>
+            {% endfor %}
+        </div>
     {% else %}
-      <p>There are no faq available.</p>
+        <p>Вопросы и термины пока не внесены в базу данных.</p>
     {% endif %}
+
+    <hr />
+
+     
+    <aside aria-label="Справочная информация">
+        <h3>Как пользоваться словарём:</h3>
+        <dl>
+            <dt><strong>Клик по строке вопроса:</strong></dt>
+            <dd>Разворачивает подробное определение или ответ фабрики.</dd>
+            <dt><strong>Дата добавления:</strong></dt>
+            <dd>Указывает на актуальность редакции термина.</dd>
+        </dl>
+    </aside>
+</section>
 {% endblock %}

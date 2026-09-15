@@ -154,7 +154,7 @@
       </main>
 
       <aside aria-label="Информационная панель" style="width: 250px; border-left: 1px solid #ccc; padding-left: 15px;">
-        <section>
+        <div>
           <p><strong>Параметры сессии</strong></p>
           <p>
             Часовой пояс:<br />
@@ -172,25 +172,25 @@
               {{ utc_date|date:"d/m/Y H:i" }}
             </time>
           </p>
-        </section>
+        </div>
 
         <hr />
 
-        <section>
+        <div>
           <p><strong>Календарь</strong></p>
           <div style="font-family: monospace; font-size: 0.85em;">
             {{ html_calendar|safe }}
           </div>
-        </section>
+        </div>
 
         <hr />
 
-        <section>
+        <div>
           <p><strong>Быстрая помощь</strong></p>
           <small>
             Возникли вопросы по поставкам? Ознакомьтесь с нашим <a href="{% url 'faq' %}">FAQ</a> или свяжитесь с менеджером через <a href="{% url 'contacts' %}">Контакты</a>.
           </small>
-        </section>
+        </div>
       </aside>
 
     </div>

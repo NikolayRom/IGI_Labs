@@ -58,8 +58,8 @@
                 <button type="submit">Выйти</button>
               </form>
             {% else %}
-              <a href="{% url 'login' %}"><button type="button">Войти</button></a>
-              <a href="{% url 'register' %}"><button type="button">Регистрация</button></a>
+                [<a href="{% url 'login' %}">Войти</a>]
+                [<a href="{% url 'register' %}">Регистрация</a>]
             {% endif %}
           </td>
         </tr>

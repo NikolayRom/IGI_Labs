@@ -87,7 +87,7 @@
        
       <aside aria-label="Навигация по разделам" style="width: 220px; border-right: 1px solid #ccc; padding-right: 15px;">
         <nav aria-label="Меню базы данных">
-          <h3>Каталог и Данные</h3>
+          <p><strong>Каталог и Данные</strong></p>
           <ul>
             <li><a href="{% url 'products' %}">Все товары</a></li>
             <li><a href="{% url 'cities' %}">Города поставок</a></li>
@@ -97,21 +97,18 @@
           </ul>
 
           {% if user.is_authenticated %}
-            <h3>Личный кабинет</h3>
+            <p><strong>Личный кабинет</strong></p>
             <ul>
-               
               {% if perms.ToyFactory.client_perm and not user.is_superuser %}
                 <li><a href="{% url 'cart' %}">Корзина заказов</a></li>
                 <li><a href="{% url 'client-orders' %}">Мои заказы</a></li>
                 <li><a href="{% url 'client-profile' %}">Профиль компании</a></li>
               {% endif %}
 
-               
               {% if perms.ToyFactory.employee_perm and not user.is_superuser %}
                 <li><a href="{% url 'employee-profile' %}">Профиль сотрудника</a></li>
               {% endif %}
 
-               
               {% if user.is_superuser %}
                 <li><a href="{% url 'analytics' %}"><strong>Аналитика и отчеты</strong></a></li>
                 <li><a href="/admin/">Панель Django Admin</a></li>
@@ -119,9 +116,8 @@
             </ul>
           {% endif %}
 
-           
           {% if user.is_superuser or perms.ToyFactory.employee_perm %}
-            <h3>Управление (CRUD)</h3>
+            <p><strong>Управление (CRUD)</strong></p>
             <ul>
               <li><a href="{% url 'product-create' %}">+ Добавить игрушку</a></li>
               <li><a href="{% url 'product_type-create' %}">+ Добавить категорию</a></li>
@@ -131,10 +127,8 @@
         </nav>
       </aside>
 
-       
       <main id="main-content" style="flex: 1; min-width: 0; padding: 0 10px;">
 
-         
         <nav aria-label="Хлебные крошки" style="font-size: 0.9em; margin-bottom: 15px;">
           <a href="{% url 'index' %}">Главная</a> &raquo;
           <span>{% block breadcrumb %}Текущий раздел{% endblock %}</span>
@@ -159,22 +153,21 @@
         {% endblock %}
       </main>
 
-       
       <aside aria-label="Информационная панель" style="width: 250px; border-left: 1px solid #ccc; padding-left: 15px;">
         <section>
-          <h4>Параметры сессии</h4>
+          <p><strong>Параметры сессии</strong></p>
           <p>
-            <strong>Часовой пояс:</strong><br />
+            Часовой пояс:<br />
             <data value="{{ user_timezone }}">{{ user_timezone }}</data>
           </p>
           <p>
-            <strong>Местное время:</strong><br />
+            Местное время:<br />
             <time datetime="{{ current_date|date:'Y-m-d\TH:i' }}">
               {{ current_date|date:"d/m/Y H:i" }}
             </time>
           </p>
           <p>
-            <strong>Время UTC:</strong><br />
+            Время UTC:<br />
             <time datetime="{{ utc_date|date:'Y-m-d\TH:i' }}">
               {{ utc_date|date:"d/m/Y H:i" }}
             </time>
@@ -184,7 +177,7 @@
         <hr />
 
         <section>
-          <h4>Календарь</h4>
+          <p><strong>Календарь</strong></p>
           <div style="font-family: monospace; font-size: 0.85em;">
             {{ html_calendar|safe }}
           </div>
@@ -193,7 +186,7 @@
         <hr />
 
         <section>
-          <h4>Быстрая помощь</h4>
+          <p><strong>Быстрая помощь</strong></p>
           <small>
             Возникли вопросы по поставкам? Ознакомьтесь с нашим <a href="{% url 'faq' %}">FAQ</a> или свяжитесь с менеджером через <a href="{% url 'contacts' %}">Контакты</a>.
           </small>

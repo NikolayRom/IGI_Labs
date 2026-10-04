@@ -1,72 +1,74 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Вакансии фабрики - Toy Factory</title>
+	<title>Вакансии фабрики - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-Вакансии
+	Вакансии
 {% endblock %}
 
 {% block content %}
-<section aria-labelledby="vacancies-heading">
-    <header>
-         
-        <h1 id="vacancies-heading">Открытые вакансии фабрики игрушек</h1>
-        <p>Присоединяйтесь к нашей команде профессионалов по разработке и производству детских игрушек.</p>
-    </header>
+	<section aria-labelledby="vacancies-heading">
+		<header>
+			<h1 id="vacancies-heading">Открытые вакансии фабрики игрушек</h1>
+			<p>Присоединяйтесь к нашей команде профессионалов по разработке и производству детских игрушек.</p>
+		</header>
 
-    <hr />
+		<hr/>
 
-    {% if vacancy_list %}
-        <div class="vacancies-container">
-            {% for vacancy in vacancy_list %}
-                <article itemscope itemtype="https://schema.org/JobPosting" style="margin-bottom: 25px;">
-                    <header>
-                        <h2 itemprop="title">
-                            <a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a>
-                        </h2>
-                        <p>
-                            Опубликовано: 
-                            <time itemprop="datePosted" datetime="{{ vacancy.created_at|date:'Y-m-d\TH:i' }}">
-                                {{ vacancy.created_at|date:"d/m/Y H:i" }}
-                            </time>
-                        </p>
-                    </header>
+		{% if vacancy_list %}
+			<div class="vacancies-container">
+				{% for vacancy in vacancy_list %}
 
-                    <p itemprop="baseSalary" itemscope itemtype="https://schema.org/MonetaryAmount">
-                        <strong>Заработная плата:</strong> 
-                        <span itemprop="currency" content="BYN">BYN</span>
-                        <data itemprop="value" value="{{ vacancy.salary }}">{{ vacancy.salary }} руб.</data>
-                    </p>
+					<article class="vacancy-float-card" itemscope itemtype="https://schema.org/JobPosting">
 
-                     
-                    <div itemprop="description">
-                        <p>{{ vacancy.info|truncatewords:30 }}</p>
-                    </div>
+						<div class="vacancy-salary-float-right" itemprop="baseSalary" itemscope
+						     itemtype="https://schema.org/MonetaryAmount">
+							<div>Зарплата от:</div>
+							<data itemprop="value" value="{{ vacancy.salary }}">{{ vacancy.salary }}</data>
+							<span itemprop="currency">BYN</span>
+						</div>
 
-                     
-                    <footer>
-                        <p>
-                            <a href="{{ vacancy.get_absolute_url }}" role="button">
-                                [Подробнее о вакансии &rarr;]
-                            </a>
-                        </p>
-                    </footer>
-                    <hr />
-                </article>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>В настоящий момент открытых вакансий нет. Следите за обновлениями на сайте!</p>
-    {% endif %}
+						<div class="vacancy-badge-float-left">
+							&#129302;
+						</div>
 
-    <aside aria-label="Информация для соискателей">
-        <h2>Не нашли подходящую вакансию?</h2>
-        <p>
-            Отправьте ваше резюме в отдел кадров на почту: 
-            <a href="mailto:hr@toyfactory.by?subject=Резюме%20в%20Toy%20Factory">hr@toyfactory.by</a>
-        </p>
-    </aside>
-</section>
+						<header class="vacancy-header-block">
+							<h2 itemprop="title">
+								<a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a>
+							</h2>
+							<small style="color: #718096;">
+								Опубликовано:
+								<time itemprop="datePosted" datetime="{{ vacancy.created_at|date:'Y-m-d\TH:i' }}">
+									{{ vacancy.created_at|date:"d/m/Y H:i" }}
+								</time>
+							</small>
+						</header>
+
+						<div class="vacancy-description-text" itemprop="description">
+							<p>{{ vacancy.info|truncatewords:35 }}</p>
+						</div>
+
+						<footer class="vacancy-footer-clear">
+							<span>Требуются специалисты с опытом от 1 года</span>
+							<a href="{{ vacancy.get_absolute_url }}" role="button">
+								[Подробнее о вакансии &rarr;]
+							</a>
+						</footer>
+					</article>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p>В настоящий момент открытых вакансий нет. Следите за обновлениями на сайте!</p>
+		{% endif %}
+
+		<aside class="vacancy-aside-box" aria-label="Информация для соискателей">
+			<h2>Не нашли подходящую вакансию?</h2>
+			<p>
+				Отправьте ваше резюме в отдел кадров на почту:
+				<a href="mailto:hr@toyfactory.by?subject=Резюме%20в%20Toy%20Factory">hr@toyfactory.by</a>
+			</p>
+		</aside>
+	</section>
 {% endblock %}

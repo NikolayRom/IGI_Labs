@@ -1,73 +1,80 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Контакты сотрудников - Toy Factory</title>
+	<title>Контакты сотрудников - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-Контакты
+	Контакты
 {% endblock %}
 
 {% block content %}
-<section aria-labelledby="contacts-title">
-    <header>
-         
-        <h1 id="contacts-title">Наши сотрудники и контакты</h1>
-        <p>Ключевые специалисты фабрики игрушек, готовые ответить на ваши вопросы по производству и поставкам.</p>
-    </header>
+	<section aria-labelledby="contacts-title">
+		<header>
+			<h1 id="contacts-title">Наши сотрудники и контакты</h1>
+			<p>Ключевые специалисты фабрики игрушек, готовые ответить на ваши вопросы по производству и поставкам.</p>
+		</header>
 
-    <hr />
+		<hr/>
 
-    {% if employee_list %}
-        <div class="employees-grid">
-            {% for employee in employee_list %}
-                <article itemscope itemtype="https://schema.org/Person" style="margin-bottom: 30px;">
-                    <header>
-                        <h2 itemprop="name">
-                            <a href="{{ employee.get_absolute_url }}">{{ employee.user.get_full_name|default:employee.user.username }}</a>
-                        </h2>
-                    </header>
+		{% if employee_list %}
 
-                    <figure>
-                        <img 
-                            src="{{ employee.get_avatar_url }}" 
-                            alt="Фото сотрудника {{ employee.user.username }}" 
-                            itemprop="image" 
-                            width="200" 
-                        />
-                        <figcaption>{{ employee.user.username }} — специалист фабрики</figcaption>
-                    </figure>
+			<div class="employees-flex-grid">
+				{% for employee in employee_list %}
 
-                    <div>
-                        <p><strong>Обязанности и выполняемые работы:</strong></p>
-                        <p itemprop="jobTitle">{{ employee.info }}</p>
-                    </div>
+					<article class="employee-flex-card" itemscope itemtype="https://schema.org/Person">
 
-                    <address>
-                        <p>
-                            <strong>Телефон:</strong> 
-                             
-                            <a href="tel:{{ employee.phone.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" itemprop="telephone">
-                                {{ employee.phone.phone }}
-                            </a>
-                        </p>
-                        <p>
-                            <strong>Электронная почта:</strong> 
-                            <a href="mailto:{{ employee.user.email }}" itemprop="email">{{ employee.user.email }}</a>
-                        </p>
-                    </address>
+						<div>
 
-                    <footer>
-                        <small>
-                            <a href="{{ employee.get_absolute_url }}">Подробнее о сотруднике &rarr;</a>
-                        </small>
-                    </footer>
-                    <hr />
-                </article>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>Информация о сотрудниках не найдена.</p>
-    {% endif %}
-</section>
+							<div class="employee-header-flex">
+								<figure class="employee-avatar-wrapper">
+									<img
+												src="{{ employee.get_avatar_url }}"
+												alt="Фото: {{ employee.user.username }}"
+												itemprop="image"
+												class="employee-avatar-img"
+									/>
+								</figure>
+
+								<div class="employee-title-box">
+									<h2 itemprop="name">
+										<a href="{{ employee.get_absolute_url }}">
+											{{ employee.user.get_full_name|default:employee.user.username }}
+										</a>
+									</h2>
+									<small style="color: #718096;">Специалист производства</small>
+								</div>
+							</div>
+
+							<div class="employee-info-box">
+								<strong>Обязанности:</strong>
+								<p itemprop="jobTitle" style="margin: 5px 0 0 0;">{{ employee.info }}</p>
+							</div>
+						</div>
+
+						<address class="employee-contacts-box">
+							<p style="margin: 4px 0;">
+								<a href="tel:{{ employee.phone.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" itemprop="telephone">
+									{{ employee.phone.phone }}
+								</a>
+							</p>
+							<p style="margin: 4px 0;">
+								<a href="mailto:{{ employee.user.email }}" itemprop="email">
+									{{ employee.user.email }}
+								</a>
+							</p>
+						</address>
+
+						<footer class="employee-card-footer">
+							<small>
+								<a href="{{ employee.get_absolute_url }}">[Подробнее о сотруднике &rarr;]</a>
+							</small>
+						</footer>
+					</article>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p>Информация о сотрудниках не найдена.</p>
+		{% endif %}
+	</section>
 {% endblock %}

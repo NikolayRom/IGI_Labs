@@ -1,73 +1,74 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Словарь терминов и FAQ - Toy Factory</title>
+	<title>Словарь терминов и FAQ - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-Словарь терминов и FAQ
+	Словарь терминов и FAQ
 {% endblock %}
 
 {% block content %}
- 
-<section itemscope itemtype="https://schema.org/FAQPage" aria-labelledby="faq-title">
-    <header>
-         
-        <h1 id="faq-title">Словарь терминов и часто задаваемые вопросы (FAQ)</h1>
-        <p>Здесь собраны ключевые термины производства игрушек и ответы на популярные вопросы наших клиентов.</p>
-    </header>
+	<section itemscope itemtype="https://schema.org/FAQPage" aria-labelledby="faq-title">
+		<header>
+			<h1 id="faq-title">Словарь терминов и часто задаваемые вопросы (FAQ)</h1>
+			<p>Здесь собраны ключевые термины производства игрушек и ответы на популярные вопросы наших клиентов.</p>
+		</header>
 
-    <hr />
+		<hr/>
 
-    {% if faq_list %}
-        <div class="faq-container">
-            {% for faq in faq_list %}
-                <article itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom: 20px;">
-                    <details>
-                        <summary style="cursor: pointer;">
-                             
-                            <h2 itemprop="name" style="display: inline; font-size: 1.1em;">
-                                <dfn>{{ faq.question }}</dfn>
-                            </h2>
-                            <small style="color: #555;">
-                                (добавлено: 
+		{% if faq_list %}
+			<div class="faq-container">
+				{% for faq in faq_list %}
+					<article class="faq-card-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+						<details>
+							<summary class="faq-summary">
+								<h3 itemprop="name" style="display: inline; font-size: 1.05em;">
+									<dfn>{{ faq.question }}</dfn>
+								</h3>
+								<span class="faq-date-badge">
+                                (добавлено:
                                 <time datetime="{{ faq.created_at|date:'Y-m-d\TH:i' }}">
                                     {{ faq.created_at|date:"d/m/Y H:i" }}
                                 </time>)
-                            </small>
-                        </summary>
+                            </span>
+							</summary>
 
-                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding-left: 20px; margin-top: 10px;">
-                             
-                            <div itemprop="text">
-                                {{ faq.answer|linebreaks }}
-                            </div>
-                            
-                            <footer>
-                                <small>
-                                    Прямая ссылка на термин: 
-                                    <a href="{{ faq.get_absolute_url }}">Открыть отдельно</a>
-                                </small>
-                            </footer>
-                        </div>
-                    </details>
-                </article>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>Вопросы и термины пока не внесены в базу данных.</p>
-    {% endif %}
+							<div class="faq-answer-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+								<div itemprop="text">
+									{{ faq.answer|linebreaks }}
+								</div>
 
-    <hr />
+								<footer class="faq-footer-link">
+									<small>
+										Прямая ссылка на термин:
+										<a href="{{ faq.get_absolute_url }}">Открыть в отдельном окне &rarr;</a>
+									</small>
+								</footer>
+							</div>
+						</details>
+					</article>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p>Вопросы и термины пока не внесены в базу данных.</p>
+		{% endif %}
 
-    <aside aria-label="Справочная информация">
-        <h2>Как пользоваться словарём:</h2>
-        <dl>
-            <dt><strong>Клик по строке вопроса:</strong></dt>
-            <dd>Разворачивает подробное определение или ответ фабрики.</dd>
-            <dt><strong>Дата добавления:</strong></dt>
-            <dd>Указывает на актуальность редакции термина.</dd>
-        </dl>
-    </aside>
-</section>
+
+		<aside class="faq-help-aside" aria-label="Справочная информация">
+			<h2>Как пользоваться словарём:</h2>
+			<ul class="unicode-marker-list">
+				<li>
+					<strong>Клик по строке вопроса:</strong> Мгновенно разворачивает подробное определение термина или официальный
+					ответ фабрики.
+				</li>
+				<li>
+					<strong>Дата добавления:</strong> Позволяет отслеживать актуальность редакций терминов и регламентов поставок.
+				</li>
+				<li>
+					<strong>Прямая ссылка:</strong> Позволяет отправить конкретный пункт коллегам или сохранить в закладки.
+				</li>
+			</ul>
+		</aside>
+	</section>
 {% endblock %}

@@ -3,204 +3,214 @@
 {% block html_lang %}ru{% endblock %}
 
 {% block title %}
-<title>О компании - Toy Factory</title>
+	<title>О компании - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-О компании
+	О компании
 {% endblock %}
 
 {% block content %}
-<article itemscope itemtype="https://schema.org/Organization">
-    
-     
-    <nav aria-label="Навигация по странице">
-        <p>Быстрый переход: 
-            <a href="#about-text">О нас</a> | 
-            <a href="#media-block">Медиа</a> | 
-            <a href="#history-block">История</a> | 
-            <a href="#table-data">Показатели</a> | 
-            <a href="#requisites-block">Реквизиты</a>
-        </p>
-    </nav>
+	<article itemscope itemtype="https://schema.org/Organization">
 
-    {% if about_info %}
-        <header>
-             
-            <h1 itemprop="name" id="about-text">{{ about_info.header }}</h1>
-        </header>
+		<nav class="about-subnav" aria-label="Навигация по странице">
+			<strong>Быстрый переход:</strong>
+			<a href="#about-text">О нас</a> |
+			<a href="#media-block">Медиа</a> |
+			<a href="#history-block">История</a> |
+			<a href="#table-data">Показатели</a> |
+			<a href="#certificate-block">Сертификат</a> |
+			<a href="#requisites-block">Реквизиты</a>
+		</nav>
 
-         
-        <figure>
-            {% if about_info.logo %}
-                <img src="{{ about_info.logo.url }}" alt="Логотип фабрики игрушек Toy Factory" itemprop="logo" width="250" />
-            {% else %}
-                <img src="/media/default_about_logo.png" alt="Стандартный логотип" width="250" />
-            {% endif %}
-            <figcaption>Рис. 1 — Официальный зарегистрированный логотип компании</figcaption>
-        </figure>
+		{% if about_info %}
+			<header>
+				<h1 itemprop="name" id="about-text">{{ about_info.header }}</h1>
+			</header>
 
-         
-        <section>
-            <h2>Основная информация</h2>
-            <p itemprop="description">
-                Наша фабрика производит детские игрушки, соблюдая стандарты <abbr title="Международная организация по стандартизации">ISO</abbr> 9001. 
-                Мы считаем, что <dfn>Игрушка</dfn> — это предмет, предназначенный для игры, способствующий интеллектуальному и физическому развитию ребенка.
-            </p>
-            
-            <p>
-                Как сказал основатель фабрики: <q>Каждая игрушка должна нести радость и безопасность в дом</q>.
-            </p>
 
-            <blockquote>
-                «Создание качественной игрушки — это симбиоз инженерной точности, психологического понимания детства и безграничной фантазии».
-            </blockquote>
+			<figure class="about-logo-figure">
+				{% if about_info.logo %}
+					<img src="{{ about_info.logo.url }}" alt="Логотип фабрики игрушек Toy Factory" itemprop="logo"
+					     class="about-logo-transformed"/>
+				{% else %}
+					<img src="/media/default_about_logo.png" alt="Стандартный логотип" class="about-logo-transformed"/>
+				{% endif %}
+				<figcaption>Рис. 1 — Официальный зарегистрированный логотип компании</figcaption>
+			</figure>
 
-             
-            <div>{{ about_info.info|linebreaks }}</div>
-        </section>
 
-         
-        <section>
-            <h2>Девиз наших мастеров (четверостишие)</h2>
-            <pre>
+			<section>
+				<h2>Основная информация</h2>
+				<p itemprop="description">
+					Наша фабрика производит детские игрушки, соблюдая стандарты <abbr
+							title="Международная организация по стандартизации">ISO</abbr> 9001.
+					Мы считаем, что <dfn>Игрушка</dfn> — это предмет, предназначенный для игры, способствующий интеллектуальному и
+					физическому развитию ребенка.
+				</p>
+
+				<p>
+					Как сказал основатель фабрики: <q>Каждая игрушка должна нести радость и безопасность в дом</q>.
+				</p>
+
+				<blockquote class="about-quote">
+					«Создание качественной игрушки — это симбиоз инженерной точности, психологического понимания детства и
+					безграничной фантазии».
+				</blockquote>
+
+				<div>{{ about_info.info|linebreaks }}</div>
+			</section>
+
+
+			<section>
+				<h2>Девиз наших мастеров (четверостишие)</h2>
+				<pre class="motto-pre">
 Мы создаём<wbr>миры для детских снов,
 Где каждый миг наполнен добротой,
 Без лишних фраз и громких звонких слов,
 Игрушка станет верною судьбой.
             </pre>
-        </section>
+			</section>
 
-         
-        <section>
-            <h2>Стандарты внутренней сборки (пример системного конфига)</h2>
-            <pre><code>
+
+			<section>
+				<h2>Стандарты внутренней сборки</h2>
+				<pre><code>
 {
     "batch_check": "passed",
     "eco_friendly": true,
     "quality_assurance_level": 5
 }
             </code></pre>
-        </section>
+			</section>
 
-         
-        <section id="media-block">
-            <h2>Презентационное видео</h2>
-            {% if about_info.video %}
-                <figure>
-                    <video width="480" height="270" controls preload="metadata">
-                        <source src="{{ about_info.video.url }}" type="video/mp4">
-                        Ваш браузер не поддерживает встроенные видео.
-                    </video>
-                    <figcaption>Видеоэкскурсия по цехам фабрики</figcaption>
-                </figure>
-            {% else %}
-                <p>Видеоматериалы временно недоступны.</p>
-            {% endif %}
 
-            <h3>Аудиоэкскурсия по фабрике:</h3>
-            <figure>
-                <audio controls preload="none">
-                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                    Ваш браузер не поддерживает воспроизведение аудио.
-                </audio>
-                <figcaption>Аудиогид: история создания цеха деревянной игрушки</figcaption>
-            </figure>
-        </section>
+			<section id="media-block">
+				<h2>Медиа-материалы о производстве</h2>
 
-         
-        <section id="history-block">
-            <h2>История развития по годам</h2>
-            {% if about_info.history %}
-                 
-                <div>{{ about_info.history|linebreaks }}</div>
-            {% else %}
-                <p>Хронология предприятия формируется.</p>
-            {% endif %}
-        </section>
+				{% if about_info.video %}
+					<div class="media-container">
+						<h3>Видеоэкскурсия по цехам фабрики:</h3>
+						<video class="media-video" width="560" height="315" controls preload="metadata">
+							<source src="{{ about_info.video.url }}" type="video/mp4">
+							Ваш браузер не поддерживает встроенные видео.
+						</video>
+					</div>
+				{% endif %}
 
-         
-        <section id="table-data">
-            <h2>Этапы роста производственных мощностей</h2>
-            <table border="1">
-                <caption>Таблица 1 — Показатели производства за ключевые периоды</caption>
-                <thead>
-                    <tr>
-                        <th id="period" rowspan="2">Период (годы)</th>
-                        <th id="production" colspan="2">Объемы производства</th>
-                        <th id="notes" rowspan="2">Примечание</th>
-                    </tr>
-                    <tr>
-                        <th id="units">Выпуск (тыс. шт)</th>
-                        <th id="models">Новых моделей</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th id="row1" headers="period">2010 – 2015</th>
-                        <td headers="row1 production units">150.5</td>
-                        <td headers="row1 production models">12</td>
-                        <td headers="row1 notes">Открытие цеха мягкой игрушки</td>
-                    </tr>
-                    <tr>
-                        <th id="row2" headers="period">2016 – 2020</th>
-                        <td headers="row2 production units">420.0</td>
-                        <td headers="row2 production models">35</td>
-                        <td headers="row2 notes">Выход на международный рынок</td>
-                    </tr>
-                    <tr>
-                        <th id="row3" headers="period">2021 – 2025</th>
-                        <td headers="row3 production units">890.8</td>
-                        <td headers="row3 production models">80</td>
-                        <td headers="row3 notes">Автоматизация линий конвейера</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+				<div class="media-container">
+					<h3>Аудиогид: история создания цеха</h3>
+					<audio class="media-audio" controls preload="none">
+						<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+						Ваш браузер не поддерживает аудио.
+					</audio>
+				</div>
+			</section>
 
-         
-        <section id="requisites-block">
-            <h2>Реквизиты и сертификация</h2>
-            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                <p><strong>Официальные реквизиты:</strong></p>
-                 
-                <div>{{ about_info.requisites|linebreaks }}</div>
-            </div>
 
-            {% if about_info.certificate %}
-                <figure>
-                    <img src="{{ about_info.certificate.url }}" alt="Сертификат соответствия качества продукции" width="300" />
-                    <figcaption>
-                        Сертификат качества продукции. 
-                        <a href="{{ about_info.certificate.url }}" download="certificate_toy_factory.jpg">Скачать копию сертификата</a>
-                    </figcaption>
-                </figure>
-            {% endif %}
+			<section id="history-block">
+				<h2>История развития по годам</h2>
+				{% if about_info.history %}
+					<div class="history-timeline-box">
+						<div class="history-text">{{ about_info.history|linebreaks }}</div>
+					</div>
+				{% else %}
+					<p>Хронология предприятия формируется.</p>
+				{% endif %}
+			</section>
 
-            <h3>Наше производство на карте:</h3>
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75245.9613589332!2d27.50!3d53.90!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbc5428f522883%3A0x8e833!2sMinsk!5e0!3m2!1sru!2sby!4v1"
-                    width="100%"
-                    height="250"
-                    style="border:0;"
-                loading="lazy"
-                    title="Интерактивная карта фабрики">
-                </iframe>
-        </section>
 
-         
-        <footer>
-            <hr />
-            <p>
-                Запись внесена в реестр: 
-                <time datetime="{{ about_info.created_at|date:'Y-m-d' }}">{{ about_info.created_at|date:"d/m/Y H:i" }}</time>
-                (последнее обновление: <time datetime="{{ about_info.updated_at|date:'Y-m-d' }}">{{ about_info.updated_at|date:"d/m/Y H:i" }}</time>)
-            </p>
-        </footer>
+			<section id="table-data">
+				<h2>Этапы роста производственных мощностей</h2>
+				<table class="data-table-about">
+					<caption>Таблица 1 — Показатели производства за ключевые периоды</caption>
+					<thead>
+					<tr>
+						<th id="period" rowspan="2">Период (годы)</th>
+						<th id="production" colspan="2">Объемы производства</th>
+						<th id="notes" rowspan="2">Примечание</th>
+					</tr>
+					<tr>
+						<th id="units">Выпуск (тыс. шт)</th>
+						<th id="models">Новых моделей</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th id="row1" headers="period">2010 – 2015</th>
+						<td headers="row1 production units">150.5</td>
+						<td headers="row1 production models">12</td>
+						<td headers="row1 notes">Открытие цеха мягкой игрушки</td>
+					</tr>
+					<tr>
+						<th id="row2" headers="period">2016 – 2020</th>
+						<td headers="row2 production units">420.0</td>
+						<td headers="row2 production models">35</td>
+						<td headers="row2 notes">Выход на международный рынок</td>
+					</tr>
+					<tr>
+						<th id="row3" headers="period">2021 – 2025</th>
+						<td headers="row3 production units">890.8</td>
+						<td headers="row3 production models">80</td>
+						<td headers="row3 notes">Автоматизация линий конвейера</td>
+					</tr>
+					</tbody>
+				</table>
+			</section>
 
-    {% else %}
-        <h1>Информация о компании пока не внесена в базу данных.</h1>
-    {% endif %}
 
-</article>
+			<section id="certificate-block">
+				<h2>Сертификация продукции</h2>
+
+				{% if about_info.certificate %}
+					<div class="certificate-wrapper">
+						<img src="{{ about_info.certificate.url }}" alt="Сертификат соответствия качества продукции"
+						     class="certificate-image"/>
+						<p class="certificate-caption">
+							Официальный сертификат качества ГОСТ/ISO
+						</p>
+						<a href="{{ about_info.certificate.url }}" download="certificate_toy_factory.jpg" class="download-cert-btn">
+							&darr; Скачать копию документа
+						</a>
+					</div>
+				{% else %}
+					<p>Сертификаты загружаются в систему.</p>
+				{% endif %}
+			</section>
+
+
+			<section id="requisites-block">
+				<h2>Юридические реквизиты</h2>
+				<div class="requisites-container" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+					<div class="requisites-text">{{ about_info.requisites|linebreaks }}</div>
+				</div>
+				<div class="map-iframe-container">
+					<h3>Наше производство на карте:</h3>
+					<iframe
+								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75245.9613589332!2d27.50!3d53.90!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbc5428f522883%3A0x8e833!2sMinsk!5e0!3m2!1sru!2sby!4v1"
+								loading="lazy"
+								title="Интерактивная карта фабрики"
+								class="map-iframe">
+					</iframe>
+				</div>
+			</section>
+
+
+			<footer>
+				<hr/>
+				<p>
+					<small>
+						Запись внесена в реестр:
+						<time datetime="{{ about_info.created_at|date:'Y-m-d' }}">{{ about_info.created_at|date:"d/m/Y H:i" }}</time>
+						| Обновление:
+						<time datetime="{{ about_info.updated_at|date:'Y-m-d' }}">{{ about_info.updated_at|date:"d/m/Y H:i" }}</time>
+					</small>
+				</p>
+			</footer>
+
+		{% else %}
+			<h1>Информация о компании пока не внесена в базу данных.</h1>
+		{% endif %}
+
+	</article>
 {% endblock %}

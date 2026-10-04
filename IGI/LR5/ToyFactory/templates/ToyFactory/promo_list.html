@@ -1,117 +1,119 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Промокоды и купоны - Toy Factory</title>
+	<title>Промокоды и купоны - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-Промокоды и купоны
+	Промокоды и купоны
 {% endblock %}
 
 {% block content %}
-<section aria-labelledby="promos-page-title">
-    <header>
-         
-        <h1 id="promos-page-title">Промокоды и специальные предложения</h1>
-        <p>Используйте промокоды при оформлении оптовых заказов на игрушки для получения скидки.</p>
-    </header>
+	<section aria-labelledby="promos-page-title">
+		<header>
+			<h1 id="promos-page-title">Промокоды и специальные предложения</h1>
+			<p>Используйте скидочные купоны при оформлении оптовых партий продукции.</p>
+		</header>
 
-    <hr />
+		<hr/>
 
-     
-    <section aria-labelledby="active-promos-title">
-        <h2 id="active-promos-title">Действующие промокоды и купоны</h2>
+		<section aria-labelledby="active-promos-title">
+			<h2 id="active-promos-title">Действующие промокоды и купоны</h2>
 
-        <div class="promos-container">
-            {% for promo in promo_list %}
-                {% if promo.is_active %}
-                    <article style="margin-bottom: 20px; border-left: 4px solid green; padding-left: 10px;">
-                        <header>
-                            <h3>
-                                <a href="{{ promo.get_absolute_url }}">{{ promo.info }}</a>
-                                <span style="color: green; font-size: 0.85em;">[АКТИВЕН]</span>
-                            </h3>
-                        </header>
+			<ul class="promo-coupons-list">
+				{% for promo in promo_list %}
+					{% if promo.is_active %}
+						<li class="promo-coupon-item">
+							<article>
+								<header class="promo-coupon-header">
+									<h3 class="promo-coupon-title">
+										<a href="{{ promo.get_absolute_url }}">{{ promo.info }}</a>
+									</h3>
+									<span class="promo-badge-active">АКТИВЕН</span>
+								</header>
 
-                        <p>
-                            <strong>Товар по акции:</strong> <em>{{ promo.get_product_name }}</em>
-                        </p>
-                        
-                        <p>
-                            <strong>Размер скидки:</strong> 
-                            <mark><strong>{{ promo.promo_sale_percentage }}</strong></mark>
-                        </p>
+								<ul class="promo-conditions-list">
+									<li>
+										<strong>Целевой товар:</strong> <em>{{ promo.get_product_name }}</em>
+									</li>
+									<li>
+										<strong>Размер скидки:</strong>
+										<span class="promo-sale-highlight">{{ promo.promo_sale_percentage }}</span>
+									</li>
+									<li>
+										<strong>Срок действия до:</strong>
+										<time datetime="{{ promo.end_date|date:'Y-m-d' }}">
+											{{ promo.end_date|date:"d/m/Y" }}
+										</time>
+										(включительно)
+									</li>
+								</ul>
 
-                        <p>
-                            <strong>Срок действия до:</strong> 
-                            <time datetime="{{ promo.end_date|date:'Y-m-d' }}">
-                                {{ promo.end_date|date:"d/m/Y" }}
-                            </time> 
-                            (включительно)
-                        </p>
+								<footer class="promo-footer-link">
+									<small>
+										<a href="{{ promo.get_absolute_url }}">[Подробнее об условиях акции &rarr;]</a>
+									</small>
+								</footer>
+							</article>
+						</li>
+					{% endif %}
+				{% empty %}
+					<li><p>На данный момент нет действующих промокодов.</p></li>
+				{% endfor %}
+			</ul>
+		</section>
 
-                        <footer>
-                            <small><a href="{{ promo.get_absolute_url }}">Подробнее об условиях акции &rarr;</a></small>
-                        </footer>
-                    </article>
-                {% endif %}
-            {% empty %}
-                <p>На данный момент нет действующих промокодов.</p>
-            {% endfor %}
-        </div>
-    </section>
+		<hr/>
 
-    <hr />
+		<section aria-labelledby="archive-promos-title">
+			<details>
+				<summary style="cursor: pointer; padding: 10px; background: #edf2f7; border-radius: 6px;">
+					<h2 id="archive-promos-title" style="display: inline; font-size: 1.15em;">
+						Архив промокодов и завершенных акций (нажмите, чтобы развернуть)
+					</h2>
+				</summary>
 
-     
-    <section aria-labelledby="archive-promos-title">
-        <details>
-            <summary style="cursor: pointer;">
-                 
-                <h2 id="archive-promos-title" style="display: inline; font-size: 1.2em;">
-                    Архив промокодов и завершенных акций (нажмите, чтобы развернуть)
-                </h2>
-            </summary>
+				<div style="margin-top: 15px;">
+					<p><em>Данные промокоды истекли и более недоступны для применения в заказах:</em></p>
 
-            <div style="margin-top: 15px;">
-                <p><em>Данные промокоды истекли и более недоступны для применения в заказах:</em></p>
-                
-                <table border="1" cellpadding="5">
-                    <thead>
-                        <tr>
-                            <th id="th-info">Название акции</th>
-                            <th id="th-product">Товар</th>
-                            <th id="th-sale">Скидка</th>
-                            <th id="th-expired">Дата окончания</th>
-                            <th id="th-status">Статус</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for promo in promo_list %}
-                            {% if not promo.is_active %}
-                                <tr>
-                                    <td headers="th-info">
-                                        <a href="{{ promo.get_absolute_url }}"><s>{{ promo.info }}</s></a>
-                                    </td>
-                                    <td headers="th-product">{{ promo.get_product_name }}</td>
-                                    <td headers="th-sale"><del>{{ promo.promo_sale_percentage }}</del></td>
-                                    <td headers="th-expired">
-                                        <time datetime="{{ promo.end_date|date:'Y-m-d' }}">
-                                            {{ promo.end_date|date:"d/m/Y" }}
-                                        </time>
-                                    </td>
-                                    <td headers="th-status" style="color: red;">В архиве</td>
-                                </tr>
-                            {% endif %}
-                        {% empty %}
-                            <tr>
-                                <td colspan="5">В архиве пока нет промокодов.</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </details>
-    </section>
-</section>
+					<table class="archive-promo-table">
+						<thead>
+						<tr>
+							<th id="th-info">Название акции</th>
+							<th id="th-product">Товар</th>
+							<th id="th-sale">Скидка</th>
+							<th id="th-expired">Дата окончания</th>
+							<th id="th-status">Статус</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for promo in promo_list %}
+							{% if not promo.is_active %}
+								<tr>
+									<td headers="th-info">
+										<a href="{{ promo.get_absolute_url }}"><s>{{ promo.info }}</s></a>
+									</td>
+									<td headers="th-product">{{ promo.get_product_name }}</td>
+									<td headers="th-sale">
+										<del>{{ promo.promo_sale_percentage }}</del>
+									</td>
+									<td headers="th-expired">
+										<time datetime="{{ promo.end_date|date:'Y-m-d' }}">
+											{{ promo.end_date|date:"d/m/Y" }}
+										</time>
+									</td>
+									<td headers="th-status" style="color: #e74c3c; font-weight: bold;">В архиве</td>
+								</tr>
+							{% endif %}
+						{% empty %}
+							<tr>
+								<td colspan="5">В архиве пока нет промокодов.</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</details>
+		</section>
+	</section>
 {% endblock %}

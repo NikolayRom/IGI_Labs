@@ -1,140 +1,146 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Каталог продукции - Toy Factory</title>
+	<title>Каталог продукции - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-Каталог продукции
+	Каталог продукции
 {% endblock %}
 
 {% block content %}
-<section aria-labelledby="catalog-title">
-    <header>
-         
-        <h1 id="catalog-title">Каталог детских игрушек</h1>
-        <p>Полный ассортимент изделий нашего фабричного производства.</p>
-    </header>
+	<section aria-labelledby="catalog-title">
+		<header>
 
-    {% if perms.ToyFactory.employee_perm %}
-        <div style="margin-bottom: 15px;">
-            <a href="{% url 'product-create' %}" role="button">[+ Создать новый товар]</a>
-        </div>
-    {% endif %}
+			<h1 id="catalog-title">Каталог детских игрушек</h1>
+			<p>Полный ассортимент изделий нашего фабричного производства.</p>
+		</header>
 
-     
-    <details open style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
-        <summary style="font-weight: bold; cursor: pointer;">
-            &#128269; Поиск и фильтрация товаров (нажмите, чтобы свернуть/развернуть)
-        </summary>
+		{% if perms.ToyFactory.employee_perm %}
+			<div style="margin-bottom: 15px;">
+				<a href="{% url 'product-create' %}" role="button">[+ Создать новый товар]</a>
+			</div>
+		{% endif %}
 
-        <form method="get" action="{% url 'products' %}" style="margin-top: 15px;">
-            <table cellpadding="6" style="border: none; width: 100%;">
-                <tr>
-                    <td>
-                        <label for="q-input"><strong>Поиск по названию:</strong></label><br />
-                        <input type="search" id="q-input" name="q" value="{{ current_q }}" placeholder="Например: Мишка, Конструктор..." style="width: 90%;" />
-                    </td>
 
-                    <td>
-                        <label for="type-select"><strong>Категория / Тип:</strong></label><br />
-                        <select id="type-select" name="type" style="width: 90%;">
-                            <option value="">Все категории</option>
-                            {% for t in types %}
-                                <option value="{{ t.id }}" {% if current_type == t.id|stringformat:"s" %}selected{% endif %}>
-                                    {{ t.name }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </td>
+		<details open style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
+			<summary style="font-weight: bold; cursor: pointer;">
+				&#128269; Поиск и фильтрация товаров (нажмите, чтобы свернуть/развернуть)
+			</summary>
 
-                    <td>
-                        <label for="model-select"><strong>Серийная модель:</strong></label><br />
-                        <select id="model-select" name="model" style="width: 90%;">
-                            <option value="">Все модели</option>
-                            {% for m in models %}
-                                <option value="{{ m.id }}" {% if current_model == m.id|stringformat:"s" %}selected{% endif %}>
-                                    {{ m.name }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                </tr>
+			<form method="get" action="{% url 'products' %}" style="margin-top: 15px;">
+				<table cellpadding="6" style="border: none; width: 100%;">
+					<tr>
+						<td>
+							<label for="q-input"><strong>Поиск по названию:</strong></label><br/>
+							<input type="search" id="q-input" name="q" value="{{ current_q }}"
+							       placeholder="Например: Мишка, Конструктор..." style="width: 90%;"/>
+						</td>
 
-                <tr>
-                    <td>
-                        <label><strong>Цена (BYN):</strong></label><br />
-                        от <input type="number" name="min_price" value="{{ current_min_price }}" min="0" step="0.5" style="width: 70px;" />
-                        до <input type="number" name="max_price" value="{{ current_max_price }}" min="0" step="0.5" style="width: 70px;" />
-                    </td>
+						<td>
+							<label for="type-select"><strong>Категория / Тип:</strong></label><br/>
+							<select id="type-select" name="type" style="width: 90%;">
+								<option value="">Все категории</option>
+								{% for t in types %}
+									<option value="{{ t.id }}" {% if current_type == t.id|stringformat:"s" %}selected{% endif %}>
+										{{ t.name }}
+									</option>
+								{% endfor %}
+							</select>
+						</td>
 
-                    <td>
-                        <label for="order-select"><strong>Сортировка:</strong></label><br />
-                        <select id="order-select" name="ordering" style="width: 90%;">
-                            <option value="price" {% if current_ordering == 'price' %}selected{% endif %}>По возрастанию цены</option>
-                            <option value="-price" {% if current_ordering == '-price' %}selected{% endif %}>По убыванию цены</option>
-                            <option value="name" {% if current_ordering == 'name' %}selected{% endif %}>По названию (А-Я)</option>
-                            <option value="-created_at" {% if current_ordering == '-created_at' %}selected{% endif %}>Сначала новые</option>
-                        </select>
-                    </td>
+						<td>
+							<label for="model-select"><strong>Серийная модель:</strong></label><br/>
+							<select id="model-select" name="model" style="width: 90%;">
+								<option value="">Все модели</option>
+								{% for m in models %}
+									<option value="{{ m.id }}" {% if current_model == m.id|stringformat:"s" %}selected{% endif %}>
+										{{ m.name }}
+									</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
 
-                    <td style="vertical-align: bottom;">
-                        <button type="submit">&#128065; Применить фильтр</button>
-                         
-                        <a href="{% url 'products' %}" role="button">[Сбросить]</a>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </details>
+					<tr>
+						<td>
+							<label><strong>Цена (BYN):</strong></label><br/>
+							от <input type="number" name="min_price" value="{{ current_min_price }}" min="0" step="0.5"
+							          style="width: 70px;"/>
+							до <input type="number" name="max_price" value="{{ current_max_price }}" min="0" step="0.5"
+							          style="width: 70px;"/>
+						</td>
 
-    <hr />
+						<td>
+							<label for="order-select"><strong>Сортировка:</strong></label><br/>
+							<select id="order-select" name="ordering" style="width: 90%;">
+								<option value="price" {% if current_ordering == 'price' %}selected{% endif %}>По возрастанию цены
+								</option>
+								<option value="-price" {% if current_ordering == '-price' %}selected{% endif %}>По убыванию цены
+								</option>
+								<option value="name" {% if current_ordering == 'name' %}selected{% endif %}>По названию (А-Я)</option>
+								<option value="-created_at" {% if current_ordering == '-created_at' %}selected{% endif %}>Сначала
+									новые
+								</option>
+							</select>
+						</td>
 
-     
-    {% if product_list %}
-        <table border="1" cellpadding="8" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Наименование продукции</th>
-                    <th>Модель</th>
-                    <th>Тип изделия</th>
-                    <th>Цена за единицу</th>
-                    <th>Статус</th>
-                    <th>Действие</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in product_list %}
-                    <tr>
-                        <td>
-                            <a href="{{ product.get_absolute_url }}"><strong>{{ product.name }}</strong></a>
-                        </td>
-                        <td>{{ product.product_model.name }}</td>
-                        <td>{{ product.display_product_type }}</td>
-                        <td><strong>{{ product.price }} BYN</strong></td>
-                        <td>
-                            {% if product.status == 'a' %}
-                                <span style="color: green;">Доступен</span>
-                            {% else %}
-                                <span style="color: red;">Снят с производства</span>
-                            {% endif %}
-                        </td>
-                        <td>
-                             
-                            <a href="{{ product.get_absolute_url }}" role="button">
-                                [Смотреть / Заказать &rarr;]
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <div style="padding: 20px; text-align: center;">
-            <h2>По вашему запросу ничего не найдено</h2>
-            <p>Попробуйте изменить поисковую фразу или сбросить фильтры.</p>
-            <p><a href="{% url 'products' %}" role="button">[Сбросить фильтры]</a></p>
-        </div>
-    {% endif %}
-</section>
+						<td style="vertical-align: bottom;">
+							<button type="submit">&#128065; Применить фильтр</button>
+
+							<a href="{% url 'products' %}" role="button">[Сбросить]</a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</details>
+
+		<hr/>
+
+
+
+		{% if product_list %}
+			<div class="products-grid-container">
+				{% for product in product_list %}
+					<article class="product-grid-card" data-status="{{ product.status }}">
+						<header class="product-card-header">
+							<h3 class="product-card-title">
+								<a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+							</h3>
+							<span class="product-card-model">{{ product.product_model.name }}</span>
+						</header>
+
+						<div class="product-card-body">
+							<p class="product-type-label">
+								<strong>Категория:</strong> {{ product.display_product_type }}
+							</p>
+							<p class="product-price-value">
+								<data value="{{ product.price }}">{{ product.price }} BYN</data>
+							</p>
+
+							<p class="product-status-tag">
+								{% if product.status == 'a' %}
+									<span class="status-available">● Доступен</span>
+								{% else %}
+									<span class="status-discontinued">● В архиве</span>
+								{% endif %}
+							</p>
+						</div>
+
+						<footer class="product-card-footer">
+							<a href="{{ product.get_absolute_url }}" role="button" class="product-buy-btn">
+								Смотреть / Купить &rarr;
+							</a>
+						</footer>
+					</article>
+				{% endfor %}
+			</div>
+		{% else %}
+			<div class="catalog-empty-box">
+				<h2>По вашему запросу ничего не найдено</h2>
+				<p>Попробуйте изменить поисковую фразу или сбросить фильтры.</p>
+				<p><a href="{% url 'products' %}" role="button">[Сбросить фильтры]</a></p>
+			</div>
+		{% endif %}
+	</section>
 {% endblock %}

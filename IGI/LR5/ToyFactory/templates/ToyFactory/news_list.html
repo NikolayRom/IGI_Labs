@@ -1,67 +1,68 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Новости фабрики - Toy Factory</title>
+	<title>Новости фабрики - Toy Factory</title>
 {% endblock %}
 
 {% block breadcrumb %}
-Новости
+	Новости
 {% endblock %}
 
 {% block content %}
-<section aria-labelledby="news-page-title">
-    <header>
-         
-        <h1 id="news-page-title">Новости и события фабрики</h1>
-        <p>Актуальная информация о производстве, новинках и событиях нашей компании.</p>
-    </header>
+	<section aria-labelledby="news-page-title">
+		<header>
+			<h1 id="news-page-title">Новости и события фабрики</h1>
+			<p>Актуальная информация о производстве, новинках и событиях нашей компании.</p>
+		</header>
 
-    <hr />
+		<hr/>
 
-    {% if news_list %}
-        <div class="news-container">
-            {% for news_item in news_list %}
-                <article itemscope itemtype="https://schema.org/NewsArticle" style="margin-bottom: 30px;">
-                    <header>
-                        <h2 itemprop="headline">
-                            <a href="{{ news_item.get_absolute_url }}">{{ news_item.header }}</a>
-                        </h2>
-                        <p>
-                            Опубликовано: 
-                            <time itemprop="datePublished" datetime="{{ news_item.created_at|date:'Y-m-d\TH:i' }}">
-                                {{ news_item.created_at|date:"d/m/Y H:i" }}
-                            </time>
-                        </p>
-                    </header>
+		{% if news_list %}
+			<div class="news-container">
+				{% for news_item in news_list %}
+					<article class="news-card-item" itemscope itemtype="https://schema.org/NewsArticle">
+						<header>
+							<h2 itemprop="headline">
+								<a href="{{ news_item.get_absolute_url }}">{{ news_item.header }}</a>
+							</h2>
+							<p>
+								<small>
+									Опубликовано:
+									<time itemprop="datePublished" datetime="{{ news_item.created_at|date:'Y-m-d\TH:i' }}">
+										{{ news_item.created_at|date:"d/m/Y H:i" }}
+									</time>
+								</small>
+							</p>
+						</header>
 
-                    <figure>
-                        {% if news_item.image %}
-                            <img src="{{ news_item.image.url }}" alt="{{ news_item.header }}" itemprop="image" width="300" />
-                        {% else %}
-                            <img src="/media/default_news_logo.png" alt="Стандартное изображение" width="300" />
-                        {% endif %}
-                        <figcaption>Иллюстрация к новости: {{ news_item.header }}</figcaption>
-                    </figure>
+						<figure class="news-card-figure">
+							{% if news_item.image %}
+								<img src="{{ news_item.image.url }}" alt="{{ news_item.header }}" itemprop="image"
+								     class="news-card-img"/>
+							{% else %}
+								<img src="/media/default_news_logo.png" alt="Стандартное изображение" class="news-card-img"/>
+							{% endif %}
+							<figcaption>Иллюстрация: {{ news_item.header }}</figcaption>
+						</figure>
 
-                     
-                    <div itemprop="description">
-                        <p><strong>Кратко:</strong> {{ news_item.short_description }}</p>
-                    </div>
+						<div itemprop="description" class="news-short-desc-box">
+							<p class="news-short-desc-ellipsis">
+								<strong>Кратко:</strong> {{ news_item.short_description }}
+							</p>
+						</div>
 
-                     
-                    <footer>
-                        <p>
-                            <a href="{{ news_item.get_absolute_url }}" role="button">
-                                [Читать далее &rarr;]
-                            </a>
-                        </p>
-                    </footer>
-                    <hr />
-                </article>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>На данный момент новостей нет.</p>
-    {% endif %}
-</section>
+						<footer>
+							<p>
+								<a href="{{ news_item.get_absolute_url }}" role="button">
+									[Читать далее &rarr;]
+								</a>
+							</p>
+						</footer>
+					</article>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p>На данный момент новостей нет.</p>
+		{% endif %}
+	</section>
 {% endblock %}

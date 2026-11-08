@@ -43,5 +43,8 @@ urlpatterns = [
     re_path(r'^cart/payment/$', views.checkout_payment_view, name='checkout-payment'),
     re_path(r'^client/orders/$', views.OrderClientListView.as_view(), name='client-orders'),
     re_path(r'^analytics/$', views.analytics_view, name='analytics'),
+    re_path(r'^staff-table/$', views.staff_interactive_page, name='staff-table'),
+    re_path(r'^employees-data/$', views.api_employees_list, name='employees-data'),
+    re_path(r'^js-lab/$', views.js_lab_page, name='js-lab'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

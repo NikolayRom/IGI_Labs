@@ -1,45 +1,40 @@
 {% extends "base_generic.html" %}
 
-{% block title %}
-	<title>Каталог продукции - Toy Factory</title>
-{% endblock %}
+{% block title %}Каталог продукции - Toy Factory{% endblock %}
 
-{% block breadcrumb %}
-	Каталог продукции
-{% endblock %}
+{% block breadcrumb %}Каталог продукции{% endblock %}
 
 {% block content %}
 	<section aria-labelledby="catalog-title">
 		<header>
-
 			<h1 id="catalog-title">Каталог детских игрушек</h1>
 			<p>Полный ассортимент изделий нашего фабричного производства.</p>
 		</header>
 
 		{% if perms.ToyFactory.employee_perm %}
-			<div style="margin-bottom: 15px;">
+			<div class="catalog-actions-bar">
 				<a href="{% url 'product-create' %}" role="button">[+ Создать новый товар]</a>
 			</div>
 		{% endif %}
 
 
-		<details open style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
-			<summary style="font-weight: bold; cursor: pointer;">
+		<details open class="catalog-filter-details">
+			<summary class="catalog-filter-summary">
 				&#128269; Поиск и фильтрация товаров (нажмите, чтобы свернуть/развернуть)
 			</summary>
 
-			<form method="get" action="{% url 'products' %}" style="margin-top: 15px;">
-				<table cellpadding="6" style="border: none; width: 100%;">
+			<form method="get" action="{% url 'products' %}" class="catalog-filter-form">
+				<table class="catalog-filter-table">
 					<tr>
 						<td>
 							<label for="q-input"><strong>Поиск по названию:</strong></label><br/>
 							<input type="search" id="q-input" name="q" value="{{ current_q }}"
-							       placeholder="Например: Мишка, Конструктор..." style="width: 90%;"/>
+							       placeholder="Например: Мишка, Конструктор..." class="filter-input-text"/>
 						</td>
 
 						<td>
 							<label for="type-select"><strong>Категория / Тип:</strong></label><br/>
-							<select id="type-select" name="type" style="width: 90%;">
+							<select id="type-select" name="type" class="filter-select">
 								<option value="">Все категории</option>
 								{% for t in types %}
 									<option value="{{ t.id }}" {% if current_type == t.id|stringformat:"s" %}selected{% endif %}>
@@ -51,7 +46,7 @@
 
 						<td>
 							<label for="model-select"><strong>Серийная модель:</strong></label><br/>
-							<select id="model-select" name="model" style="width: 90%;">
+							<select id="model-select" name="model" class="filter-select">
 								<option value="">Все модели</option>
 								{% for m in models %}
 									<option value="{{ m.id }}" {% if current_model == m.id|stringformat:"s" %}selected{% endif %}>
@@ -66,14 +61,14 @@
 						<td>
 							<label><strong>Цена (BYN):</strong></label><br/>
 							от <input type="number" name="min_price" value="{{ current_min_price }}" min="0" step="0.5"
-							          style="width: 70px;"/>
+							          class="filter-input-price"/>
 							до <input type="number" name="max_price" value="{{ current_max_price }}" min="0" step="0.5"
-							          style="width: 70px;"/>
+							          class="filter-input-price"/>
 						</td>
 
 						<td>
 							<label for="order-select"><strong>Сортировка:</strong></label><br/>
-							<select id="order-select" name="ordering" style="width: 90%;">
+							<select id="order-select" name="ordering" class="filter-select">
 								<option value="price" {% if current_ordering == 'price' %}selected{% endif %}>По возрастанию цены
 								</option>
 								<option value="-price" {% if current_ordering == '-price' %}selected{% endif %}>По убыванию цены
@@ -85,9 +80,8 @@
 							</select>
 						</td>
 
-						<td style="vertical-align: bottom;">
+						<td class="filter-submit-cell">
 							<button type="submit">&#128065; Применить фильтр</button>
-
 							<a href="{% url 'products' %}" role="button">[Сбросить]</a>
 						</td>
 					</tr>
@@ -97,6 +91,20 @@
 
 		<hr/>
 
+		<div class="catalog-client-controls">
+			<div>
+				<strong>Клиентская постраничная навигация (JS):</strong>
+			</div>
+			<div>
+				<label for="items-per-page-select">Отображать на странице:</label>
+				<select id="items-per-page-select">
+					<option value="3" selected>по 3 товара</option>
+					<option value="6">по 6 товаров</option>
+					<option value="9">по 9 товаров</option>
+					<option value="0">все товары</option>
+				</select>
+			</div>
+		</div>
 
 
 		{% if product_list %}
@@ -135,6 +143,10 @@
 					</article>
 				{% endfor %}
 			</div>
+
+
+			<nav class="client-pagination-bar" id="client-pagination-nav" aria-label="Постраничная навигация товаров"></nav>
+			<p class="client-page-info" id="client-page-counter-info"></p>
 		{% else %}
 			<div class="catalog-empty-box">
 				<h2>По вашему запросу ничего не найдено</h2>

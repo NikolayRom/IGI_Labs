@@ -1,0 +1,125 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}
+	<title>Таблица сотрудников - Toy Factory</title>
+{% endblock %}
+
+{% block breadcrumb %}
+	Сотрудники предприятия (Интерактивная таблица JS)
+{% endblock %}
+
+{% block content %}
+	<section aria-labelledby="staff-page-title">
+		<header>
+			<h1 id="staff-page-title">Реестр сотрудников предприятия (JS Таблица)</h1>
+			<p>Асинхронная загрузка с сервера, динамическая сортировка, поиск, пагинация и премирование.</p>
+		</header>
+
+		<div class="staff-table-controls">
+
+			<div>
+				<label for="staff-search-input"><strong>Поиск по базе:</strong></label>
+				<input type="text" id="staff-search-input" placeholder="Введите фамилию, email или должность..."
+				       class="staff-search-input-field"/>
+				<button type="button" id="staff-search-btn">Найти</button>
+				<button type="button" id="staff-search-reset-btn">Сбросить</button>
+			</div>
+
+			<div>
+				<button type="button" id="toggle-add-staff-form-btn">+ Добавить сотрудника</button>
+				<button type="button" id="award-bonus-btn" class="btn-award-bonus">★ Премировать выбранных</button>
+			</div>
+		</div>
+
+		<div class="staff-add-modal-box" id="staff-add-form-wrapper">
+			<h2>Добавление нового сотрудника в реестр</h2>
+			<form id="staff-create-form" novalidate>
+				<div class="staff-form-grid">
+					<div class="staff-form-group">
+						<label for="inp-fio">ФИО сотрудника:</label>
+						<input type="text" id="inp-fio" required placeholder="Иванов Иван Иванович"/>
+					</div>
+
+					<div class="staff-form-group">
+						<label for="inp-email">Электронная почта:</label>
+						<input type="email" id="inp-email" required placeholder="ivanov@toyfactory.by"/>
+					</div>
+
+					<div class="staff-form-group">
+						<label for="inp-phone">Телефон (РБ / город / моб.):</label>
+						<input type="text" id="inp-phone" required placeholder="+375 (29) 111-22-33 или 80291112233"/>
+						<div id="err-phone" class="input-error-msg"></div>
+					</div>
+
+					<div class="staff-form-group">
+						<label for="inp-avatar">URL фото сотрудника:</label>
+						<input type="url" id="inp-avatar" required placeholder="https://site.ru/photo.html"/>
+						<div id="err-avatar" class="input-error-msg"></div>
+					</div>
+				</div>
+
+				<div class="staff-form-group staff-form-full-group">
+					<label for="inp-info">Описание выполняемых работ:</label>
+					<textarea id="inp-info" rows="2" required placeholder="Контролер качества отдела сборки..."></textarea>
+				</div>
+
+				<button type="submit" id="btn-submit-staff" disabled>Добавить в таблицу</button>
+				<button type="button" id="btn-cancel-staff">Отмена</button>
+			</form>
+		</div>
+
+		<div id="table-loading-spinner" class="table-spinner-container">
+			<img
+						src="{% static 'images/preloader.png' %}"
+						alt="Загрузка данных"
+						class="preloader-spinner-img table-spinner-img"
+			/>
+			<div class="table-spinner-text">
+				Загрузка и обработка реестра сотрудников...
+			</div>
+		</div>
+
+		<table class="staff-data-table" id="main-staff-table">
+			<thead>
+			<tr>
+				<th class="no-sort staff-th-checkbox">
+					<input type="checkbox" id="check-all-staff" title="Выбрать всех"/>
+				</th>
+				<th class="no-sort staff-th-photo">Фото</th>
+				<th data-column="fio">ФИО сотрудника <span class="sort-icon"></span></th>
+				<th data-column="info">Обязанности / Работы <span class="sort-icon"></span></th>
+				<th data-column="phone">Телефон <span class="sort-icon"></span></th>
+				<th data-column="email">Email <span class="sort-icon"></span></th>
+			</tr>
+			</thead>
+			<tbody id="staff-table-body">
+
+			</tbody>
+		</table>
+
+		<nav class="client-pagination-bar" id="staff-pagination-nav" aria-label="Пагинация таблицы"></nav>
+
+		<div class="staff-detail-card-bottom" id="staff-detail-view-card">
+			<h3>Карточка выбранного сотрудника:</h3>
+			<table class="detail-card-table">
+				<tr>
+					<td class="detail-card-avatar-cell">
+						<img id="detail-card-img" src="" alt="Фото" class="detail-card-avatar-img"/>
+					</td>
+					<td class="detail-card-text-cell">
+						<h2 id="detail-card-fio" class="detail-card-title"></h2>
+						<p><strong>Обязанности:</strong> <span id="detail-card-info"></span></p>
+						<p><strong>Телефон:</strong> <span id="detail-card-phone"></span> | <strong>Email:</strong> <span
+									id="detail-card-email"></span></p>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="bonus-order-result" id="bonus-order-box">
+			<h2 class="bonus-order-heading">ПРИКАЗ О ПРЕМИРОВАНИИ СОТРУДНИКОВ</h2>
+			<div id="bonus-order-text"></div>
+		</div>
+	</section>
+{% endblock %}

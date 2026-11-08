@@ -17,13 +17,16 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
 import matplotlib
+
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io
 import base64
 from django.db.models.functions import TruncMonth
+from django.http import JsonResponse
 
 import logging
+
 logger = logging.getLogger('ToyFactory')
 
 
@@ -46,13 +49,12 @@ def index(request):
     except Exception as e:
         logger.error(f"Index view: API Error: {api_path}. Error: {e}")
 
-     
     context = {
         'api_data': articles,
         'last_news': News.objects.first(),
         'about_info': AboutInfo.objects.last(),
-        'products_sample': Product.objects.filter(status='a')[:6],   
-        'partners': Partner.objects.all(),   
+        'products_sample': Product.objects.filter(status='a')[:6],
+        'partners': Partner.objects.all(),
     }
 
     return render(
@@ -60,6 +62,7 @@ def index(request):
         'index.html',
         context=context
     )
+
 
 def account(request):
     form = UserUpdateForm(instance=request.user)
@@ -70,14 +73,13 @@ def account(request):
             return redirect('index')
         else:
             logger.error(f"Account view: Form Error: form = UserUpdateForm")
-    
+
     context = {'form': form}
     return render(request, 'registration/account.html', context=context)
 
 
 @login_required
 def client_profile(request):
-     
     if request.user.is_superuser:
         return redirect('account')
 
@@ -101,9 +103,9 @@ def client_profile(request):
     }
     return render(request, 'registration/client_profile.html', context=context)
 
+
 @login_required
 def employee_profile(request):
-     
     if request.user.is_superuser:
         return redirect('account')
 
@@ -127,6 +129,7 @@ def employee_profile(request):
     }
     return render(request, 'registration/employee_profile.html', context=context)
 
+
 def register(request):
     form = ClientRegistrationForm()
     if request.method == 'POST':
@@ -141,11 +144,11 @@ def register(request):
     context = {'form': form}
     return render(request, 'registration/register.html', context=context)
 
-def about(request):
 
+def about(request):
     context = {}
 
-    if(AboutInfo.objects.last() != None):
+    if (AboutInfo.objects.last() != None):
         context['about_info'] = AboutInfo.objects.last()
     else:
         logger.warning(f"about view: AboutInfo warning: AboutInfo.objects.last() not found!")
@@ -156,6 +159,7 @@ def about(request):
         context=context
     )
 
+
 def privacy_policy(request):
     return render(
         request,
@@ -163,8 +167,8 @@ def privacy_policy(request):
         context={}
     )
 
-def reviews(request):
 
+def reviews(request):
     if request.method == 'POST':
         if not request.user.is_authenticated:
             logger.info(f"Reviews view: redirect: user is not authenticated")
@@ -178,7 +182,7 @@ def reviews(request):
     else:
         form = ReviewForm()
 
-    context={
+    context = {
         'form': form,
         'review_list': Review.objects.all()
     }
@@ -188,10 +192,10 @@ def reviews(request):
         context=context
     )
 
+
 @permission_required('ToyFactory.client_perm')
 @login_required
 def order_create(request):
-
     client = request.user.client_profile
 
     if client == None:
@@ -207,12 +211,14 @@ def order_create(request):
     else:
         form = OrderCreateForm(client=client)
 
-    order_list = Order.objects.filter(client=client, date_order_complete__isnull=True).all().order_by('-date_order_create')
+    order_list = Order.objects.filter(client=client, date_order_complete__isnull=True).all().order_by(
+        '-date_order_create')
 
     if order_list == None:
-        logger.warning(f"Order create view: order_list warning: Order.objects.filter(client=client, date_order_complete__isnull=True).all().order_by('-date_order_create') not found!")
+        logger.warning(
+            f"Order create view: order_list warning: Order.objects.filter(client=client, date_order_complete__isnull=True).all().order_by('-date_order_create') not found!")
 
-    context={
+    context = {
         'form': form,
         'order_list': order_list,
         'total': sum(order.get_total for order in order_list)
@@ -223,12 +229,13 @@ def order_create(request):
         context=context
     )
 
+
 @permission_required('ToyFactory.client_perm')
 @login_required
 def order_complete(request):
-
     if request.method == 'POST':
-        Order.objects.filter(client=request.user.client_profile, date_order_complete__isnull=True).update(date_order_complete=timezone.now())
+        Order.objects.filter(client=request.user.client_profile, date_order_complete__isnull=True).update(
+            date_order_complete=timezone.now())
         return redirect('client-orders')
     logger.info(f"Order complete view: redirect to cart: request.method != POST")
     return redirect('cart')
@@ -238,22 +245,22 @@ def get_plot():
     monthly_sales = Order.objects.filter(date_order_complete__isnull=False) \
         .annotate(month=TruncMonth('date_order_complete')) \
         .values('month') \
-        .annotate(total = Coalesce(
-                Sum(
-                    Case(
-                        When(
-                            promo__isnull=False,
-                            then=(
-                                F('product_amount') * F('product__price') * (Decimal('1') - F('promo__sale'))
-                            )
-                        ),
-                        default=F('product_amount') * F('product__price'),
-                        output_field=DecimalField()
+        .annotate(total=Coalesce(
+        Sum(
+            Case(
+                When(
+                    promo__isnull=False,
+                    then=(
+                            F('product_amount') * F('product__price') * (Decimal('1') - F('promo__sale'))
                     )
                 ),
-                Decimal('0'),
+                default=F('product_amount') * F('product__price'),
                 output_field=DecimalField()
-            )) \
+            )
+        ),
+        Decimal('0'),
+        output_field=DecimalField()
+    )) \
         .order_by('month')
 
     if not monthly_sales:
@@ -267,14 +274,14 @@ def get_plot():
     n = len(x_data)
     sum_x = sum(x_data)
     sum_y = sum(y_data)
-    sum_xx = sum(x**2 for x in x_data)
-    sum_xy = sum(x*y for x, y in zip(x_data, y_data))
+    sum_xx = sum(x ** 2 for x in x_data)
+    sum_xy = sum(x * y for x, y in zip(x_data, y_data))
 
-    a = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x**2) if (n * sum_xx - sum_x**2) != 0 else 0
+    a = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x ** 2) if (n * sum_xx - sum_x ** 2) != 0 else 0
     b = (sum_y - a * sum_x) / n
 
     trend_y = [a * x + b for x in x_data]
-    forecast = a * (n + 1) + b 
+    forecast = a * (n + 1) + b
 
     plt.figure(figsize=(8, 4))
     plt.plot(labels, y_data, marker='o', label='Sales')
@@ -290,16 +297,16 @@ def get_plot():
     buffer.seek(0)
     image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
     buffer.close()
-    plt.close() 
-    
+    plt.close()
+
     return image_base64, round(forecast, 2)
 
+
 def generate_bar_chart(labels, values, title, color):
-    
     if not labels or not values:
         logger.warning(f"labels or values not found!")
         return None
-    
+
     plt.figure(figsize=(8, 5))
     plt.barh(labels, [float(v) for v in values], color=color)
     plt.title(title)
@@ -313,15 +320,15 @@ def generate_bar_chart(labels, values, title, color):
     plt.close()
     return image_base64
 
+
 @login_required
 def analytics_view(request):
-    
     if request.user.is_superuser:
 
         product_popularity = Product.objects.filter(
-            order__date_order_complete__gte=timezone.now()-timezone.timedelta(days=30)
+            order__date_order_complete__gte=timezone.now() - timezone.timedelta(days=30)
         ).annotate(
-            total_sum = Coalesce(Sum('order__product_amount'), 0)
+            total_sum=Coalesce(Sum('order__product_amount'), 0)
         ).order_by('-total_sum')
 
         if not product_popularity:
@@ -331,18 +338,19 @@ def analytics_view(request):
         best_product = product_popularity.first()
 
         chart_image, forecast_value = get_plot()
-        
+
         clients_report = Client.objects.filter(
-            order__date_order_complete__gte=timezone.now()-timezone.timedelta(days=30)
+            order__date_order_complete__gte=timezone.now() - timezone.timedelta(days=30)
         ).annotate(
-            units = Coalesce(Sum('order__product_amount'), 0),
+            units=Coalesce(Sum('order__product_amount'), 0),
             income=Coalesce(
                 Sum(
                     Case(
                         When(
                             order__promo__isnull=False,
                             then=(
-                                F('order__product_amount') * F('order__product__price') * (Decimal('1') - F('order__promo__sale'))
+                                    F('order__product_amount') * F('order__product__price') * (
+                                        Decimal('1') - F('order__promo__sale'))
                             )
                         ),
                         default=F('order__product_amount') * F('order__product__price'),
@@ -358,16 +366,16 @@ def analytics_view(request):
             logger.warning(f"clients_report not found!")
 
         products_report = Product.objects.filter(
-                order__date_order_complete__gte=timezone.now()-timezone.timedelta(days=30)
+            order__date_order_complete__gte=timezone.now() - timezone.timedelta(days=30)
         ).annotate(
-            units = Coalesce(Sum('order__product_amount'), 0),
+            units=Coalesce(Sum('order__product_amount'), 0),
             income=Coalesce(
                 Sum(
                     Case(
                         When(
                             order__promo__isnull=False,
                             then=(
-                                F('order__product_amount') * F('price') * (Decimal('1') - F('order__promo__sale'))
+                                    F('order__product_amount') * F('price') * (Decimal('1') - F('order__promo__sale'))
                             )
                         ),
                         default=F('order__product_amount') * F('price'),
@@ -382,7 +390,7 @@ def analytics_view(request):
         if not products_report:
             logger.warning(f"products_report not found!")
 
-        client_names = [c.company_name for c in clients_report[:10]] 
+        client_names = [c.company_name for c in clients_report[:10]]
         client_income = [c.income for c in clients_report[:10]]
         client_units = [c.units for c in clients_report[:10]]
 
@@ -391,10 +399,13 @@ def analytics_view(request):
         product_units = [p.units for p in products_report[:10]]
 
         chart_client_income = generate_bar_chart(client_names, client_income, 'Sales income by clients ($)', 'skyblue')
-        chart_client_units = generate_bar_chart(client_names, client_units, 'Sales amount by clients (units)', 'lightgreen')
-        
-        chart_product_income = generate_bar_chart(product_names, product_income, 'Sales income by products ($)', 'salmon')
-        chart_product_units = generate_bar_chart(product_names, product_units, 'Sales amount by products (units)', 'gold')
+        chart_client_units = generate_bar_chart(client_names, client_units, 'Sales amount by clients (units)',
+                                                'lightgreen')
+
+        chart_product_income = generate_bar_chart(product_names, product_income, 'Sales income by products ($)',
+                                                  'salmon')
+        chart_product_units = generate_bar_chart(product_names, product_units, 'Sales amount by products (units)',
+                                                 'gold')
 
         context = {
             'chart': chart_image,
@@ -410,15 +421,17 @@ def analytics_view(request):
             'chart_product_units': chart_product_units,
         }
         return render(request, 'analytics.html', context)
-    
+
     logger.info(f"Redirect to login: user is not superuser")
     return redirect('login')
+
 
 class OrderClientListView(generic.ListView, LoginRequiredMixin, PermissionRequiredMixin):
     model = Order
     paginate_by = 10
     template_name = 'ToyFactory/client_orders_list.html'
     permission_required = 'ToyFactory.client_perm'
+
     def get_queryset(self):
         orders = Order.objects.filter(client=self.request.user.client_profile, date_order_complete__isnull=False)
 
@@ -426,43 +439,54 @@ class OrderClientListView(generic.ListView, LoginRequiredMixin, PermissionRequir
             logger.warning(f"orders not found!")
 
         return orders
-    
+
+
 class OrderDeleteView(DeleteView, LoginRequiredMixin, PermissionRequiredMixin):
     model = Order
     permission_required = 'ToyFactory.client_perm'
     success_url = reverse_lazy('cart')
 
+
 class PromoListView(generic.ListView):
     model = Promo
     paginate_by = 10
 
+
 class PromoDetailView(generic.DetailView):
     model = Promo
+
 
 class NewsListView(generic.ListView):
     model = News
     paginate_by = 10
 
+
 class NewsDetailView(generic.DetailView):
     model = News
+
 
 class FAQListView(generic.ListView):
     model = FAQ
     paginate_by = 10
 
+
 class FAQDetailView(generic.DetailView):
     model = FAQ
+
 
 class EmployeeListView(generic.ListView):
     model = Employee
     paginate_by = 10
 
+
 class EmployeeDetailView(generic.DetailView):
     model = Employee
+
 
 class ClientListView(generic.ListView):
     model = Client
     paginate_by = 10
+
 
 class ClientDetailView(generic.DetailView):
     model = Client
@@ -475,26 +499,32 @@ class ClientDetailView(generic.DetailView):
         context['order_list'] = order_list
         return context
 
+
 class VacancyListView(generic.ListView):
     model = Vacancy
     paginate_by = 10
 
+
 class VacancyDetailView(generic.DetailView):
     model = Vacancy
+
 
 class ProductTypeCreateView(CreateView):
     model = ProductType
     fields = '__all__'
     success_url = reverse_lazy('products')
 
+
 class ProductModelCreateView(CreateView):
     model = ProductModel
     fields = '__all__'
     success_url = reverse_lazy('products')
 
+
 class CityListView(generic.ListView):
     model = City
     paginate_by = 10
+
 
 class CityDetailView(generic.DetailView):
     model = City
@@ -507,26 +537,28 @@ class CityDetailView(generic.DetailView):
         context['pickuppoint_list'] = pickuppoint_list
         return context
 
+
 class PickUpPointDetailView(generic.DetailView):
     model = PickUpPoint
+
 
 '''
 CRUD: Product Model
 '''
+
+
 class ProductListView(generic.ListView):
     model = Product
-    paginate_by = 10
-    template_name = 'ToyFactory/product_list.html'  
+    paginate_by = 100
+    template_name = 'ToyFactory/product_list.html'
 
     def get_queryset(self):
         queryset = Product.objects.all()
 
-         
         user = self.request.user
         if not (user.is_authenticated and (user.is_superuser or user.has_perm('ToyFactory.employee_perm'))):
             queryset = queryset.filter(status='a')
 
-         
         q = self.request.GET.get('q')
         if q:
             queryset = queryset.filter(
@@ -535,17 +567,14 @@ class ProductListView(generic.ListView):
                 Q(product_type__name__icontains=q)
             ).distinct()
 
-         
         product_type = self.request.GET.get('type')
         if product_type:
             queryset = queryset.filter(product_type__id=product_type)
 
-         
         product_model = self.request.GET.get('model')
         if product_model:
             queryset = queryset.filter(product_model__id=product_model)
 
-         
         min_price = self.request.GET.get('min_price')
         if min_price:
             try:
@@ -564,7 +593,6 @@ class ProductListView(generic.ListView):
             except ValueError:
                 pass
 
-         
         order_by = self.request.GET.get('ordering', 'price')
         if order_by in ['price', '-price', 'name', '-created_at']:
             queryset = queryset.order_by(order_by)
@@ -573,10 +601,10 @@ class ProductListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-         
+
         context['types'] = ProductType.objects.all()
         context['models'] = ProductModel.objects.all()
-         
+
         context['current_q'] = self.request.GET.get('q', '')
         context['current_type'] = self.request.GET.get('type', '')
         context['current_model'] = self.request.GET.get('model', '')
@@ -585,12 +613,13 @@ class ProductListView(generic.ListView):
         context['current_ordering'] = self.request.GET.get('ordering', 'price')
         return context
 
+
 class ProductDetailView(generic.DetailView):
     model = Product
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-         
+
         active_promos = Promo.objects.filter(
             product=self.object,
             end_date__gte=date.today()
@@ -598,15 +627,18 @@ class ProductDetailView(generic.DetailView):
         context['available_promos'] = active_promos
         return context
 
+
 class ProductCreateView(CreateView):
     model = Product
     fields = '__all__'
     success_url = reverse_lazy('products')
 
+
 class ProductUpdateView(UpdateView):
     model = Product
     fields = '__all__'
     success_url = reverse_lazy('products')
+
 
 class ProductDeleteView(DeleteView):
     model = Product
@@ -626,7 +658,6 @@ def add_to_cart(request, product_id):
         amount = int(request.POST.get('amount', 1))
         promo_id = request.POST.get('promo_id')
 
-         
         promo_obj = None
         if promo_id:
             promo_obj = Promo.objects.filter(
@@ -635,12 +666,10 @@ def add_to_cart(request, product_id):
                 end_date__gte=date.today()
             ).first()
 
-         
         pick_up = PickUpPoint.objects.filter(city=client.city).first()
         if not pick_up:
             pick_up = PickUpPoint.objects.first()
 
-         
         order_item = Order.objects.filter(
             client=client,
             product=product,
@@ -681,9 +710,10 @@ def cart_update_quantity(request, order_id, action):
             order_item.product_amount -= 1
             order_item.save()
         else:
-            order_item.delete()   
+            order_item.delete()
 
     return redirect('cart')
+
 
 @permission_required('ToyFactory.client_perm')
 @login_required
@@ -721,7 +751,7 @@ def checkout_payment_view(request):
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
-             
+
             orders_to_pay.update(date_order_complete=timezone.now())
             logger.info(f"Payment successful for client {client.company_name}. Total: {total}")
             return redirect('client-orders')
@@ -735,3 +765,26 @@ def checkout_payment_view(request):
         'form': form
     }
     return render(request, 'payment.html', context)
+
+
+def api_employees_list(request):
+    employees = Employee.objects.all()
+    data = []
+    for emp in employees:
+        data.append({
+            'id': str(emp.id),
+            'fio': emp.user.get_full_name() or emp.user.username,
+            'avatar': emp.get_avatar_url,
+            'info': emp.info,
+            'phone': emp.phone.phone if emp.phone else '+375 (29) 000-00-00',
+            'email': emp.user.email or 'employee@toyfactory.by'
+        })
+    return JsonResponse({'employees': data})
+
+
+def staff_interactive_page(request):
+    return render(request, 'staff_table.html')
+
+
+def js_lab_page(request):
+    return render(request, 'js_lab.html')

@@ -1,0 +1,148 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}
+	<title>JS Лаборатория (Вариант 23) - Toy Factory</title>
+{% endblock %}
+
+{% block breadcrumb %}
+	JS Лаборатория: алгоритмы, Web API, ООП, Chart.js
+{% endblock %}
+
+{% block content %}
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<article>
+		<header>
+			<h1>Комплексные алгоритмы и Web API JavaScript</h1>
+			<p>Демонстрация работы ООП (классы и прототипы), вычисления математических рядов, графиков Chart.js и динамических
+				компонентов.</p>
+		</header>
+
+		<section class="js-lab-section" aria-labelledby="task4-heading">
+			<h2 id="task4-heading">1. Генератор выпадающих списков &lt;select&gt;</h2>
+			<p>
+				Нажмите на кнопку или активируйте чекбокс для добавления нового элемента <code>&lt;select&gt;</code>.
+				Настройте атрибуты: <em>name, multiple, size, required, disabled</em>. Все элементы сохраняются в <code>localStorage</code>.
+			</p>
+
+			<div class="select-toolbar-box">
+				<label class="select-trigger-label">
+					<input type="checkbox" id="chk-generate-select"/> Сгенерировать новый список &lt;select&gt;
+				</label>
+				<button type="button" id="btn-add-more-selects">+ Добавить еще список</button>
+				<button type="button" id="btn-clear-all-selects" class="btn-danger-text">Очистить все списки</button>
+			</div>
+
+			<div id="dynamic-selects-container"></div>
+		</section>
+
+		<section class="js-lab-section" aria-labelledby="task8-heading">
+			<h2 id="task8-heading">2. ООП: Служащие учреждения и проверка брака</h2>
+			<p>
+				<strong>Условие:</strong> Дан массив объектов служащих (ФИО, пол, семейное положение). Выяснить, имеется ли
+				вероятность того, что некоторые служащие состоят в браке между собой (одинаковые фамилии у мужчины и женщины со
+				статусом «В браке»).
+			</p>
+			<p><em>Реализовано в двух стилях: ES6 Классы (`class/extends`) и Прототипное наследование
+				(`function/prototype`).</em></p>
+
+			<fieldset class="oop-fieldset">
+				<legend><strong>Добавить служащего в массив:</strong></legend>
+				<form id="employee-oop-form">
+					<input type="text" id="oop-fio" placeholder="Фамилия и инициалы (например: Иванов А.В.)" required
+					       class="oop-fio-input"/>
+
+					<select id="oop-gender" required>
+						<option value="Мужской">Мужской пол</option>
+						<option value="Женский">Женский пол</option>
+					</select>
+
+					<select id="oop-status" required>
+						<option value="В браке">В браке</option>
+						<option value="Холост/Не замужем">Холост / Не замужем</option>
+					</select>
+
+					<button type="submit">+ Добавить в массив</button>
+				</form>
+			</fieldset>
+
+			<div>
+				<button type="button" id="btn-run-marriage-check" class="btn-run-check">
+					🔍 Выполнить анализ вероятности брака
+				</button>
+				<button type="button" id="btn-reset-oop-staff">Сбросить к исходным 6 служащим</button>
+			</div>
+
+			<div class="table-results-wrapper">
+				<h3>Текущий реестр служащих:</h3>
+				<div id="oop-staff-display-table"></div>
+
+				<div id="oop-marriage-result" class="oop-result-box"></div>
+			</div>
+		</section>
+
+		<section class="js-lab-section" aria-labelledby="task9-heading">
+			<h2 id="task9-heading">3. Использование современных Web API</h2>
+
+			<div class="speech-api-box">
+				<h3>A) Web Speech API (Синтез речи / Text-to-Speech):</h3>
+				<input type="text" id="speech-text-input" value="Добро пожаловать на фабрику детских игрушек Toy Factory!"
+				       class="speech-input-field"/>
+				<button type="button" id="btn-speak-text">🗣 Озвучить текст голосом</button>
+			</div>
+
+			<div>
+				<h3>B) Battery Status API & Геолокация:</h3>
+				<button type="button" id="btn-check-battery">🔋 Проверить статус батареи</button>
+				<button type="button" id="btn-check-geo">📍 Запросить координаты (Geolocation)</button>
+				<div id="device-api-result" class="device-status-text"></div>
+			</div>
+		</section>
+
+		<section class="js-lab-section" aria-labelledby="task10-heading">
+			<h2 id="task10-heading">4. Разложение функции в ряд ln(1+x) и график Chart.js</h2>
+			<p>
+				Формула ряда Тейлора: <strong>ln(1 + x) = x - x²/2 + x³/3 - x⁴/4 + ... = ∑ (-1)ⁿ⁻¹ · (xⁿ / n)</strong> при
+				<strong>|x| &lt; 1</strong>.
+			</p>
+
+			<div class="math-series-form-bar">
+				<label><strong>x от:</strong> <input type="number" id="math-x-start" value="-0.8" step="0.1" min="-0.99"
+				                                     max="0.99" class="math-inp-coord"/></label>
+				<label><strong>x до:</strong> <input type="number" id="math-x-end" value="0.8" step="0.1" min="-0.99" max="0.99"
+				                                     class="math-inp-coord"/></label>
+				<label><strong>Шаг:</strong> <input type="number" id="math-step" value="0.2" step="0.05" min="0.01"
+				                                    class="math-inp-step"/></label>
+				<label><strong>Точность (eps):</strong> <input type="number" id="math-eps" value="0.0001" step="0.00001"
+				                                               class="math-inp-eps"/></label>
+				<button type="button" id="btn-calc-series">Рассчитать и построить график</button>
+				<button type="button" id="btn-save-chart">💾 Сохранить график в PNG</button>
+			</div>
+
+			<div class="math-table-scroll-wrapper">
+				<table class="math-series-table" id="series-result-table">
+					<thead>
+					<tr>
+						<th>Аргумент x</th>
+						<th>Кол-во членов n</th>
+						<th>Сумма ряда F(x)</th>
+						<th>Точное Math.log(1+x)</th>
+						<th>Погрешность eps</th>
+					</tr>
+					</thead>
+					<tbody id="series-table-body">
+
+					</tbody>
+				</table>
+			</div>
+
+			<div class="chart-container-box">
+				<canvas id="taylorChartCanvas" width="800" height="400"></canvas>
+			</div>
+		</section>
+	</article>
+
+	<script src="{% static 'js/js_lab.js' %}"></script>
+{% endblock %}

@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+{% load static %}
 
 {% block title %}
 	<title>Главная - Toy Factory</title>
@@ -88,39 +89,78 @@
 		<hr/>
 
 		<section aria-labelledby="promo-banner-title">
-			<h2 id="promo-banner-title">Специальные рекламные предложения</h2>
+			<h2 id="promo-banner-title">Специальные предложения (Интерактивный слайдер)</h2>
 
-			<figure class="promo-banner-figure">
-				<picture>
-					<source media="(min-width: 800px)"
-					        srcset="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=900&auto=format&fit=crop&q=60">
-					<source media="(min-width: 450px)"
-					        srcset="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&auto=format&fit=crop&q=60">
-					<img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&auto=format&fit=crop&q=60"
-					     alt="Рекламный баннер" class="promo-banner-img"/>
-				</picture>
-				<figcaption>
-					<small><strong>Акция сезона:</strong> Скидка до 20% на первую оптовую партию моделей текущего
-						квартала!</small>
-				</figcaption>
-			</figure>
 
-			<table border="1" cellpadding="8" class="promo-sub-table">
-				<tr>
-					<td class="promo-sub-cell">
-						<img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&auto=format&fit=crop&q=60"
-						     alt="Конструкторы" class="promo-sub-img"/><br/>
-						<strong>Безопасные конструкторы</strong><br/>
-						<small>Экологичные материалы европейского качества.</small>
-					</td>
-					<td class="promo-sub-cell">
-						<img src="https://images.unsplash.com/photo-1581557991964-125469da3b8a?w=400&auto=format&fit=crop&q=60"
-						     alt="Мягкие игрушки" class="promo-sub-img"/><br/>
-						<strong>Мягкие плюшевые коллекции</strong><br/>
-						<small>Хиты продаж розничных сетей любого масштаба.</small>
-					</td>
-				</tr>
-			</table>
+			{% if user.is_superuser %}
+				<div class="slider-admin-panel">
+					<p><strong>⚙ Панель администратора: Управление параметрами слайдера</strong></p>
+					<div class="slider-admin-controls">
+						<label>
+							Время смены (сек):
+							<input type="number" id="cfg-delay" min="1" max="60"/>
+						</label>
+
+						<label>
+							<input type="checkbox" id="cfg-loop"/> Зацикленный (loop)
+						</label>
+
+						<label>
+							<input type="checkbox" id="cfg-navs"/> Стрелки (navs)
+						</label>
+
+						<label>
+							<input type="checkbox" id="cfg-pags"/> Точки (pags)
+						</label>
+
+						<label>
+							<input type="checkbox" id="cfg-auto"/> Авто-листание (auto)
+						</label>
+
+						<label>
+							<input type="checkbox" id="cfg-hover"/> Пауза при наведении (stopMouseHover)
+						</label>
+
+						<br>
+						<button type="button" id="save-slider-config-btn">Сохранить настройки</button>
+					</div>
+				</div>
+			{% endif %}
+
+
+			<div class="slider-container" id="main-toy-slider">
+				<div class="slider-track">
+					<div class="slider-slide active">
+						<a href="{% url 'products' %}">
+							<img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=900&auto=format&fit=crop&q=80"
+									 alt="Скидки на мягкие игрушки"/>
+							<div class="slider-caption">
+								<strong>Акция сезона:</strong> Скидка до 20% на первую оптовую партию плюшевых мишек!
+							</div>
+						</a>
+					</div>
+
+					<div class="slider-slide">
+						<a href="{% url 'products' %}">
+							<img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=900&auto=format&fit=crop&q=80"
+									 alt="Развивающие конструкторы"/>
+							<div class="slider-caption">
+								<strong>Новые поступления:</strong> Экологичные деревянные конструкторы и сортеры.
+							</div>
+						</a>
+					</div>
+
+					<div class="slider-slide">
+						<a href="{% url 'promos' %}">
+							<img src="https://images.unsplash.com/photo-1581557991964-125469da3b8a?w=900&auto=format&fit=crop&q=80"
+									 alt="Специальные купоны"/>
+							<div class="slider-caption">
+								<strong>Специальные промокоды:</strong> Активируйте купоны при заказе крупных партий!
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
 		</section>
 
 		<hr/>
@@ -151,7 +191,7 @@
 							{% if last_news.image %}
 								<td class="news-media-cell">
 									<img src="{{ last_news.image.url }}" alt="{{ last_news.header }}" itemprop="image"
-									     class="news-thumb-img"/>
+											 class="news-thumb-img"/>
 								</td>
 							{% endif %}
 							<td class="news-text-cell">
@@ -212,6 +252,74 @@
 		</section>
 
 		<hr/>
+
+		<section class="conveyor-factory-wrapper" id="toy-conveyor-section" aria-labelledby="conveyor-title">
+			<header class="conveyor-header">
+				<h2 id="conveyor-title">🎁 Рождественский конвейер подарков и игрушек</h2>
+				<p class="conveyor-subtitle">
+					<span id="conveyor-status-indicator">⚙ Прокручивайте страницу для перемещения подарков по конвейеру</span>
+				</p>
+			</header>
+
+			<div class="conveyor-viewport">
+				<div class="conveyor-rail conveyor-rail-top"></div>
+
+				<div class="conveyor-ribbon-track" id="conveyor-track">
+
+					<div class="conveyor-item-card">
+						<div class="conveyor-img-box">
+							<img src="{% static 'images/conveyor/toy1.jpeg' %}" alt="Плюшевый мишка"/>
+						</div>
+						<div class="conveyor-item-title">Плюшевый мишка</div>
+					</div>
+
+					<div class="conveyor-item-card">
+						<div class="conveyor-img-box">
+							<img src="{% static 'images/conveyor/toy2.jpg' %}" alt="Щелкунчик"/>
+						</div>
+						<div class="conveyor-item-title">Щелкунчик</div>
+					</div>
+
+					<div class="conveyor-item-card">
+						<div class="conveyor-img-box">
+							<img src="{% static 'images/conveyor/toy3.jpeg' %}" alt="Стеклянный шар"/>
+						</div>
+						<div class="conveyor-item-title">Стеклянный шар</div>
+					</div>
+
+					<div class="conveyor-item-card">
+						<div class="conveyor-img-box">
+							<img src="{% static 'images/conveyor/toy4.jpeg' %}" alt="Лошадка-качалка"/>
+						</div>
+						<div class="conveyor-item-title">Лошадка-качалка</div>
+					</div>
+
+					<div class="conveyor-item-card">
+						<div class="conveyor-img-box">
+							<img src="{% static 'images/conveyor/toy5.jpeg' %}" alt="Северный олень"/>
+						</div>
+						<div class="conveyor-item-title">Северный олень</div>
+					</div>
+
+					<div class="conveyor-item-card">
+						<div class="conveyor-img-box">
+							<img src="{% static 'images/conveyor/toy6.jpeg' %}" alt="Имбирный пряник"/>
+						</div>
+						<div class="conveyor-item-title">Имбирный пряник</div>
+					</div>
+
+					<div class="conveyor-item-card">
+						<div class="conveyor-img-box">
+							<img src="{% static 'images/conveyor/toy7.jpeg' %}" alt="Подарок с бантом"/>
+						</div>
+						<div class="conveyor-item-title">Подарок с бантом</div>
+					</div>
+
+				</div>
+
+				<div class="conveyor-rail conveyor-rail-bottom"></div>
+			</div>
+		</section>
 
 		<section aria-labelledby="partners-heading">
 			<h2 id="partners-heading">Наши надежные партнеры</h2>

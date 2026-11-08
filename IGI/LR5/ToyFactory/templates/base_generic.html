@@ -41,7 +41,9 @@
 			</td>
 
 			<td class="header-auth-cell">
+				<button type="button" id="theme-toggle-btn" class="theme-switch-btn">🌙 Тёмная тема</button>
 				{% if user.is_authenticated %}
+					<span>Привет, <strong>{{ user.username }}</strong>!</span>
 					<span>Привет, <strong>{{ user.username }}</strong>!</span>
 					{% if user.is_superuser %}
 						<small class="auth-badge-admin">[Admin]</small>
@@ -75,6 +77,8 @@
 	<a href="{% url 'reviews' %}">Отзывы</a>
 	<a href="{% url 'contacts' %}">Контакты</a>
 	<a href="{% url 'privacy_policy' %}">Конфиденциальность</a>
+	<a href="{% url 'staff-table' %}">Сотрудники (JS Таблица)</a>
+	<a href="{% url 'js-lab' %}">JS Лаборатория</a>
 </nav>
 
 <div class="portal-layout">
@@ -174,6 +178,7 @@
 			<div class="calendar-box">
 				{{ html_calendar|safe }}
 			</div>
+			<p><a href="#" id="recheck-age-btn"><small>📅 Проверить возраст</small></a></p>
 		</div>
 
 		<hr/>
@@ -200,25 +205,24 @@
 </div>
 
 <footer class="site-footer">
-
-	<footer class="site-footer">
-		<table class="footer-table">
-			<tr>
-				<td>
-					<p>&copy;
-						<time datetime="2025">2025</time>
-						<strong>Toy Factory Inc.</strong> Документация и платформа оптовых поставок.
-					</p>
-				</td>
-				<td class="footer-right">
-					<address>
-						Техподдержка: <a href="mailto:support@toyfactory.by">support@toyfactory.by</a><br/>
-						Телефон: <a href="tel:+375290000000">+375 (29) 000-00-00</a>
-					</address>
-					<p><a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a></p>
-				</td>
-			</tr>
-		</table>
-	</footer>
+	<table class="footer-table">
+		<tr>
+			<td>
+				<p>&copy;
+					<time datetime="2025">2025</time>
+					<strong>Toy Factory Inc.</strong> Документация и платформа оптовых поставок.
+				</p>
+			</td>
+			<td class="footer-right">
+				<address>
+					Техподдержка: <a href="mailto:support@toyfactory.by">support@toyfactory.by</a><br/>
+					Телефон: <a href="tel:+375290000000">+375 (29) 000-00-00</a>
+				</address>
+				<p><a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a></p>
+			</td>
+		</tr>
+	</table>
+</footer>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

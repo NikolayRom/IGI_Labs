@@ -28,20 +28,63 @@ function initThemeSwitcher() {
 }
 
 
+function showWelcomeMessage(age, dayOfWeek) {
+    const oldMsg = document.getElementById('age-message-banner');
+    if (oldMsg) oldMsg.remove();
+
+    const banner = document.createElement('div');
+    banner.id = 'age-message-banner';
+    banner.className = 'age-welcome-message';
+    banner.innerHTML = `
+        <button type="button" class="close-msg-btn" onclick="this.parentElement.remove();">&times;</button>
+        <h4>✔ Возраст подтвержден</h4>
+        <p>Вам <strong>${age} лет</strong> (совершеннолетний пользователь).</p>
+        <p>День недели вашего рождения: <strong>${dayOfWeek}</strong>.</p>
+        <p><small style="color: #7f8c8d;">Вам предоставлен полный доступ к каталогу и оптовым заказам.</small></p>
+    `;
+    document.body.appendChild(banner);
+
+    setTimeout(() => {
+        if (banner.parentNode) {
+            banner.style.transition = 'opacity 0.5s ease';
+            banner.style.opacity = '0';
+            setTimeout(() => banner.remove(), 500);
+        }
+    }, 9000);
+}
+
 function askBirthDate(force = false) {
     if (!force && sessionStorage.getItem('age-verified')) return;
 
     setTimeout(() => {
-        const inputDate = prompt('Добро пожаловать в Toy Factory!\nПожалуйста, укажите вашу дату рождения в формате ГГГГ-ММ-ДД (например, 2000-05-15):');
+        const inputDate = prompt('Добро пожаловать в Toy Factory!\nПожалуйста, укажите дату рождения в формате ГГГГ-ММ-ДД (например, 2002-05-15):');
         if (!inputDate) return;
 
-        const birthDate = new Date(inputDate);
-        if (isNaN(birthDate.getTime())) {
-            alert('Введена некорректная дата!');
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (!dateRegex.test(inputDate.trim())) {
+            alert('Ошибка ввода! Формат даты должен быть строго ГГГГ-ММ-ДД (например, 2002-11-24).');
             return;
         }
 
+        const birthDate = new Date(inputDate);
         const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (isNaN(birthDate.getTime())) {
+            alert('Введена некорректная календарная дата!');
+            return;
+        }
+
+        if (birthDate > today) {
+            alert(`Ошибка валидации! Введена дата из будущего (${inputDate}). Вы еще не родились!`);
+            return;
+        }
+
+        if (today.getFullYear() - birthDate.getFullYear() > 120) {
+            alert('Ошибка валидации! Возраст не может превышать 120 лет.');
+            return;
+        }
+
         let age = today.getFullYear() - birthDate.getFullYear();
         const m = today.getMonth() - birthDate.getMonth();
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -52,10 +95,10 @@ function askBirthDate(force = false) {
         const dayOfWeek = days[birthDate.getDay()];
 
         if (age >= 18) {
-            alert(`Вам ${age} лет.\nДень недели вашего рождения: ${dayOfWeek}.\nДобро пожаловать на оптовый портал!`);
+            showWelcomeMessage(age, dayOfWeek);
             sessionStorage.setItem('age-verified', 'true');
         } else {
-            alert(`Вам ${age} лет.\nВнимание: Несовершеннолетним требуется разрешение родителей на использование сайта и оформление заказов!`);
+            alert(`Вам ${age} лет.\nДень недели вашего рождения: ${dayOfWeek}.\n\nВНИМАНИЕ! Для использования оптового портала и оформления заказов требуется официальное разрешение родителей!`);
             sessionStorage.setItem('age-verified', 'minor');
         }
     }, 400);
@@ -411,7 +454,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initInteractiveStaffTable() {
     const tableElem = document.getElementById('main-staff-table');
-    tableElem.style.display = 'none';
     if (!tableElem) return;
 
     let staffList = [];
@@ -421,13 +463,15 @@ function initInteractiveStaffTable() {
     let sortColumn = 'fio';
     let sortAsc = true;
 
+    const selectedEmployeeIds = new Set();
+
     const tbody = document.getElementById('staff-table-body');
     const paginationNav = document.getElementById('staff-pagination-nav');
     const loadingSpinner = document.getElementById('table-loading-spinner');
     const searchInput = document.getElementById('staff-search-input');
     const searchBtn = document.getElementById('staff-search-btn');
     const resetBtn = document.getElementById('staff-search-reset-btn');
-
+    const checkAllBox = document.getElementById('check-all-staff');
 
     function generateFallbackStaff() {
         const list = [];
@@ -457,13 +501,12 @@ function initInteractiveStaffTable() {
         return list;
     }
 
-
     loadingSpinner.style.display = 'block';
+    tableElem.style.display = 'none';
 
     const apiUrl = window.location.pathname.includes('/api/')
         ? '/api/employees-data/'
         : '/employees-data/';
-
 
     setTimeout(() => {
         fetch(apiUrl)
@@ -493,7 +536,6 @@ function initInteractiveStaffTable() {
             });
     }, 500);
 
-
     function renderTable() {
         tbody.innerHTML = '';
         const totalItems = filteredList.length;
@@ -514,9 +556,12 @@ function initInteractiveStaffTable() {
         pageItems.forEach(emp => {
             const tr = document.createElement('tr');
             tr.className = 'staff-row-selectable';
+
+            const isChecked = selectedEmployeeIds.has(emp.id);
+
             tr.innerHTML = `
                 <td style="text-align: center;" onclick="event.stopPropagation();">
-                    <input type="checkbox" class="staff-row-check" data-fio="${emp.fio}" />
+                    <input type="checkbox" class="staff-row-check" data-id="${emp.id}" ${isChecked ? 'checked' : ''} />
                 </td>
                 <td class="staff-avatar-cell"><img src="${emp.avatar}" alt="Фото" /></td>
                 <td><strong>${emp.fio}</strong></td>
@@ -525,6 +570,16 @@ function initInteractiveStaffTable() {
                 <td>${emp.email}</td>
             `;
 
+            const chk = tr.querySelector('.staff-row-check');
+            chk.addEventListener('change', () => {
+                if (chk.checked) {
+                    selectedEmployeeIds.add(emp.id);
+                } else {
+                    selectedEmployeeIds.delete(emp.id);
+                    if (checkAllBox) checkAllBox.checked = false;
+                }
+                updateCheckAllState(pageItems);
+            });
 
             tr.addEventListener('click', () => {
                 showDetailCard(emp);
@@ -535,8 +590,38 @@ function initInteractiveStaffTable() {
 
         renderPagination(totalPages);
         updateSortIcons();
+        updateCheckAllState(pageItems);
     }
 
+    function renderPagination(totalPages) {
+        paginationNav.innerHTML = '';
+        if (totalPages <= 1) return;
+
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'client-page-btn';
+        prevBtn.innerHTML = '&larr; Назад';
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => { currentPage--; renderTable(); };
+        paginationNav.appendChild(prevBtn);
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `client-page-btn ${i === currentPage ? 'active' : ''}`;
+            btn.textContent = i;
+            btn.onclick = () => { currentPage = i; renderTable(); };
+            paginationNav.appendChild(btn);
+        }
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'client-page-btn';
+        nextBtn.innerHTML = 'Вперед &rarr;';
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => { currentPage++; renderTable(); };
+        paginationNav.appendChild(nextBtn);
+    }
 
     tableElem.querySelectorAll('thead th[data-column]').forEach(th => {
         th.addEventListener('click', () => {
@@ -563,102 +648,84 @@ function initInteractiveStaffTable() {
     function updateSortIcons() {
         tableElem.querySelectorAll('thead th[data-column]').forEach(th => {
             const icon = th.querySelector('.sort-icon');
-            if (th.dataset.column === sortColumn) {
-                icon.textContent = sortAsc ? ' ▲' : ' ▼';
-            } else {
-                icon.textContent = ' ⇅';
+            if (icon) {
+                if (th.dataset.column === sortColumn) {
+                    icon.textContent = sortAsc ? ' ▲' : ' ▼';
+                } else {
+                    icon.textContent = ' ⇅';
+                }
             }
         });
     }
 
-
-    function renderPagination(totalPages) {
-        paginationNav.innerHTML = '';
-        if (totalPages <= 1) return;
-
-        const prevBtn = document.createElement('button');
-        prevBtn.type = 'button';
-        prevBtn.className = 'client-page-btn';
-        prevBtn.innerHTML = '&larr; Назад';
-        prevBtn.disabled = currentPage === 1;
-        prevBtn.onclick = () => {
-            currentPage--;
-            renderTable();
-        };
-        paginationNav.appendChild(prevBtn);
-
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = `client-page-btn ${i === currentPage ? 'active' : ''}`;
-            btn.textContent = i;
-            btn.onclick = () => {
-                currentPage = i;
-                renderTable();
-            };
-            paginationNav.appendChild(btn);
-        }
-
-        const nextBtn = document.createElement('button');
-        nextBtn.type = 'button';
-        nextBtn.className = 'client-page-btn';
-        nextBtn.innerHTML = 'Вперед &rarr;';
-        nextBtn.disabled = currentPage === totalPages;
-        nextBtn.onclick = () => {
-            currentPage++;
-            renderTable();
-        };
-        paginationNav.appendChild(nextBtn);
-    }
-
-
-    searchBtn.addEventListener('click', () => {
-        tableElem.style.display = 'none';
-        loadingSpinner.style.display = 'block';
-
-        setTimeout(() => {
-            const query = searchInput.value.trim().toLowerCase();
-            if (!query) {
-                filteredList = [...staffList];
-            } else {
-                filteredList = staffList.filter(emp =>
-                    emp.fio.toLowerCase().includes(query) ||
-                    emp.info.toLowerCase().includes(query) ||
-                    emp.phone.toLowerCase().includes(query) ||
-                    emp.email.toLowerCase().includes(query)
-                );
-            }
-            currentPage = 1;
-            loadingSpinner.style.display = 'none';
-            tableElem.style.display = 'table';
-            renderTable();
-        }, 400);
-    });
-
-    resetBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        filteredList = [...staffList];
-        currentPage = 1;
-        renderTable();
-    });
-
-
     function showDetailCard(emp) {
         const detailCard = document.getElementById('staff-detail-view-card');
+        if (!detailCard) return;
         document.getElementById('detail-card-img').src = emp.avatar;
         document.getElementById('detail-card-fio').textContent = emp.fio;
         document.getElementById('detail-card-info').textContent = emp.info;
         document.getElementById('detail-card-phone').textContent = emp.phone;
         document.getElementById('detail-card-email').textContent = emp.email;
         detailCard.style.display = 'block';
-        detailCard.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+        detailCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
+    function updateCheckAllState(currentPageItems) {
+        if (!checkAllBox || currentPageItems.length === 0) return;
+        const allOnPageChecked = currentPageItems.every(emp => selectedEmployeeIds.has(emp.id));
+        checkAllBox.checked = allOnPageChecked;
+    }
 
-    const checkAll = document.getElementById('check-all-staff');
-    if (checkAll) {
-        checkAll.addEventListener('change', () => {
-            document.querySelectorAll('.staff-row-check').forEach(chk => chk.checked = checkAll.checked);
+    if (checkAllBox) {
+        checkAllBox.addEventListener('change', () => {
+            const start = (currentPage - 1) * itemsPerPage;
+            const pageItems = filteredList.slice(start, start + itemsPerPage);
+
+            pageItems.forEach(emp => {
+                if (checkAllBox.checked) {
+                    selectedEmployeeIds.add(emp.id);
+                } else {
+                    selectedEmployeeIds.delete(emp.id);
+                }
+            });
+
+            tbody.querySelectorAll('.staff-row-check').forEach(chk => {
+                chk.checked = checkAllBox.checked;
+            });
+        });
+    }
+
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', () => {
+            tableElem.style.display = 'none';
+            loadingSpinner.style.display = 'block';
+
+            setTimeout(() => {
+                const query = searchInput.value.trim().toLowerCase();
+                if (!query) {
+                    filteredList = [...staffList];
+                } else {
+                    filteredList = staffList.filter(emp =>
+                        emp.fio.toLowerCase().includes(query) ||
+                        emp.info.toLowerCase().includes(query) ||
+                        emp.phone.toLowerCase().includes(query) ||
+                        emp.email.toLowerCase().includes(query)
+                    );
+                }
+                currentPage = 1;
+                loadingSpinner.style.display = 'none';
+                tableElem.style.display = 'table';
+                renderTable();
+            }, 400);
+        });
+    }
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            filteredList = [...staffList];
+            currentPage = 1;
+            renderTable();
         });
     }
 
@@ -666,43 +733,44 @@ function initInteractiveStaffTable() {
     const bonusBox = document.getElementById('bonus-order-box');
     const bonusText = document.getElementById('bonus-order-text');
 
+    if (awardBtn) {
+        awardBtn.addEventListener('click', () => {
+            const selectedStaffMembers = staffList.filter(emp => selectedEmployeeIds.has(emp.id));
 
-    awardBtn.addEventListener('click', () => {
-        const selected = Array.from(document.querySelectorAll('.staff-row-check:checked'))
-            .map(chk => chk.dataset.fio);
+            if (selectedStaffMembers.length === 0) {
+                alert('Пожалуйста, отметьте галочками сотрудников для премирования (можно выбрать на разных страницах пагинации)!');
+                return;
+            }
 
-        if (selected.length === 0) {
-            alert('Пожалуйста, отметьте галочками сотрудников для премирования!');
-            return;
-        }
+            tableElem.style.display = 'none';
+            loadingSpinner.style.display = 'block';
+            if (bonusBox) bonusBox.style.display = 'none';
 
+            setTimeout(() => {
+                loadingSpinner.style.display = 'none';
+                tableElem.style.display = 'table';
 
-        tableElem.style.display = 'none';
-        loadingSpinner.style.display = 'block';
-        bonusBox.style.display = 'none';
-
-        setTimeout(() => {
-            loadingSpinner.style.display = 'none';
-            tableElem.style.display = 'table';
-
-            const dateStr = new Date().toLocaleDateString('ru-RU');
-            bonusText.innerHTML = `
-                <p><strong>ПРИКАЗ № ${Math.floor(Math.random() * 900 + 100)}/ПР от ${dateStr} г.</strong></p>
-                <p>За добросовестное выполнение трудовых обязанностей, высокие производственные показатели и личный вклад в развитие фабрики «Toy Factory»:</p>
-                <p><strong>1. НАГРАДИТЬ ДЕНЕЖНОЙ ПРЕМИЕЙ СЛЕДУЮЩИХ СОТРУДНИКОВ:</strong></p>
-                <ul>
-                    ${selected.map(name => `<li><strong>${name}</strong> — в размере 100% должностного оклада.</li>`).join('')}
-                </ul>
-                <p><em>Основание: Представление начальника производства, решение генерального директора.</em></p>
-            `;
-            bonusBox.style.display = 'block';
-            bonusBox.scrollIntoView({behavior: 'smooth'});
-        }, 450);
-    });
-
+                const dateStr = new Date().toLocaleDateString('ru-RU');
+                if (bonusText) {
+                    bonusText.innerHTML = `
+                        <p><strong>ПРИКАЗ № ${Math.floor(Math.random() * 900 + 100)}/ПР от ${dateStr} г.</strong></p>
+                        <p>За добросовестное выполнение трудовых обязанностей и высокие производственные показатели:</p>
+                        <p><strong>1. НАГРАДИТЬ ДЕНЕЖНОЙ ПРЕМИЕЙ СЛЕДУЮЩИХ СОТРУДНИКОВ (Всего: ${selectedStaffMembers.length} чел.):</strong></p>
+                        <ul>
+                            ${selectedStaffMembers.map(emp => `<li><strong>${emp.fio}</strong> (${emp.info}) — в размере 100% оклада.</li>`).join('')}
+                        </ul>
+                        <p><em>Основание: Решение генерального директора фабрики «Toy Factory».</em></p>
+                    `;
+                }
+                if (bonusBox) {
+                    bonusBox.style.display = 'block';
+                    bonusBox.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 450);
+        });
+    }
 
     initStaffAddFormValidation((newEmployee) => {
-
         staffList.unshift(newEmployee);
         filteredList = [...staffList];
         currentPage = 1;

@@ -2652,3 +2652,48 @@ body.dark-theme .partner-circle {
 .math-table-scroll-wrapper {
 	overflow-x: auto;
 }
+
+.age-welcome-message {
+    position: fixed;
+    top: 60px;
+    right: 25px;
+    z-index: 9999;
+    background-color: #ffffff;
+    border-left: 5px solid #27ae60;
+    padding: 16px 22px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    max-width: 420px;
+    color: var(--primary-color);
+    animation: slideInRight 0.4s ease-out;
+}
+
+.age-welcome-message h4 {
+    margin: 0 0 6px 0;
+    color: #27ae60;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 1.1em;
+}
+
+.age-welcome-message p {
+    margin: 4px 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.age-welcome-message .close-msg-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #95a5a6;
+    cursor: pointer;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

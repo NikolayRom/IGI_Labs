@@ -202,22 +202,11 @@ class BasePerson {
         this._fio = fio;
         this._gender = gender;
     }
+    get fio() { return this._fio; }
+    set fio(val) { this._fio = val; }
 
-    get fio() {
-        return this._fio;
-    }
-
-    set fio(val) {
-        this._fio = val;
-    }
-
-    get gender() {
-        return this._gender;
-    }
-
-    set gender(val) {
-        this._gender = val;
-    }
+    get gender() { return this._gender; }
+    set gender(val) { this._gender = val; }
 
     getNormalizedLastName() {
         let lastName = this._fio.trim().split(' ')[0].toLowerCase();
@@ -237,14 +226,8 @@ class InstitutionEmployee extends BasePerson {
         super(fio, gender);
         this._maritalStatus = maritalStatus;
     }
-
-    get maritalStatus() {
-        return this._maritalStatus;
-    }
-
-    set maritalStatus(val) {
-        this._maritalStatus = val;
-    }
+    get maritalStatus() { return this._maritalStatus; }
+    set maritalStatus(val) { this._maritalStatus = val; }
 
     isMarried() {
         return this._maritalStatus === 'В браке';
@@ -266,6 +249,66 @@ class InstitutionEmployee extends BasePerson {
         </tr>`;
     }
 }
+
+function PrototypePerson(fio, gender) {
+    this._fio = fio;
+    this._gender = gender;
+}
+
+Object.defineProperty(PrototypePerson.prototype, 'fio', {
+    get: function() { return this._fio; },
+    set: function(val) { this._fio = val; }
+});
+
+Object.defineProperty(PrototypePerson.prototype, 'gender', {
+    get: function() { return this._gender; },
+    set: function(val) { this._gender = val; }
+});
+
+PrototypePerson.prototype.getNormalizedLastName = function() {
+    let lastName = this._fio.trim().split(' ')[0].toLowerCase();
+    if (this._gender === 'Женский') {
+        if (lastName.endsWith('ова') || lastName.endsWith('ева') || lastName.endsWith('ина') || lastName.endsWith('ына')) {
+            lastName = lastName.slice(0, -1);
+        } else if (lastName.endsWith('ая')) {
+            lastName = lastName.slice(0, -2) + 'ый';
+        }
+    }
+    return lastName;
+};
+
+function PrototypeEmployee(fio, gender, maritalStatus) {
+    PrototypePerson.call(this, fio, gender);
+    this._maritalStatus = maritalStatus;
+}
+
+PrototypeEmployee.prototype = Object.create(PrototypePerson.prototype);
+PrototypeEmployee.prototype.constructor = PrototypeEmployee;
+
+Object.defineProperty(PrototypeEmployee.prototype, 'maritalStatus', {
+    get: function() { return this._maritalStatus; },
+    set: function(val) { this._maritalStatus = val; }
+});
+
+PrototypeEmployee.prototype.isMarried = function() {
+    return this._maritalStatus === 'В браке';
+};
+
+PrototypeEmployee.prototype.canBeMarriedTo = function(otherEmp) {
+    if (this === otherEmp) return false;
+    const diffGender = this.gender !== otherEmp.gender;
+    const bothMarried = this.isMarried() && otherEmp.isMarried();
+    const sameFamily = this.getNormalizedLastName() === otherEmp.getNormalizedLastName();
+    return diffGender && bothMarried && sameFamily;
+};
+
+PrototypeEmployee.prototype.renderCard = function() {
+    return `<tr>
+        <td><strong>${this.fio}</strong></td>
+        <td>${this.gender}</td>
+        <td>${this.maritalStatus}</td>
+    </tr>`;
+};
 
 function initEmployeeOOPTask() {
     const displayTable = document.getElementById('oop-staff-display-table');
